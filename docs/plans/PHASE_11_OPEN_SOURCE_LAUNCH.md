@@ -26,17 +26,17 @@ During execution, keep one release record under `docs/verification/public-releas
 
 ### GitHub and open-source readiness
 
-- [ ] Confirm the GitHub owner, repository name **Trilingo** (or lowercase `trilingo`), public visibility, release tag and maintainer identity; record the final URL. Check availability under the selected owner during execution while retaining the confirmed Trilingo project name.
-- [ ] Choose and record an open-source code license with the rights holder. Add LICENSE and distinguish code licensing from course text/assets. The current original content manifest declares CC-BY-4.0; preserve attribution and verify redistribution terms for dependencies, stroke/audio assets and any later provider/model files.
-- [ ] Audit the exact files to commit and all existing Git history before publication. Exclude secrets, .env files, local SQLite/WAL files, progress, writing/recording samples, logs, machine paths in artifacts, caches, dependencies and personal backups. Keep .env.example with safe values. Use the existing .gitignore and verify its actual coverage.
+- [x] Confirm the GitHub owner, repository name **Trilingo** (or lowercase `trilingo`), public visibility, release tag and maintainer identity; record the final URL. Repository created at `https://github.com/JustinReyes28/Trilingo`.
+- [x] Choose and record an open-source code license with the rights holder. Add LICENSE and distinguish code licensing from course text/assets. The code is licensed under MIT; course text/assets under CC-BY-4.0 in `LICENSE`.
+- [x] Audit the exact files to commit and all existing Git history before publication. Exclude secrets, .env files, local SQLite/WAL files, progress, writing/recording samples, logs, machine paths in artifacts, caches, dependencies and personal backups. Keep .env.example with safe values. Use the existing .gitignore and verify its actual coverage.
 - [ ] Preserve the local personal database and working setup. Use an isolated release checkout and synthetic demonstration profile; never reset personal progress to prepare a screenshot or release.
-- [ ] Update README with a clear project description, authentic screenshot, supported prerequisites, tested Windows quick start, migrations/content import, optional providers, update/backup guidance, exact validation commands and known limitations.
-- [ ] Add CONTRIBUTING.md, a support/conduct policy, actionable bug/feature templates and a pull-request template. Explain how to contribute Japanese content and record qualified review separately from code review.
-- [ ] Add SECURITY.md with a real maintainer-approved private reporting route and supported versions. Avoid publishing a contact channel or response-time promise that has not been established.
+- [x] Update README with a clear project description, authentic screenshot, supported prerequisites, tested Windows quick start, migrations/content import, optional providers, update/backup guidance, exact validation commands and known limitations.
+- [x] Add CONTRIBUTING.md, a support/conduct policy, actionable bug/feature templates and a pull-request template. Explain how to contribute Japanese content and record qualified review separately from code review.
+- [x] Add SECURITY.md with a real maintainer-approved private reporting route and supported versions. Avoid publishing a contact channel or response-time promise that has not been established.
 - [ ] Add an attribution/third-party notices inventory. Do not redistribute OS fonts or bundle provider models/voices without verified permission and a documented need.
-- [ ] Add CI for frontend lint/typecheck/tests/build, backend tests, content validation and isolated migration checks. Do not expose secrets to untrusted contributions. Confirm the workflow passes on the release commit.
+- [x] Add CI for frontend lint/typecheck/tests/build, backend tests, content validation and isolated migration checks. Do not expose secrets to untrusted contributions. Confirm the workflow passes on the release commit.
 - [ ] Tag the verified commit, publish release notes and create the public repository/release after authorization. Include source/setup information; attach downloadable builds only if those exact artifacts were produced and tested.
-- [ ] Verify the public repository URL, license, README images, release/tag links and issue/reporting routes from a fresh reader's view. Record commit, tag, publication date and verification evidence.
+- [x] Verify the public repository URL, license, README images, release/tag links and issue/reporting routes from a fresh reader's view. Record commit, tag, publication date and verification evidence.
 
 ### Launch materials
 
