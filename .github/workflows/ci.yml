@@ -9,7 +9,7 @@ on:
 jobs:
   backend:
     name: Backend Lint, Migrations & Tests
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: backend
@@ -34,17 +34,15 @@ jobs:
 
       - name: Run Alembic migrations on isolated SQLite database
         env:
-          DATABASE_URL: sqlite:///isolated_test.db
+          DATABASE_URL: sqlite:///isolated_migration_check.db
         run: alembic upgrade head
 
       - name: Run pytest test suite
-        env:
-          DATABASE_URL: sqlite:///isolated_test.db
-        run: pytest
+        run: pytest -q
 
   frontend:
     name: Frontend Lint, Typecheck, Tests & Build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: frontend
