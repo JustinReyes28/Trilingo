@@ -1,67 +1,82 @@
 # Contributing to Trilingo
 
-Thank you for your interest in contributing to Trilingo! Trilingo is an open-source, local-first Japanese language learning application designed for autonomous, unrestricted study.
+Trilingo is a local-first Japanese learning app built for people who want to study on their own terms. We built it because we wanted a clean language tool that treats learners like adults: no lives, no energy timers, no cooldowns, and no cloud tracking.
+
+Whether you are squashing a UI bug, optimizing an SQLite query, or correcting a Japanese translation, we are glad you are here.
+
+---
 
 ## Core Principles
 
-1. **Unrestricted Study:** Learning is self-directed. All published lessons, units, and review modes must remain freely accessible without hearts, energy locks, timers, paid gates, or cooldowns.
-2. **Honest Evidence:** Assisted, revealed, or skipped exercises must never be reported as unassisted masteries, but mistakes never block continuation.
-3. **Local-First & Offline:** Core learning, persistence, and grading work 100% offline without external cloud dependencies or forced AI accounts. Optional AI or local TTS/STT are strictly advisory enhancements.
+Every contribution must honor these three rules:
 
-## Ways to Contribute
+1. **Unrestricted study:** Learning stays self-directed. All published lessons, units, and review modes must remain accessible without hearts, energy locks, timers, paid gates, or cooldowns. Never add artificial friction.
+2. **Honest evidence:** Assisted, revealed, or skipped exercises must never be counted as unassisted mastery. At the same time, mistakes must never block continuation or penalize access.
+3. **Local-first and private:** Core learning, data persistence, and grading must work 100% offline. No third-party tracking, telemetry, or mandatory cloud accounts. Local AI or TTS/STT are strictly optional helpers.
+
+---
+
+## What We Need Help With
 
 ### 1. Code Contributions (Engine, Backend, Frontend)
 - **Frontend Stack:** React 19, TypeScript (strict mode), Vite, Tailwind CSS, Zod.
-- **Backend Stack:** Python 3.11+, FastAPI, SQLAlchemy, Alembic, Pydantic v2, SQLite with WAL mode.
+- **Backend Stack:** Python 3.11+, FastAPI, SQLAlchemy, Alembic, Pydantic v2, SQLite with Write-Ahead Logging (WAL).
 - **Quality Gates:**
   - Frontend: `npm run lint`, `npx tsc --noEmit`, `npm test`, `npm run build`
-  - Backend: `ruff check app tests migrations`, `pytest`
-  - Migrations: Every database schema change requires an Alembic migration tested against clean and populated databases.
+  - Backend: `ruff check app tests migrations`, `pytest -q`
+  - Migrations: Every schema change requires a tested Alembic migration that runs cleanly forward.
 
 ### 2. Japanese Curriculum & Content Review
-Pedagogical contributions and language review are especially welcome:
-- **Japanese Content:** Located under `content/courses/ja-starter/` and authored drafts under `content/authoring/ja/`.
-- **Review Criteria:**
-  - Grammatical accuracy and natural contemporary Japanese phrasing.
-  - Accurate pitch/pronunciation readings and appropriate contextual kanji usage.
-  - Distinct homophones and justifiable distractors.
-  - Cultural register appropriateness (polite `-desu`/`-masu` vs. plain form distinctions).
-- Qualified reviewers: When submitting corrections or reviewing vocabulary/grammar batches, please include notes on the pedagogical rationale and any regional/register nuances.
+You do not need to write code to contribute. We actively welcome reviews from native speakers, teachers, and experienced learners:
+- **Content Location:** Curriculum files live under `content/courses/ja-starter/` and authored drafts live in `content/authoring/ja/`.
+- **What to look for:**
+  - Natural, contemporary Japanese phrasing.
+  - Contextual kanji readings in whole words rather than isolated character lists.
+  - Distinguishing valid synonyms and homophones from actual mistakes.
+  - Register nuances (e.g. polite `-desu`/`-masu` versus casual plain form).
+- When submitting corrections or reviewing vocabulary batches, please include a quick explanation of the pedagogical nuance so others can learn from it.
 
-## Development Setup
+---
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/JustinReyes28/Trilingo.git
-   cd Trilingo
-   ```
+## Local Development Setup
 
-2. **Backend setup:**
-   ```bash
-   cd backend
-   python -m venv .venv
-   # Windows:
-   .venv\Scripts\activate
-   # Linux/macOS:
-   source .venv/bin/activate
+### 1. Clone the repository
+```bash
+git clone https://github.com/JustinReyes28/Trilingo.git
+cd Trilingo
+```
 
-   pip install -r requirements.lock
-   alembic upgrade head
-   python -m app.seed
-   uvicorn app.main:app --reload --port 8000
-   ```
+### 2. Backend setup
+```bash
+cd backend
+python -m venv .venv
 
-3. **Frontend setup:**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
+# Activate:
+# Windows (PowerShell):
+.\.venv\Scripts\Activate.ps1
+# Linux/macOS:
+source .venv/bin/activate
+
+pip install -r requirements.lock
+alembic upgrade head
+python -m app.cli import
+uvicorn app.main:app --reload --port 8000
+```
+
+### 3. Frontend setup
+In another terminal:
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+---
 
 ## Pull Request Guidelines
 
-1. Create a feature branch from `main`: `git checkout -b feature/my-feature-name`.
-2. Ensure all relevant automated tests pass before opening a pull request.
-3. Keep pull requests focused on a single coherent change.
-4. Include regression tests for bug fixes.
-5. Adhere to existing code formatting and type safety conventions.
+1. **Branch cleanly:** Create a feature branch off `main` (`git checkout -b fix/reading-furigana-toggle`).
+2. **Keep it focused:** Small, single-purpose pull requests get reviewed and merged much faster than sprawling multi-feature refactors.
+3. **Add tests:** If you are fixing a bug, add a regression test proving the fix works. If you are adding a feature, add unit tests for it.
+4. **Run the quality gates:** Make sure linting, typechecking, and tests pass locally before pushing.
+5. **Respect line endings:** Keep `.gitattributes` LF normalization intact.
