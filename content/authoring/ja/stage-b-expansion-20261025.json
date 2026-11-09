@@ -1,0 +1,15 @@
+{
+  "course_id": "ja-starter",
+  "base_version": "0.1.20",
+  "base_sha256": "9140fc35d310a7c42defb67854a93fe9218c2140770d119e5461160713d0b7b8",
+  "target_version": "0.1.21",
+  "batch_id": "b21",
+  "status": "draft",
+  "authoring_files": [
+    "content/authoring/ja/stage-b-food-routines-20261025.json",
+    "content/authoring/ja/stage-b-places-world-20261025.json",
+    "content/authoring/ja/stage-b-connections-20261025.json"
+  ],
+  "collision_policy": "omit_same_surface_or_reading",
+  "contrast_file": "content/authoring/ja/particle-contrasts-20261025.json"
+}

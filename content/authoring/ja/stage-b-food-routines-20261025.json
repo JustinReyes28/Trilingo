@@ -1,0 +1,3283 @@
+{
+  "status": "draft",
+  "license": "CC-BY-4.0",
+  "review_status": "original draft; qualified Japanese review pending",
+  "groups": [
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Leafy and colorful vegetables",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "白菜",
+          "reading": "はくさい",
+          "gloss": "Chinese cabbage",
+          "part_of_speech": "noun",
+          "example": "白菜を鍋に入れます。",
+          "translation": "I put Chinese cabbage in the pot."
+        },
+        {
+          "surface": "キャベツ",
+          "reading": "きゃべつ",
+          "gloss": "cabbage",
+          "part_of_speech": "noun",
+          "example": "キャベツを細く切ります。",
+          "translation": "I cut the cabbage into thin strips."
+        },
+        {
+          "surface": "ブロッコリー",
+          "reading": "ぶろっこりー",
+          "gloss": "broccoli",
+          "part_of_speech": "noun",
+          "example": "ブロッコリーを少しゆでます。",
+          "translation": "I boil the broccoli briefly."
+        },
+        {
+          "surface": "カリフラワー",
+          "reading": "かりふらわー",
+          "gloss": "cauliflower",
+          "part_of_speech": "noun",
+          "example": "カリフラワーでスープを作ります。",
+          "translation": "I make soup with cauliflower."
+        },
+        {
+          "surface": "なす",
+          "reading": "なす",
+          "gloss": "eggplant; aubergine",
+          "part_of_speech": "noun",
+          "example": "なすを油で炒めます。",
+          "translation": "I stir-fry the eggplant in oil."
+        },
+        {
+          "surface": "かぼちゃ",
+          "reading": "かぼちゃ",
+          "gloss": "pumpkin; winter squash",
+          "part_of_speech": "noun",
+          "example": "かぼちゃを小さく切って煮ます。",
+          "translation": "I cut the pumpkin into small pieces and simmer it."
+        },
+        {
+          "surface": "ピーマン",
+          "reading": "ぴーまん",
+          "gloss": "green pepper",
+          "part_of_speech": "noun",
+          "example": "ピーマンを肉と炒めます。",
+          "translation": "I stir-fry green peppers with meat."
+        },
+        {
+          "surface": "パプリカ",
+          "reading": "ぱぷりか",
+          "gloss": "sweet bell pepper",
+          "part_of_speech": "noun",
+          "example": "赤いパプリカをサラダに入れます。",
+          "translation": "I put a red bell pepper in the salad."
+        },
+        {
+          "surface": "ねぎ",
+          "reading": "ねぎ",
+          "gloss": "Japanese green onion",
+          "part_of_speech": "noun",
+          "example": "うどんにねぎをのせます。",
+          "translation": "I put green onion on the udon."
+        },
+        {
+          "surface": "蓮根",
+          "reading": "れんこん",
+          "gloss": "lotus root",
+          "part_of_speech": "noun",
+          "example": "蓮根を薄く切ります。",
+          "translation": "I slice the lotus root thinly."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Roots beans and everyday vegetables",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "ごぼう",
+          "reading": "ごぼう",
+          "gloss": "burdock root",
+          "part_of_speech": "noun",
+          "example": "ごぼうをよく洗います。",
+          "translation": "I wash the burdock root thoroughly."
+        },
+        {
+          "surface": "里芋",
+          "reading": "さといも",
+          "gloss": "taro",
+          "part_of_speech": "noun",
+          "example": "里芋をだしで煮ます。",
+          "translation": "I simmer taro in stock."
+        },
+        {
+          "surface": "さつまいも",
+          "reading": "さつまいも",
+          "gloss": "sweet potato",
+          "part_of_speech": "noun",
+          "example": "さつまいもをオーブンで焼きます。",
+          "translation": "I bake a sweet potato in the oven."
+        },
+        {
+          "surface": "もやし",
+          "reading": "もやし",
+          "gloss": "bean sprouts",
+          "part_of_speech": "noun",
+          "example": "もやしをフライパンに入れます。",
+          "translation": "I put the bean sprouts in the frying pan."
+        },
+        {
+          "surface": "オクラ",
+          "reading": "おくら",
+          "gloss": "okra",
+          "part_of_speech": "noun",
+          "example": "オクラをゆでて切ります。",
+          "translation": "I boil the okra and cut it."
+        },
+        {
+          "surface": "にんにく",
+          "reading": "にんにく",
+          "gloss": "garlic",
+          "part_of_speech": "noun",
+          "example": "にんにくを少し使います。",
+          "translation": "I use a little garlic."
+        },
+        {
+          "surface": "生姜",
+          "reading": "しょうが",
+          "gloss": "ginger",
+          "part_of_speech": "noun",
+          "example": "スープに生姜を入れます。",
+          "translation": "I put ginger in the soup."
+        },
+        {
+          "surface": "枝豆",
+          "reading": "えだまめ",
+          "gloss": "edamame; green soybeans",
+          "part_of_speech": "noun",
+          "example": "枝豆に塩を少しかけます。",
+          "translation": "I sprinkle a little salt on the edamame."
+        },
+        {
+          "surface": "とうもろこし",
+          "reading": "とうもろこし",
+          "gloss": "corn; maize",
+          "part_of_speech": "noun",
+          "example": "とうもろこしを蒸します。",
+          "translation": "I steam the corn."
+        },
+        {
+          "surface": "アスパラガス",
+          "reading": "あすぱらがす",
+          "gloss": "asparagus",
+          "part_of_speech": "noun",
+          "example": "アスパラガスをバターで炒めます。",
+          "translation": "I pan-fry the asparagus in butter."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Fruit for snacks and dessert",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "梨",
+          "reading": "なし",
+          "gloss": "Asian pear",
+          "part_of_speech": "noun",
+          "example": "梨を切って皿にのせます。",
+          "translation": "I cut the Asian pear and put it on a plate."
+        },
+        {
+          "surface": "柿",
+          "reading": "かき",
+          "gloss": "persimmon",
+          "part_of_speech": "noun",
+          "example": "この柿は甘いです。",
+          "translation": "This persimmon is sweet."
+        },
+        {
+          "surface": "さくらんぼ",
+          "reading": "さくらんぼ",
+          "gloss": "cherry fruit",
+          "part_of_speech": "noun",
+          "example": "さくらんぼを洗って食べます。",
+          "translation": "I wash the cherries and eat them."
+        },
+        {
+          "surface": "梅",
+          "reading": "うめ",
+          "gloss": "Japanese plum; ume fruit",
+          "part_of_speech": "noun",
+          "example": "梅でジャムを作ります。",
+          "translation": "I make jam with ume plums."
+        },
+        {
+          "surface": "パイナップル",
+          "reading": "ぱいなっぷる",
+          "gloss": "pineapple",
+          "part_of_speech": "noun",
+          "example": "パイナップルを一つ買います。",
+          "translation": "I buy one pineapple."
+        },
+        {
+          "surface": "キウイ",
+          "reading": "きうい",
+          "gloss": "kiwifruit",
+          "part_of_speech": "noun",
+          "example": "朝はキウイとヨーグルトを食べます。",
+          "translation": "I eat kiwifruit and yogurt in the morning."
+        },
+        {
+          "surface": "マンゴー",
+          "reading": "まんごー",
+          "gloss": "mango",
+          "part_of_speech": "noun",
+          "example": "マンゴーを冷蔵庫で冷やします。",
+          "translation": "I chill the mango in the refrigerator."
+        },
+        {
+          "surface": "メロン",
+          "reading": "めろん",
+          "gloss": "melon",
+          "part_of_speech": "noun",
+          "example": "メロンを半分に切ります。",
+          "translation": "I cut the melon in half."
+        },
+        {
+          "surface": "グレープフルーツ",
+          "reading": "ぐれーぷふるーつ",
+          "gloss": "grapefruit",
+          "part_of_speech": "noun",
+          "example": "グレープフルーツは少し苦いです。",
+          "translation": "Grapefruit is a little bitter."
+        },
+        {
+          "surface": "ブルーベリー",
+          "reading": "ぶるーべりー",
+          "gloss": "blueberry",
+          "part_of_speech": "noun",
+          "example": "ブルーベリーをパンケーキにのせます。",
+          "translation": "I put blueberries on the pancakes."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Grains flour and dry ingredients",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "小麦粉",
+          "reading": "こむぎこ",
+          "gloss": "wheat flour",
+          "part_of_speech": "noun",
+          "example": "小麦粉と卵を混ぜます。",
+          "translation": "I mix wheat flour and eggs."
+        },
+        {
+          "surface": "片栗粉",
+          "reading": "かたくりこ",
+          "gloss": "potato starch for cooking",
+          "part_of_speech": "noun",
+          "example": "片栗粉を水で溶きます。",
+          "translation": "I mix the potato starch with water."
+        },
+        {
+          "surface": "パン粉",
+          "reading": "ぱんこ",
+          "gloss": "breadcrumbs",
+          "part_of_speech": "noun",
+          "example": "肉にパン粉をつけます。",
+          "translation": "I coat the meat with breadcrumbs."
+        },
+        {
+          "surface": "大豆",
+          "reading": "だいず",
+          "gloss": "soybean",
+          "part_of_speech": "noun",
+          "example": "大豆から豆腐を作ります。",
+          "translation": "Tofu is made from soybeans."
+        },
+        {
+          "surface": "小豆",
+          "reading": "あずき",
+          "gloss": "azuki bean",
+          "part_of_speech": "noun",
+          "example": "小豆をゆっくり煮ます。",
+          "translation": "I simmer the azuki beans slowly."
+        },
+        {
+          "surface": "玄米",
+          "reading": "げんまい",
+          "gloss": "brown rice",
+          "part_of_speech": "noun",
+          "example": "今日は玄米を炊きます。",
+          "translation": "I cook brown rice today."
+        },
+        {
+          "surface": "麦",
+          "reading": "むぎ",
+          "gloss": "wheat; barley and related cereal grains",
+          "part_of_speech": "noun",
+          "example": "このパンは麦の香りがします。",
+          "translation": "This bread smells of grain."
+        },
+        {
+          "surface": "オートミール",
+          "reading": "おーとみーる",
+          "gloss": "oatmeal; rolled oats",
+          "part_of_speech": "noun",
+          "example": "オートミールに牛乳を入れます。",
+          "translation": "I add milk to the oatmeal."
+        },
+        {
+          "surface": "春雨",
+          "reading": "はるさめ",
+          "gloss": "glass noodles",
+          "part_of_speech": "noun",
+          "example": "春雨をスープに入れます。",
+          "translation": "I put glass noodles in the soup."
+        },
+        {
+          "surface": "乾麺",
+          "reading": "かんめん",
+          "gloss": "dried noodles",
+          "part_of_speech": "noun",
+          "example": "乾麺を棚にしまいます。",
+          "translation": "I put the dried noodles away on the shelf."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Fish and seafood at the counter",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "鮭",
+          "reading": "さけ",
+          "gloss": "salmon",
+          "part_of_speech": "noun",
+          "example": "鮭を塩で焼きます。",
+          "translation": "I grill the salmon with salt."
+        },
+        {
+          "surface": "サバ",
+          "reading": "さば",
+          "gloss": "mackerel",
+          "part_of_speech": "noun",
+          "example": "サバを味噌で煮ます。",
+          "translation": "I simmer the mackerel with miso."
+        },
+        {
+          "surface": "イワシ",
+          "reading": "いわし",
+          "gloss": "sardine",
+          "part_of_speech": "noun",
+          "example": "イワシを三匹買います。",
+          "translation": "I buy three sardines."
+        },
+        {
+          "surface": "アジ",
+          "reading": "あじ",
+          "gloss": "Japanese horse mackerel",
+          "part_of_speech": "noun",
+          "example": "アジをフライにします。",
+          "translation": "I make breaded fried horse mackerel."
+        },
+        {
+          "surface": "マグロ",
+          "reading": "まぐろ",
+          "gloss": "tuna",
+          "part_of_speech": "noun",
+          "example": "マグロの刺身を注文します。",
+          "translation": "I order tuna sashimi."
+        },
+        {
+          "surface": "タイ",
+          "reading": "たい",
+          "gloss": "sea bream",
+          "part_of_speech": "noun",
+          "example": "タイを一匹焼きます。",
+          "translation": "I grill one sea bream."
+        },
+        {
+          "surface": "カツオ",
+          "reading": "かつお",
+          "gloss": "bonito; skipjack tuna",
+          "part_of_speech": "noun",
+          "example": "カツオを薄く切ります。",
+          "translation": "I slice the bonito thinly."
+        },
+        {
+          "surface": "イカ",
+          "reading": "いか",
+          "gloss": "squid",
+          "part_of_speech": "noun",
+          "example": "イカを野菜と炒めます。",
+          "translation": "I stir-fry squid with vegetables."
+        },
+        {
+          "surface": "タコ",
+          "reading": "たこ",
+          "gloss": "octopus",
+          "part_of_speech": "noun",
+          "example": "タコを小さく切ります。",
+          "translation": "I cut the octopus into small pieces."
+        },
+        {
+          "surface": "カニ",
+          "reading": "かに",
+          "gloss": "crab",
+          "part_of_speech": "noun",
+          "example": "カニのスープを飲みます。",
+          "translation": "I have crab soup."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Shellfish seaweed and fish products",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "あさり",
+          "reading": "あさり",
+          "gloss": "short-neck clam",
+          "part_of_speech": "noun",
+          "example": "あさりで味噌汁を作ります。",
+          "translation": "I make miso soup with clams."
+        },
+        {
+          "surface": "しじみ",
+          "reading": "しじみ",
+          "gloss": "freshwater clam",
+          "part_of_speech": "noun",
+          "example": "しじみをよく洗います。",
+          "translation": "I wash the freshwater clams thoroughly."
+        },
+        {
+          "surface": "ホタテ",
+          "reading": "ほたて",
+          "gloss": "scallop",
+          "part_of_speech": "noun",
+          "example": "ホタテをバターで焼きます。",
+          "translation": "I pan-fry the scallops in butter."
+        },
+        {
+          "surface": "牡蠣",
+          "reading": "かき",
+          "gloss": "oyster",
+          "part_of_speech": "noun",
+          "example": "牡蠣を十分に加熱します。",
+          "translation": "I cook the oysters thoroughly."
+        },
+        {
+          "surface": "わかめ",
+          "reading": "わかめ",
+          "gloss": "wakame seaweed",
+          "part_of_speech": "noun",
+          "example": "スープにわかめを入れます。",
+          "translation": "I put wakame seaweed in the soup."
+        },
+        {
+          "surface": "昆布",
+          "reading": "こんぶ",
+          "gloss": "kelp; kombu",
+          "part_of_speech": "noun",
+          "example": "昆布でだしを取ります。",
+          "translation": "I make stock with kelp."
+        },
+        {
+          "surface": "海苔",
+          "reading": "のり",
+          "gloss": "nori; edible dried seaweed",
+          "part_of_speech": "noun",
+          "example": "ご飯を海苔で包みます。",
+          "translation": "I wrap rice in nori."
+        },
+        {
+          "surface": "ひじき",
+          "reading": "ひじき",
+          "gloss": "hijiki seaweed",
+          "part_of_speech": "noun",
+          "example": "ひじきを豆と煮ます。",
+          "translation": "I simmer hijiki seaweed with beans."
+        },
+        {
+          "surface": "しらす",
+          "reading": "しらす",
+          "gloss": "tiny whitebait fish",
+          "part_of_speech": "noun",
+          "example": "ご飯にしらすをのせます。",
+          "translation": "I put whitebait on the rice."
+        },
+        {
+          "surface": "かまぼこ",
+          "reading": "かまぼこ",
+          "gloss": "steamed fish cake",
+          "part_of_speech": "noun",
+          "example": "かまぼこを薄く切ります。",
+          "translation": "I slice the fish cake thinly."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Seasonings for everyday cooking",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "ごま",
+          "reading": "ごま",
+          "gloss": "sesame seeds",
+          "part_of_speech": "noun",
+          "example": "サラダにごまをかけます。",
+          "translation": "I sprinkle sesame seeds on the salad."
+        },
+        {
+          "surface": "ごま油",
+          "reading": "ごまあぶら",
+          "gloss": "sesame oil",
+          "part_of_speech": "noun",
+          "example": "ごま油で野菜を炒めます。",
+          "translation": "I stir-fry the vegetables in sesame oil."
+        },
+        {
+          "surface": "みりん",
+          "reading": "みりん",
+          "gloss": "mirin; sweet cooking rice wine",
+          "part_of_speech": "noun",
+          "example": "醤油とみりんを混ぜます。",
+          "translation": "I mix soy sauce and mirin."
+        },
+        {
+          "surface": "料理酒",
+          "reading": "りょうりしゅ",
+          "gloss": "sake for cooking",
+          "part_of_speech": "noun",
+          "example": "魚に料理酒を少しかけます。",
+          "translation": "I pour a little cooking sake over the fish."
+        },
+        {
+          "surface": "だし",
+          "reading": "だし",
+          "gloss": "Japanese cooking stock",
+          "part_of_speech": "noun",
+          "example": "だしを鍋で温めます。",
+          "translation": "I warm the stock in a pot."
+        },
+        {
+          "surface": "めんつゆ",
+          "reading": "めんつゆ",
+          "gloss": "noodle dipping or soup sauce",
+          "part_of_speech": "noun",
+          "example": "そばをめんつゆにつけます。",
+          "translation": "I dip the soba noodles in noodle sauce."
+        },
+        {
+          "surface": "はちみつ",
+          "reading": "はちみつ",
+          "gloss": "honey",
+          "part_of_speech": "noun",
+          "example": "紅茶にはちみつを入れます。",
+          "translation": "I put honey in the black tea."
+        },
+        {
+          "surface": "マヨネーズ",
+          "reading": "まよねーず",
+          "gloss": "mayonnaise",
+          "part_of_speech": "noun",
+          "example": "サラダにマヨネーズを少し入れます。",
+          "translation": "I add a little mayonnaise to the salad."
+        },
+        {
+          "surface": "ケチャップ",
+          "reading": "けちゃっぷ",
+          "gloss": "ketchup",
+          "part_of_speech": "noun",
+          "example": "オムライスにケチャップをかけます。",
+          "translation": "I put ketchup on the omelet rice."
+        },
+        {
+          "surface": "ソース",
+          "reading": "そーす",
+          "gloss": "sauce; Japanese-style savory sauce",
+          "part_of_speech": "noun",
+          "example": "とんかつにソースをかけます。",
+          "translation": "I put sauce on the pork cutlet."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Condiments and sweet flavorings",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "からし",
+          "reading": "からし",
+          "gloss": "Japanese mustard",
+          "part_of_speech": "noun",
+          "example": "からしは別の皿にお願いします。",
+          "translation": "Please put the mustard on a separate plate."
+        },
+        {
+          "surface": "わさび",
+          "reading": "わさび",
+          "gloss": "wasabi",
+          "part_of_speech": "noun",
+          "example": "わさびを少しだけつけます。",
+          "translation": "I add just a little wasabi."
+        },
+        {
+          "surface": "七味",
+          "reading": "しちみ",
+          "gloss": "Japanese seven-spice seasoning",
+          "part_of_speech": "noun",
+          "example": "うどんに七味をかけます。",
+          "translation": "I sprinkle seven-spice seasoning on the udon."
+        },
+        {
+          "surface": "唐辛子",
+          "reading": "とうがらし",
+          "gloss": "chili pepper",
+          "part_of_speech": "noun",
+          "example": "唐辛子を一本使います。",
+          "translation": "I use one chili pepper."
+        },
+        {
+          "surface": "ドレッシング",
+          "reading": "どれっしんぐ",
+          "gloss": "salad dressing",
+          "part_of_speech": "noun",
+          "example": "ドレッシングは別にください。",
+          "translation": "Please give me the dressing separately."
+        },
+        {
+          "surface": "シロップ",
+          "reading": "しろっぷ",
+          "gloss": "syrup",
+          "part_of_speech": "noun",
+          "example": "パンケーキにシロップをかけます。",
+          "translation": "I pour syrup over the pancakes."
+        },
+        {
+          "surface": "シナモン",
+          "reading": "しなもん",
+          "gloss": "cinnamon",
+          "part_of_speech": "noun",
+          "example": "りんごにシナモンを少しかけます。",
+          "translation": "I sprinkle a little cinnamon on the apple."
+        },
+        {
+          "surface": "バニラ",
+          "reading": "ばにら",
+          "gloss": "vanilla",
+          "part_of_speech": "noun",
+          "example": "バニラのアイスクリームをください。",
+          "translation": "Please give me vanilla ice cream."
+        },
+        {
+          "surface": "生クリーム",
+          "reading": "なまくりーむ",
+          "gloss": "fresh cream; whipping cream",
+          "part_of_speech": "noun",
+          "example": "ケーキに生クリームをのせます。",
+          "translation": "I put whipped cream on the cake."
+        },
+        {
+          "surface": "ココナッツ",
+          "reading": "ここなっつ",
+          "gloss": "coconut",
+          "part_of_speech": "noun",
+          "example": "このカレーにはココナッツが入っています。",
+          "translation": "This curry contains coconut."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Rice dishes and egg dishes",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "おにぎり",
+          "reading": "おにぎり",
+          "gloss": "rice ball",
+          "part_of_speech": "noun",
+          "example": "おにぎりを二つ作ります。",
+          "translation": "I make two rice balls."
+        },
+        {
+          "surface": "おかゆ",
+          "reading": "おかゆ",
+          "gloss": "rice porridge",
+          "part_of_speech": "noun",
+          "example": "朝は温かいおかゆを食べます。",
+          "translation": "I eat warm rice porridge in the morning."
+        },
+        {
+          "surface": "雑炊",
+          "reading": "ぞうすい",
+          "gloss": "rice simmered in broth",
+          "part_of_speech": "noun",
+          "example": "残ったご飯で雑炊を作ります。",
+          "translation": "I make rice soup with leftover rice."
+        },
+        {
+          "surface": "チャーハン",
+          "reading": "ちゃーはん",
+          "gloss": "fried rice",
+          "part_of_speech": "noun",
+          "example": "チャーハンに卵を入れます。",
+          "translation": "I put an egg in the fried rice."
+        },
+        {
+          "surface": "丼",
+          "reading": "どんぶり",
+          "gloss": "large rice bowl; rice-bowl dish",
+          "part_of_speech": "noun",
+          "example": "丼にご飯を入れます。",
+          "translation": "I put rice in a large bowl."
+        },
+        {
+          "surface": "親子丼",
+          "reading": "おやこどん",
+          "gloss": "chicken and egg rice bowl",
+          "part_of_speech": "noun",
+          "example": "親子丼を一つお願いします。",
+          "translation": "One chicken and egg rice bowl, please."
+        },
+        {
+          "surface": "牛丼",
+          "reading": "ぎゅうどん",
+          "gloss": "beef rice bowl",
+          "part_of_speech": "noun",
+          "example": "昼は牛丼を食べます。",
+          "translation": "I eat a beef rice bowl for lunch."
+        },
+        {
+          "surface": "オムライス",
+          "reading": "おむらいす",
+          "gloss": "omelet rice",
+          "part_of_speech": "noun",
+          "example": "この店のオムライスが好きです。",
+          "translation": "I like the omelet rice at this restaurant."
+        },
+        {
+          "surface": "卵焼き",
+          "reading": "たまごやき",
+          "gloss": "rolled Japanese omelet",
+          "part_of_speech": "noun",
+          "example": "弁当に卵焼きを入れます。",
+          "translation": "I put rolled omelet in the packed lunch."
+        },
+        {
+          "surface": "茶碗蒸し",
+          "reading": "ちゃわんむし",
+          "gloss": "savory steamed egg custard",
+          "part_of_speech": "noun",
+          "example": "茶碗蒸しをスプーンで食べます。",
+          "translation": "I eat the savory egg custard with a spoon."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Classic cooked Japanese dishes",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "天ぷら",
+          "reading": "てんぷら",
+          "gloss": "tempura; battered fried food",
+          "part_of_speech": "noun",
+          "example": "野菜の天ぷらを注文します。",
+          "translation": "I order vegetable tempura."
+        },
+        {
+          "surface": "唐揚げ",
+          "reading": "からあげ",
+          "gloss": "Japanese-style fried chicken or other fried food",
+          "part_of_speech": "noun",
+          "example": "鶏の唐揚げを作ります。",
+          "translation": "I make Japanese-style fried chicken."
+        },
+        {
+          "surface": "とんかつ",
+          "reading": "とんかつ",
+          "gloss": "breaded pork cutlet",
+          "part_of_speech": "noun",
+          "example": "とんかつにキャベツを添えます。",
+          "translation": "I serve cabbage with the pork cutlet."
+        },
+        {
+          "surface": "焼き鳥",
+          "reading": "やきとり",
+          "gloss": "grilled chicken skewers",
+          "part_of_speech": "noun",
+          "example": "焼き鳥を三本ください。",
+          "translation": "Please give me three chicken skewers."
+        },
+        {
+          "surface": "焼き魚",
+          "reading": "やきざかな",
+          "gloss": "grilled fish",
+          "part_of_speech": "noun",
+          "example": "今日の昼ご飯は焼き魚です。",
+          "translation": "Today's lunch is grilled fish."
+        },
+        {
+          "surface": "煮物",
+          "reading": "にもの",
+          "gloss": "simmered dish",
+          "part_of_speech": "noun",
+          "example": "大根の煮物を作ります。",
+          "translation": "I make a simmered daikon dish."
+        },
+        {
+          "surface": "おでん",
+          "reading": "おでん",
+          "gloss": "oden; assorted foods simmered in broth",
+          "part_of_speech": "noun",
+          "example": "寒い日におでんを食べます。",
+          "translation": "I eat oden on cold days."
+        },
+        {
+          "surface": "鍋料理",
+          "reading": "なべりょうり",
+          "gloss": "hot-pot dish",
+          "part_of_speech": "noun",
+          "example": "冬は家族で鍋料理を食べます。",
+          "translation": "In winter, my family and I eat hot-pot dishes."
+        },
+        {
+          "surface": "すき焼き",
+          "reading": "すきやき",
+          "gloss": "sukiyaki; beef and vegetable hot pot",
+          "part_of_speech": "noun",
+          "example": "すき焼きに豆腐を入れます。",
+          "translation": "I put tofu in the sukiyaki."
+        },
+        {
+          "surface": "しゃぶしゃぶ",
+          "reading": "しゃぶしゃぶ",
+          "gloss": "shabu-shabu; thin meat briefly cooked in broth",
+          "part_of_speech": "noun",
+          "example": "しゃぶしゃぶには薄い肉を使います。",
+          "translation": "I use thinly sliced meat for shabu-shabu."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Familiar dishes for lunch and dinner",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "餃子",
+          "reading": "ぎょうざ",
+          "gloss": "gyoza dumpling",
+          "part_of_speech": "noun",
+          "example": "餃子をフライパンで焼きます。",
+          "translation": "I pan-fry the gyoza dumplings."
+        },
+        {
+          "surface": "焼きそば",
+          "reading": "やきそば",
+          "gloss": "stir-fried noodles",
+          "part_of_speech": "noun",
+          "example": "焼きそばに野菜をたくさん入れます。",
+          "translation": "I put plenty of vegetables in the stir-fried noodles."
+        },
+        {
+          "surface": "たこ焼き",
+          "reading": "たこやき",
+          "gloss": "octopus dumplings cooked in a special pan",
+          "part_of_speech": "noun",
+          "example": "たこ焼きは中が熱いです。",
+          "translation": "The octopus dumplings are hot inside."
+        },
+        {
+          "surface": "お好み焼き",
+          "reading": "おこのみやき",
+          "gloss": "savory Japanese pancake",
+          "part_of_speech": "noun",
+          "example": "お好み焼きを一枚お願いします。",
+          "translation": "One savory Japanese pancake, please."
+        },
+        {
+          "surface": "肉じゃが",
+          "reading": "にくじゃが",
+          "gloss": "meat and potato stew",
+          "part_of_speech": "noun",
+          "example": "肉じゃがににんじんを入れます。",
+          "translation": "I put carrots in the meat and potato stew."
+        },
+        {
+          "surface": "味噌汁",
+          "reading": "みそしる",
+          "gloss": "miso soup",
+          "part_of_speech": "noun",
+          "example": "味噌汁に豆腐を入れます。",
+          "translation": "I put tofu in the miso soup."
+        },
+        {
+          "surface": "漬物",
+          "reading": "つけもの",
+          "gloss": "Japanese pickled vegetables",
+          "part_of_speech": "noun",
+          "example": "ご飯と漬物を食べます。",
+          "translation": "I eat rice and pickled vegetables."
+        },
+        {
+          "surface": "冷奴",
+          "reading": "ひややっこ",
+          "gloss": "chilled tofu served with toppings",
+          "part_of_speech": "noun",
+          "example": "暑い日は冷奴を食べます。",
+          "translation": "I eat chilled tofu on hot days."
+        },
+        {
+          "surface": "刺身",
+          "reading": "さしみ",
+          "gloss": "sashimi; sliced raw seafood",
+          "part_of_speech": "noun",
+          "example": "刺身を醤油につけます。",
+          "translation": "I dip the sashimi in soy sauce."
+        },
+        {
+          "surface": "ポテトサラダ",
+          "reading": "ぽてとさらだ",
+          "gloss": "potato salad",
+          "part_of_speech": "noun",
+          "example": "ポテトサラダにきゅうりを入れます。",
+          "translation": "I put cucumber in the potato salad."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Bread and traditional snacks",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "食パン",
+          "reading": "しょくぱん",
+          "gloss": "loaf bread; sliced sandwich bread",
+          "part_of_speech": "noun",
+          "example": "食パンを二枚焼きます。",
+          "translation": "I toast two slices of bread."
+        },
+        {
+          "surface": "クロワッサン",
+          "reading": "くろわっさん",
+          "gloss": "croissant",
+          "part_of_speech": "noun",
+          "example": "クロワッサンとコーヒーをください。",
+          "translation": "Please give me a croissant and coffee."
+        },
+        {
+          "surface": "トースト",
+          "reading": "とーすと",
+          "gloss": "toast",
+          "part_of_speech": "noun",
+          "example": "トーストにバターを塗ります。",
+          "translation": "I spread butter on the toast."
+        },
+        {
+          "surface": "ドーナツ",
+          "reading": "どーなつ",
+          "gloss": "doughnut",
+          "part_of_speech": "noun",
+          "example": "ドーナツを一つ選びます。",
+          "translation": "I choose one doughnut."
+        },
+        {
+          "surface": "せんべい",
+          "reading": "せんべい",
+          "gloss": "rice cracker",
+          "part_of_speech": "noun",
+          "example": "お茶とせんべいを出します。",
+          "translation": "I serve tea and rice crackers."
+        },
+        {
+          "surface": "団子",
+          "reading": "だんご",
+          "gloss": "small Japanese rice-flour dumplings",
+          "part_of_speech": "noun",
+          "example": "団子を一本買います。",
+          "translation": "I buy one skewer of rice-flour dumplings."
+        },
+        {
+          "surface": "大福",
+          "reading": "だいふく",
+          "gloss": "soft rice cake with a sweet filling",
+          "part_of_speech": "noun",
+          "example": "いちごの大福を食べます。",
+          "translation": "I eat a rice cake with a strawberry filling."
+        },
+        {
+          "surface": "たい焼き",
+          "reading": "たいやき",
+          "gloss": "fish-shaped cake with a sweet filling",
+          "part_of_speech": "noun",
+          "example": "たい焼きを半分に分けます。",
+          "translation": "I divide the fish-shaped cake in half."
+        },
+        {
+          "surface": "どら焼き",
+          "reading": "どらやき",
+          "gloss": "pancake sandwich with a sweet bean filling",
+          "part_of_speech": "noun",
+          "example": "どら焼きをおやつに食べます。",
+          "translation": "I eat a sweet bean pancake sandwich as a snack."
+        },
+        {
+          "surface": "羊羹",
+          "reading": "ようかん",
+          "gloss": "firm sweet bean jelly",
+          "part_of_speech": "noun",
+          "example": "羊羹を薄く切ります。",
+          "translation": "I slice the sweet bean jelly thinly."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Desserts and treats at the shop",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "まんじゅう",
+          "reading": "まんじゅう",
+          "gloss": "steamed bun with a sweet filling",
+          "part_of_speech": "noun",
+          "example": "温かいまんじゅうを一つ買います。",
+          "translation": "I buy one warm sweet steamed bun."
+        },
+        {
+          "surface": "カステラ",
+          "reading": "かすてら",
+          "gloss": "Japanese sponge cake",
+          "part_of_speech": "noun",
+          "example": "カステラをお土産に買います。",
+          "translation": "I buy sponge cake as a souvenir."
+        },
+        {
+          "surface": "ロールケーキ",
+          "reading": "ろーるけーき",
+          "gloss": "rolled sponge cake",
+          "part_of_speech": "noun",
+          "example": "ロールケーキを三つに切ります。",
+          "translation": "I cut the rolled sponge cake into three pieces."
+        },
+        {
+          "surface": "シュークリーム",
+          "reading": "しゅーくりーむ",
+          "gloss": "cream puff",
+          "part_of_speech": "noun",
+          "example": "シュークリームを冷蔵庫に入れます。",
+          "translation": "I put the cream puffs in the refrigerator."
+        },
+        {
+          "surface": "パフェ",
+          "reading": "ぱふぇ",
+          "gloss": "parfait dessert",
+          "part_of_speech": "noun",
+          "example": "いちごのパフェを注文します。",
+          "translation": "I order a strawberry parfait."
+        },
+        {
+          "surface": "シャーベット",
+          "reading": "しゃーべっと",
+          "gloss": "sorbet; fruit ice",
+          "part_of_speech": "noun",
+          "example": "レモンのシャーベットを食べます。",
+          "translation": "I eat lemon sorbet."
+        },
+        {
+          "surface": "アイスキャンディー",
+          "reading": "あいすきゃんでぃー",
+          "gloss": "ice pop; frozen treat on a stick",
+          "part_of_speech": "noun",
+          "example": "子どもがアイスキャンディーを食べています。",
+          "translation": "The child is eating an ice pop."
+        },
+        {
+          "surface": "ポップコーン",
+          "reading": "ぽっぷこーん",
+          "gloss": "popcorn",
+          "part_of_speech": "noun",
+          "example": "映画を見ながらポップコーンを食べます。",
+          "translation": "I eat popcorn while watching a movie."
+        },
+        {
+          "surface": "キャラメル",
+          "reading": "きゃらめる",
+          "gloss": "caramel candy",
+          "part_of_speech": "noun",
+          "example": "キャラメルを一つもらいました。",
+          "translation": "I received one caramel candy."
+        },
+        {
+          "surface": "マシュマロ",
+          "reading": "ましゅまろ",
+          "gloss": "marshmallow",
+          "part_of_speech": "noun",
+          "example": "ココアにマシュマロをのせます。",
+          "translation": "I put marshmallows on the cocoa."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Tea water and drinks on a menu",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "麦茶",
+          "reading": "むぎちゃ",
+          "gloss": "barley tea",
+          "part_of_speech": "noun",
+          "example": "夏は冷たい麦茶を飲みます。",
+          "translation": "I drink cold barley tea in summer."
+        },
+        {
+          "surface": "ほうじ茶",
+          "reading": "ほうじちゃ",
+          "gloss": "roasted green tea",
+          "part_of_speech": "noun",
+          "example": "食後にほうじ茶を飲みます。",
+          "translation": "I drink roasted green tea after a meal."
+        },
+        {
+          "surface": "ウーロン茶",
+          "reading": "うーろんちゃ",
+          "gloss": "oolong tea",
+          "part_of_speech": "noun",
+          "example": "ウーロン茶を一杯お願いします。",
+          "translation": "One cup of oolong tea, please."
+        },
+        {
+          "surface": "炭酸水",
+          "reading": "たんさんすい",
+          "gloss": "sparkling water",
+          "part_of_speech": "noun",
+          "example": "炭酸水にレモンを入れます。",
+          "translation": "I put lemon in the sparkling water."
+        },
+        {
+          "surface": "ミネラルウォーター",
+          "reading": "みねらるうぉーたー",
+          "gloss": "mineral water",
+          "part_of_speech": "noun",
+          "example": "ミネラルウォーターを一本買います。",
+          "translation": "I buy one bottle of mineral water."
+        },
+        {
+          "surface": "豆乳",
+          "reading": "とうにゅう",
+          "gloss": "soy milk",
+          "part_of_speech": "noun",
+          "example": "コーヒーに豆乳を入れます。",
+          "translation": "I put soy milk in the coffee."
+        },
+        {
+          "surface": "甘酒",
+          "reading": "あまざけ",
+          "gloss": "sweet fermented rice drink",
+          "part_of_speech": "noun",
+          "example": "温かい甘酒を少し飲みます。",
+          "translation": "I drink a little warm amazake."
+        },
+        {
+          "surface": "日本酒",
+          "reading": "にほんしゅ",
+          "gloss": "sake; Japanese rice wine",
+          "part_of_speech": "noun",
+          "example": "父は日本酒を少し飲みます。",
+          "translation": "My father drinks a little sake."
+        },
+        {
+          "surface": "焼酎",
+          "reading": "しょうちゅう",
+          "gloss": "shochu; Japanese distilled spirit",
+          "part_of_speech": "noun",
+          "example": "この焼酎は麦から作ります。",
+          "translation": "This shochu is made from barley."
+        },
+        {
+          "surface": "梅酒",
+          "reading": "うめしゅ",
+          "gloss": "Japanese plum liqueur",
+          "part_of_speech": "noun",
+          "example": "母は梅酒に氷を入れます。",
+          "translation": "My mother puts ice in her plum liqueur."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Meal choices and table service",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "定食",
+          "reading": "ていしょく",
+          "gloss": "set meal",
+          "part_of_speech": "noun",
+          "example": "焼き魚の定食をください。",
+          "translation": "Please give me the grilled-fish set meal."
+        },
+        {
+          "surface": "日替わり",
+          "reading": "ひがわり",
+          "gloss": "daily changing special",
+          "part_of_speech": "noun",
+          "example": "今日の日替わりはカレーです。",
+          "translation": "Today's daily special is curry."
+        },
+        {
+          "surface": "ランチセット",
+          "reading": "らんちせっと",
+          "gloss": "lunch set meal",
+          "part_of_speech": "noun",
+          "example": "ランチセットにはスープがつきます。",
+          "translation": "The lunch set comes with soup."
+        },
+        {
+          "surface": "コース",
+          "reading": "こーす",
+          "gloss": "set sequence of meal courses",
+          "part_of_speech": "noun",
+          "example": "このコースには魚と肉が出ます。",
+          "translation": "This set menu includes fish and meat."
+        },
+        {
+          "surface": "前菜",
+          "reading": "ぜんさい",
+          "gloss": "appetizer; starter",
+          "part_of_speech": "noun",
+          "example": "まず前菜をいただきます。",
+          "translation": "I have the appetizer first."
+        },
+        {
+          "surface": "主菜",
+          "reading": "しゅさい",
+          "gloss": "main dish",
+          "part_of_speech": "noun",
+          "example": "今日の主菜は鶏肉です。",
+          "translation": "Today's main dish is chicken."
+        },
+        {
+          "surface": "デザート",
+          "reading": "でざーと",
+          "gloss": "dessert",
+          "part_of_speech": "noun",
+          "example": "デザートは果物です。",
+          "translation": "Dessert is fruit."
+        },
+        {
+          "surface": "取り皿",
+          "reading": "とりざら",
+          "gloss": "small plate for individual portions",
+          "part_of_speech": "noun",
+          "example": "取り皿をもう一枚ください。",
+          "translation": "Please give me one more small serving plate."
+        },
+        {
+          "surface": "おしぼり",
+          "reading": "おしぼり",
+          "gloss": "damp hand towel served to guests",
+          "part_of_speech": "noun",
+          "example": "おしぼりで手を拭きます。",
+          "translation": "I wipe my hands with the damp towel."
+        },
+        {
+          "surface": "割り箸",
+          "reading": "わりばし",
+          "gloss": "disposable split-apart chopsticks",
+          "part_of_speech": "noun",
+          "example": "袋から割り箸を出します。",
+          "translation": "I take the disposable chopsticks out of the packet."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Portions availability and seating",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "大盛り",
+          "reading": "おおもり",
+          "gloss": "large serving",
+          "part_of_speech": "noun",
+          "example": "ご飯を大盛りにしてください。",
+          "translation": "Please make the rice a large serving."
+        },
+        {
+          "surface": "小盛り",
+          "reading": "こもり",
+          "gloss": "small serving",
+          "part_of_speech": "noun",
+          "example": "ご飯は小盛りでお願いします。",
+          "translation": "A small serving of rice, please."
+        },
+        {
+          "surface": "並盛り",
+          "reading": "なみもり",
+          "gloss": "regular-size serving",
+          "part_of_speech": "noun",
+          "example": "牛丼の並盛りをください。",
+          "translation": "Please give me a regular-size beef rice bowl."
+        },
+        {
+          "surface": "単品",
+          "reading": "たんぴん",
+          "gloss": "item ordered on its own",
+          "part_of_speech": "noun",
+          "example": "ハンバーガーを単品で注文します。",
+          "translation": "I order the hamburger on its own."
+        },
+        {
+          "surface": "セット",
+          "reading": "せっと",
+          "gloss": "set; combination of items",
+          "part_of_speech": "noun",
+          "example": "飲み物とのセットにします。",
+          "translation": "I will have the set with a drink."
+        },
+        {
+          "surface": "追加",
+          "reading": "ついか",
+          "gloss": "addition; extra order",
+          "part_of_speech": "noun",
+          "example": "ご飯の追加をお願いします。",
+          "translation": "I would like an extra order of rice."
+        },
+        {
+          "surface": "品切れ",
+          "reading": "しなぎれ",
+          "gloss": "out of stock",
+          "part_of_speech": "noun",
+          "example": "このケーキは品切れです。",
+          "translation": "This cake is out of stock."
+        },
+        {
+          "surface": "満席",
+          "reading": "まんせき",
+          "gloss": "all seats occupied",
+          "part_of_speech": "noun",
+          "example": "今は満席です。",
+          "translation": "All the seats are occupied at the moment."
+        },
+        {
+          "surface": "空席",
+          "reading": "くうせき",
+          "gloss": "vacant seat",
+          "part_of_speech": "noun",
+          "example": "窓のそばに空席があります。",
+          "translation": "There is a vacant seat by the window."
+        },
+        {
+          "surface": "禁煙",
+          "reading": "きんえん",
+          "gloss": "no smoking; smoking prohibited",
+          "part_of_speech": "noun",
+          "example": "この店は禁煙です。",
+          "translation": "Smoking is prohibited in this restaurant."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Reading food labels and storage notes",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "賞味期限",
+          "reading": "しょうみきげん",
+          "gloss": "best-before date",
+          "part_of_speech": "noun",
+          "example": "箱の賞味期限を確認します。",
+          "translation": "I check the best-before date on the box."
+        },
+        {
+          "surface": "消費期限",
+          "reading": "しょうひきげん",
+          "gloss": "use-by date",
+          "part_of_speech": "noun",
+          "example": "弁当の消費期限を見ます。",
+          "translation": "I look at the use-by date on the packed meal."
+        },
+        {
+          "surface": "原材料",
+          "reading": "げんざいりょう",
+          "gloss": "ingredients; raw materials",
+          "part_of_speech": "noun",
+          "example": "袋に原材料が書いてあります。",
+          "translation": "The ingredients are written on the bag."
+        },
+        {
+          "surface": "産地",
+          "reading": "さんち",
+          "gloss": "place of production; origin",
+          "part_of_speech": "noun",
+          "example": "野菜の産地を確認します。",
+          "translation": "I check where the vegetables were grown."
+        },
+        {
+          "surface": "内容量",
+          "reading": "ないようりょう",
+          "gloss": "net contents; amount in a package",
+          "part_of_speech": "noun",
+          "example": "内容量は二百グラムです。",
+          "translation": "The net contents are two hundred grams."
+        },
+        {
+          "surface": "常温",
+          "reading": "じょうおん",
+          "gloss": "room temperature",
+          "part_of_speech": "noun",
+          "example": "この飲み物は常温で保存できます。",
+          "translation": "This drink can be stored at room temperature."
+        },
+        {
+          "surface": "冷蔵",
+          "reading": "れいぞう",
+          "gloss": "refrigeration; refrigerated storage",
+          "part_of_speech": "noun",
+          "example": "この食品には冷蔵が必要です。",
+          "translation": "This food needs refrigeration."
+        },
+        {
+          "surface": "冷凍",
+          "reading": "れいとう",
+          "gloss": "freezing; frozen storage",
+          "part_of_speech": "noun",
+          "example": "肉を冷凍して保存します。",
+          "translation": "I freeze the meat to store it."
+        },
+        {
+          "surface": "保存",
+          "reading": "ほぞん",
+          "gloss": "storage; preservation",
+          "part_of_speech": "noun",
+          "example": "残ったスープを容器に入れて保存します。",
+          "translation": "I put the leftover soup in a container and store it."
+        },
+        {
+          "surface": "開封",
+          "reading": "かいふう",
+          "gloss": "opening a sealed package",
+          "part_of_speech": "noun",
+          "example": "開封した日を袋に書きます。",
+          "translation": "I write the date I opened it on the bag."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Preparing ingredients and cooking",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "炊く",
+          "reading": "たく",
+          "gloss": "to cook rice or other grains",
+          "part_of_speech": "verb",
+          "example": "夜にご飯を炊きます。",
+          "translation": "I cook rice in the evening."
+        },
+        {
+          "surface": "揚げる",
+          "reading": "あげる",
+          "gloss": "to deep-fry",
+          "part_of_speech": "verb",
+          "example": "油でじゃがいもを揚げます。",
+          "translation": "I deep-fry the potatoes in oil."
+        },
+        {
+          "surface": "ゆでる",
+          "reading": "ゆでる",
+          "gloss": "to boil food in water",
+          "part_of_speech": "verb",
+          "example": "卵を五分ゆでます。",
+          "translation": "I boil the egg for five minutes."
+        },
+        {
+          "surface": "むく",
+          "reading": "むく",
+          "gloss": "to peel; to remove a skin or shell",
+          "part_of_speech": "verb",
+          "example": "りんごの皮をむきます。",
+          "translation": "I peel the apple."
+        },
+        {
+          "surface": "刻む",
+          "reading": "きざむ",
+          "gloss": "to chop finely",
+          "part_of_speech": "verb",
+          "example": "ねぎを細かく刻みます。",
+          "translation": "I chop the green onion finely."
+        },
+        {
+          "surface": "おろす",
+          "reading": "おろす",
+          "gloss": "to grate food",
+          "part_of_speech": "verb",
+          "example": "大根をおろします。",
+          "translation": "I grate the daikon."
+        },
+        {
+          "surface": "絞る",
+          "reading": "しぼる",
+          "gloss": "to squeeze; to wring",
+          "part_of_speech": "verb",
+          "example": "レモンを絞ります。",
+          "translation": "I squeeze the lemon."
+        },
+        {
+          "surface": "こねる",
+          "reading": "こねる",
+          "gloss": "to knead",
+          "part_of_speech": "verb",
+          "example": "パンの生地を手でこねます。",
+          "translation": "I knead the bread dough by hand."
+        },
+        {
+          "surface": "あえる",
+          "reading": "あえる",
+          "gloss": "to dress or mix food with a sauce",
+          "part_of_speech": "verb",
+          "example": "野菜をごまであえます。",
+          "translation": "I dress the vegetables with sesame."
+        },
+        {
+          "surface": "盛る",
+          "reading": "もる",
+          "gloss": "to heap or serve food onto a dish",
+          "part_of_speech": "verb",
+          "example": "ご飯を茶碗に盛ります。",
+          "translation": "I serve rice into a rice bowl."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Timing tasting and handling heat",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "味見",
+          "reading": "あじみ",
+          "gloss": "tasting food to check its flavor",
+          "part_of_speech": "noun",
+          "example": "スープの味見をします。",
+          "translation": "I taste the soup to check the flavor."
+        },
+        {
+          "surface": "下ごしらえ",
+          "reading": "したごしらえ",
+          "gloss": "preliminary food preparation",
+          "part_of_speech": "noun",
+          "example": "朝に野菜の下ごしらえをします。",
+          "translation": "I prepare the vegetables in the morning."
+        },
+        {
+          "surface": "水切り",
+          "reading": "みずきり",
+          "gloss": "draining water from food or dishes",
+          "part_of_speech": "noun",
+          "example": "豆腐の水切りをします。",
+          "translation": "I drain the water from the tofu."
+        },
+        {
+          "surface": "裏返す",
+          "reading": "うらがえす",
+          "gloss": "to turn something over",
+          "part_of_speech": "verb",
+          "example": "魚を一度裏返します。",
+          "translation": "I turn the fish over once."
+        },
+        {
+          "surface": "注ぐ",
+          "reading": "そそぐ",
+          "gloss": "to pour",
+          "part_of_speech": "verb",
+          "example": "カップにお茶を注ぎます。",
+          "translation": "I pour tea into the cup."
+        },
+        {
+          "surface": "溶かす",
+          "reading": "とかす",
+          "gloss": "to melt or dissolve something",
+          "part_of_speech": "verb",
+          "example": "温かい牛乳に砂糖を溶かします。",
+          "translation": "I dissolve sugar in warm milk."
+        },
+        {
+          "surface": "溶ける",
+          "reading": "とける",
+          "gloss": "to melt; to dissolve",
+          "part_of_speech": "verb",
+          "example": "氷が水に溶けます。",
+          "translation": "The ice melts in the water."
+        },
+        {
+          "surface": "焦がす",
+          "reading": "こがす",
+          "gloss": "to burn or scorch something",
+          "part_of_speech": "verb",
+          "example": "パンを焦がしてしまいました。",
+          "translation": "I accidentally burned the bread."
+        },
+        {
+          "surface": "焦げる",
+          "reading": "こげる",
+          "gloss": "to become burnt or scorched",
+          "part_of_speech": "verb",
+          "example": "強い火で肉が焦げました。",
+          "translation": "The meat burned over the high heat."
+        },
+        {
+          "surface": "量る",
+          "reading": "はかる",
+          "gloss": "to measure a quantity or weight",
+          "part_of_speech": "verb",
+          "example": "小麦粉を百グラム量ります。",
+          "translation": "I measure out one hundred grams of flour."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Utensils for mixing and serving",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "おたま",
+          "reading": "おたま",
+          "gloss": "ladle",
+          "part_of_speech": "noun",
+          "example": "おたまでスープを入れます。",
+          "translation": "I serve the soup with a ladle."
+        },
+        {
+          "surface": "ざる",
+          "reading": "ざる",
+          "gloss": "colander; draining basket",
+          "part_of_speech": "noun",
+          "example": "ゆでた野菜をざるに入れます。",
+          "translation": "I put the boiled vegetables in a colander."
+        },
+        {
+          "surface": "ふるい",
+          "reading": "ふるい",
+          "gloss": "sieve; sifter",
+          "part_of_speech": "noun",
+          "example": "小麦粉をふるいにかけます。",
+          "translation": "I sift the flour through a sieve."
+        },
+        {
+          "surface": "泡立て器",
+          "reading": "あわだてき",
+          "gloss": "whisk",
+          "part_of_speech": "noun",
+          "example": "泡立て器で卵を混ぜます。",
+          "translation": "I beat the eggs with a whisk."
+        },
+        {
+          "surface": "ボウル",
+          "reading": "ぼうる",
+          "gloss": "mixing bowl",
+          "part_of_speech": "noun",
+          "example": "ボウルに小麦粉を入れます。",
+          "translation": "I put flour in a mixing bowl."
+        },
+        {
+          "surface": "計量カップ",
+          "reading": "けいりょうかっぷ",
+          "gloss": "measuring cup",
+          "part_of_speech": "noun",
+          "example": "計量カップで水を量ります。",
+          "translation": "I measure the water with a measuring cup."
+        },
+        {
+          "surface": "計量スプーン",
+          "reading": "けいりょうすぷーん",
+          "gloss": "measuring spoon",
+          "part_of_speech": "noun",
+          "example": "計量スプーンで砂糖を量ります。",
+          "translation": "I measure the sugar with a measuring spoon."
+        },
+        {
+          "surface": "菜箸",
+          "reading": "さいばし",
+          "gloss": "long cooking chopsticks",
+          "part_of_speech": "noun",
+          "example": "菜箸で野菜を混ぜます。",
+          "translation": "I stir the vegetables with cooking chopsticks."
+        },
+        {
+          "surface": "ピーラー",
+          "reading": "ぴーらー",
+          "gloss": "vegetable peeler",
+          "part_of_speech": "noun",
+          "example": "ピーラーでにんじんの皮をむきます。",
+          "translation": "I peel the carrot with a vegetable peeler."
+        },
+        {
+          "surface": "しゃもじ",
+          "reading": "しゃもじ",
+          "gloss": "rice paddle",
+          "part_of_speech": "noun",
+          "example": "しゃもじでご飯をよそいます。",
+          "translation": "I serve the rice with a rice paddle."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Tea and food storage supplies",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "急須",
+          "reading": "きゅうす",
+          "gloss": "Japanese teapot",
+          "part_of_speech": "noun",
+          "example": "急須にお茶の葉を入れます。",
+          "translation": "I put tea leaves in the teapot."
+        },
+        {
+          "surface": "やかん",
+          "reading": "やかん",
+          "gloss": "kettle",
+          "part_of_speech": "noun",
+          "example": "やかんでお湯を沸かします。",
+          "translation": "I boil water in a kettle."
+        },
+        {
+          "surface": "湯飲み",
+          "reading": "ゆのみ",
+          "gloss": "handleless Japanese teacup",
+          "part_of_speech": "noun",
+          "example": "湯飲みにお茶を注ぎます。",
+          "translation": "I pour tea into a Japanese teacup."
+        },
+        {
+          "surface": "マグカップ",
+          "reading": "まぐかっぷ",
+          "gloss": "mug",
+          "part_of_speech": "noun",
+          "example": "このマグカップでコーヒーを飲みます。",
+          "translation": "I drink coffee from this mug."
+        },
+        {
+          "surface": "水筒",
+          "reading": "すいとう",
+          "gloss": "reusable drinking flask; water bottle",
+          "part_of_speech": "noun",
+          "example": "水筒に麦茶を入れます。",
+          "translation": "I put barley tea in my drinking flask."
+        },
+        {
+          "surface": "保存容器",
+          "reading": "ほぞんようき",
+          "gloss": "food storage container",
+          "part_of_speech": "noun",
+          "example": "残ったご飯を保存容器に入れます。",
+          "translation": "I put the leftover rice in a food storage container."
+        },
+        {
+          "surface": "ラップ",
+          "reading": "らっぷ",
+          "gloss": "plastic food wrap",
+          "part_of_speech": "noun",
+          "example": "皿にラップをかけます。",
+          "translation": "I cover the plate with plastic wrap."
+        },
+        {
+          "surface": "アルミホイル",
+          "reading": "あるみほいる",
+          "gloss": "aluminum foil",
+          "part_of_speech": "noun",
+          "example": "魚をアルミホイルで包みます。",
+          "translation": "I wrap the fish in aluminum foil."
+        },
+        {
+          "surface": "キッチンペーパー",
+          "reading": "きっちんぺーぱー",
+          "gloss": "paper kitchen towel",
+          "part_of_speech": "noun",
+          "example": "キッチンペーパーで水を拭きます。",
+          "translation": "I wipe up the water with a paper kitchen towel."
+        },
+        {
+          "surface": "栓抜き",
+          "reading": "せんぬき",
+          "gloss": "bottle opener",
+          "part_of_speech": "noun",
+          "example": "栓抜きで瓶を開けます。",
+          "translation": "I open the bottle with a bottle opener."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-6",
+      "title": "Kitchen helpers and appliances",
+      "concepts": [
+        "particle-wo",
+        "requests",
+        "politeness"
+      ],
+      "rows": [
+        {
+          "surface": "缶切り",
+          "reading": "かんきり",
+          "gloss": "can opener",
+          "part_of_speech": "noun",
+          "example": "缶切りを使って缶を開けます。",
+          "translation": "I open the can with a can opener."
+        },
+        {
+          "surface": "トング",
+          "reading": "とんぐ",
+          "gloss": "tongs",
+          "part_of_speech": "noun",
+          "example": "トングでパンを取ります。",
+          "translation": "I pick up the bread with tongs."
+        },
+        {
+          "surface": "へら",
+          "reading": "へら",
+          "gloss": "spatula",
+          "part_of_speech": "noun",
+          "example": "へらで生地を混ぜます。",
+          "translation": "I mix the batter with a spatula."
+        },
+        {
+          "surface": "ミトン",
+          "reading": "みとん",
+          "gloss": "oven mitt",
+          "part_of_speech": "noun",
+          "example": "ミトンを使って熱い皿を持ちます。",
+          "translation": "I use oven mitts to hold the hot dish."
+        },
+        {
+          "surface": "エプロン",
+          "reading": "えぷろん",
+          "gloss": "apron",
+          "part_of_speech": "noun",
+          "example": "料理の前にエプロンをつけます。",
+          "translation": "I put on an apron before cooking."
+        },
+        {
+          "surface": "オーブン",
+          "reading": "おーぶん",
+          "gloss": "oven",
+          "part_of_speech": "noun",
+          "example": "オーブンでパンを焼きます。",
+          "translation": "I bake bread in the oven."
+        },
+        {
+          "surface": "トースター",
+          "reading": "とーすたー",
+          "gloss": "toaster; toaster oven",
+          "part_of_speech": "noun",
+          "example": "トースターにパンを入れます。",
+          "translation": "I put bread in the toaster."
+        },
+        {
+          "surface": "食器洗い機",
+          "reading": "しょっきあらいき",
+          "gloss": "dishwasher",
+          "part_of_speech": "noun",
+          "example": "食器洗い機で皿を洗います。",
+          "translation": "I wash the plates in the dishwasher."
+        },
+        {
+          "surface": "冷凍庫",
+          "reading": "れいとうこ",
+          "gloss": "freezer",
+          "part_of_speech": "noun",
+          "example": "アイスクリームを冷凍庫に入れます。",
+          "translation": "I put the ice cream in the freezer."
+        },
+        {
+          "surface": "換気扇",
+          "reading": "かんきせん",
+          "gloss": "extractor fan; ventilation fan",
+          "part_of_speech": "noun",
+          "example": "料理中は換気扇をつけます。",
+          "translation": "I turn on the extractor fan while cooking."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Tools and products for cleaning",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "雑巾",
+          "reading": "ぞうきん",
+          "gloss": "cleaning cloth; rag",
+          "part_of_speech": "noun",
+          "example": "雑巾で床を拭きます。",
+          "translation": "I wipe the floor with a cleaning cloth."
+        },
+        {
+          "surface": "ちりとり",
+          "reading": "ちりとり",
+          "gloss": "dustpan",
+          "part_of_speech": "noun",
+          "example": "ごみをちりとりに集めます。",
+          "translation": "I gather the rubbish into a dustpan."
+        },
+        {
+          "surface": "モップ",
+          "reading": "もっぷ",
+          "gloss": "mop",
+          "part_of_speech": "noun",
+          "example": "モップで廊下を掃除します。",
+          "translation": "I clean the hallway with a mop."
+        },
+        {
+          "surface": "バケツ",
+          "reading": "ばけつ",
+          "gloss": "bucket",
+          "part_of_speech": "noun",
+          "example": "バケツに水を入れます。",
+          "translation": "I put water in a bucket."
+        },
+        {
+          "surface": "スポンジ",
+          "reading": "すぽんじ",
+          "gloss": "sponge",
+          "part_of_speech": "noun",
+          "example": "スポンジで皿を洗います。",
+          "translation": "I wash the dishes with a sponge."
+        },
+        {
+          "surface": "たわし",
+          "reading": "たわし",
+          "gloss": "scrubbing brush; scouring pad",
+          "part_of_speech": "noun",
+          "example": "たわしで鍋を洗います。",
+          "translation": "I scrub the pot with a scouring brush."
+        },
+        {
+          "surface": "ブラシ",
+          "reading": "ぶらし",
+          "gloss": "brush",
+          "part_of_speech": "noun",
+          "example": "ブラシで靴の汚れを落とします。",
+          "translation": "I remove the dirt from the shoes with a brush."
+        },
+        {
+          "surface": "洗剤",
+          "reading": "せんざい",
+          "gloss": "detergent",
+          "part_of_speech": "noun",
+          "example": "洗濯機に洗剤を入れます。",
+          "translation": "I put detergent in the washing machine."
+        },
+        {
+          "surface": "漂白剤",
+          "reading": "ひょうはくざい",
+          "gloss": "bleach",
+          "part_of_speech": "noun",
+          "example": "漂白剤の説明を読みます。",
+          "translation": "I read the instructions on the bleach."
+        },
+        {
+          "surface": "柔軟剤",
+          "reading": "じゅうなんざい",
+          "gloss": "fabric softener",
+          "part_of_speech": "noun",
+          "example": "洗濯に柔軟剤を使います。",
+          "translation": "I use fabric softener for the laundry."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Laundry and cleaning around the home",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "洗濯ばさみ",
+          "reading": "せんたくばさみ",
+          "gloss": "clothespin; clothes peg",
+          "part_of_speech": "noun",
+          "example": "洗濯ばさみでタオルを留めます。",
+          "translation": "I fasten the towel with clothespins."
+        },
+        {
+          "surface": "ハンガー",
+          "reading": "はんがー",
+          "gloss": "clothes hanger",
+          "part_of_speech": "noun",
+          "example": "シャツをハンガーにかけます。",
+          "translation": "I hang the shirt on a clothes hanger."
+        },
+        {
+          "surface": "物干し",
+          "reading": "ものほし",
+          "gloss": "clothes-drying rack or space",
+          "part_of_speech": "noun",
+          "example": "ベランダに物干しがあります。",
+          "translation": "There is a clothes-drying rack on the balcony."
+        },
+        {
+          "surface": "物干し竿",
+          "reading": "ものほしざお",
+          "gloss": "clothes-drying pole",
+          "part_of_speech": "noun",
+          "example": "物干し竿に毛布を干します。",
+          "translation": "I hang the blanket on the clothes-drying pole."
+        },
+        {
+          "surface": "しみ",
+          "reading": "しみ",
+          "gloss": "stain; spot",
+          "part_of_speech": "noun",
+          "example": "シャツにコーヒーのしみがあります。",
+          "translation": "There is a coffee stain on the shirt."
+        },
+        {
+          "surface": "汚れ",
+          "reading": "よごれ",
+          "gloss": "dirt; soiling",
+          "part_of_speech": "noun",
+          "example": "靴の汚れを落とします。",
+          "translation": "I remove the dirt from the shoes."
+        },
+        {
+          "surface": "ほこり",
+          "reading": "ほこり",
+          "gloss": "dust",
+          "part_of_speech": "noun",
+          "example": "棚の上にほこりがあります。",
+          "translation": "There is dust on top of the shelf."
+        },
+        {
+          "surface": "カビ",
+          "reading": "かび",
+          "gloss": "mold; mildew",
+          "part_of_speech": "noun",
+          "example": "風呂のカビを掃除します。",
+          "translation": "I clean the mold in the bathroom."
+        },
+        {
+          "surface": "におい",
+          "reading": "におい",
+          "gloss": "smell; odor",
+          "part_of_speech": "noun",
+          "example": "このせっけんは花のにおいがします。",
+          "translation": "This soap smells of flowers."
+        },
+        {
+          "surface": "排水口",
+          "reading": "はいすいこう",
+          "gloss": "drain opening",
+          "part_of_speech": "noun",
+          "example": "台所の排水口を掃除します。",
+          "translation": "I clean the kitchen drain."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Washing drying and sorting",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "すすぐ",
+          "reading": "すすぐ",
+          "gloss": "to rinse",
+          "part_of_speech": "verb",
+          "example": "洗った皿を水ですすぎます。",
+          "translation": "I rinse the washed dishes with water."
+        },
+        {
+          "surface": "つけ置き",
+          "reading": "つけおき",
+          "gloss": "soaking before washing",
+          "part_of_speech": "noun",
+          "example": "汚れた布のつけ置きをします。",
+          "translation": "I soak the dirty cloth before washing it."
+        },
+        {
+          "surface": "乾かす",
+          "reading": "かわかす",
+          "gloss": "to dry something",
+          "part_of_speech": "verb",
+          "example": "ドライヤーで髪を乾かします。",
+          "translation": "I dry my hair with a hairdryer."
+        },
+        {
+          "surface": "乾く",
+          "reading": "かわく",
+          "gloss": "to become dry",
+          "part_of_speech": "verb",
+          "example": "晴れた日は洗濯物がよく乾きます。",
+          "translation": "Laundry dries well on sunny days."
+        },
+        {
+          "surface": "濡れる",
+          "reading": "ぬれる",
+          "gloss": "to become wet",
+          "part_of_speech": "verb",
+          "example": "雨で靴が濡れました。",
+          "translation": "My shoes got wet in the rain."
+        },
+        {
+          "surface": "濡らす",
+          "reading": "ぬらす",
+          "gloss": "to wet something",
+          "part_of_speech": "verb",
+          "example": "水でタオルを濡らします。",
+          "translation": "I wet the towel with water."
+        },
+        {
+          "surface": "こする",
+          "reading": "こする",
+          "gloss": "to rub; to scrub",
+          "part_of_speech": "verb",
+          "example": "スポンジで汚れたところをこすります。",
+          "translation": "I scrub the dirty area with a sponge."
+        },
+        {
+          "surface": "整理",
+          "reading": "せいり",
+          "gloss": "organizing; putting in order",
+          "part_of_speech": "noun",
+          "example": "週末に引き出しの整理をします。",
+          "translation": "I organize the drawers on the weekend."
+        },
+        {
+          "surface": "分別",
+          "reading": "ぶんべつ",
+          "gloss": "sorting into categories",
+          "part_of_speech": "noun",
+          "example": "ごみの分別をします。",
+          "translation": "I sort the rubbish into categories."
+        },
+        {
+          "surface": "消毒",
+          "reading": "しょうどく",
+          "gloss": "disinfection",
+          "part_of_speech": "noun",
+          "example": "机の消毒をします。",
+          "translation": "I disinfect the desk."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Morning and evening personal care",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "歯磨き粉",
+          "reading": "はみがきこ",
+          "gloss": "toothpaste",
+          "part_of_speech": "noun",
+          "example": "歯ブラシに歯磨き粉をつけます。",
+          "translation": "I put toothpaste on the toothbrush."
+        },
+        {
+          "surface": "デンタルフロス",
+          "reading": "でんたるふろす",
+          "gloss": "dental floss",
+          "part_of_speech": "noun",
+          "example": "夜にデンタルフロスを使います。",
+          "translation": "I use dental floss at night."
+        },
+        {
+          "surface": "うがい",
+          "reading": "うがい",
+          "gloss": "gargling; rinsing the mouth",
+          "part_of_speech": "noun",
+          "example": "水でうがいをします。",
+          "translation": "I gargle with water."
+        },
+        {
+          "surface": "コンタクトレンズ",
+          "reading": "こんたくとれんず",
+          "gloss": "contact lens",
+          "part_of_speech": "noun",
+          "example": "寝る前にコンタクトレンズを外します。",
+          "translation": "I take out my contact lenses before going to bed."
+        },
+        {
+          "surface": "洗顔料",
+          "reading": "せんがんりょう",
+          "gloss": "facial cleanser",
+          "part_of_speech": "noun",
+          "example": "洗顔料で顔を洗います。",
+          "translation": "I wash my face with facial cleanser."
+        },
+        {
+          "surface": "化粧水",
+          "reading": "けしょうすい",
+          "gloss": "facial toner; skin lotion",
+          "part_of_speech": "noun",
+          "example": "顔を洗ってから化粧水をつけます。",
+          "translation": "I apply toner after washing my face."
+        },
+        {
+          "surface": "日焼け止め",
+          "reading": "ひやけどめ",
+          "gloss": "sunscreen",
+          "part_of_speech": "noun",
+          "example": "出かける前に日焼け止めを塗ります。",
+          "translation": "I apply sunscreen before going out."
+        },
+        {
+          "surface": "ハンドクリーム",
+          "reading": "はんどくりーむ",
+          "gloss": "hand cream",
+          "part_of_speech": "noun",
+          "example": "手にハンドクリームを塗ります。",
+          "translation": "I apply hand cream to my hands."
+        },
+        {
+          "surface": "くし",
+          "reading": "くし",
+          "gloss": "comb",
+          "part_of_speech": "noun",
+          "example": "くしで髪を整えます。",
+          "translation": "I tidy my hair with a comb."
+        },
+        {
+          "surface": "かみそり",
+          "reading": "かみそり",
+          "gloss": "razor",
+          "part_of_speech": "noun",
+          "example": "新しいかみそりを買います。",
+          "translation": "I buy a new razor."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Grooming and bathroom supplies",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "爪切り",
+          "reading": "つめきり",
+          "gloss": "nail clippers",
+          "part_of_speech": "noun",
+          "example": "爪切りで爪を切ります。",
+          "translation": "I cut my nails with nail clippers."
+        },
+        {
+          "surface": "綿棒",
+          "reading": "めんぼう",
+          "gloss": "cotton swab; cotton bud",
+          "part_of_speech": "noun",
+          "example": "綿棒を箱に入れておきます。",
+          "translation": "I keep the cotton swabs in a box."
+        },
+        {
+          "surface": "ティッシュ",
+          "reading": "てぃっしゅ",
+          "gloss": "tissue paper",
+          "part_of_speech": "noun",
+          "example": "ティッシュを一枚ください。",
+          "translation": "Please give me one tissue."
+        },
+        {
+          "surface": "トイレットペーパー",
+          "reading": "といれっとぺーぱー",
+          "gloss": "toilet paper",
+          "part_of_speech": "noun",
+          "example": "トイレットペーパーを補充します。",
+          "translation": "I refill the toilet paper."
+        },
+        {
+          "surface": "生理用品",
+          "reading": "せいりようひん",
+          "gloss": "menstrual products",
+          "part_of_speech": "noun",
+          "example": "生理用品をポーチに入れます。",
+          "translation": "I put menstrual products in a pouch."
+        },
+        {
+          "surface": "化粧",
+          "reading": "けしょう",
+          "gloss": "makeup; applying cosmetics",
+          "part_of_speech": "noun",
+          "example": "朝に化粧をします。",
+          "translation": "I put on makeup in the morning."
+        },
+        {
+          "surface": "ひげ",
+          "reading": "ひげ",
+          "gloss": "beard; mustache; facial hair",
+          "part_of_speech": "noun",
+          "example": "父は毎朝ひげをそります。",
+          "translation": "My father shaves every morning."
+        },
+        {
+          "surface": "そる",
+          "reading": "そる",
+          "gloss": "to shave",
+          "part_of_speech": "verb",
+          "example": "かみそりでひげをそります。",
+          "translation": "I shave my facial hair with a razor."
+        },
+        {
+          "surface": "乾燥",
+          "reading": "かんそう",
+          "gloss": "drying; dryness",
+          "part_of_speech": "noun",
+          "example": "冬は肌の乾燥が気になります。",
+          "translation": "Dry skin bothers me in winter."
+        },
+        {
+          "surface": "保湿",
+          "reading": "ほしつ",
+          "gloss": "moisturizing; retaining moisture",
+          "part_of_speech": "noun",
+          "example": "クリームで肌の保湿をします。",
+          "translation": "I moisturize my skin with cream."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Face hands and feet",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "額",
+          "reading": "ひたい",
+          "gloss": "forehead",
+          "part_of_speech": "noun",
+          "example": "額に汗をかいています。",
+          "translation": "There is sweat on my forehead."
+        },
+        {
+          "surface": "頬",
+          "reading": "ほお",
+          "gloss": "cheek",
+          "part_of_speech": "noun",
+          "example": "冷たい風で頬が赤くなりました。",
+          "translation": "My cheeks turned red in the cold wind."
+        },
+        {
+          "surface": "顎",
+          "reading": "あご",
+          "gloss": "chin; jaw",
+          "part_of_speech": "noun",
+          "example": "顎に手を当てます。",
+          "translation": "I put my hand against my chin."
+        },
+        {
+          "surface": "まゆげ",
+          "reading": "まゆげ",
+          "gloss": "eyebrow",
+          "part_of_speech": "noun",
+          "example": "鏡でまゆげを見ます。",
+          "translation": "I look at my eyebrows in the mirror."
+        },
+        {
+          "surface": "まつげ",
+          "reading": "まつげ",
+          "gloss": "eyelash",
+          "part_of_speech": "noun",
+          "example": "まつげに水がつきました。",
+          "translation": "Water got on my eyelashes."
+        },
+        {
+          "surface": "まぶた",
+          "reading": "まぶた",
+          "gloss": "eyelid",
+          "part_of_speech": "noun",
+          "example": "眠くてまぶたが重いです。",
+          "translation": "I am sleepy and my eyelids feel heavy."
+        },
+        {
+          "surface": "手首",
+          "reading": "てくび",
+          "gloss": "wrist",
+          "part_of_speech": "noun",
+          "example": "手首に時計をつけます。",
+          "translation": "I put a watch on my wrist."
+        },
+        {
+          "surface": "足首",
+          "reading": "あしくび",
+          "gloss": "ankle",
+          "part_of_speech": "noun",
+          "example": "足首をゆっくり回します。",
+          "translation": "I rotate my ankle slowly."
+        },
+        {
+          "surface": "かかと",
+          "reading": "かかと",
+          "gloss": "heel",
+          "part_of_speech": "noun",
+          "example": "靴のかかとがすり減りました。",
+          "translation": "The heels of my shoes have worn down."
+        },
+        {
+          "surface": "つま先",
+          "reading": "つまさき",
+          "gloss": "tip of the foot; toes",
+          "part_of_speech": "noun",
+          "example": "つま先まで水に入りました。",
+          "translation": "I stepped into the water up to my toes."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Legs muscles and fingers",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "腰",
+          "reading": "こし",
+          "gloss": "lower back; waist",
+          "part_of_speech": "noun",
+          "example": "長く座ると腰が痛くなります。",
+          "translation": "My lower back hurts when I sit for a long time."
+        },
+        {
+          "surface": "お尻",
+          "reading": "おしり",
+          "gloss": "buttocks; bottom",
+          "part_of_speech": "noun",
+          "example": "椅子が硬くてお尻が痛いです。",
+          "translation": "The chair is hard and my bottom hurts."
+        },
+        {
+          "surface": "太もも",
+          "reading": "ふともも",
+          "gloss": "thigh",
+          "part_of_speech": "noun",
+          "example": "運動の後で太ももが痛いです。",
+          "translation": "My thighs hurt after exercising."
+        },
+        {
+          "surface": "ふくらはぎ",
+          "reading": "ふくらはぎ",
+          "gloss": "calf of the leg",
+          "part_of_speech": "noun",
+          "example": "ふくらはぎを軽く伸ばします。",
+          "translation": "I gently stretch my calves."
+        },
+        {
+          "surface": "筋肉",
+          "reading": "きんにく",
+          "gloss": "muscle",
+          "part_of_speech": "noun",
+          "example": "足の筋肉を使って歩きます。",
+          "translation": "I use the muscles in my legs to walk."
+        },
+        {
+          "surface": "親指",
+          "reading": "おやゆび",
+          "gloss": "thumb; big toe",
+          "part_of_speech": "noun",
+          "example": "親指でボタンを押します。",
+          "translation": "I press the button with my thumb."
+        },
+        {
+          "surface": "人差し指",
+          "reading": "ひとさしゆび",
+          "gloss": "index finger",
+          "part_of_speech": "noun",
+          "example": "人差し指で画面に触れます。",
+          "translation": "I touch the screen with my index finger."
+        },
+        {
+          "surface": "中指",
+          "reading": "なかゆび",
+          "gloss": "middle finger",
+          "part_of_speech": "noun",
+          "example": "中指に小さな傷があります。",
+          "translation": "There is a small cut on my middle finger."
+        },
+        {
+          "surface": "薬指",
+          "reading": "くすりゆび",
+          "gloss": "ring finger",
+          "part_of_speech": "noun",
+          "example": "左手の薬指に指輪をしています。",
+          "translation": "I wear a ring on the ring finger of my left hand."
+        },
+        {
+          "surface": "小指",
+          "reading": "こゆび",
+          "gloss": "little finger; little toe",
+          "part_of_speech": "noun",
+          "example": "小指に絆創膏を貼りました。",
+          "translation": "I put an adhesive bandage on my little finger."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Describing common symptoms",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "咳",
+          "reading": "せき",
+          "gloss": "cough",
+          "part_of_speech": "noun",
+          "example": "昨日から咳が出ます。",
+          "translation": "I have had a cough since yesterday."
+        },
+        {
+          "surface": "くしゃみ",
+          "reading": "くしゃみ",
+          "gloss": "sneeze; sneezing",
+          "part_of_speech": "noun",
+          "example": "花の近くでくしゃみが出ました。",
+          "translation": "I sneezed near the flowers."
+        },
+        {
+          "surface": "鼻水",
+          "reading": "はなみず",
+          "gloss": "runny nose; nasal mucus",
+          "part_of_speech": "noun",
+          "example": "鼻水が出るのでティッシュを使います。",
+          "translation": "I use a tissue because my nose is running."
+        },
+        {
+          "surface": "鼻詰まり",
+          "reading": "はなづまり",
+          "gloss": "blocked nose; nasal congestion",
+          "part_of_speech": "noun",
+          "example": "鼻詰まりで眠れませんでした。",
+          "translation": "I could not sleep because of a blocked nose."
+        },
+        {
+          "surface": "頭痛",
+          "reading": "ずつう",
+          "gloss": "headache",
+          "part_of_speech": "noun",
+          "example": "今日は頭痛があります。",
+          "translation": "I have a headache today."
+        },
+        {
+          "surface": "腹痛",
+          "reading": "ふくつう",
+          "gloss": "abdominal pain; stomachache",
+          "part_of_speech": "noun",
+          "example": "昨夜は腹痛で目が覚めました。",
+          "translation": "I woke up with a stomachache last night."
+        },
+        {
+          "surface": "吐き気",
+          "reading": "はきけ",
+          "gloss": "nausea",
+          "part_of_speech": "noun",
+          "example": "バスに乗っていて吐き気がしました。",
+          "translation": "I felt nauseous while riding the bus."
+        },
+        {
+          "surface": "めまい",
+          "reading": "めまい",
+          "gloss": "dizziness",
+          "part_of_speech": "noun",
+          "example": "立った時にめまいがしました。",
+          "translation": "I felt dizzy when I stood up."
+        },
+        {
+          "surface": "寒気",
+          "reading": "さむけ",
+          "gloss": "chills",
+          "part_of_speech": "noun",
+          "example": "寒気がして毛布をかけました。",
+          "translation": "I felt chills and covered myself with a blanket."
+        },
+        {
+          "surface": "息切れ",
+          "reading": "いきぎれ",
+          "gloss": "shortness of breath; breathlessness",
+          "part_of_speech": "noun",
+          "example": "階段を上ると息切れがします。",
+          "translation": "I become short of breath when I climb the stairs."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Illness injuries and skin symptoms",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "下痢",
+          "reading": "げり",
+          "gloss": "diarrhea",
+          "part_of_speech": "noun",
+          "example": "昨日から下痢が続いています。",
+          "translation": "I have had diarrhea since yesterday."
+        },
+        {
+          "surface": "便秘",
+          "reading": "べんぴ",
+          "gloss": "constipation",
+          "part_of_speech": "noun",
+          "example": "最近、便秘で困っています。",
+          "translation": "Constipation has been bothering me recently."
+        },
+        {
+          "surface": "けが",
+          "reading": "けが",
+          "gloss": "injury",
+          "part_of_speech": "noun",
+          "example": "運動中にけがをしました。",
+          "translation": "I got injured while exercising."
+        },
+        {
+          "surface": "やけど",
+          "reading": "やけど",
+          "gloss": "burn; scald",
+          "part_of_speech": "noun",
+          "example": "熱い鍋に触ってやけどをしました。",
+          "translation": "I burned myself by touching a hot pot."
+        },
+        {
+          "surface": "切り傷",
+          "reading": "きりきず",
+          "gloss": "cut wound",
+          "part_of_speech": "noun",
+          "example": "指に小さな切り傷があります。",
+          "translation": "There is a small cut on my finger."
+        },
+        {
+          "surface": "擦り傷",
+          "reading": "すりきず",
+          "gloss": "graze; scrape",
+          "part_of_speech": "noun",
+          "example": "転んで膝に擦り傷ができました。",
+          "translation": "I fell and scraped my knee."
+        },
+        {
+          "surface": "あざ",
+          "reading": "あざ",
+          "gloss": "bruise; discolored mark on the skin",
+          "part_of_speech": "noun",
+          "example": "ぶつけたところにあざができました。",
+          "translation": "A bruise formed where I bumped myself."
+        },
+        {
+          "surface": "むくみ",
+          "reading": "むくみ",
+          "gloss": "swelling from fluid; puffiness",
+          "part_of_speech": "noun",
+          "example": "夕方は足のむくみが気になります。",
+          "translation": "Swelling in my feet bothers me in the evening."
+        },
+        {
+          "surface": "発疹",
+          "reading": "ほっしん",
+          "gloss": "rash; skin eruption",
+          "part_of_speech": "noun",
+          "example": "腕に赤い発疹が出ました。",
+          "translation": "A red rash appeared on my arm."
+        },
+        {
+          "surface": "かゆみ",
+          "reading": "かゆみ",
+          "gloss": "itchiness",
+          "part_of_speech": "noun",
+          "example": "手にかゆみがあります。",
+          "translation": "My hands feel itchy."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "First-aid and pharmacy items",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "体温計",
+          "reading": "たいおんけい",
+          "gloss": "thermometer for body temperature",
+          "part_of_speech": "noun",
+          "example": "体温計を箱から出します。",
+          "translation": "I take the thermometer out of the box."
+        },
+        {
+          "surface": "血圧計",
+          "reading": "けつあつけい",
+          "gloss": "blood-pressure monitor",
+          "part_of_speech": "noun",
+          "example": "血圧計の使い方を読みます。",
+          "translation": "I read how to use the blood-pressure monitor."
+        },
+        {
+          "surface": "絆創膏",
+          "reading": "ばんそうこう",
+          "gloss": "adhesive bandage; sticking plaster",
+          "part_of_speech": "noun",
+          "example": "指に絆創膏を貼ります。",
+          "translation": "I put an adhesive bandage on my finger."
+        },
+        {
+          "surface": "包帯",
+          "reading": "ほうたい",
+          "gloss": "bandage",
+          "part_of_speech": "noun",
+          "example": "看護師が腕に包帯を巻きました。",
+          "translation": "The nurse wrapped a bandage around my arm."
+        },
+        {
+          "surface": "ガーゼ",
+          "reading": "がーぜ",
+          "gloss": "gauze",
+          "part_of_speech": "noun",
+          "example": "新しいガーゼを袋から出します。",
+          "translation": "I take fresh gauze out of the packet."
+        },
+        {
+          "surface": "湿布",
+          "reading": "しっぷ",
+          "gloss": "medicated compress or patch",
+          "part_of_speech": "noun",
+          "example": "薬局で湿布を買いました。",
+          "translation": "I bought medicated patches at the pharmacy."
+        },
+        {
+          "surface": "目薬",
+          "reading": "めぐすり",
+          "gloss": "eye drops",
+          "part_of_speech": "noun",
+          "example": "この目薬の説明を読みます。",
+          "translation": "I read the instructions for these eye drops."
+        },
+        {
+          "surface": "軟膏",
+          "reading": "なんこう",
+          "gloss": "ointment",
+          "part_of_speech": "noun",
+          "example": "医者に軟膏をもらいました。",
+          "translation": "I received ointment from the doctor."
+        },
+        {
+          "surface": "のど飴",
+          "reading": "のどあめ",
+          "gloss": "throat lozenge; throat-soothing candy",
+          "part_of_speech": "noun",
+          "example": "のど飴を一袋買います。",
+          "translation": "I buy a bag of throat lozenges."
+        },
+        {
+          "surface": "処方箋",
+          "reading": "しょほうせん",
+          "gloss": "medical prescription",
+          "part_of_speech": "noun",
+          "example": "処方箋を薬局に持って行きます。",
+          "translation": "I take the prescription to the pharmacy."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "At a medical appointment",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "診察",
+          "reading": "しんさつ",
+          "gloss": "medical examination by a clinician",
+          "part_of_speech": "noun",
+          "example": "午後に医者の診察を受けます。",
+          "translation": "I have a medical examination in the afternoon."
+        },
+        {
+          "surface": "検査",
+          "reading": "けんさ",
+          "gloss": "test; examination; inspection",
+          "part_of_speech": "noun",
+          "example": "病院で血液の検査を受けました。",
+          "translation": "I had a blood test at the hospital."
+        },
+        {
+          "surface": "治療",
+          "reading": "ちりょう",
+          "gloss": "medical treatment",
+          "part_of_speech": "noun",
+          "example": "歯の治療が終わりました。",
+          "translation": "My dental treatment is finished."
+        },
+        {
+          "surface": "予防接種",
+          "reading": "よぼうせっしゅ",
+          "gloss": "vaccination",
+          "part_of_speech": "noun",
+          "example": "予防接種の予約をしました。",
+          "translation": "I made an appointment for a vaccination."
+        },
+        {
+          "surface": "保険証",
+          "reading": "ほけんしょう",
+          "gloss": "health insurance certificate or card",
+          "part_of_speech": "noun",
+          "example": "保険証を財布に入れています。",
+          "translation": "I keep my health insurance card in my wallet."
+        },
+        {
+          "surface": "診察券",
+          "reading": "しんさつけん",
+          "gloss": "patient registration card",
+          "part_of_speech": "noun",
+          "example": "受付で診察券を出します。",
+          "translation": "I present my patient card at reception."
+        },
+        {
+          "surface": "問診票",
+          "reading": "もんしんひょう",
+          "gloss": "medical questionnaire",
+          "part_of_speech": "noun",
+          "example": "問診票に名前を書きます。",
+          "translation": "I write my name on the medical questionnaire."
+        },
+        {
+          "surface": "待合室",
+          "reading": "まちあいしつ",
+          "gloss": "waiting room",
+          "part_of_speech": "noun",
+          "example": "待合室で順番を待ちます。",
+          "translation": "I wait for my turn in the waiting room."
+        },
+        {
+          "surface": "体温",
+          "reading": "たいおん",
+          "gloss": "body temperature",
+          "part_of_speech": "noun",
+          "example": "毎朝、体温を測っています。",
+          "translation": "I measure my body temperature every morning."
+        },
+        {
+          "surface": "血圧",
+          "reading": "けつあつ",
+          "gloss": "blood pressure",
+          "part_of_speech": "noun",
+          "example": "看護師が血圧を測ります。",
+          "translation": "The nurse measures my blood pressure."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Recovery rest and daily sensations",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "治る",
+          "reading": "なおる",
+          "gloss": "to recover; to heal",
+          "part_of_speech": "verb",
+          "example": "足のけがが治りました。",
+          "translation": "My foot injury has healed."
+        },
+        {
+          "surface": "痛む",
+          "reading": "いたむ",
+          "gloss": "to ache; to hurt",
+          "part_of_speech": "verb",
+          "example": "歩くと膝が痛みます。",
+          "translation": "My knee aches when I walk."
+        },
+        {
+          "surface": "腫れる",
+          "reading": "はれる",
+          "gloss": "to swell",
+          "part_of_speech": "verb",
+          "example": "虫に刺されて手が腫れました。",
+          "translation": "My hand swelled after an insect bite."
+        },
+        {
+          "surface": "冷ます",
+          "reading": "さます",
+          "gloss": "to let something cool; to cool something",
+          "part_of_speech": "verb",
+          "example": "スープを少し冷まします。",
+          "translation": "I let the soup cool a little."
+        },
+        {
+          "surface": "冷める",
+          "reading": "さめる",
+          "gloss": "to cool down; to become cool",
+          "part_of_speech": "verb",
+          "example": "お茶が冷めました。",
+          "translation": "The tea has cooled down."
+        },
+        {
+          "surface": "うつる",
+          "reading": "うつる",
+          "gloss": "to spread from person to person; to be caught",
+          "part_of_speech": "verb",
+          "example": "家族に風邪がうつりました。",
+          "translation": "The cold spread to my family."
+        },
+        {
+          "surface": "眠る",
+          "reading": "ねむる",
+          "gloss": "to sleep; to be asleep",
+          "part_of_speech": "verb",
+          "example": "昨夜はよく眠りました。",
+          "translation": "I slept well last night."
+        },
+        {
+          "surface": "目覚める",
+          "reading": "めざめる",
+          "gloss": "to wake up; to awaken",
+          "part_of_speech": "verb",
+          "example": "朝六時に目覚めました。",
+          "translation": "I woke up at six in the morning."
+        },
+        {
+          "surface": "深呼吸",
+          "reading": "しんこきゅう",
+          "gloss": "deep breathing; a deep breath",
+          "part_of_speech": "noun",
+          "example": "窓を開けて深呼吸をします。",
+          "translation": "I open the window and take a deep breath."
+        },
+        {
+          "surface": "睡眠",
+          "reading": "すいみん",
+          "gloss": "sleep; sleeping",
+          "part_of_speech": "noun",
+          "example": "最近は睡眠の時間を記録しています。",
+          "translation": "Recently, I have been recording how long I sleep."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Household fabrics and storage",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "クッション",
+          "reading": "くっしょん",
+          "gloss": "cushion",
+          "part_of_speech": "noun",
+          "example": "ソファにクッションを置きます。",
+          "translation": "I put a cushion on the sofa."
+        },
+        {
+          "surface": "シーツ",
+          "reading": "しーつ",
+          "gloss": "bed sheet",
+          "part_of_speech": "noun",
+          "example": "今日はシーツを洗います。",
+          "translation": "I wash the bed sheets today."
+        },
+        {
+          "surface": "枕カバー",
+          "reading": "まくらかばー",
+          "gloss": "pillowcase",
+          "part_of_speech": "noun",
+          "example": "枕カバーを新しいものに替えます。",
+          "translation": "I change the pillowcase for a fresh one."
+        },
+        {
+          "surface": "カーテン",
+          "reading": "かーてん",
+          "gloss": "curtain",
+          "part_of_speech": "noun",
+          "example": "朝、カーテンを開けます。",
+          "translation": "I open the curtains in the morning."
+        },
+        {
+          "surface": "カーペット",
+          "reading": "かーぺっと",
+          "gloss": "carpet",
+          "part_of_speech": "noun",
+          "example": "カーペットに掃除機をかけます。",
+          "translation": "I vacuum the carpet."
+        },
+        {
+          "surface": "玄関マット",
+          "reading": "げんかんまっと",
+          "gloss": "entrance mat; doormat",
+          "part_of_speech": "noun",
+          "example": "玄関マットの砂を落とします。",
+          "translation": "I shake the sand off the entrance mat."
+        },
+        {
+          "surface": "ごみ箱",
+          "reading": "ごみばこ",
+          "gloss": "rubbish bin; trash can",
+          "part_of_speech": "noun",
+          "example": "紙をごみ箱に捨てます。",
+          "translation": "I throw the paper in the rubbish bin."
+        },
+        {
+          "surface": "ごみ袋",
+          "reading": "ごみぶくろ",
+          "gloss": "rubbish bag; trash bag",
+          "part_of_speech": "noun",
+          "example": "ごみ袋を新しいものに替えます。",
+          "translation": "I replace the rubbish bag with a new one."
+        },
+        {
+          "surface": "収納",
+          "reading": "しゅうのう",
+          "gloss": "storage; putting things away",
+          "part_of_speech": "noun",
+          "example": "この部屋には服の収納がたくさんあります。",
+          "translation": "This room has plenty of storage for clothes."
+        },
+        {
+          "surface": "押し入れ",
+          "reading": "おしいれ",
+          "gloss": "Japanese-style built-in storage closet",
+          "part_of_speech": "noun",
+          "example": "布団を押し入れにしまいます。",
+          "translation": "I put the futon away in the closet."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Body tissues organs and fluids",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "肌",
+          "reading": "はだ",
+          "gloss": "skin; complexion",
+          "part_of_speech": "noun",
+          "example": "冬は肌が乾燥します。",
+          "translation": "My skin gets dry in winter."
+        },
+        {
+          "surface": "皮膚",
+          "reading": "ひふ",
+          "gloss": "skin as a body organ",
+          "part_of_speech": "noun",
+          "example": "医者が皮膚の状態を見ます。",
+          "translation": "The doctor checks the condition of my skin."
+        },
+        {
+          "surface": "骨",
+          "reading": "ほね",
+          "gloss": "bone",
+          "part_of_speech": "noun",
+          "example": "魚の骨を取りました。",
+          "translation": "I removed the fish bones."
+        },
+        {
+          "surface": "血",
+          "reading": "ち",
+          "gloss": "blood",
+          "part_of_speech": "noun",
+          "example": "指から少し血が出ました。",
+          "translation": "A little blood came from my finger."
+        },
+        {
+          "surface": "汗",
+          "reading": "あせ",
+          "gloss": "sweat",
+          "part_of_speech": "noun",
+          "example": "運動の後は汗を拭きます。",
+          "translation": "I wipe off the sweat after exercising."
+        },
+        {
+          "surface": "唾液",
+          "reading": "だえき",
+          "gloss": "saliva",
+          "part_of_speech": "noun",
+          "example": "唾液で食べ物が飲み込みやすくなります。",
+          "translation": "Saliva makes food easier to swallow."
+        },
+        {
+          "surface": "胃",
+          "reading": "い",
+          "gloss": "stomach as an internal organ",
+          "part_of_speech": "noun",
+          "example": "食事の後で胃が痛みます。",
+          "translation": "My stomach aches after meals."
+        },
+        {
+          "surface": "腸",
+          "reading": "ちょう",
+          "gloss": "intestine; bowel",
+          "part_of_speech": "noun",
+          "example": "医者から腸の説明を聞きました。",
+          "translation": "I listened to the doctor's explanation about the intestines."
+        },
+        {
+          "surface": "肺",
+          "reading": "はい",
+          "gloss": "lung",
+          "part_of_speech": "noun",
+          "example": "授業で肺の働きを学びます。",
+          "translation": "We learn about how the lungs work in class."
+        },
+        {
+          "surface": "心臓",
+          "reading": "しんぞう",
+          "gloss": "heart as an internal organ",
+          "part_of_speech": "noun",
+          "example": "走った後で心臓が速く動いています。",
+          "translation": "My heart is beating fast after running."
+        }
+      ]
+    }
+  ]
+}

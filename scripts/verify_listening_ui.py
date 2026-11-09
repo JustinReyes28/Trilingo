@@ -1,0 +1,145 @@
+"""Local isolated phase 7–9 follow-up QA. Optional fixture audio is test tones, not Japanese."""
+import json
+import sys
+from pathlib import Path
+from urllib.parse import urlparse
+from urllib.request import urlopen
+from playwright.sync_api import expect, sync_playwright
+from qa_helpers import api_matches
+sys.stdout.reconfigure(encoding='utf-8')
+BASE='http://127.0.0.1:5187'
+API='http://127.0.0.1:8017/api/v1'
+with urlopen(API+'/health',timeout=5) as response:
+    assert json.load(response)['qa_mode'], 'Refusing a learner database'
+output=Path(__file__).resolve().parents[1]/'artifacts/phase789-followup'
+output.mkdir(parents=True,exist_ok=True)
+with sync_playwright() as p:
+    browser=p.chromium.launch(headless=True,executable_path='C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe')
+    context=browser.new_context(viewport={'width':390,'height':900})
+    errors,external,layouts=[],[],[]
+    def local(route):
+        if urlparse(route.request.url).hostname in {'localhost','127.0.0.1'} and api_matches(route.request.url,API):route.continue_()
+        else:external.append(route.request.url);route.abort()
+    context.route('**/*',local)
+    page=context.new_page();page.set_default_timeout(12000)
+    page.on('pageerror',lambda error:errors.append(str(error)))
+    def capture(name):
+        (output/f'{name}.html').write_text(page.content(),encoding='utf-8')
+        for width in [320,390,768,1280]:
+            page.set_viewport_size({'width':width,'height':900})
+            assert not page.evaluate('document.documentElement.scrollWidth > innerWidth'),(name,width)
+            page.screenshot(path=str(output/f'{name}-{width}.png'),full_page=True)
+            layouts.append({'surface':name,'width':width,'overflow':False})
+    page.goto(BASE+'/#practice');page.wait_for_load_state('networkidle')
+    page.get_by_role('button',name='Kanji',exact=True).click()
+    expect(page.get_by_role('link',name='Open kanji',exact=True)).to_be_visible()
+    capture('practice-kanji-filter')
+    page.get_by_role('link',name='Open kanji',exact=True).click()
+    expect(page.get_by_label('Script',exact=True)).to_have_value('kanji')
+    expect(page.get_by_role('heading',name='Choose a character',exact=True)).to_be_focused()
+    capture('kanji-direct-navigation')
+    page.goto(BASE+'/#practice');page.wait_for_load_state('networkidle')
+    page.get_by_role('button',name='Stories',exact=True).click()
+    page.get_by_role('link',name='Open stories',exact=True).click()
+    expect(page.get_by_role('heading',name='Short stories & passages',exact=True)).to_be_focused()
+    page.goto(BASE+'/#practice');page.wait_for_load_state('networkidle')
+    page.get_by_role('button',name='Mistakes',exact=True).click()
+    page.get_by_role('link',name='Open saved mistakes',exact=True).click()
+    expect(page.get_by_role('heading',name='Mistakes you can revisit',exact=True)).to_be_focused()
+    settings=page.request.get(API+'/settings').json()
+    settings['tts'].update({'enabled':False})
+    assert page.request.patch(API+'/settings',data={'tts':settings['tts']}).ok
+    page.goto(BASE+'/#grammar');page.wait_for_load_state('networkidle')
+    page.get_by_label('Show unreviewed draft guides and scenarios').check()
+    page.get_by_label('Find a pattern').fill('particle-de')
+    note=page.locator('.authored-note')
+    expect(note).to_have_count(1)
+    capture('targeted-grammar-guide')
+    note.get_by_role('button',name='Practice this pattern',exact=True).click()
+    expect(page.get_by_role('heading',name='で · Place where an action happens · Pattern practice',exact=True)).to_be_visible()
+    page.get_by_role('button',name='に',exact=True).click()
+    page.get_by_role('button',name='Check answer',exact=True).click()
+    expect(page.get_by_text('Not yet',exact=True)).to_be_visible()
+    expect(page.get_by_text('where に marks the destination',exact=False)).to_be_visible()
+    capture('particle-answer-contrast')
+    page.get_by_role('button',name='で',exact=True).click();page.get_by_role('button',name='Check answer',exact=True).click()
+    page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
+    expect(page.get_by_role('heading',name='Session saved',exact=True)).to_be_visible()
+    page.goto(BASE+'/#audio');page.wait_for_load_state('networkidle')
+    page.get_by_label('Include draft stories, dialogues',exact=False).check()
+    page.get_by_role('button',name='Thanks in two settings · Draft listening',exact=True).click()
+    expect(page.get_by_role('heading',name='Type the polite thank-you expression you hear.',exact=True)).to_be_visible()
+    assert 'ありがとうございます' not in page.locator('.question-frame').inner_text()
+    page.get_by_role('button',name='Prepare Polite thanks',exact=True).click()
+    expect(page.locator('.listening-cues [role=alert]')).to_be_visible()
+    capture('dictation-provider-failure')
+    page.get_by_role('button',name='Use text alternative',exact=True).click()
+    expect(page.get_by_text('Text alternative · Polite thanks:',exact=False)).to_be_visible()
+    answer=page.get_by_label('Your answer',exact=True)
+    answer.dispatch_event('compositionstart');answer.fill('ありがとうございます')
+    expect(page.get_by_role('button',name='Check answer',exact=True)).to_be_disabled()
+    answer.dispatch_event('compositionend');page.get_by_role('button',name='Check answer',exact=True).click()
+    expect(page.get_by_text('Assisted practice.',exact=False)).to_be_visible()
+    capture('dictation-text-assisted')
+    page.get_by_role('button',name='Continue',exact=True).click()
+    expect(page.get_by_role('button',name='Prepare Clip A',exact=True)).to_be_visible()
+    page.get_by_role('button',name='Use text alternative',exact=True).click()
+    page.get_by_role('button',name='Clip B',exact=True).click();page.get_by_role('button',name='Check answer',exact=True).click()
+    page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
+    expect(page.get_by_text('0 initial correct answers out of 0 unassisted checks.',exact=False)).to_be_visible()
+    # Real backend route + local fixture provider. This verifies controls/contracts only.
+    provider={'enabled':True,'provider':'kokoro','base_url':'http://127.0.0.1:18179','model':'qa-test-tone-v1','voice':'jf_alpha','timeout':2}
+    assert page.request.patch(API+'/settings',data={'tts':provider}).ok
+    page.goto(BASE+'/#audio');page.wait_for_load_state('networkidle')
+    page.get_by_label('Include draft stories, dialogues',exact=False).check()
+    page.get_by_role('button',name='A first introduction · Draft listening',exact=True).click()
+    page.wait_for_url('**/#session/*')
+    expect(page.get_by_role('button',name='Prepare Introduction',exact=True)).to_be_visible()
+    session_id=page.url.split('#session/')[1]
+    concurrent=page.request.get(API+'/sessions/'+session_id).json()
+    assert page.request.post(API+'/sessions/'+session_id+'/actions',data={'request_id':concurrent['next_action_id'],'expected_revision':concurrent['revision'],'action':'timer_hide'}).ok
+    page.locator('.answer-choice').filter(has_text='Aki').click()
+    page.get_by_role('button',name='Prepare Introduction',exact=True).click()
+    expect(page.get_by_role('button',name='Reload saved session',exact=True)).to_be_visible()
+    page.get_by_role('button',name='Reload saved session',exact=True).click()
+    expect(page.locator('.answer-choice').filter(has_text='Aki')).to_have_attribute('aria-pressed','true')
+    page.get_by_role('button',name='Prepare Introduction',exact=True).click()
+    player=page.get_by_label('Introduction',exact=True)
+    expect(player).to_be_visible()
+    page.wait_for_function("Number.isFinite(document.querySelector('.listening-cues audio')?.duration)")
+    assert player.evaluate('(audio)=>audio.duration')>0
+    assert not player.get_attribute('autoplay')
+    page.get_by_label('Loop reference',exact=True).check()
+    assert player.evaluate('(audio)=>audio.loop')
+    capture('listening-test-tone-controls')
+    page.locator('.answer-choice').filter(has_text='Aki').click();page.get_by_role('button',name='Check answer',exact=True).click()
+    page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
+    expect(page.get_by_text('1 initial correct answers out of 1 unassisted checks.',exact=False)).to_be_visible()
+    page.goto(BASE+'/#grammar');page.wait_for_load_state('networkidle')
+    page.get_by_label('Show unreviewed draft guides and scenarios').check()
+    scene=page.locator('.scenario-row').filter(has=page.get_by_role('heading',name='Meeting someone',exact=True))
+    scene.get_by_text('Optional local AI scenario coaching',exact=True).click()
+    scene.get_by_label('Your reply',exact=True).fill('はじめまして。')
+    scene.get_by_role('button',name='Ask local scenario coach',exact=True).click()
+    expect(scene.get_by_text('Authored fallback · local AI disabled',exact=True)).to_be_visible()
+    capture('scenario-disabled-fallback')
+    page.goto(BASE+'/#review');page.wait_for_load_state('networkidle')
+    page.get_by_label('Practice to notice',exact=True).select_option('listening')
+    page.get_by_role('button',name='Add personal quest',exact=True).click()
+    quest=page.locator('[data-quest-id]').filter(has=page.get_by_role('button',name='Audio unavailable · switch this quest to core sessions',exact=True)).first
+    expect(quest).to_be_visible();identity=quest.get_attribute('data-quest-id')
+    quest.get_by_role('button').click()
+    expect(page.locator(f'[data-quest-id="{identity}"]')).to_contain_text('Changed from listening to sessions')
+    page.get_by_text('Activity calendar · last 12 weeks',exact=True).click()
+    expect(page.locator('.activity-calendar li')).to_have_count(84)
+    page.get_by_text('Recent timed sessions',exact=True).click()
+    page.get_by_label('Show a gentle practice reminder here',exact=True).check()
+    expect(page.get_by_text('A little practice is available whenever',exact=False)).to_be_visible()
+    capture('quest-fallback-calendar')
+    page.reload();page.wait_for_load_state('networkidle')
+    expect(page.get_by_label('Show a gentle practice reminder here',exact=True)).to_be_checked()
+    assert not errors,errors
+    assert not external,external
+    (output/'results.json').write_text(json.dumps({'layouts':layouts,'page_errors':errors,'external_requests':external,'audio':'local non-linguistic test tones only; real Japanese TTS/STT unverified','ime':'synthetic composition events; physical IME unverified'},indent=2),encoding='utf-8')
+    print(json.dumps({'layouts':len(layouts),'errors':errors,'external_requests':external}))
+    browser.close()

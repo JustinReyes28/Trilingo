@@ -1,0 +1,924 @@
+{
+  "status": "draft",
+  "review_status": "qualified Japanese review pending",
+  "groups": [
+    {
+      "guide_id": "guide-wa",
+      "exercises": [
+        {
+          "id": "ja-contrast21-wa-1",
+          "type": "multiple_choice",
+          "prompt": "Contrast tea with coffee by marking tea as the topic: お茶＿飲みますが、コーヒーは飲みません。",
+          "objective": "Recognize は as a contrastive topic marker on the drink being contrasted.",
+          "concepts": [
+            "particle-wa"
+          ],
+          "difficulty": 2,
+          "explanation": "お茶は contrasts tea with coffee: I drink tea, but I do not drink coffee. は replaces the object marker を when the object is made a topic here.",
+          "hint": "The task asks for a contrastive topic, rather than the ordinary direct-object marker.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "は"
+            },
+            {
+              "id": "c3",
+              "text": "に"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "を would mark tea as the direct object of drinking. That sentence can be grammatical, but it does not mark tea as the contrastive topic requested here.",
+            "c2": "は makes tea a topic and sets up the explicit contrast with コーヒーは in the second clause.",
+            "c3": "に can mark a destination or a specific time in other patterns. Tea is neither a destination nor a time for 飲みます here."
+          }
+        },
+        {
+          "id": "ja-contrast21-wa-2",
+          "type": "multiple_choice",
+          "prompt": "The teacher is already the topic. Keep that topic while saying where the teacher lives: 先生＿東京に住んでいます。",
+          "objective": "Recognize は on an established person being discussed.",
+          "concepts": [
+            "particle-wa"
+          ],
+          "difficulty": 2,
+          "explanation": "先生は marks the teacher as the topic. 東京に identifies where that person lives; the two nouns have different roles.",
+          "hint": "The blank follows the person being discussed, not the location of the home.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "は"
+            },
+            {
+              "id": "c2",
+              "text": "に"
+            },
+            {
+              "id": "c3",
+              "text": "を"
+            }
+          ],
+          "answer": "c1",
+          "response_feedback": {
+            "c1": "は keeps 先生 as the established topic: As for the teacher, the teacher lives in Tokyo.",
+            "c2": "に after 先生 would treat the teacher as a location or target. The residence location is already 東京に, and 先生 is the person being discussed.",
+            "c3": "を marks a direct object in the action patterns taught here. 住んでいます does not take the resident as its direct object."
+          }
+        },
+        {
+          "id": "ja-contrast21-wa-3",
+          "type": "multiple_choice",
+          "prompt": "Explicitly contrast Sunday with weekdays as the time topics: 日曜日＿働きません。平日は働きます。",
+          "objective": "Recognize は when contrasting time expressions as topics.",
+          "concepts": [
+            "particle-wa"
+          ],
+          "difficulty": 2,
+          "explanation": "日曜日は contrasts Sunday with 平日は, weekdays. The statements mean that the speaker does not work on Sundays but does work on weekdays.",
+          "hint": "Both time expressions are being set against one another as topics.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "が"
+            },
+            {
+              "id": "c2",
+              "text": "を"
+            },
+            {
+              "id": "c3",
+              "text": "は"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "が would identify Sunday as the subject of 働きません, as though Sunday itself were the worker. It does not make Sunday the contrasting time topic here.",
+            "c2": "を does not make 日曜日 a time topic. Sunday is not an object being acted on by 働きます.",
+            "c3": "は presents Sunday as the contrasting time topic, matching 平日は in the following sentence."
+          }
+        },
+        {
+          "id": "ja-contrast21-wa-4",
+          "type": "multiple_choice",
+          "prompt": "A particular book has already been discussed. Mark that book as the topic and say where it is: その本＿机の上にあります。",
+          "objective": "Distinguish a known topic marked by は from an identification marked by が.",
+          "concepts": [
+            "particle-wa"
+          ],
+          "difficulty": 2,
+          "explanation": "その本は keeps the known book as the topic, then gives its location. が could identify which thing is there in another information context.",
+          "hint": "The question is about the location of a known book, rather than identifying a newly noticed object.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "が"
+            },
+            {
+              "id": "c2",
+              "text": "は"
+            },
+            {
+              "id": "c3",
+              "text": "で"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "が can be grammatical if identifying the book as the thing that is there. The stated task instead asks to retain an already established topic.",
+            "c2": "は marks the known book as the topic; 机の上に supplies the location of its existence.",
+            "c3": "で can mark where an action happens, but the book is not the place of an action. あります states existence here."
+          }
+        }
+      ]
+    },
+    {
+      "guide_id": "guide-ga",
+      "exercises": [
+        {
+          "id": "ja-contrast21-ga-1",
+          "type": "multiple_choice",
+          "prompt": "Answer 何が落ちましたか (What fell?) by identifying the thing: 鍵＿落ちました。",
+          "objective": "Recognize が when answering which thing is the subject of an event.",
+          "concepts": [
+            "particle-ga"
+          ],
+          "difficulty": 2,
+          "explanation": "鍵が identifies the keys as the answer to what fell. 落ちました describes the keys falling, rather than someone dropping them.",
+          "hint": "The answer identifies the subject that matches the question word 何が.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "は"
+            },
+            {
+              "id": "c2",
+              "text": "が"
+            },
+            {
+              "id": "c3",
+              "text": "を"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "は could introduce the keys as a topic or a contrast. The prompt asks for the identifying answer to 何が, so が fits that focus.",
+            "c2": "が identifies 鍵 as the thing that fell, directly answering 何が落ちましたか.",
+            "c3": "を would mark a direct object, but 落ちました is intransitive. To say someone dropped the keys, the verb would be 落としました."
+          }
+        },
+        {
+          "id": "ja-contrast21-ga-2",
+          "type": "multiple_choice",
+          "prompt": "Report the door opening as a newly noticed event, using the intransitive verb 開きました: ドア＿開きました。",
+          "objective": "Recognize the subject marker が with the intransitive opening verb.",
+          "concepts": [
+            "particle-ga"
+          ],
+          "difficulty": 2,
+          "explanation": "ドアが開きました reports that the door opened. Compare the transitive ドアを開けました, someone opened the door.",
+          "hint": "Look at the verb: 開きました describes something opening by itself or without naming an agent.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "で"
+            },
+            {
+              "id": "c3",
+              "text": "が"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "を would fit ドアを開けました, with the transitive verb for opening something. The given 開きました takes the door as its subject.",
+            "c2": "で can introduce an action location or means in other sentences. The door here is the thing that opened, not the location or means.",
+            "c3": "が marks ドア as the subject of 開きました: the door opened."
+          }
+        },
+        {
+          "id": "ja-contrast21-ga-3",
+          "type": "multiple_choice",
+          "prompt": "Ask which person made this lunch: 誰＿この弁当を作りましたか。",
+          "objective": "Recognize が after an interrogative subject asking who performed an action.",
+          "concepts": [
+            "particle-ga"
+          ],
+          "difficulty": 2,
+          "explanation": "誰が asks who the maker was. この弁当を already marks the lunch as the direct object of 作りました.",
+          "hint": "The unknown person is the subject, while the lunch is already marked with を.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "が"
+            },
+            {
+              "id": "c2",
+              "text": "は"
+            },
+            {
+              "id": "c3",
+              "text": "で"
+            }
+          ],
+          "answer": "c1",
+          "response_feedback": {
+            "c1": "が marks 誰 as the unknown subject: Who made this packed lunch?",
+            "c2": "は does not introduce the unknown subject 誰 as a neutral topic in this question. The identity being asked for is marked with が.",
+            "c3": "で would ask about a means or place if attached to a suitable noun. 誰 asks for the person who made the lunch, not a tool or location."
+          }
+        },
+        {
+          "id": "ja-contrast21-ga-4",
+          "type": "multiple_choice",
+          "prompt": "Introduce an animal you have just noticed in the garden: 庭に猫＿います。",
+          "objective": "Recognize が on a newly introduced living thing in an existence sentence.",
+          "concepts": [
+            "particle-ga"
+          ],
+          "difficulty": 2,
+          "explanation": "庭に猫がいます introduces a cat as being in the garden. 庭に marks the location; 猫が marks the living thing present there.",
+          "hint": "The garden already has the location marker. Choose the marker for the living thing that exists.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "に"
+            },
+            {
+              "id": "c3",
+              "text": "が"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "を marks an action object, but います does not describe an action performed on the cat.",
+            "c2": "に would mark the cat as a location or target. The cat is the living thing present, while 庭に is its location.",
+            "c3": "が introduces the cat as the living thing that is in the garden."
+          }
+        }
+      ]
+    },
+    {
+      "guide_id": "guide-wo",
+      "exercises": [
+        {
+          "id": "ja-contrast21-wo-1",
+          "type": "multiple_choice",
+          "prompt": "Mark the newspaper as the thing you read: 図書館で新聞＿読みます。",
+          "objective": "Recognize を on the direct object of reading, separate from the action location.",
+          "concepts": [
+            "particle-wo"
+          ],
+          "difficulty": 2,
+          "explanation": "新聞を marks what is read. 図書館で separately marks where the reading happens.",
+          "hint": "Ask what is being read, rather than where the reading happens.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "で"
+            },
+            {
+              "id": "c3",
+              "text": "に"
+            }
+          ],
+          "answer": "c1",
+          "response_feedback": {
+            "c1": "を marks the newspaper as the direct object of 読みます.",
+            "c2": "で already marks the reading location in 図書館で. 新聞で can describe a medium in other contexts, but it does not mark the newspaper as the object being read.",
+            "c3": "に can mark a target or location with other verbs. The newspaper here is what the reader reads, so it takes the object marker を."
+          }
+        },
+        {
+          "id": "ja-contrast21-wo-2",
+          "type": "multiple_choice",
+          "prompt": "Mark the ticket as the item being bought: 店で切符＿買います。",
+          "objective": "Recognize を on the direct object of buying.",
+          "concepts": [
+            "particle-wo"
+          ],
+          "difficulty": 2,
+          "explanation": "切符を identifies the item bought. 店で is the place of buying, and the buyer can be omitted when understood.",
+          "hint": "買います takes the thing bought as its direct object.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "に"
+            },
+            {
+              "id": "c2",
+              "text": "を"
+            },
+            {
+              "id": "c3",
+              "text": "が"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "に would present the ticket as a target or destination, rather than the item bought. The item bought takes を with 買います.",
+            "c2": "を marks 切符 as the purchased item; 店で tells where the purchase takes place.",
+            "c3": "が would make the ticket the subject of 買います, as if the ticket were buying something. The ticket is the object bought here."
+          }
+        },
+        {
+          "id": "ja-contrast21-wo-3",
+          "type": "multiple_choice",
+          "prompt": "Ask someone to open the window, using the transitive verb 開ける: 窓＿開けてください。",
+          "objective": "Recognize を with a transitive request to act on an object.",
+          "concepts": [
+            "particle-wo"
+          ],
+          "difficulty": 2,
+          "explanation": "窓を開けてください asks the listener to open the window. The window is the object of the transitive verb 開ける.",
+          "hint": "This is a request for someone to open something, rather than a report that it opened.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "が"
+            },
+            {
+              "id": "c2",
+              "text": "に"
+            },
+            {
+              "id": "c3",
+              "text": "を"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "が would mark a subject. The given 開けてください requests an action on the window; the intransitive 窓が開きます is a different construction.",
+            "c2": "に would mark a target or destination in other constructions. 開ける needs the thing opened as its direct object here.",
+            "c3": "を marks 窓 as the object that the listener is asked to open."
+          }
+        },
+        {
+          "id": "ja-contrast21-wo-4",
+          "type": "multiple_choice",
+          "prompt": "Use the ordinary direct-object marker for the dishes being washed: 夕食の後で皿＿洗います。",
+          "objective": "Distinguish the ordinary object marker を from topicalizing an object with は.",
+          "concepts": [
+            "particle-wo"
+          ],
+          "difficulty": 2,
+          "explanation": "皿を marks the dishes as the direct object of 洗います. は could make dishes a contrasting topic, but that is not the requested object marking.",
+          "hint": "The task requests the ordinary object pattern, without a topic contrast.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "で"
+            },
+            {
+              "id": "c2",
+              "text": "を"
+            },
+            {
+              "id": "c3",
+              "text": "は"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "で can mark an action location or means. The dishes are the things washed, rather than the place or tool used for washing.",
+            "c2": "を gives the ordinary direct-object pattern: I wash the dishes after dinner.",
+            "c3": "は can be grammatical when contrasting the dishes with something else. Here the task asks specifically for ordinary direct-object marking."
+          }
+        }
+      ]
+    },
+    {
+      "guide_id": "guide-ni",
+      "exercises": [
+        {
+          "id": "ja-contrast21-ni-1",
+          "type": "multiple_choice",
+          "prompt": "State the specific clock time when you get up: 七時＿起きます。",
+          "objective": "Recognize に for the clock time at which an event occurs.",
+          "concepts": [
+            "particle-ni"
+          ],
+          "difficulty": 2,
+          "explanation": "七時に identifies seven o'clock as the time of getting up. This pattern uses に with the specific clock time.",
+          "hint": "七時 answers when the action happens.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "で"
+            },
+            {
+              "id": "c2",
+              "text": "に"
+            },
+            {
+              "id": "c3",
+              "text": "を"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "で can indicate a boundary with some other predicates, but it does not mark the time of getting up in this sentence.",
+            "c2": "に marks 七時 as the specific time at which 起きます happens.",
+            "c3": "を can mark an object or a traversed route in other patterns. Seven o'clock is the time of the event, not an object or route."
+          }
+        },
+        {
+          "id": "ja-contrast21-ni-2",
+          "type": "multiple_choice",
+          "prompt": "State where the stationary cat is, rather than where an action occurs: 猫は椅子の下＿います。",
+          "objective": "Recognize に for the location of existence with いる.",
+          "concepts": [
+            "particle-ni"
+          ],
+          "difficulty": 2,
+          "explanation": "椅子の下に marks where the cat is. います states existence; it does not describe movement toward the chair or an activity there.",
+          "hint": "Use the existence-location pattern with います.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "へ"
+            },
+            {
+              "id": "c2",
+              "text": "で"
+            },
+            {
+              "id": "c3",
+              "text": "に"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "へ would give a direction of movement, but います says the cat is present. No movement toward the chair is being described.",
+            "c2": "で marks the place of an activity such as playing. With います, the location of the cat's presence is marked by に.",
+            "c3": "に marks 椅子の下 as the location where the cat is present."
+          }
+        },
+        {
+          "id": "ja-contrast21-ni-3",
+          "type": "multiple_choice",
+          "prompt": "Mark the teacher as the recipient when you hand over a letter: 先生＿手紙を渡します。",
+          "objective": "Recognize に on the recipient of something handed over.",
+          "concepts": [
+            "particle-ni"
+          ],
+          "difficulty": 2,
+          "explanation": "先生に identifies who receives the letter. 手紙を identifies what is handed over; recipient and object use different markers.",
+          "hint": "The letter already has を. The blank identifies the person receiving it.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "に"
+            },
+            {
+              "id": "c3",
+              "text": "で"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "を would make the teacher the object handed over. 手紙を is the object here; the teacher is the recipient.",
+            "c2": "に marks the teacher as the recipient of the letter.",
+            "c3": "で does not mark a recipient in this pattern. The teacher is the person receiving the letter, rather than the place or means of the action."
+          }
+        },
+        {
+          "id": "ja-contrast21-ni-4",
+          "type": "multiple_choice",
+          "prompt": "Mark the surface where you put the keys: 鍵を机の上＿置きます。",
+          "objective": "Recognize に for the placement target of 置く.",
+          "concepts": [
+            "particle-ni"
+          ],
+          "difficulty": 2,
+          "explanation": "机の上に is the target location where the keys are placed. 鍵を is the object being put there.",
+          "hint": "The blank marks where the keys end up, rather than where you perform some separate activity.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "に"
+            },
+            {
+              "id": "c2",
+              "text": "が"
+            },
+            {
+              "id": "c3",
+              "text": "で"
+            }
+          ],
+          "answer": "c1",
+          "response_feedback": {
+            "c1": "に marks the placement target: the keys are put on top of the desk.",
+            "c2": "が would make 机の上 a subject, but the top of the desk is the target location in this placement pattern.",
+            "c3": "で could mark where someone performs an activity. Here the sentence specifies where the keys are placed, so the placement target takes に."
+          }
+        }
+      ]
+    },
+    {
+      "guide_id": "guide-de",
+      "exercises": [
+        {
+          "id": "ja-contrast21-de-1",
+          "type": "multiple_choice",
+          "prompt": "Say where the activity of eating lunch happens: 食堂＿昼ご飯を食べます。",
+          "objective": "Recognize で for an action location, rather than a destination.",
+          "concepts": [
+            "particle-de"
+          ],
+          "difficulty": 2,
+          "explanation": "食堂で marks the dining hall as the place where eating happens. This sentence describes eating there, rather than going there.",
+          "hint": "The verb describes eating, not arrival or existence.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "に"
+            },
+            {
+              "id": "c2",
+              "text": "で"
+            },
+            {
+              "id": "c3",
+              "text": "が"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "に could mark a destination with 行きます, but 食べます describes an activity occurring at the dining hall.",
+            "c2": "で marks the dining hall as the location where the speaker eats lunch.",
+            "c3": "が would make the dining hall the eater. The dining hall is the place of the action, not the person eating."
+          }
+        },
+        {
+          "id": "ja-contrast21-de-2",
+          "type": "multiple_choice",
+          "prompt": "Say where someone is actively reading: 部屋＿本を読んでいます。",
+          "objective": "Recognize で for the location of an ongoing action.",
+          "concepts": [
+            "particle-de"
+          ],
+          "difficulty": 2,
+          "explanation": "部屋で marks the location of reading. The ending ています belongs to the activity 読む here; it is not the standalone existence verb います.",
+          "hint": "Focus on the full verb 読んでいます, which describes reading.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "に"
+            },
+            {
+              "id": "c3",
+              "text": "で"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "を would treat the room as an object or route in another pattern. 本を already marks the book being read, while the room is the reading location.",
+            "c2": "に marks an existence location in 部屋にいます. The full verb here is 読んでいます, an ongoing action, so its location takes で.",
+            "c3": "で marks the room as where the reading activity is happening."
+          }
+        },
+        {
+          "id": "ja-contrast21-de-3",
+          "type": "multiple_choice",
+          "prompt": "Say where the tennis activity takes place: 公園＿テニスをします。",
+          "objective": "Recognize で for the physical location of a sport or activity.",
+          "concepts": [
+            "particle-de"
+          ],
+          "difficulty": 2,
+          "explanation": "公園で identifies the park as the place of playing tennis. 公園に行きます would instead describe going to the park.",
+          "hint": "The park is where the activity happens, rather than who performs it.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "が"
+            },
+            {
+              "id": "c2",
+              "text": "で"
+            },
+            {
+              "id": "c3",
+              "text": "に"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "が would make the park the subject performing the activity. The park is the place where a person plays tennis.",
+            "c2": "で marks the park as the location of the tennis activity.",
+            "c3": "に could mark the park as a destination with a movement verb. テニスをします describes playing there, so its action location takes で."
+          }
+        },
+        {
+          "id": "ja-contrast21-de-4",
+          "type": "multiple_choice",
+          "prompt": "Mark the bakery as the place where a purchase happens: パン屋＿パンを買います。",
+          "objective": "Distinguish an action location marked by で from a movement direction marked by へ.",
+          "concepts": [
+            "particle-de"
+          ],
+          "difficulty": 2,
+          "explanation": "パン屋で marks where the bread is bought. The sentence describes the purchase itself, rather than movement toward the bakery.",
+          "hint": "Look for the particle that marks where 買います happens.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "で"
+            },
+            {
+              "id": "c2",
+              "text": "を"
+            },
+            {
+              "id": "c3",
+              "text": "へ"
+            }
+          ],
+          "answer": "c1",
+          "response_feedback": {
+            "c1": "で makes the bakery the location of the purchase; パンを is the item bought.",
+            "c2": "を would mark the bakery as the thing being bought. パンを already names the item bought here.",
+            "c3": "へ marks a direction with movement, as in パン屋へ行きます. 買います needs the purchase location marked with で in this sentence."
+          }
+        }
+      ]
+    },
+    {
+      "guide_id": "guide-he",
+      "exercises": [
+        {
+          "id": "ja-contrast21-he-1",
+          "type": "multiple_choice",
+          "prompt": "Mark north as the direction in which you walk: 北＿歩きます。",
+          "objective": "Recognize へ as a direction marker with movement, pronounced え.",
+          "concepts": [
+            "particle-he"
+          ],
+          "difficulty": 2,
+          "explanation": "北へ歩きます means walking toward the north. The particle written へ is pronounced え. に can mark a destination in suitable movement patterns, but it is not among these choices.",
+          "hint": "The task asks for movement toward a direction, rather than a place of activity or a route traversed.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "で"
+            },
+            {
+              "id": "c2",
+              "text": "へ"
+            },
+            {
+              "id": "c3",
+              "text": "を"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "で can mark the place where walking happens, but the prompt asks for north as the direction toward which the person walks.",
+            "c2": "へ marks 北 as the direction of walking and is pronounced え here.",
+            "c3": "を can mark a route or area traversed with 歩く, as in 道を歩きます. It does not give the requested toward-the-north direction."
+          }
+        },
+        {
+          "id": "ja-contrast21-he-2",
+          "type": "multiple_choice",
+          "prompt": "Mark the station as the direction you head toward: 駅＿向かいます。",
+          "objective": "Recognize へ for the direction or target of heading somewhere.",
+          "concepts": [
+            "particle-he"
+          ],
+          "difficulty": 2,
+          "explanation": "駅へ向かいます means heading toward the station. へ supplies the direction of the movement, not its actor or a direct object.",
+          "hint": "向かいます describes heading toward a destination.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "が"
+            },
+            {
+              "id": "c2",
+              "text": "を"
+            },
+            {
+              "id": "c3",
+              "text": "へ"
+            }
+          ],
+          "answer": "c3",
+          "response_feedback": {
+            "c1": "が would make the station the subject doing the heading. The station is where the person is heading toward.",
+            "c2": "を does not mark the direction with 向かいます. The station is the movement target, rather than an object being acted on.",
+            "c3": "へ marks the station as the direction of 向かいます. に can also occur with this verb, but it is not an offered answer here."
+          }
+        },
+        {
+          "id": "ja-contrast21-he-3",
+          "type": "multiple_choice",
+          "prompt": "Use a movement-direction marker to say that you return home: 家＿帰ります。",
+          "objective": "Recognize へ on the destination toward which someone returns.",
+          "concepts": [
+            "particle-he"
+          ],
+          "difficulty": 2,
+          "explanation": "家へ帰ります directs the returning movement toward home. 家に帰ります is also possible, but に is not among the offered choices.",
+          "hint": "帰ります describes movement back toward a place.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "へ"
+            },
+            {
+              "id": "c2",
+              "text": "で"
+            },
+            {
+              "id": "c3",
+              "text": "が"
+            }
+          ],
+          "answer": "c1",
+          "response_feedback": {
+            "c1": "へ marks home as where the returning person is headed.",
+            "c2": "で marks an activity location in other patterns. 家で帰ります does not express returning toward home in the stated sentence.",
+            "c3": "が would make the house the subject that returns. Here a person returns, and the home is the direction or destination."
+          }
+        },
+        {
+          "id": "ja-contrast21-he-4",
+          "type": "multiple_choice",
+          "prompt": "Say that you go toward the sea, rather than travel across it: 海＿行きます。",
+          "objective": "Distinguish direction marked by へ from a route marked by を.",
+          "concepts": [
+            "particle-he"
+          ],
+          "difficulty": 2,
+          "explanation": "海へ行きます means going toward the sea. The requested meaning is a direction of movement; it is not movement along a sea route.",
+          "hint": "Choose the particle for toward, not for traversing an area.",
+          "policy": {
+            "strategy": "choice"
+          },
+          "skill": "recognition",
+          "preparation": [],
+          "choices": [
+            {
+              "id": "c1",
+              "text": "を"
+            },
+            {
+              "id": "c2",
+              "text": "へ"
+            },
+            {
+              "id": "c3",
+              "text": "で"
+            }
+          ],
+          "answer": "c2",
+          "response_feedback": {
+            "c1": "を can mark a route in movement expressions, and 海を行く can describe traveling across the sea. That is different from the requested going toward the sea.",
+            "c2": "へ marks the sea as the direction of the movement. に can also mark a destination with 行きます, but it is not an offered choice.",
+            "c3": "で can mark a location of an action or a means of travel. 海 here is the destination toward which the person goes, not a vehicle or the location of a separate activity."
+          }
+        }
+      ]
+    }
+  ]
+}

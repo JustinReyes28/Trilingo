@@ -1,0 +1,52 @@
+{
+  "id": "ja-stroke-5165-v1",
+  "character_id": "ja-kanji-5165",
+  "version": "1.0.0-draft",
+  "license_id": "trilingo-original",
+  "source": "Original Trilingo schematic normalized paths; Japanese stroke review pending. Not traced from a font or third-party diagram.",
+  "status": "draft",
+  "strokes": [
+    {
+      "points": [
+        {
+          "x": 0.61,
+          "y": 0.2
+        },
+        {
+          "x": 0.49,
+          "y": 0.42
+        },
+        {
+          "x": 0.36,
+          "y": 0.63
+        },
+        {
+          "x": 0.22,
+          "y": 0.8
+        }
+      ],
+      "instruction": "Begin high and move down toward the lower left."
+    },
+    {
+      "points": [
+        {
+          "x": 0.53,
+          "y": 0.31
+        },
+        {
+          "x": 0.61,
+          "y": 0.52
+        },
+        {
+          "x": 0.73,
+          "y": 0.7
+        },
+        {
+          "x": 0.84,
+          "y": 0.8
+        }
+      ],
+      "instruction": "Begin near the upper meeting point and move down toward the lower right."
+    }
+  ]
+}

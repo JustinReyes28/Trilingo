@@ -1,0 +1,47 @@
+# Environments & Virtual Environments
+.venv/
+.tools/
+venv/
+ENV/
+
+# Dependencies
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Python caches & build artifacts
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+*$py.class
+*.egg-info/
+.coverage
+htmlcov/
+
+# Local databases, WAL journals & SQLite files
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+.data/
+
+# Local environment & secrets
+.env
+.env.*
+!.env.example
+
+# Local backups, logs & archives
+artifacts/
+*.zip
+*.tar.gz
+*.log
+
+# Tool caches & OS files
+.design-skill/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini

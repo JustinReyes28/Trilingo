@@ -1,0 +1,97 @@
+{
+  "course_id": "ja-starter",
+  "source_version": "0.1.18",
+  "source_sha256": "027c0234a00ce5fd49f5458214d55cc4570717c905ef39a8eed14fdb987df283",
+  "review_status": "authoring audit; qualified review pending",
+  "groups": [
+    {
+      "canonical_id": "ja-word-school",
+      "member_ids": [
+        "ja-word-school",
+        "ja-word-school-kanji"
+      ],
+      "reason": "学校 and がっこう are kanji/kana spellings of the same noun meaning school. Count one lexical identity while preserving both historical content IDs."
+    },
+    {
+      "canonical_id": "ja-word-core-307f-3093-306a",
+      "member_ids": [
+        "ja-word-core-7686-3055-3093",
+        "ja-word-core-307f-3093-306a"
+      ],
+      "reason": "Conservatively count the polite address 皆さん and informal みんな once as the everyone/all lexical family. The honorific suffix and pronunciation variant do not add core-word coverage; keep the original separate display records and learner IDs. Qualified semantic review remains pending."
+    }
+  ],
+  "distinct_homophones": [
+    {
+      "member_ids": [
+        "ja-word-kanji-82b1",
+        "ja-word-kanji-9f3b"
+      ],
+      "reason": "花 (flower) and 鼻 (nose) both read はな; their meanings are distinct."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-65e9-3044",
+        "ja-word-kanji-901f-3044"
+      ],
+      "reason": "早い (early) and 速い (fast) both read はやい; preserve their separate contextual meanings."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-6a4b",
+        "ja-word-core-7bb8"
+      ],
+      "reason": "橋 is a bridge; 箸 are chopsticks. Distinct words, not spelling variants."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-66f8-304f",
+        "ja-word-core-63cf-304f"
+      ],
+      "reason": "書く means write; 描く here means draw or paint. The authored examples teach different actions."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-53d6-308b",
+        "ja-word-core-64ae-308b"
+      ],
+      "reason": "取る is the general take verb; 撮る here means take a photograph. Preserve the separately taught contextual senses pending qualified review."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-6b62-307e-308b",
+        "ja-word-core-6cca-307e-308b"
+      ],
+      "reason": "止まる means stop; 泊まる means stay overnight. Different lexical meanings."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-5e30-308b",
+        "ja-word-core-5909-3048-308b"
+      ],
+      "reason": "帰る means return home; 変える means change something. Different verbs and inflection classes."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-670d",
+        "ja-word-core-62ed-304f"
+      ],
+      "reason": "服 is the noun clothes; 拭く is the verb wipe. Different lexical entries."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-6691-3044",
+        "ja-word-core-71b1-3044"
+      ],
+      "reason": "暑い describes hot weather; 熱い describes something hot to touch in these examples. Preserve the contextual distinction."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-6613-3057-3044",
+        "ja-word-core-512a-3057-3044"
+      ],
+      "reason": "易しい means easy; 優しい means kind or gentle. Different adjective meanings."
+    }
+  ],
+  "policy": "Unlisted records retain their own stable identity. Same reading alone, shared gloss alone, conjugation, repeated practice and stage reuse do not establish a new word. This source-bound authoring audit neither approves Japanese nor merges learner records."
+}

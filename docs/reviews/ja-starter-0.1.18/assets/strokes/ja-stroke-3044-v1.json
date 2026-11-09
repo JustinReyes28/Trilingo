@@ -1,0 +1,52 @@
+{
+  "id": "ja-stroke-3044-v1",
+  "character_id": "ja-char-hiragana-3044",
+  "version": "1.0.0-draft",
+  "license_id": "trilingo-original",
+  "source": "Original Trilingo schematic normalized paths; Japanese stroke review pending. Not traced from a font or third-party diagram.",
+  "status": "draft",
+  "strokes": [
+    {
+      "points": [
+        {
+          "x": 0.35,
+          "y": 0.18
+        },
+        {
+          "x": 0.29,
+          "y": 0.35
+        },
+        {
+          "x": 0.3,
+          "y": 0.6
+        },
+        {
+          "x": 0.38,
+          "y": 0.78
+        },
+        {
+          "x": 0.47,
+          "y": 0.68
+        }
+      ],
+      "instruction": "Curve down the left side, then finish with a short lift."
+    },
+    {
+      "points": [
+        {
+          "x": 0.65,
+          "y": 0.25
+        },
+        {
+          "x": 0.71,
+          "y": 0.4
+        },
+        {
+          "x": 0.73,
+          "y": 0.6
+        }
+      ],
+      "instruction": "Begin on the upper right and curve down."
+    }
+  ]
+}

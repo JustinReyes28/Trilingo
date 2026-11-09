@@ -1,0 +1,3263 @@
+{
+  "status": "draft",
+  "license": "CC-BY-4.0",
+  "review_status": "original draft; qualified Japanese review pending",
+  "groups": [
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Rail services and seats",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "列車",
+          "reading": "れっしゃ",
+          "gloss": "a train; a rail service",
+          "part_of_speech": "noun",
+          "example": "この列車は京都に行きます。",
+          "translation": "This train goes to Kyoto."
+        },
+        {
+          "surface": "各駅停車",
+          "reading": "かくえきていしゃ",
+          "gloss": "a local train stopping at every station",
+          "part_of_speech": "noun",
+          "example": "各駅停車で次の町に行きます。",
+          "translation": "I take a local train to the next town."
+        },
+        {
+          "surface": "快速",
+          "reading": "かいそく",
+          "gloss": "a rapid train service",
+          "part_of_speech": "noun",
+          "example": "快速はこの駅に止まりません。",
+          "translation": "The rapid train does not stop at this station."
+        },
+        {
+          "surface": "特急",
+          "reading": "とっきゅう",
+          "gloss": "a limited express train",
+          "part_of_speech": "noun",
+          "example": "大阪まで特急に乗ります。",
+          "translation": "I take a limited express to Osaka."
+        },
+        {
+          "surface": "急行",
+          "reading": "きゅうこう",
+          "gloss": "an express train",
+          "part_of_speech": "noun",
+          "example": "急行は三番のホームから出ます。",
+          "translation": "The express leaves from platform three."
+        },
+        {
+          "surface": "終電",
+          "reading": "しゅうでん",
+          "gloss": "the last train of the day",
+          "part_of_speech": "noun",
+          "example": "終電の時間を調べます。",
+          "translation": "I check the time of the last train."
+        },
+        {
+          "surface": "始発",
+          "reading": "しはつ",
+          "gloss": "the first train or service of the day",
+          "part_of_speech": "noun",
+          "example": "明日は始発で空港に行きます。",
+          "translation": "Tomorrow I will take the first train to the airport."
+        },
+        {
+          "surface": "時刻表",
+          "reading": "じこくひょう",
+          "gloss": "a timetable",
+          "part_of_speech": "noun",
+          "example": "駅で時刻表を見ます。",
+          "translation": "I look at the timetable at the station."
+        },
+        {
+          "surface": "座席",
+          "reading": "ざせき",
+          "gloss": "a seat on a vehicle or in a venue",
+          "part_of_speech": "noun",
+          "example": "私の座席は窓の近くです。",
+          "translation": "My seat is near the window."
+        },
+        {
+          "surface": "指定席",
+          "reading": "していせき",
+          "gloss": "a reserved seat",
+          "part_of_speech": "noun",
+          "example": "帰りの電車は指定席を予約します。",
+          "translation": "I reserve a seat on the train home."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "People and tickets on the railway",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "車両",
+          "reading": "しゃりょう",
+          "gloss": "a railway carriage; a vehicle",
+          "part_of_speech": "noun",
+          "example": "この電車には六つの車両があります。",
+          "translation": "This train has six carriages."
+        },
+        {
+          "surface": "車内",
+          "reading": "しゃない",
+          "gloss": "the inside of a vehicle",
+          "part_of_speech": "noun",
+          "example": "車内では静かに話します。",
+          "translation": "I speak quietly inside the train."
+        },
+        {
+          "surface": "車掌",
+          "reading": "しゃしょう",
+          "gloss": "a train conductor",
+          "part_of_speech": "noun",
+          "example": "車掌に切符を見せます。",
+          "translation": "I show my ticket to the conductor."
+        },
+        {
+          "surface": "駅員",
+          "reading": "えきいん",
+          "gloss": "a station attendant",
+          "part_of_speech": "noun",
+          "example": "駅員に出口を聞きます。",
+          "translation": "I ask a station attendant where the exit is."
+        },
+        {
+          "surface": "運賃",
+          "reading": "うんちん",
+          "gloss": "a passenger fare",
+          "part_of_speech": "noun",
+          "example": "空港までの運賃はいくらですか。",
+          "translation": "How much is the fare to the airport?"
+        },
+        {
+          "surface": "定期券",
+          "reading": "ていきけん",
+          "gloss": "a commuter pass",
+          "part_of_speech": "noun",
+          "example": "通勤に定期券を使います。",
+          "translation": "I use a commuter pass to get to work."
+        },
+        {
+          "surface": "回数券",
+          "reading": "かいすうけん",
+          "gloss": "a book of tickets for a fixed number of journeys",
+          "part_of_speech": "noun",
+          "example": "このバスでは回数券が使えます。",
+          "translation": "You can use a book of journey tickets on this bus."
+        },
+        {
+          "surface": "乗車券",
+          "reading": "じょうしゃけん",
+          "gloss": "a passenger ticket",
+          "part_of_speech": "noun",
+          "example": "乗車券を駅で買います。",
+          "translation": "I buy a passenger ticket at the station."
+        },
+        {
+          "surface": "路線",
+          "reading": "ろせん",
+          "gloss": "a transport route or line",
+          "part_of_speech": "noun",
+          "example": "この路線は海の近くを通ります。",
+          "translation": "This line passes near the sea."
+        },
+        {
+          "surface": "ホーム",
+          "reading": "ほーむ",
+          "gloss": "a railway platform",
+          "part_of_speech": "noun",
+          "example": "ホームで電車を待ちます。",
+          "translation": "I wait for the train on the platform."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Rail journeys and service changes",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "路線図",
+          "reading": "ろせんず",
+          "gloss": "a transport route map",
+          "part_of_speech": "noun",
+          "example": "路線図で乗り換えの駅を探します。",
+          "translation": "I look for the transfer station on the route map."
+        },
+        {
+          "surface": "乗客",
+          "reading": "じょうきゃく",
+          "gloss": "a passenger",
+          "part_of_speech": "noun",
+          "example": "多くの乗客がこの駅で降ります。",
+          "translation": "Many passengers get off at this station."
+        },
+        {
+          "surface": "車窓",
+          "reading": "しゃそう",
+          "gloss": "a vehicle window; the view through it",
+          "part_of_speech": "noun",
+          "example": "車窓から海が見えます。",
+          "translation": "The sea is visible through the train window."
+        },
+        {
+          "surface": "車庫",
+          "reading": "しゃこ",
+          "gloss": "a garage; a vehicle depot",
+          "part_of_speech": "noun",
+          "example": "夜になるとバスは車庫に戻ります。",
+          "translation": "The buses return to the depot at night."
+        },
+        {
+          "surface": "車輪",
+          "reading": "しゃりん",
+          "gloss": "a wheel of a vehicle",
+          "part_of_speech": "noun",
+          "example": "車輪の近くに立たないでください。",
+          "translation": "Please do not stand near the wheel."
+        },
+        {
+          "surface": "自由席",
+          "reading": "じゆうせき",
+          "gloss": "an unreserved seat",
+          "part_of_speech": "noun",
+          "example": "予約をしなかったので自由席に座ります。",
+          "translation": "I sit in an unreserved seat because I did not make a reservation."
+        },
+        {
+          "surface": "発車",
+          "reading": "はっしゃ",
+          "gloss": "a vehicle's departure",
+          "part_of_speech": "noun",
+          "example": "電車の発車まで五分あります。",
+          "translation": "There are five minutes until the train departs."
+        },
+        {
+          "surface": "停車",
+          "reading": "ていしゃ",
+          "gloss": "a vehicle stopping",
+          "part_of_speech": "noun",
+          "example": "この駅での停車は二分です。",
+          "translation": "The stop at this station lasts two minutes."
+        },
+        {
+          "surface": "遅延",
+          "reading": "ちえん",
+          "gloss": "a delay",
+          "part_of_speech": "noun",
+          "example": "雪のため電車に遅延があります。",
+          "translation": "The trains are delayed because of snow."
+        },
+        {
+          "surface": "運休",
+          "reading": "うんきゅう",
+          "gloss": "the suspension of a transport service",
+          "part_of_speech": "noun",
+          "example": "台風で明日の船は運休です。",
+          "translation": "Tomorrow's ferry service is suspended because of the typhoon."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Road vehicles and routes",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "トラック",
+          "reading": "とらっく",
+          "gloss": "a truck; a lorry",
+          "part_of_speech": "noun",
+          "example": "トラックで家具を運びます。",
+          "translation": "We transport the furniture by truck."
+        },
+        {
+          "surface": "ワゴン",
+          "reading": "わごん",
+          "gloss": "a wagon; a station wagon",
+          "part_of_speech": "noun",
+          "example": "家族でワゴンに乗って旅行します。",
+          "translation": "Our family travels in a station wagon."
+        },
+        {
+          "surface": "救急車",
+          "reading": "きゅうきゅうしゃ",
+          "gloss": "an ambulance",
+          "part_of_speech": "noun",
+          "example": "救急車が通るので道をあけます。",
+          "translation": "We clear the way because an ambulance is coming through."
+        },
+        {
+          "surface": "パトカー",
+          "reading": "ぱとかー",
+          "gloss": "a police car",
+          "part_of_speech": "noun",
+          "example": "交番の前にパトカーがあります。",
+          "translation": "There is a police car in front of the police box."
+        },
+        {
+          "surface": "消防車",
+          "reading": "しょうぼうしゃ",
+          "gloss": "a fire engine",
+          "part_of_speech": "noun",
+          "example": "赤い消防車が橋を渡ります。",
+          "translation": "A red fire engine crosses the bridge."
+        },
+        {
+          "surface": "バス停",
+          "reading": "ばすてい",
+          "gloss": "a bus stop",
+          "part_of_speech": "noun",
+          "example": "バス停は銀行の隣です。",
+          "translation": "The bus stop is next to the bank."
+        },
+        {
+          "surface": "高速道路",
+          "reading": "こうそくどうろ",
+          "gloss": "an expressway; a motorway",
+          "part_of_speech": "noun",
+          "example": "高速道路で空港に行きます。",
+          "translation": "We take the expressway to the airport."
+        },
+        {
+          "surface": "有料道路",
+          "reading": "ゆうりょうどうろ",
+          "gloss": "a toll road",
+          "part_of_speech": "noun",
+          "example": "この有料道路は山の中を通ります。",
+          "translation": "This toll road passes through the mountains."
+        },
+        {
+          "surface": "車線",
+          "reading": "しゃせん",
+          "gloss": "a traffic lane",
+          "part_of_speech": "noun",
+          "example": "この道には二つの車線があります。",
+          "translation": "This road has two lanes."
+        },
+        {
+          "surface": "一方通行",
+          "reading": "いっぽうつうこう",
+          "gloss": "one-way traffic",
+          "part_of_speech": "noun",
+          "example": "この道は一方通行です。",
+          "translation": "This is a one-way street."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Vehicle equipment",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "ハンドル",
+          "reading": "はんどる",
+          "gloss": "a steering wheel; handlebars",
+          "part_of_speech": "noun",
+          "example": "両手でハンドルを持ちます。",
+          "translation": "I hold the steering wheel with both hands."
+        },
+        {
+          "surface": "ブレーキ",
+          "reading": "ぶれーき",
+          "gloss": "a brake",
+          "part_of_speech": "noun",
+          "example": "坂の前でブレーキを確認します。",
+          "translation": "I check the brakes before the slope."
+        },
+        {
+          "surface": "アクセル",
+          "reading": "あくせる",
+          "gloss": "an accelerator pedal",
+          "part_of_speech": "noun",
+          "example": "アクセルをゆっくり踏みます。",
+          "translation": "I press the accelerator slowly."
+        },
+        {
+          "surface": "シートベルト",
+          "reading": "しーとべると",
+          "gloss": "a seat belt",
+          "part_of_speech": "noun",
+          "example": "車に乗ったらシートベルトをつけます。",
+          "translation": "I fasten my seat belt when I get in the car."
+        },
+        {
+          "surface": "ヘルメット",
+          "reading": "へるめっと",
+          "gloss": "a helmet",
+          "part_of_speech": "noun",
+          "example": "自転車に乗るときはヘルメットをかぶります。",
+          "translation": "I wear a helmet when I ride a bicycle."
+        },
+        {
+          "surface": "ナンバープレート",
+          "reading": "なんばーぷれーと",
+          "gloss": "a vehicle registration plate",
+          "part_of_speech": "noun",
+          "example": "車のナンバープレートを見ます。",
+          "translation": "I look at the car's registration plate."
+        },
+        {
+          "surface": "ウインカー",
+          "reading": "ういんかー",
+          "gloss": "a vehicle turn signal",
+          "part_of_speech": "noun",
+          "example": "曲がる前にウインカーを出します。",
+          "translation": "I use the turn signal before turning."
+        },
+        {
+          "surface": "ミラー",
+          "reading": "みらー",
+          "gloss": "a vehicle mirror",
+          "part_of_speech": "noun",
+          "example": "出発する前にミラーを確認します。",
+          "translation": "I check the mirrors before setting off."
+        },
+        {
+          "surface": "ワイパー",
+          "reading": "わいぱー",
+          "gloss": "a windscreen wiper",
+          "part_of_speech": "noun",
+          "example": "雨なのでワイパーを動かします。",
+          "translation": "I turn on the wipers because it is raining."
+        },
+        {
+          "surface": "駐車券",
+          "reading": "ちゅうしゃけん",
+          "gloss": "a parking ticket issued on entry",
+          "part_of_speech": "noun",
+          "example": "出口で駐車券を入れます。",
+          "translation": "I insert the parking ticket at the exit."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Moving through traffic",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "渋滞",
+          "reading": "じゅうたい",
+          "gloss": "a traffic jam",
+          "part_of_speech": "noun",
+          "example": "朝はこの交差点で渋滞があります。",
+          "translation": "There is a traffic jam at this intersection in the morning."
+        },
+        {
+          "surface": "通行止め",
+          "reading": "つうこうどめ",
+          "gloss": "a road closure; a prohibition on passage",
+          "part_of_speech": "noun",
+          "example": "工事のため橋は通行止めです。",
+          "translation": "The bridge is closed because of construction work."
+        },
+        {
+          "surface": "迂回",
+          "reading": "うかい",
+          "gloss": "a detour",
+          "part_of_speech": "noun",
+          "example": "この先は工事中なので迂回が必要です。",
+          "translation": "A detour is necessary because there is construction ahead."
+        },
+        {
+          "surface": "追い越す",
+          "reading": "おいこす",
+          "gloss": "to overtake; to pass someone moving ahead",
+          "part_of_speech": "verb",
+          "example": "速い自転車が私を追い越します。",
+          "translation": "A fast bicycle overtakes me."
+        },
+        {
+          "surface": "追い付く",
+          "reading": "おいつく",
+          "gloss": "to catch up with",
+          "part_of_speech": "verb",
+          "example": "駅の前で友達に追い付きます。",
+          "translation": "I catch up with my friend in front of the station."
+        },
+        {
+          "surface": "避ける",
+          "reading": "さける",
+          "gloss": "to avoid; to move out of the way of",
+          "part_of_speech": "verb",
+          "example": "水たまりを避けて歩きます。",
+          "translation": "I walk around the puddles."
+        },
+        {
+          "surface": "譲る",
+          "reading": "ゆずる",
+          "gloss": "to give up a place or right to someone",
+          "part_of_speech": "verb",
+          "example": "電車で席を譲ります。",
+          "translation": "I give up my seat on the train."
+        },
+        {
+          "surface": "見送る",
+          "reading": "みおくる",
+          "gloss": "to see someone off",
+          "part_of_speech": "verb",
+          "example": "空港で友達を見送ります。",
+          "translation": "I see my friend off at the airport."
+        },
+        {
+          "surface": "迎える",
+          "reading": "むかえる",
+          "gloss": "to welcome; to meet someone arriving",
+          "part_of_speech": "verb",
+          "example": "駅で祖母を迎えます。",
+          "translation": "I meet my grandmother at the station."
+        },
+        {
+          "surface": "転ぶ",
+          "reading": "ころぶ",
+          "gloss": "to fall over",
+          "part_of_speech": "verb",
+          "example": "凍った道で転びました。",
+          "translation": "I fell over on the frozen road."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "At the airport",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "国内線",
+          "reading": "こくないせん",
+          "gloss": "a domestic flight or route",
+          "part_of_speech": "noun",
+          "example": "国内線の入口は二階です。",
+          "translation": "The entrance for domestic flights is on the second floor."
+        },
+        {
+          "surface": "国際線",
+          "reading": "こくさいせん",
+          "gloss": "an international flight or route",
+          "part_of_speech": "noun",
+          "example": "国際線の受付に行きます。",
+          "translation": "I go to the international flight check-in counter."
+        },
+        {
+          "surface": "航空券",
+          "reading": "こうくうけん",
+          "gloss": "an airline ticket",
+          "part_of_speech": "noun",
+          "example": "来月の航空券を予約します。",
+          "translation": "I book an airline ticket for next month."
+        },
+        {
+          "surface": "搭乗券",
+          "reading": "とうじょうけん",
+          "gloss": "a boarding pass",
+          "part_of_speech": "noun",
+          "example": "搭乗券を係の人に見せます。",
+          "translation": "I show my boarding pass to the attendant."
+        },
+        {
+          "surface": "搭乗口",
+          "reading": "とうじょうぐち",
+          "gloss": "a boarding gate",
+          "part_of_speech": "noun",
+          "example": "搭乗口はこの先です。",
+          "translation": "The boarding gate is ahead."
+        },
+        {
+          "surface": "手荷物",
+          "reading": "てにもつ",
+          "gloss": "hand luggage; baggage carried by a traveller",
+          "part_of_speech": "noun",
+          "example": "手荷物はこの棚に入れます。",
+          "translation": "I put my hand luggage in this compartment."
+        },
+        {
+          "surface": "機内",
+          "reading": "きない",
+          "gloss": "the inside of an aircraft",
+          "part_of_speech": "noun",
+          "example": "機内で本を読みます。",
+          "translation": "I read a book on the plane."
+        },
+        {
+          "surface": "離陸",
+          "reading": "りりく",
+          "gloss": "an aircraft taking off",
+          "part_of_speech": "noun",
+          "example": "離陸の前にシートベルトを確認します。",
+          "translation": "I check my seat belt before takeoff."
+        },
+        {
+          "surface": "着陸",
+          "reading": "ちゃくりく",
+          "gloss": "an aircraft landing",
+          "part_of_speech": "noun",
+          "example": "着陸まであと十分です。",
+          "translation": "There are ten more minutes until landing."
+        },
+        {
+          "surface": "直行便",
+          "reading": "ちょっこうびん",
+          "gloss": "a direct flight",
+          "part_of_speech": "noun",
+          "example": "東京までの直行便を選びます。",
+          "translation": "I choose a direct flight to Tokyo."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Planning a journey",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "便",
+          "reading": "びん",
+          "gloss": "a scheduled flight or transport service",
+          "part_of_speech": "noun",
+          "example": "朝の便で出発します。",
+          "translation": "I leave on the morning flight."
+        },
+        {
+          "surface": "欠航",
+          "reading": "けっこう",
+          "gloss": "the cancellation of a flight or sailing",
+          "part_of_speech": "noun",
+          "example": "強い風で今日の便は欠航です。",
+          "translation": "Today's flight is cancelled because of strong winds."
+        },
+        {
+          "surface": "空席",
+          "reading": "くうせき",
+          "gloss": "an unoccupied or available seat",
+          "part_of_speech": "noun",
+          "example": "午後の便には空席があります。",
+          "translation": "There are seats available on the afternoon flight."
+        },
+        {
+          "surface": "満席",
+          "reading": "まんせき",
+          "gloss": "all seats being occupied or booked",
+          "part_of_speech": "noun",
+          "example": "次の便は満席です。",
+          "translation": "The next flight is fully booked."
+        },
+        {
+          "surface": "窓側",
+          "reading": "まどがわ",
+          "gloss": "the window side; a position by a window",
+          "part_of_speech": "noun",
+          "example": "窓側の席をお願いします。",
+          "translation": "A window seat, please."
+        },
+        {
+          "surface": "通路",
+          "reading": "つうろ",
+          "gloss": "an aisle; a passageway",
+          "part_of_speech": "noun",
+          "example": "通路に荷物を置かないでください。",
+          "translation": "Please do not put luggage in the aisle."
+        },
+        {
+          "surface": "往復",
+          "reading": "おうふく",
+          "gloss": "a round trip",
+          "part_of_speech": "noun",
+          "example": "往復の切符を買います。",
+          "translation": "I buy a return ticket."
+        },
+        {
+          "surface": "片道",
+          "reading": "かたみち",
+          "gloss": "a one-way journey",
+          "part_of_speech": "noun",
+          "example": "空港までは片道で一時間です。",
+          "translation": "It takes one hour each way to the airport."
+        },
+        {
+          "surface": "経由",
+          "reading": "けいゆ",
+          "gloss": "going via; a route through an intermediate place",
+          "part_of_speech": "noun",
+          "example": "大阪経由で広島に行きます。",
+          "translation": "I go to Hiroshima via Osaka."
+        },
+        {
+          "surface": "税関",
+          "reading": "ぜいかん",
+          "gloss": "customs; a customs office",
+          "part_of_speech": "noun",
+          "example": "税関で荷物を見せます。",
+          "translation": "I show my luggage at customs."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Places to stay",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "宿泊",
+          "reading": "しゅくはく",
+          "gloss": "an overnight stay; lodging",
+          "part_of_speech": "noun",
+          "example": "京都での宿泊を予約します。",
+          "translation": "I book accommodation in Kyoto."
+        },
+        {
+          "surface": "宿",
+          "reading": "やど",
+          "gloss": "an inn; accommodation",
+          "part_of_speech": "noun",
+          "example": "海の近くで宿を探します。",
+          "translation": "I look for accommodation near the sea."
+        },
+        {
+          "surface": "民宿",
+          "reading": "みんしゅく",
+          "gloss": "a family-run guesthouse",
+          "part_of_speech": "noun",
+          "example": "山の村の民宿に泊まります。",
+          "translation": "I stay at a family-run guesthouse in a mountain village."
+        },
+        {
+          "surface": "フロント",
+          "reading": "ふろんと",
+          "gloss": "a hotel reception desk",
+          "part_of_speech": "noun",
+          "example": "フロントで鍵を受け取ります。",
+          "translation": "I collect the key at reception."
+        },
+        {
+          "surface": "チェックイン",
+          "reading": "ちぇっくいん",
+          "gloss": "checking in at accommodation or for travel",
+          "part_of_speech": "noun",
+          "example": "チェックインは午後三時からです。",
+          "translation": "Check-in starts at three in the afternoon."
+        },
+        {
+          "surface": "チェックアウト",
+          "reading": "ちぇっくあうと",
+          "gloss": "checking out of accommodation",
+          "part_of_speech": "noun",
+          "example": "チェックアウトの前に荷物をまとめます。",
+          "translation": "I pack my luggage before checking out."
+        },
+        {
+          "surface": "宿泊費",
+          "reading": "しゅくはくひ",
+          "gloss": "the cost of accommodation",
+          "part_of_speech": "noun",
+          "example": "宿泊費には朝ご飯が含まれます。",
+          "translation": "The accommodation cost includes breakfast."
+        },
+        {
+          "surface": "客室",
+          "reading": "きゃくしつ",
+          "gloss": "a guest room",
+          "part_of_speech": "noun",
+          "example": "客室は三階にあります。",
+          "translation": "The guest rooms are on the third floor."
+        },
+        {
+          "surface": "和室",
+          "reading": "わしつ",
+          "gloss": "a Japanese-style room",
+          "part_of_speech": "noun",
+          "example": "畳のある和室を予約します。",
+          "translation": "I book a Japanese-style room with tatami flooring."
+        },
+        {
+          "surface": "洋室",
+          "reading": "ようしつ",
+          "gloss": "a Western-style room",
+          "part_of_speech": "noun",
+          "example": "洋室にはベッドが二つあります。",
+          "translation": "The Western-style room has two beds."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Travel plans and destinations",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "旅",
+          "reading": "たび",
+          "gloss": "a journey",
+          "part_of_speech": "noun",
+          "example": "長い旅の準備をします。",
+          "translation": "I prepare for a long journey."
+        },
+        {
+          "surface": "旅先",
+          "reading": "たびさき",
+          "gloss": "a place visited while travelling",
+          "part_of_speech": "noun",
+          "example": "旅先で地図を買いました。",
+          "translation": "I bought a map while travelling."
+        },
+        {
+          "surface": "旅費",
+          "reading": "りょひ",
+          "gloss": "travel expenses",
+          "part_of_speech": "noun",
+          "example": "今月は旅費を計算します。",
+          "translation": "This month I calculate my travel expenses."
+        },
+        {
+          "surface": "日帰り",
+          "reading": "ひがえり",
+          "gloss": "a trip completed within one day",
+          "part_of_speech": "noun",
+          "example": "日帰りで温泉に行きます。",
+          "translation": "I take a day trip to a hot spring."
+        },
+        {
+          "surface": "目的地",
+          "reading": "もくてきち",
+          "gloss": "a destination",
+          "part_of_speech": "noun",
+          "example": "目的地はこの山の向こうです。",
+          "translation": "Our destination is beyond this mountain."
+        },
+        {
+          "surface": "行き先",
+          "reading": "いきさき",
+          "gloss": "the place someone or something is going",
+          "part_of_speech": "noun",
+          "example": "バスの行き先を確認します。",
+          "translation": "I check the bus's destination."
+        },
+        {
+          "surface": "滞在",
+          "reading": "たいざい",
+          "gloss": "a stay in a place",
+          "part_of_speech": "noun",
+          "example": "日本での滞在は二週間です。",
+          "translation": "My stay in Japan is two weeks."
+        },
+        {
+          "surface": "観光客",
+          "reading": "かんこうきゃく",
+          "gloss": "a tourist",
+          "part_of_speech": "noun",
+          "example": "多くの観光客がこの城を訪れます。",
+          "translation": "Many tourists visit this castle."
+        },
+        {
+          "surface": "名所",
+          "reading": "めいしょ",
+          "gloss": "a famous sight; a place of interest",
+          "part_of_speech": "noun",
+          "example": "駅で町の名所を聞きます。",
+          "translation": "I ask about the town's sights at the station."
+        },
+        {
+          "surface": "名物",
+          "reading": "めいぶつ",
+          "gloss": "a local speciality or famous local product",
+          "part_of_speech": "noun",
+          "example": "この町の名物を友達に紹介します。",
+          "translation": "I introduce my friend to this town's local speciality."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Outdoor destinations and activities",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "展望台",
+          "reading": "てんぼうだい",
+          "gloss": "an observation deck or lookout",
+          "part_of_speech": "noun",
+          "example": "展望台から町を見ます。",
+          "translation": "I look at the town from the observation deck."
+        },
+        {
+          "surface": "灯台",
+          "reading": "とうだい",
+          "gloss": "a lighthouse",
+          "part_of_speech": "noun",
+          "example": "海岸の灯台まで歩きます。",
+          "translation": "I walk to the lighthouse on the coast."
+        },
+        {
+          "surface": "記念館",
+          "reading": "きねんかん",
+          "gloss": "a memorial museum or hall",
+          "part_of_speech": "noun",
+          "example": "駅の近くに作家の記念館があります。",
+          "translation": "There is a memorial museum for a writer near the station."
+        },
+        {
+          "surface": "史跡",
+          "reading": "しせき",
+          "gloss": "a historic site",
+          "part_of_speech": "noun",
+          "example": "地図を持って史跡を回ります。",
+          "translation": "I visit historic sites with a map."
+        },
+        {
+          "surface": "遺跡",
+          "reading": "いせき",
+          "gloss": "archaeological remains; ruins",
+          "part_of_speech": "noun",
+          "example": "村の近くで古い遺跡を見ます。",
+          "translation": "I see ancient ruins near the village."
+        },
+        {
+          "surface": "登山",
+          "reading": "とざん",
+          "gloss": "mountain climbing; hiking up a mountain",
+          "part_of_speech": "noun",
+          "example": "週末の登山の準備をします。",
+          "translation": "I prepare for a mountain hike at the weekend."
+        },
+        {
+          "surface": "釣り",
+          "reading": "つり",
+          "gloss": "fishing",
+          "part_of_speech": "noun",
+          "example": "父は川で釣りをします。",
+          "translation": "My father goes fishing in the river."
+        },
+        {
+          "surface": "水泳",
+          "reading": "すいえい",
+          "gloss": "swimming as an activity or sport",
+          "part_of_speech": "noun",
+          "example": "夏はプールで水泳を楽しみます。",
+          "translation": "I enjoy swimming in the pool in summer."
+        },
+        {
+          "surface": "遊覧船",
+          "reading": "ゆうらんせん",
+          "gloss": "a sightseeing boat",
+          "part_of_speech": "noun",
+          "example": "遊覧船から島を見ます。",
+          "translation": "I look at the island from a sightseeing boat."
+        },
+        {
+          "surface": "土産",
+          "reading": "みやげ",
+          "gloss": "a souvenir; a gift from a trip",
+          "part_of_speech": "noun",
+          "example": "旅の土産を家族に渡します。",
+          "translation": "I give my family souvenirs from the trip."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Orientation and position",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "北東",
+          "reading": "ほくとう",
+          "gloss": "northeast",
+          "part_of_speech": "noun",
+          "example": "駅はここから北東にあります。",
+          "translation": "The station is northeast of here."
+        },
+        {
+          "surface": "北西",
+          "reading": "ほくせい",
+          "gloss": "northwest",
+          "part_of_speech": "noun",
+          "example": "北西に高い山が見えます。",
+          "translation": "A tall mountain is visible to the northwest."
+        },
+        {
+          "surface": "南東",
+          "reading": "なんとう",
+          "gloss": "southeast",
+          "part_of_speech": "noun",
+          "example": "港は町の南東にあります。",
+          "translation": "The harbour is in the southeast of the town."
+        },
+        {
+          "surface": "南西",
+          "reading": "なんせい",
+          "gloss": "southwest",
+          "part_of_speech": "noun",
+          "example": "南西の空に雲があります。",
+          "translation": "There are clouds in the southwestern sky."
+        },
+        {
+          "surface": "正面",
+          "reading": "しょうめん",
+          "gloss": "the front; directly ahead",
+          "part_of_speech": "noun",
+          "example": "建物の正面で待ちます。",
+          "translation": "I wait in front of the building."
+        },
+        {
+          "surface": "裏",
+          "reading": "うら",
+          "gloss": "the back; the reverse side",
+          "part_of_speech": "noun",
+          "example": "駅の裏に公園があります。",
+          "translation": "There is a park behind the station."
+        },
+        {
+          "surface": "表",
+          "reading": "おもて",
+          "gloss": "the front; the outward-facing side",
+          "part_of_speech": "noun",
+          "example": "店の表に看板があります。",
+          "translation": "There is a sign at the front of the shop."
+        },
+        {
+          "surface": "手前",
+          "reading": "てまえ",
+          "gloss": "the nearer side; a point before something",
+          "part_of_speech": "noun",
+          "example": "橋の手前で右に曲がります。",
+          "translation": "I turn right just before the bridge."
+        },
+        {
+          "surface": "奥",
+          "reading": "おく",
+          "gloss": "the inner or far part of a place",
+          "part_of_speech": "noun",
+          "example": "店の奥に受付があります。",
+          "translation": "There is a reception desk at the back of the shop."
+        },
+        {
+          "surface": "向き",
+          "reading": "むき",
+          "gloss": "the direction something faces",
+          "part_of_speech": "noun",
+          "example": "地図の向きを変えます。",
+          "translation": "I change the direction the map is facing."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Buildings and their surroundings",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "敷地",
+          "reading": "しきち",
+          "gloss": "the grounds or site of a building",
+          "part_of_speech": "noun",
+          "example": "学校の敷地に大きな木があります。",
+          "translation": "There is a large tree in the school grounds."
+        },
+        {
+          "surface": "塀",
+          "reading": "へい",
+          "gloss": "an outdoor wall enclosing a property",
+          "part_of_speech": "noun",
+          "example": "家の周りに白い塀があります。",
+          "translation": "There is a white wall around the house."
+        },
+        {
+          "surface": "柵",
+          "reading": "さく",
+          "gloss": "a fence; a barrier",
+          "part_of_speech": "noun",
+          "example": "池の周りに柵があります。",
+          "translation": "There is a fence around the pond."
+        },
+        {
+          "surface": "柱",
+          "reading": "はしら",
+          "gloss": "a pillar; a post",
+          "part_of_speech": "noun",
+          "example": "入口の柱は木でできています。",
+          "translation": "The pillars at the entrance are made of wood."
+        },
+        {
+          "surface": "軒",
+          "reading": "のき",
+          "gloss": "the eaves of a roof",
+          "part_of_speech": "noun",
+          "example": "雨なので店の軒の下で待ちます。",
+          "translation": "I wait under the shop's eaves because it is raining."
+        },
+        {
+          "surface": "ベランダ",
+          "reading": "べらんだ",
+          "gloss": "a veranda; a balcony",
+          "part_of_speech": "noun",
+          "example": "ベランダから海が見えます。",
+          "translation": "The sea is visible from the balcony."
+        },
+        {
+          "surface": "煙突",
+          "reading": "えんとつ",
+          "gloss": "a chimney",
+          "part_of_speech": "noun",
+          "example": "工場の煙突は高いです。",
+          "translation": "The factory chimney is tall."
+        },
+        {
+          "surface": "塔",
+          "reading": "とう",
+          "gloss": "a tower",
+          "part_of_speech": "noun",
+          "example": "公園の塔に登ります。",
+          "translation": "I climb the tower in the park."
+        },
+        {
+          "surface": "倉庫",
+          "reading": "そうこ",
+          "gloss": "a warehouse; a storehouse",
+          "part_of_speech": "noun",
+          "example": "倉庫に商品を運びます。",
+          "translation": "I carry the goods to the warehouse."
+        },
+        {
+          "surface": "物置",
+          "reading": "ものおき",
+          "gloss": "a storage shed; a storeroom",
+          "part_of_speech": "noun",
+          "example": "庭の物置に道具があります。",
+          "translation": "The tools are in the storage shed in the garden."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Rooms and levels in public buildings",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "地下",
+          "reading": "ちか",
+          "gloss": "the underground; a basement level",
+          "part_of_speech": "noun",
+          "example": "地下に食堂があります。",
+          "translation": "There is a cafeteria in the basement."
+        },
+        {
+          "surface": "地上",
+          "reading": "ちじょう",
+          "gloss": "ground level; above ground",
+          "part_of_speech": "noun",
+          "example": "エレベーターで地上に出ます。",
+          "translation": "I take the lift up to ground level."
+        },
+        {
+          "surface": "地下室",
+          "reading": "ちかしつ",
+          "gloss": "a basement room",
+          "part_of_speech": "noun",
+          "example": "地下室に古い家具があります。",
+          "translation": "There is old furniture in the basement room."
+        },
+        {
+          "surface": "会議室",
+          "reading": "かいぎしつ",
+          "gloss": "a meeting room",
+          "part_of_speech": "noun",
+          "example": "会議室は廊下の奥です。",
+          "translation": "The meeting room is at the end of the corridor."
+        },
+        {
+          "surface": "待合室",
+          "reading": "まちあいしつ",
+          "gloss": "a waiting room",
+          "part_of_speech": "noun",
+          "example": "駅の待合室で本を読みます。",
+          "translation": "I read a book in the station waiting room."
+        },
+        {
+          "surface": "更衣室",
+          "reading": "こういしつ",
+          "gloss": "a changing room",
+          "part_of_speech": "noun",
+          "example": "プールの更衣室で着替えます。",
+          "translation": "I change in the swimming pool changing room."
+        },
+        {
+          "surface": "浴室",
+          "reading": "よくしつ",
+          "gloss": "a bathroom; a room for bathing",
+          "part_of_speech": "noun",
+          "example": "旅館の浴室は一階にあります。",
+          "translation": "The inn's bathing room is on the first floor."
+        },
+        {
+          "surface": "休憩室",
+          "reading": "きゅうけいしつ",
+          "gloss": "a break room",
+          "part_of_speech": "noun",
+          "example": "昼に休憩室で休みます。",
+          "translation": "I rest in the break room at lunchtime."
+        },
+        {
+          "surface": "売店",
+          "reading": "ばいてん",
+          "gloss": "a kiosk; a small shop in a facility",
+          "part_of_speech": "noun",
+          "example": "駅の売店で新聞を買います。",
+          "translation": "I buy a newspaper at the station kiosk."
+        },
+        {
+          "surface": "ロビー",
+          "reading": "ろびー",
+          "gloss": "a lobby",
+          "part_of_speech": "noun",
+          "example": "ホテルのロビーで友達を待ちます。",
+          "translation": "I wait for my friend in the hotel lobby."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Public offices and community buildings",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "市役所",
+          "reading": "しやくしょ",
+          "gloss": "a city hall; a municipal office",
+          "part_of_speech": "noun",
+          "example": "住所の手続きで市役所に行きます。",
+          "translation": "I go to city hall for an address-related procedure."
+        },
+        {
+          "surface": "区役所",
+          "reading": "くやくしょ",
+          "gloss": "a ward office",
+          "part_of_speech": "noun",
+          "example": "区役所は駅の南にあります。",
+          "translation": "The ward office is south of the station."
+        },
+        {
+          "surface": "役場",
+          "reading": "やくば",
+          "gloss": "a town or village office",
+          "part_of_speech": "noun",
+          "example": "村の役場で地図をもらいます。",
+          "translation": "I get a map at the village office."
+        },
+        {
+          "surface": "消防署",
+          "reading": "しょうぼうしょ",
+          "gloss": "a fire station",
+          "part_of_speech": "noun",
+          "example": "消防署の前に消防車があります。",
+          "translation": "There is a fire engine in front of the fire station."
+        },
+        {
+          "surface": "警察署",
+          "reading": "けいさつしょ",
+          "gloss": "a police station",
+          "part_of_speech": "noun",
+          "example": "財布をなくしたので警察署に行きます。",
+          "translation": "I go to the police station because I lost my wallet."
+        },
+        {
+          "surface": "裁判所",
+          "reading": "さいばんしょ",
+          "gloss": "a court of law; a courthouse",
+          "part_of_speech": "noun",
+          "example": "裁判所は市役所の隣です。",
+          "translation": "The courthouse is next to city hall."
+        },
+        {
+          "surface": "公民館",
+          "reading": "こうみんかん",
+          "gloss": "a public community centre",
+          "part_of_speech": "noun",
+          "example": "公民館で日本語を勉強します。",
+          "translation": "I study Japanese at the community centre."
+        },
+        {
+          "surface": "集会所",
+          "reading": "しゅうかいじょ",
+          "gloss": "a community meeting hall",
+          "part_of_speech": "noun",
+          "example": "日曜日に集会所で集まります。",
+          "translation": "We gather at the community meeting hall on Sunday."
+        },
+        {
+          "surface": "案内所",
+          "reading": "あんないじょ",
+          "gloss": "an information centre or desk",
+          "part_of_speech": "noun",
+          "example": "駅の案内所でバスの時間を聞きます。",
+          "translation": "I ask about the bus times at the station information desk."
+        },
+        {
+          "surface": "県庁",
+          "reading": "けんちょう",
+          "gloss": "a prefectural government office",
+          "part_of_speech": "noun",
+          "example": "県庁までバスで行きます。",
+          "translation": "I go to the prefectural government office by bus."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Public infrastructure and safety equipment",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "歩道橋",
+          "reading": "ほどうきょう",
+          "gloss": "a pedestrian overpass",
+          "part_of_speech": "noun",
+          "example": "歩道橋で大きな道を渡ります。",
+          "translation": "I cross the main road using the pedestrian overpass."
+        },
+        {
+          "surface": "地下道",
+          "reading": "ちかどう",
+          "gloss": "an underground passage",
+          "part_of_speech": "noun",
+          "example": "駅まで地下道を歩きます。",
+          "translation": "I walk through the underground passage to the station."
+        },
+        {
+          "surface": "陸橋",
+          "reading": "りっきょう",
+          "gloss": "a bridge over a road or railway",
+          "part_of_speech": "noun",
+          "example": "陸橋の下を電車が通ります。",
+          "translation": "A train passes under the overpass."
+        },
+        {
+          "surface": "排水口",
+          "reading": "はいすいこう",
+          "gloss": "a drain opening",
+          "part_of_speech": "noun",
+          "example": "雨の水が排水口に流れます。",
+          "translation": "The rainwater flows into the drain."
+        },
+        {
+          "surface": "下水道",
+          "reading": "げすいどう",
+          "gloss": "a sewerage system",
+          "part_of_speech": "noun",
+          "example": "この道路で下水道の工事をしています。",
+          "translation": "They are working on the sewers along this road."
+        },
+        {
+          "surface": "配管",
+          "reading": "はいかん",
+          "gloss": "piping; a system of pipes",
+          "part_of_speech": "noun",
+          "example": "建物の配管を点検します。",
+          "translation": "We inspect the building's pipes."
+        },
+        {
+          "surface": "街灯",
+          "reading": "がいとう",
+          "gloss": "a streetlight",
+          "part_of_speech": "noun",
+          "example": "暗くなると街灯がつきます。",
+          "translation": "The streetlights come on when it gets dark."
+        },
+        {
+          "surface": "消火器",
+          "reading": "しょうかき",
+          "gloss": "a fire extinguisher",
+          "part_of_speech": "noun",
+          "example": "消火器は入口の横にあります。",
+          "translation": "The fire extinguisher is beside the entrance."
+        },
+        {
+          "surface": "非常口",
+          "reading": "ひじょうぐち",
+          "gloss": "an emergency exit",
+          "part_of_speech": "noun",
+          "example": "ホテルで非常口の場所を確認します。",
+          "translation": "I check where the emergency exit is at the hotel."
+        },
+        {
+          "surface": "避難所",
+          "reading": "ひなんじょ",
+          "gloss": "an evacuation shelter",
+          "part_of_speech": "noun",
+          "example": "この学校は町の避難所です。",
+          "translation": "This school is the town's evacuation shelter."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Using local government services",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "住民",
+          "reading": "じゅうみん",
+          "gloss": "a resident",
+          "part_of_speech": "noun",
+          "example": "この地域には多くの住民がいます。",
+          "translation": "There are many residents in this area."
+        },
+        {
+          "surface": "市民",
+          "reading": "しみん",
+          "gloss": "a city resident; a citizen",
+          "part_of_speech": "noun",
+          "example": "この図書館は市民が利用できます。",
+          "translation": "City residents can use this library."
+        },
+        {
+          "surface": "窓口",
+          "reading": "まどぐち",
+          "gloss": "a service counter",
+          "part_of_speech": "noun",
+          "example": "窓口で書類を出します。",
+          "translation": "I submit the documents at the counter."
+        },
+        {
+          "surface": "手続き",
+          "reading": "てつづき",
+          "gloss": "a procedure; formal arrangements",
+          "part_of_speech": "noun",
+          "example": "引っ越しの手続きをします。",
+          "translation": "I complete the moving procedures."
+        },
+        {
+          "surface": "申請",
+          "reading": "しんせい",
+          "gloss": "an application for official permission or a document",
+          "part_of_speech": "noun",
+          "example": "申請に必要な書類を集めます。",
+          "translation": "I gather the documents needed for the application."
+        },
+        {
+          "surface": "届け出",
+          "reading": "とどけで",
+          "gloss": "an official notification or registration",
+          "part_of_speech": "noun",
+          "example": "住所が変わったので届け出をします。",
+          "translation": "I file a notification because my address has changed."
+        },
+        {
+          "surface": "証明書",
+          "reading": "しょうめいしょ",
+          "gloss": "a certificate; an official document proving something",
+          "part_of_speech": "noun",
+          "example": "窓口で証明書を受け取ります。",
+          "translation": "I collect the certificate at the counter."
+        },
+        {
+          "surface": "住民票",
+          "reading": "じゅうみんひょう",
+          "gloss": "a resident record; a copy of that record",
+          "part_of_speech": "noun",
+          "example": "市役所で住民票をもらいます。",
+          "translation": "I obtain a copy of my resident record at city hall."
+        },
+        {
+          "surface": "印鑑",
+          "reading": "いんかん",
+          "gloss": "a personal seal used on documents",
+          "part_of_speech": "noun",
+          "example": "手続きのために印鑑を持って行きます。",
+          "translation": "I take my personal seal for the procedure."
+        },
+        {
+          "surface": "押印",
+          "reading": "おういん",
+          "gloss": "affixing a seal to a document",
+          "part_of_speech": "noun",
+          "example": "この書類には押印が必要です。",
+          "translation": "This document requires a seal."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Water and the shore",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "湾",
+          "reading": "わん",
+          "gloss": "a bay",
+          "part_of_speech": "noun",
+          "example": "この湾には小さな島があります。",
+          "translation": "There is a small island in this bay."
+        },
+        {
+          "surface": "沖",
+          "reading": "おき",
+          "gloss": "the open water away from shore",
+          "part_of_speech": "noun",
+          "example": "沖に白い船が見えます。",
+          "translation": "A white boat is visible offshore."
+        },
+        {
+          "surface": "岸",
+          "reading": "きし",
+          "gloss": "the bank of a river; a shore",
+          "part_of_speech": "noun",
+          "example": "川の岸で休みます。",
+          "translation": "I rest on the riverbank."
+        },
+        {
+          "surface": "浜",
+          "reading": "はま",
+          "gloss": "a beach; a seashore",
+          "part_of_speech": "noun",
+          "example": "朝は浜を散歩します。",
+          "translation": "I walk along the beach in the morning."
+        },
+        {
+          "surface": "砂浜",
+          "reading": "すなはま",
+          "gloss": "a sandy beach",
+          "part_of_speech": "noun",
+          "example": "砂浜で貝を探します。",
+          "translation": "I look for shells on the sandy beach."
+        },
+        {
+          "surface": "河原",
+          "reading": "かわら",
+          "gloss": "a stony or sandy riverbed or riverbank",
+          "part_of_speech": "noun",
+          "example": "河原で小さな石を拾います。",
+          "translation": "I pick up small stones on the riverbank."
+        },
+        {
+          "surface": "滝",
+          "reading": "たき",
+          "gloss": "a waterfall",
+          "part_of_speech": "noun",
+          "example": "山道の先に滝があります。",
+          "translation": "There is a waterfall beyond the mountain path."
+        },
+        {
+          "surface": "泉",
+          "reading": "いずみ",
+          "gloss": "a natural spring",
+          "part_of_speech": "noun",
+          "example": "森の中に小さな泉があります。",
+          "translation": "There is a small spring in the forest."
+        },
+        {
+          "surface": "水面",
+          "reading": "すいめん",
+          "gloss": "the surface of water",
+          "part_of_speech": "noun",
+          "example": "水面に月が映っています。",
+          "translation": "The moon is reflected on the water's surface."
+        },
+        {
+          "surface": "波",
+          "reading": "なみ",
+          "gloss": "a wave",
+          "part_of_speech": "noun",
+          "example": "今日は海の波が高いです。",
+          "translation": "The waves in the sea are high today."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Landforms",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "谷",
+          "reading": "たに",
+          "gloss": "a valley",
+          "part_of_speech": "noun",
+          "example": "谷を流れる川に橋があります。",
+          "translation": "There is a bridge over the river flowing through the valley."
+        },
+        {
+          "surface": "峠",
+          "reading": "とうげ",
+          "gloss": "a mountain pass",
+          "part_of_speech": "noun",
+          "example": "車で峠を越えます。",
+          "translation": "We cross the mountain pass by car."
+        },
+        {
+          "surface": "山頂",
+          "reading": "さんちょう",
+          "gloss": "a mountain summit",
+          "part_of_speech": "noun",
+          "example": "山頂から海が見えます。",
+          "translation": "The sea is visible from the summit."
+        },
+        {
+          "surface": "麓",
+          "reading": "ふもと",
+          "gloss": "the foot of a mountain",
+          "part_of_speech": "noun",
+          "example": "山の麓に村があります。",
+          "translation": "There is a village at the foot of the mountain."
+        },
+        {
+          "surface": "斜面",
+          "reading": "しゃめん",
+          "gloss": "a slope; a sloping surface",
+          "part_of_speech": "noun",
+          "example": "斜面に花が咲いています。",
+          "translation": "Flowers are blooming on the slope."
+        },
+        {
+          "surface": "平野",
+          "reading": "へいや",
+          "gloss": "a plain; flat open land",
+          "part_of_speech": "noun",
+          "example": "広い平野に町があります。",
+          "translation": "There is a town on the broad plain."
+        },
+        {
+          "surface": "盆地",
+          "reading": "ぼんち",
+          "gloss": "a basin surrounded by higher ground",
+          "part_of_speech": "noun",
+          "example": "この町は山に囲まれた盆地にあります。",
+          "translation": "This town is in a basin surrounded by mountains."
+        },
+        {
+          "surface": "半島",
+          "reading": "はんとう",
+          "gloss": "a peninsula",
+          "part_of_speech": "noun",
+          "example": "この半島には温泉があります。",
+          "translation": "There is a hot spring on this peninsula."
+        },
+        {
+          "surface": "岬",
+          "reading": "みさき",
+          "gloss": "a cape; a headland",
+          "part_of_speech": "noun",
+          "example": "岬の灯台まで歩きます。",
+          "translation": "I walk to the lighthouse on the cape."
+        },
+        {
+          "surface": "崖",
+          "reading": "がけ",
+          "gloss": "a cliff",
+          "part_of_speech": "noun",
+          "example": "海の近くに高い崖があります。",
+          "translation": "There is a high cliff near the sea."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Natural landscapes and rural places",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "牧場",
+          "reading": "ぼくじょう",
+          "gloss": "a livestock farm; a ranch",
+          "part_of_speech": "noun",
+          "example": "牧場で牛を見ます。",
+          "translation": "I look at cows on the farm."
+        },
+        {
+          "surface": "農場",
+          "reading": "のうじょう",
+          "gloss": "an agricultural farm",
+          "part_of_speech": "noun",
+          "example": "この農場では野菜を作っています。",
+          "translation": "This farm grows vegetables."
+        },
+        {
+          "surface": "草原",
+          "reading": "そうげん",
+          "gloss": "grassland; a grassy plain",
+          "part_of_speech": "noun",
+          "example": "草原で馬が走っています。",
+          "translation": "Horses are running across the grassland."
+        },
+        {
+          "surface": "湿原",
+          "reading": "しつげん",
+          "gloss": "a wetland; a marsh",
+          "part_of_speech": "noun",
+          "example": "湿原には多くの鳥がいます。",
+          "translation": "There are many birds in the wetland."
+        },
+        {
+          "surface": "砂漠",
+          "reading": "さばく",
+          "gloss": "a desert",
+          "part_of_speech": "noun",
+          "example": "砂漠の写真を見ます。",
+          "translation": "I look at photographs of a desert."
+        },
+        {
+          "surface": "森林",
+          "reading": "しんりん",
+          "gloss": "a forest; woodland",
+          "part_of_speech": "noun",
+          "example": "この地域には広い森林があります。",
+          "translation": "There is extensive woodland in this region."
+        },
+        {
+          "surface": "洞窟",
+          "reading": "どうくつ",
+          "gloss": "a cave",
+          "part_of_speech": "noun",
+          "example": "案内の人と洞窟に入ります。",
+          "translation": "I enter the cave with a guide."
+        },
+        {
+          "surface": "火山",
+          "reading": "かざん",
+          "gloss": "a volcano",
+          "part_of_speech": "noun",
+          "example": "博物館で火山について学びます。",
+          "translation": "I learn about volcanoes at the museum."
+        },
+        {
+          "surface": "山脈",
+          "reading": "さんみゃく",
+          "gloss": "a mountain range",
+          "part_of_speech": "noun",
+          "example": "遠くに山脈が見えます。",
+          "translation": "A mountain range is visible in the distance."
+        },
+        {
+          "surface": "高原",
+          "reading": "こうげん",
+          "gloss": "a plateau; highland",
+          "part_of_speech": "noun",
+          "example": "夏は高原でキャンプをします。",
+          "translation": "We camp in the highlands in summer."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Weather reports",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "気温",
+          "reading": "きおん",
+          "gloss": "air temperature",
+          "part_of_speech": "noun",
+          "example": "朝の気温は十度です。",
+          "translation": "The morning temperature is ten degrees."
+        },
+        {
+          "surface": "湿度",
+          "reading": "しつど",
+          "gloss": "humidity",
+          "part_of_speech": "noun",
+          "example": "今日は湿度が高いです。",
+          "translation": "The humidity is high today."
+        },
+        {
+          "surface": "気圧",
+          "reading": "きあつ",
+          "gloss": "atmospheric pressure",
+          "part_of_speech": "noun",
+          "example": "天気予報で気圧を確認します。",
+          "translation": "I check the atmospheric pressure in the weather forecast."
+        },
+        {
+          "surface": "天気予報",
+          "reading": "てんきよほう",
+          "gloss": "a weather forecast",
+          "part_of_speech": "noun",
+          "example": "出かける前に天気予報を見ます。",
+          "translation": "I check the weather forecast before going out."
+        },
+        {
+          "surface": "降水量",
+          "reading": "こうすいりょう",
+          "gloss": "the amount of precipitation",
+          "part_of_speech": "noun",
+          "example": "今月の降水量を調べます。",
+          "translation": "I look up this month's rainfall total."
+        },
+        {
+          "surface": "梅雨",
+          "reading": "つゆ",
+          "gloss": "the early-summer rainy season",
+          "part_of_speech": "noun",
+          "example": "梅雨には雨の日が多いです。",
+          "translation": "There are many rainy days during the rainy season."
+        },
+        {
+          "surface": "台風",
+          "reading": "たいふう",
+          "gloss": "a typhoon",
+          "part_of_speech": "noun",
+          "example": "台風が来る前に窓を閉めます。",
+          "translation": "I close the windows before the typhoon arrives."
+        },
+        {
+          "surface": "雷",
+          "reading": "かみなり",
+          "gloss": "thunder; lightning as a weather event",
+          "part_of_speech": "noun",
+          "example": "遠くで雷の音がします。",
+          "translation": "I can hear thunder in the distance."
+        },
+        {
+          "surface": "霧",
+          "reading": "きり",
+          "gloss": "fog; mist",
+          "part_of_speech": "noun",
+          "example": "霧で山が見えません。",
+          "translation": "The mountain is hidden by fog."
+        },
+        {
+          "surface": "霜",
+          "reading": "しも",
+          "gloss": "frost",
+          "part_of_speech": "noun",
+          "example": "朝は草に霜がついていました。",
+          "translation": "There was frost on the grass in the morning."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Sunshine and changing weather",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "水たまり",
+          "reading": "みずたまり",
+          "gloss": "a puddle",
+          "part_of_speech": "noun",
+          "example": "雨の後で道に水たまりができました。",
+          "translation": "Puddles formed on the road after the rain."
+        },
+        {
+          "surface": "虹",
+          "reading": "にじ",
+          "gloss": "a rainbow",
+          "part_of_speech": "noun",
+          "example": "雨の後で虹を見ました。",
+          "translation": "I saw a rainbow after the rain."
+        },
+        {
+          "surface": "稲妻",
+          "reading": "いなずま",
+          "gloss": "a flash of lightning",
+          "part_of_speech": "noun",
+          "example": "夜の空に稲妻が見えました。",
+          "translation": "I saw a flash of lightning in the night sky."
+        },
+        {
+          "surface": "吹雪",
+          "reading": "ふぶき",
+          "gloss": "a blizzard; driving snow",
+          "part_of_speech": "noun",
+          "example": "吹雪で外の道が見えません。",
+          "translation": "I cannot see the road outside because of the blizzard."
+        },
+        {
+          "surface": "日差し",
+          "reading": "ひざし",
+          "gloss": "sunlight; the sun's rays",
+          "part_of_speech": "noun",
+          "example": "午後は日差しが強いです。",
+          "translation": "The sunlight is strong in the afternoon."
+        },
+        {
+          "surface": "木陰",
+          "reading": "こかげ",
+          "gloss": "shade under a tree",
+          "part_of_speech": "noun",
+          "example": "公園の木陰で休みます。",
+          "translation": "I rest in the shade of a tree in the park."
+        },
+        {
+          "surface": "日陰",
+          "reading": "ひかげ",
+          "gloss": "a place shaded from the sun",
+          "part_of_speech": "noun",
+          "example": "暑いので日陰を歩きます。",
+          "translation": "I walk in the shade because it is hot."
+        },
+        {
+          "surface": "夕立",
+          "reading": "ゆうだち",
+          "gloss": "a sudden summer afternoon or evening shower",
+          "part_of_speech": "noun",
+          "example": "夕立の前に家に帰ります。",
+          "translation": "I go home before the afternoon shower."
+        },
+        {
+          "surface": "小雨",
+          "reading": "こさめ",
+          "gloss": "light rain; drizzle",
+          "part_of_speech": "noun",
+          "example": "小雨なのでかさを持って行きます。",
+          "translation": "I take an umbrella because there is light rain."
+        },
+        {
+          "surface": "大雨",
+          "reading": "おおあめ",
+          "gloss": "heavy rain",
+          "part_of_speech": "noun",
+          "example": "大雨で川の水が増えました。",
+          "translation": "The river level rose because of heavy rain."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Weather and water changing",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "晴れる",
+          "reading": "はれる",
+          "gloss": "to become clear or sunny",
+          "part_of_speech": "verb",
+          "example": "午後は晴れるそうです。",
+          "translation": "I hear it will clear up in the afternoon."
+        },
+        {
+          "surface": "曇る",
+          "reading": "くもる",
+          "gloss": "to become cloudy",
+          "part_of_speech": "verb",
+          "example": "昼から空が曇ります。",
+          "translation": "The sky becomes cloudy from noon."
+        },
+        {
+          "surface": "降る",
+          "reading": "ふる",
+          "gloss": "to fall as rain or snow",
+          "part_of_speech": "verb",
+          "example": "今夜は雪が降ります。",
+          "translation": "It will snow tonight."
+        },
+        {
+          "surface": "吹く",
+          "reading": "ふく",
+          "gloss": "to blow as wind",
+          "part_of_speech": "verb",
+          "example": "海から風が吹きます。",
+          "translation": "The wind blows from the sea."
+        },
+        {
+          "surface": "凍る",
+          "reading": "こおる",
+          "gloss": "to freeze",
+          "part_of_speech": "verb",
+          "example": "冬はこの池が凍ります。",
+          "translation": "This pond freezes in winter."
+        },
+        {
+          "surface": "溶ける",
+          "reading": "とける",
+          "gloss": "to melt; to dissolve",
+          "part_of_speech": "verb",
+          "example": "春になると雪が溶けます。",
+          "translation": "The snow melts when spring comes."
+        },
+        {
+          "surface": "積もる",
+          "reading": "つもる",
+          "gloss": "to accumulate as snow or dust",
+          "part_of_speech": "verb",
+          "example": "庭に雪が積もりました。",
+          "translation": "Snow accumulated in the garden."
+        },
+        {
+          "surface": "乾く",
+          "reading": "かわく",
+          "gloss": "to become dry",
+          "part_of_speech": "verb",
+          "example": "晴れた日は道が早く乾きます。",
+          "translation": "The road dries quickly on sunny days."
+        },
+        {
+          "surface": "濡れる",
+          "reading": "ぬれる",
+          "gloss": "to get wet",
+          "part_of_speech": "verb",
+          "example": "雨で靴が濡れました。",
+          "translation": "My shoes got wet in the rain."
+        },
+        {
+          "surface": "照る",
+          "reading": "てる",
+          "gloss": "to shine as the sun or moon",
+          "part_of_speech": "verb",
+          "example": "朝から日が照っています。",
+          "translation": "The sun has been shining since morning."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Seasons and seasonal scenery",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "四季",
+          "reading": "しき",
+          "gloss": "the four seasons",
+          "part_of_speech": "noun",
+          "example": "日本の四季について読みます。",
+          "translation": "I read about Japan's four seasons."
+        },
+        {
+          "surface": "真夏",
+          "reading": "まなつ",
+          "gloss": "midsummer; the height of summer",
+          "part_of_speech": "noun",
+          "example": "真夏は朝に散歩します。",
+          "translation": "I take walks in the morning in midsummer."
+        },
+        {
+          "surface": "真冬",
+          "reading": "まふゆ",
+          "gloss": "midwinter; the depth of winter",
+          "part_of_speech": "noun",
+          "example": "真冬にはこの湖が凍ります。",
+          "translation": "This lake freezes in midwinter."
+        },
+        {
+          "surface": "初夏",
+          "reading": "しょか",
+          "gloss": "early summer",
+          "part_of_speech": "noun",
+          "example": "初夏に山へ行きます。",
+          "translation": "I go to the mountains in early summer."
+        },
+        {
+          "surface": "秋風",
+          "reading": "あきかぜ",
+          "gloss": "an autumn breeze",
+          "part_of_speech": "noun",
+          "example": "窓から秋風が入ります。",
+          "translation": "An autumn breeze comes in through the window."
+        },
+        {
+          "surface": "新緑",
+          "reading": "しんりょく",
+          "gloss": "fresh green leaves in spring",
+          "part_of_speech": "noun",
+          "example": "五月は山の新緑がきれいです。",
+          "translation": "The fresh green leaves on the mountain are beautiful in May."
+        },
+        {
+          "surface": "紅葉",
+          "reading": "こうよう",
+          "gloss": "leaves changing to autumn colours; autumn foliage",
+          "part_of_speech": "noun",
+          "example": "週末は紅葉を見に行きます。",
+          "translation": "I go to see the autumn leaves at the weekend."
+        },
+        {
+          "surface": "落ち葉",
+          "reading": "おちば",
+          "gloss": "fallen leaves",
+          "part_of_speech": "noun",
+          "example": "公園の道に落ち葉があります。",
+          "translation": "There are fallen leaves on the park path."
+        },
+        {
+          "surface": "花見",
+          "reading": "はなみ",
+          "gloss": "viewing blossoms, especially cherry blossoms",
+          "part_of_speech": "noun",
+          "example": "春は川のそばで花見をします。",
+          "translation": "In spring we view the cherry blossoms beside the river."
+        },
+        {
+          "surface": "雪解け",
+          "reading": "ゆきどけ",
+          "gloss": "the thawing of snow",
+          "part_of_speech": "noun",
+          "example": "雪解けで川の水が増えます。",
+          "translation": "The river rises as the snow thaws."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Plants in a garden",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "種",
+          "reading": "たね",
+          "gloss": "a seed",
+          "part_of_speech": "noun",
+          "example": "春に花の種をまきます。",
+          "translation": "I sow flower seeds in spring."
+        },
+        {
+          "surface": "苗",
+          "reading": "なえ",
+          "gloss": "a seedling; a young plant",
+          "part_of_speech": "noun",
+          "example": "庭に野菜の苗を植えます。",
+          "translation": "I plant vegetable seedlings in the garden."
+        },
+        {
+          "surface": "芽",
+          "reading": "め",
+          "gloss": "a bud; a young shoot",
+          "part_of_speech": "noun",
+          "example": "土から小さな芽が出ました。",
+          "translation": "A small shoot came out of the soil."
+        },
+        {
+          "surface": "つぼみ",
+          "reading": "つぼみ",
+          "gloss": "a flower bud",
+          "part_of_speech": "noun",
+          "example": "この花のつぼみはまだ小さいです。",
+          "translation": "This flower's buds are still small."
+        },
+        {
+          "surface": "花びら",
+          "reading": "はなびら",
+          "gloss": "a flower petal",
+          "part_of_speech": "noun",
+          "example": "風で花びらが飛びます。",
+          "translation": "The petals fly in the wind."
+        },
+        {
+          "surface": "幹",
+          "reading": "みき",
+          "gloss": "the trunk of a tree",
+          "part_of_speech": "noun",
+          "example": "この木の幹は太いです。",
+          "translation": "This tree has a thick trunk."
+        },
+        {
+          "surface": "実",
+          "reading": "み",
+          "gloss": "a fruit; a seed or nut borne by a plant",
+          "part_of_speech": "noun",
+          "example": "秋に赤い実がなります。",
+          "translation": "The plant bears red fruit in autumn."
+        },
+        {
+          "surface": "植木",
+          "reading": "うえき",
+          "gloss": "a garden tree; a potted tree",
+          "part_of_speech": "noun",
+          "example": "玄関の横に植木があります。",
+          "translation": "There is a potted tree beside the entrance."
+        },
+        {
+          "surface": "肥料",
+          "reading": "ひりょう",
+          "gloss": "fertiliser",
+          "part_of_speech": "noun",
+          "example": "春に庭の土に肥料を入れます。",
+          "translation": "I add fertiliser to the garden soil in spring."
+        },
+        {
+          "surface": "球根",
+          "reading": "きゅうこん",
+          "gloss": "a plant bulb",
+          "part_of_speech": "noun",
+          "example": "秋に球根を植えます。",
+          "translation": "I plant bulbs in autumn."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Living things and animal features",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "生き物",
+          "reading": "いきもの",
+          "gloss": "a living thing; a creature",
+          "part_of_speech": "noun",
+          "example": "池にはいろいろな生き物がいます。",
+          "translation": "There are various living things in the pond."
+        },
+        {
+          "surface": "植物",
+          "reading": "しょくぶつ",
+          "gloss": "a plant; plants as a category",
+          "part_of_speech": "noun",
+          "example": "図書館で植物の本を借ります。",
+          "translation": "I borrow a book about plants from the library."
+        },
+        {
+          "surface": "動物",
+          "reading": "どうぶつ",
+          "gloss": "an animal",
+          "part_of_speech": "noun",
+          "example": "この山には多くの動物が住んでいます。",
+          "translation": "Many animals live on this mountain."
+        },
+        {
+          "surface": "野鳥",
+          "reading": "やちょう",
+          "gloss": "a wild bird",
+          "part_of_speech": "noun",
+          "example": "朝の公園で野鳥を見ます。",
+          "translation": "I watch wild birds in the park in the morning."
+        },
+        {
+          "surface": "昆虫",
+          "reading": "こんちゅう",
+          "gloss": "an insect; insects as a biological class",
+          "part_of_speech": "noun",
+          "example": "昆虫の体を写真で見ます。",
+          "translation": "I look at an insect's body in a photograph."
+        },
+        {
+          "surface": "巣",
+          "reading": "す",
+          "gloss": "a nest",
+          "part_of_speech": "noun",
+          "example": "木の上に鳥の巣があります。",
+          "translation": "There is a bird's nest in the tree."
+        },
+        {
+          "surface": "羽",
+          "reading": "はね",
+          "gloss": "a feather; a wing",
+          "part_of_speech": "noun",
+          "example": "鳥の羽を一枚拾いました。",
+          "translation": "I picked up a bird's feather."
+        },
+        {
+          "surface": "翼",
+          "reading": "つばさ",
+          "gloss": "a wing of a bird or aircraft",
+          "part_of_speech": "noun",
+          "example": "大きな鳥が翼を広げます。",
+          "translation": "The large bird spreads its wings."
+        },
+        {
+          "surface": "尻尾",
+          "reading": "しっぽ",
+          "gloss": "an animal's tail",
+          "part_of_speech": "noun",
+          "example": "犬が尻尾を振っています。",
+          "translation": "The dog is wagging its tail."
+        },
+        {
+          "surface": "足跡",
+          "reading": "あしあと",
+          "gloss": "a footprint; an animal track",
+          "part_of_speech": "noun",
+          "example": "雪の上に猫の足跡があります。",
+          "translation": "There are cat tracks in the snow."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Birds around town and countryside",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "カラス",
+          "reading": "からす",
+          "gloss": "a crow",
+          "part_of_speech": "noun",
+          "example": "カラスが木の上で鳴いています。",
+          "translation": "A crow is calling in the tree."
+        },
+        {
+          "surface": "ハト",
+          "reading": "はと",
+          "gloss": "a pigeon; a dove",
+          "part_of_speech": "noun",
+          "example": "広場にハトが集まっています。",
+          "translation": "Pigeons are gathering in the square."
+        },
+        {
+          "surface": "スズメ",
+          "reading": "すずめ",
+          "gloss": "a sparrow",
+          "part_of_speech": "noun",
+          "example": "庭に小さなスズメが来ます。",
+          "translation": "Small sparrows come to the garden."
+        },
+        {
+          "surface": "ツバメ",
+          "reading": "つばめ",
+          "gloss": "a swallow",
+          "part_of_speech": "noun",
+          "example": "春になるとツバメが戻ってきます。",
+          "translation": "Swallows return when spring comes."
+        },
+        {
+          "surface": "フクロウ",
+          "reading": "ふくろう",
+          "gloss": "an owl",
+          "part_of_speech": "noun",
+          "example": "夜にフクロウの声を聞きました。",
+          "translation": "I heard an owl at night."
+        },
+        {
+          "surface": "カモ",
+          "reading": "かも",
+          "gloss": "a duck",
+          "part_of_speech": "noun",
+          "example": "池でカモが泳いでいます。",
+          "translation": "Ducks are swimming in the pond."
+        },
+        {
+          "surface": "カモメ",
+          "reading": "かもめ",
+          "gloss": "a gull",
+          "part_of_speech": "noun",
+          "example": "港の上をカモメが飛んでいます。",
+          "translation": "Gulls are flying above the harbour."
+        },
+        {
+          "surface": "ツル",
+          "reading": "つる",
+          "gloss": "a crane",
+          "part_of_speech": "noun",
+          "example": "冬に白いツルを見ました。",
+          "translation": "I saw a white crane in winter."
+        },
+        {
+          "surface": "ワシ",
+          "reading": "わし",
+          "gloss": "an eagle",
+          "part_of_speech": "noun",
+          "example": "山の上をワシが飛んでいます。",
+          "translation": "An eagle is flying above the mountain."
+        },
+        {
+          "surface": "タカ",
+          "reading": "たか",
+          "gloss": "a hawk",
+          "part_of_speech": "noun",
+          "example": "博物館でタカの写真を見ます。",
+          "translation": "I look at a photograph of a hawk at the museum."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-7",
+      "title": "Wild animals and sea animals",
+      "concepts": [
+        "particle-ni",
+        "particle-de"
+      ],
+      "rows": [
+        {
+          "surface": "イノシシ",
+          "reading": "いのしし",
+          "gloss": "a wild boar",
+          "part_of_speech": "noun",
+          "example": "山道でイノシシを見ました。",
+          "translation": "I saw a wild boar on the mountain path."
+        },
+        {
+          "surface": "タヌキ",
+          "reading": "たぬき",
+          "gloss": "a raccoon dog",
+          "part_of_speech": "noun",
+          "example": "夜の庭にタヌキが来ました。",
+          "translation": "A raccoon dog came into the garden at night."
+        },
+        {
+          "surface": "オオカミ",
+          "reading": "おおかみ",
+          "gloss": "a wolf",
+          "part_of_speech": "noun",
+          "example": "動物園でオオカミを見ます。",
+          "translation": "I see wolves at the zoo."
+        },
+        {
+          "surface": "コウモリ",
+          "reading": "こうもり",
+          "gloss": "a bat",
+          "part_of_speech": "noun",
+          "example": "夕方になるとコウモリが飛びます。",
+          "translation": "Bats fly when evening comes."
+        },
+        {
+          "surface": "モグラ",
+          "reading": "もぐら",
+          "gloss": "a mole",
+          "part_of_speech": "noun",
+          "example": "モグラは土の中に住んでいます。",
+          "translation": "Moles live underground."
+        },
+        {
+          "surface": "イルカ",
+          "reading": "いるか",
+          "gloss": "a dolphin",
+          "part_of_speech": "noun",
+          "example": "船からイルカを見ました。",
+          "translation": "I saw dolphins from the boat."
+        },
+        {
+          "surface": "クジラ",
+          "reading": "くじら",
+          "gloss": "a whale",
+          "part_of_speech": "noun",
+          "example": "この海にはクジラが来ます。",
+          "translation": "Whales come to this sea."
+        },
+        {
+          "surface": "サメ",
+          "reading": "さめ",
+          "gloss": "a shark",
+          "part_of_speech": "noun",
+          "example": "水族館で大きなサメを見ます。",
+          "translation": "I see a large shark at the aquarium."
+        },
+        {
+          "surface": "ペンギン",
+          "reading": "ぺんぎん",
+          "gloss": "a penguin",
+          "part_of_speech": "noun",
+          "example": "ペンギンが水の中を泳ぎます。",
+          "translation": "The penguin swims through the water."
+        },
+        {
+          "surface": "アザラシ",
+          "reading": "あざらし",
+          "gloss": "a seal",
+          "part_of_speech": "noun",
+          "example": "岩の上でアザラシが休んでいます。",
+          "translation": "A seal is resting on a rock."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Hand tools",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "金づち",
+          "reading": "かなづち",
+          "gloss": "a hammer",
+          "part_of_speech": "noun",
+          "example": "金づちでくぎを打ちます。",
+          "translation": "I drive a nail with a hammer."
+        },
+        {
+          "surface": "ねじ",
+          "reading": "ねじ",
+          "gloss": "a screw",
+          "part_of_speech": "noun",
+          "example": "このねじをドライバーで回します。",
+          "translation": "I turn this screw with a screwdriver."
+        },
+        {
+          "surface": "くぎ",
+          "reading": "くぎ",
+          "gloss": "a nail used for fastening",
+          "part_of_speech": "noun",
+          "example": "板にくぎを打ちます。",
+          "translation": "I drive a nail into the board."
+        },
+        {
+          "surface": "ドライバー",
+          "reading": "どらいばー",
+          "gloss": "a screwdriver",
+          "part_of_speech": "noun",
+          "example": "小さなドライバーを使います。",
+          "translation": "I use a small screwdriver."
+        },
+        {
+          "surface": "ペンチ",
+          "reading": "ぺんち",
+          "gloss": "pliers",
+          "part_of_speech": "noun",
+          "example": "ペンチで針金を曲げます。",
+          "translation": "I bend the wire with pliers."
+        },
+        {
+          "surface": "のこぎり",
+          "reading": "のこぎり",
+          "gloss": "a saw",
+          "part_of_speech": "noun",
+          "example": "のこぎりで木を切ります。",
+          "translation": "I cut wood with a saw."
+        },
+        {
+          "surface": "やすり",
+          "reading": "やすり",
+          "gloss": "a file; an abrasive tool",
+          "part_of_speech": "noun",
+          "example": "やすりで木の表面をなめらかにします。",
+          "translation": "I smooth the wood's surface with a file."
+        },
+        {
+          "surface": "巻き尺",
+          "reading": "まきじゃく",
+          "gloss": "a tape measure",
+          "part_of_speech": "noun",
+          "example": "巻き尺で机の長さを測ります。",
+          "translation": "I measure the desk's length with a tape measure."
+        },
+        {
+          "surface": "はしご",
+          "reading": "はしご",
+          "gloss": "a ladder",
+          "part_of_speech": "noun",
+          "example": "はしごで屋根に上がります。",
+          "translation": "I climb onto the roof using a ladder."
+        },
+        {
+          "surface": "脚立",
+          "reading": "きゃたつ",
+          "gloss": "a stepladder",
+          "part_of_speech": "noun",
+          "example": "脚立を使って電灯を替えます。",
+          "translation": "I use a stepladder to change the light."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Materials used to make things",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "木材",
+          "reading": "もくざい",
+          "gloss": "timber; wood as a material",
+          "part_of_speech": "noun",
+          "example": "木材で棚を作ります。",
+          "translation": "I make a shelf from timber."
+        },
+        {
+          "surface": "鉄",
+          "reading": "てつ",
+          "gloss": "iron",
+          "part_of_speech": "noun",
+          "example": "この門は鉄でできています。",
+          "translation": "This gate is made of iron."
+        },
+        {
+          "surface": "板",
+          "reading": "いた",
+          "gloss": "a board; a plank",
+          "part_of_speech": "noun",
+          "example": "二枚の板で棚を作ります。",
+          "translation": "I make a shelf from two boards."
+        },
+        {
+          "surface": "銅",
+          "reading": "どう",
+          "gloss": "copper",
+          "part_of_speech": "noun",
+          "example": "この古い鍋は銅でできています。",
+          "translation": "This old pot is made of copper."
+        },
+        {
+          "surface": "アルミニウム",
+          "reading": "あるみにうむ",
+          "gloss": "aluminium",
+          "part_of_speech": "noun",
+          "example": "この軽い箱はアルミニウムでできています。",
+          "translation": "This light box is made of aluminium."
+        },
+        {
+          "surface": "金属",
+          "reading": "きんぞく",
+          "gloss": "metal",
+          "part_of_speech": "noun",
+          "example": "金属の道具を箱に入れます。",
+          "translation": "I put the metal tools in a box."
+        },
+        {
+          "surface": "ガラス",
+          "reading": "がらす",
+          "gloss": "glass as a material",
+          "part_of_speech": "noun",
+          "example": "この窓には厚いガラスを使います。",
+          "translation": "We use thick glass for this window."
+        },
+        {
+          "surface": "ゴム",
+          "reading": "ごむ",
+          "gloss": "rubber",
+          "part_of_speech": "noun",
+          "example": "この手袋はゴムでできています。",
+          "translation": "These gloves are made of rubber."
+        },
+        {
+          "surface": "プラスチック",
+          "reading": "ぷらすちっく",
+          "gloss": "plastic",
+          "part_of_speech": "noun",
+          "example": "プラスチックの箱に道具を入れます。",
+          "translation": "I put the tools in a plastic box."
+        },
+        {
+          "surface": "布",
+          "reading": "ぬの",
+          "gloss": "cloth; fabric",
+          "part_of_speech": "noun",
+          "example": "このかばんは丈夫な布で作ります。",
+          "translation": "I make this bag from durable fabric."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Worksites and maintenance",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "作業",
+          "reading": "さぎょう",
+          "gloss": "a task; work performed with a particular procedure",
+          "part_of_speech": "noun",
+          "example": "午前中に庭の作業をします。",
+          "translation": "I do work in the garden during the morning."
+        },
+        {
+          "surface": "職場",
+          "reading": "しょくば",
+          "gloss": "a workplace",
+          "part_of_speech": "noun",
+          "example": "職場は駅の近くです。",
+          "translation": "My workplace is near the station."
+        },
+        {
+          "surface": "現場",
+          "reading": "げんば",
+          "gloss": "the site where work or an event takes place",
+          "part_of_speech": "noun",
+          "example": "朝九時に工事の現場に集まります。",
+          "translation": "We gather at the construction site at nine in the morning."
+        },
+        {
+          "surface": "工事",
+          "reading": "こうじ",
+          "gloss": "construction work",
+          "part_of_speech": "noun",
+          "example": "橋の工事は来月終わります。",
+          "translation": "The bridge construction will finish next month."
+        },
+        {
+          "surface": "建設",
+          "reading": "けんせつ",
+          "gloss": "construction; the building of a structure",
+          "part_of_speech": "noun",
+          "example": "新しい駅の建設が始まります。",
+          "translation": "Construction of the new station is beginning."
+        },
+        {
+          "surface": "修理",
+          "reading": "しゅうり",
+          "gloss": "a repair",
+          "part_of_speech": "noun",
+          "example": "自転車の修理をお願いします。",
+          "translation": "Please repair my bicycle."
+        },
+        {
+          "surface": "点検",
+          "reading": "てんけん",
+          "gloss": "an inspection; a safety or condition check",
+          "part_of_speech": "noun",
+          "example": "毎朝、車の点検をします。",
+          "translation": "I inspect the car every morning."
+        },
+        {
+          "surface": "整備",
+          "reading": "せいび",
+          "gloss": "maintenance; putting equipment or facilities in order",
+          "part_of_speech": "noun",
+          "example": "出発の前に自転車の整備をします。",
+          "translation": "I service my bicycle before setting off."
+        },
+        {
+          "surface": "設備",
+          "reading": "せつび",
+          "gloss": "equipment and facilities installed for use",
+          "part_of_speech": "noun",
+          "example": "工場の設備を見学します。",
+          "translation": "I tour the factory's facilities."
+        },
+        {
+          "surface": "機械",
+          "reading": "きかい",
+          "gloss": "a machine; machinery",
+          "part_of_speech": "noun",
+          "example": "この機械で木材を切ります。",
+          "translation": "We cut timber with this machine."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Movement across and through places",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "登る",
+          "reading": "のぼる",
+          "gloss": "to climb; to ascend",
+          "part_of_speech": "verb",
+          "example": "週末に近くの山に登ります。",
+          "translation": "I climb a nearby mountain at the weekend."
+        },
+        {
+          "surface": "下る",
+          "reading": "くだる",
+          "gloss": "to go down; to descend",
+          "part_of_speech": "verb",
+          "example": "山道をゆっくり下ります。",
+          "translation": "I go slowly down the mountain path."
+        },
+        {
+          "surface": "上がる",
+          "reading": "あがる",
+          "gloss": "to go up; to rise",
+          "part_of_speech": "verb",
+          "example": "階段で屋上に上がります。",
+          "translation": "I go up to the roof by the stairs."
+        },
+        {
+          "surface": "下がる",
+          "reading": "さがる",
+          "gloss": "to move back; to drop in level",
+          "part_of_speech": "verb",
+          "example": "入口をあけるために一歩下がります。",
+          "translation": "I take one step back to clear the entrance."
+        },
+        {
+          "surface": "移る",
+          "reading": "うつる",
+          "gloss": "to move to another place or position",
+          "part_of_speech": "verb",
+          "example": "日陰の席に移ります。",
+          "translation": "I move to a seat in the shade."
+        },
+        {
+          "surface": "移す",
+          "reading": "うつす",
+          "gloss": "to move something to another place",
+          "part_of_speech": "verb",
+          "example": "荷物を別の車に移します。",
+          "translation": "I move the luggage to another car."
+        },
+        {
+          "surface": "越える",
+          "reading": "こえる",
+          "gloss": "to cross over; to go beyond",
+          "part_of_speech": "verb",
+          "example": "橋を越えると駅があります。",
+          "translation": "The station is beyond the bridge."
+        },
+        {
+          "surface": "くぐる",
+          "reading": "くぐる",
+          "gloss": "to pass under or through",
+          "part_of_speech": "verb",
+          "example": "低い門をくぐります。",
+          "translation": "I pass through the low gate."
+        },
+        {
+          "surface": "潜る",
+          "reading": "もぐる",
+          "gloss": "to dive; to go beneath a surface",
+          "part_of_speech": "verb",
+          "example": "魚が水の中に潜ります。",
+          "translation": "The fish dives beneath the water."
+        },
+        {
+          "surface": "浮く",
+          "reading": "うく",
+          "gloss": "to float",
+          "part_of_speech": "verb",
+          "example": "木の葉が水に浮いています。",
+          "translation": "A leaf is floating on the water."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Moving and securing objects",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "掘る",
+          "reading": "ほる",
+          "gloss": "to dig",
+          "part_of_speech": "verb",
+          "example": "木を植えるために穴を掘ります。",
+          "translation": "I dig a hole to plant a tree."
+        },
+        {
+          "surface": "積む",
+          "reading": "つむ",
+          "gloss": "to load; to stack",
+          "part_of_speech": "verb",
+          "example": "トラックに箱を積みます。",
+          "translation": "I load boxes onto the truck."
+        },
+        {
+          "surface": "降ろす",
+          "reading": "おろす",
+          "gloss": "to unload; to let someone off a vehicle",
+          "part_of_speech": "verb",
+          "example": "車から荷物を降ろします。",
+          "translation": "I unload the luggage from the car."
+        },
+        {
+          "surface": "運転",
+          "reading": "うんてん",
+          "gloss": "driving; operating a vehicle or machine",
+          "part_of_speech": "noun",
+          "example": "雨の日は車の運転に気をつけます。",
+          "translation": "I take care when driving on rainy days."
+        },
+        {
+          "surface": "つなぐ",
+          "reading": "つなぐ",
+          "gloss": "to connect; to join",
+          "part_of_speech": "verb",
+          "example": "二本のロープをつなぎます。",
+          "translation": "I join the two ropes together."
+        },
+        {
+          "surface": "結ぶ",
+          "reading": "むすぶ",
+          "gloss": "to tie; to fasten with a knot",
+          "part_of_speech": "verb",
+          "example": "ロープの端を結びます。",
+          "translation": "I tie the end of the rope."
+        },
+        {
+          "surface": "外す",
+          "reading": "はずす",
+          "gloss": "to remove; to unfasten",
+          "part_of_speech": "verb",
+          "example": "箱の蓋を外します。",
+          "translation": "I remove the lid of the box."
+        },
+        {
+          "surface": "掛ける",
+          "reading": "かける",
+          "gloss": "to hang something on or over something",
+          "part_of_speech": "verb",
+          "example": "壁に地図を掛けます。",
+          "translation": "I hang the map on the wall."
+        },
+        {
+          "surface": "掛かる",
+          "reading": "かかる",
+          "gloss": "to hang; to be suspended from something",
+          "part_of_speech": "verb",
+          "example": "壁に大きな地図が掛かっています。",
+          "translation": "A large map is hanging on the wall."
+        },
+        {
+          "surface": "支える",
+          "reading": "ささえる",
+          "gloss": "to support; to hold something up",
+          "part_of_speech": "verb",
+          "example": "柱が屋根を支えています。",
+          "translation": "The pillars support the roof."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Building and changes to objects",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "建てる",
+          "reading": "たてる",
+          "gloss": "to build a structure",
+          "part_of_speech": "verb",
+          "example": "駅の近くに家を建てます。",
+          "translation": "We build a house near the station."
+        },
+        {
+          "surface": "組み立てる",
+          "reading": "くみたてる",
+          "gloss": "to assemble; to put together",
+          "part_of_speech": "verb",
+          "example": "木の棚を組み立てます。",
+          "translation": "I assemble a wooden shelf."
+        },
+        {
+          "surface": "倒す",
+          "reading": "たおす",
+          "gloss": "to knock over; to lay something down",
+          "part_of_speech": "verb",
+          "example": "風が庭のいすを倒しました。",
+          "translation": "The wind knocked over the chair in the garden."
+        },
+        {
+          "surface": "倒れる",
+          "reading": "たおれる",
+          "gloss": "to fall over; to collapse",
+          "part_of_speech": "verb",
+          "example": "強い風で木が倒れました。",
+          "translation": "A tree fell over in the strong wind."
+        },
+        {
+          "surface": "折る",
+          "reading": "おる",
+          "gloss": "to fold; to break by bending",
+          "part_of_speech": "verb",
+          "example": "地図を小さく折ります。",
+          "translation": "I fold the map into a small size."
+        },
+        {
+          "surface": "折れる",
+          "reading": "おれる",
+          "gloss": "to break by bending; to snap",
+          "part_of_speech": "verb",
+          "example": "風で木の枝が折れました。",
+          "translation": "A tree branch snapped in the wind."
+        },
+        {
+          "surface": "割る",
+          "reading": "わる",
+          "gloss": "to break something into pieces; to split",
+          "part_of_speech": "verb",
+          "example": "まきを小さく割ります。",
+          "translation": "I split the firewood into small pieces."
+        },
+        {
+          "surface": "割れる",
+          "reading": "われる",
+          "gloss": "to break into pieces; to crack",
+          "part_of_speech": "verb",
+          "example": "強い風で窓のガラスが割れました。",
+          "translation": "The window glass broke in the strong wind."
+        },
+        {
+          "surface": "開く",
+          "reading": "あく",
+          "gloss": "to open; to become open",
+          "part_of_speech": "verb",
+          "example": "朝九時に店のドアが開きます。",
+          "translation": "The shop's door opens at nine in the morning."
+        },
+        {
+          "surface": "閉まる",
+          "reading": "しまる",
+          "gloss": "to close; to become closed",
+          "part_of_speech": "verb",
+          "example": "電車のドアが閉まります。",
+          "translation": "The train doors close."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Growing and gathering outdoors",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "飛ぶ",
+          "reading": "とぶ",
+          "gloss": "to fly",
+          "part_of_speech": "verb",
+          "example": "鳥が川の上を飛んでいます。",
+          "translation": "A bird is flying over the river."
+        },
+        {
+          "surface": "咲く",
+          "reading": "さく",
+          "gloss": "to bloom",
+          "part_of_speech": "verb",
+          "example": "庭に白い花が咲きました。",
+          "translation": "White flowers bloomed in the garden."
+        },
+        {
+          "surface": "育つ",
+          "reading": "そだつ",
+          "gloss": "to grow; to develop",
+          "part_of_speech": "verb",
+          "example": "この木は暖かい場所で育ちます。",
+          "translation": "This tree grows in warm places."
+        },
+        {
+          "surface": "育てる",
+          "reading": "そだてる",
+          "gloss": "to grow; to raise or nurture",
+          "part_of_speech": "verb",
+          "example": "ベランダで花を育てます。",
+          "translation": "I grow flowers on the balcony."
+        },
+        {
+          "surface": "植える",
+          "reading": "うえる",
+          "gloss": "to plant",
+          "part_of_speech": "verb",
+          "example": "庭に小さな木を植えます。",
+          "translation": "I plant a small tree in the garden."
+        },
+        {
+          "surface": "刈る",
+          "reading": "かる",
+          "gloss": "to cut grass or hair; to mow",
+          "part_of_speech": "verb",
+          "example": "週末に庭の草を刈ります。",
+          "translation": "I cut the grass in the garden at the weekend."
+        },
+        {
+          "surface": "拾う",
+          "reading": "ひろう",
+          "gloss": "to pick up something from the ground",
+          "part_of_speech": "verb",
+          "example": "浜で貝を拾います。",
+          "translation": "I pick up shells on the beach."
+        },
+        {
+          "surface": "集める",
+          "reading": "あつめる",
+          "gloss": "to gather; to collect",
+          "part_of_speech": "verb",
+          "example": "公園で落ち葉を集めます。",
+          "translation": "I gather fallen leaves in the park."
+        },
+        {
+          "surface": "散る",
+          "reading": "ちる",
+          "gloss": "to fall and scatter, as blossoms or leaves",
+          "part_of_speech": "verb",
+          "example": "風で花びらが散ります。",
+          "translation": "The petals scatter in the wind."
+        },
+        {
+          "surface": "生える",
+          "reading": "はえる",
+          "gloss": "to grow from a surface; to sprout",
+          "part_of_speech": "verb",
+          "example": "道の横に草が生えています。",
+          "translation": "Grass is growing beside the road."
+        }
+      ]
+    },
+    {
+      "unit_id": "ja-unit-8",
+      "title": "Changes in the natural world",
+      "concepts": [
+        "particle-ni",
+        "particle-de",
+        "polite-verbs"
+      ],
+      "rows": [
+        {
+          "surface": "増える",
+          "reading": "ふえる",
+          "gloss": "to increase in number or amount",
+          "part_of_speech": "verb",
+          "example": "雨で川の水が増えます。",
+          "translation": "The water in the river increases when it rains."
+        },
+        {
+          "surface": "減る",
+          "reading": "へる",
+          "gloss": "to decrease in number or amount",
+          "part_of_speech": "verb",
+          "example": "夏の終わりに池の水が減りました。",
+          "translation": "The water in the pond decreased at the end of summer."
+        },
+        {
+          "surface": "燃える",
+          "reading": "もえる",
+          "gloss": "to burn; to be on fire",
+          "part_of_speech": "verb",
+          "example": "乾いた木はよく燃えます。",
+          "translation": "Dry wood burns well."
+        },
+        {
+          "surface": "燃やす",
+          "reading": "もやす",
+          "gloss": "to burn something",
+          "part_of_speech": "verb",
+          "example": "キャンプ場でまきを燃やします。",
+          "translation": "We burn firewood at the campsite."
+        },
+        {
+          "surface": "流れる",
+          "reading": "ながれる",
+          "gloss": "to flow",
+          "part_of_speech": "verb",
+          "example": "川の水は海に流れます。",
+          "translation": "The river water flows into the sea."
+        },
+        {
+          "surface": "流す",
+          "reading": "ながす",
+          "gloss": "to let water flow; to send something along in a flow",
+          "part_of_speech": "verb",
+          "example": "水を流して道具を洗います。",
+          "translation": "I wash the tools under running water."
+        },
+        {
+          "surface": "沈む",
+          "reading": "しずむ",
+          "gloss": "to sink; to set as the sun",
+          "part_of_speech": "verb",
+          "example": "夕方、太陽が海に沈みます。",
+          "translation": "The sun sets into the sea in the evening."
+        },
+        {
+          "surface": "揺れる",
+          "reading": "ゆれる",
+          "gloss": "to sway; to shake",
+          "part_of_speech": "verb",
+          "example": "風で木の枝が揺れています。",
+          "translation": "The tree branches are swaying in the wind."
+        },
+        {
+          "surface": "伸びる",
+          "reading": "のびる",
+          "gloss": "to grow longer; to extend",
+          "part_of_speech": "verb",
+          "example": "春になると草が伸びます。",
+          "translation": "The grass grows taller when spring comes."
+        },
+        {
+          "surface": "伸ばす",
+          "reading": "のばす",
+          "gloss": "to lengthen; to stretch something out",
+          "part_of_speech": "verb",
+          "example": "木の枝まで手を伸ばします。",
+          "translation": "I reach my hand towards the tree branch."
+        }
+      ]
+    }
+  ]
+}

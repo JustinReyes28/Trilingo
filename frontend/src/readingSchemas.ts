@@ -1,0 +1,9 @@
+import { z } from 'zod'
+import { SegmentSchema } from './schemas'
+export const CharacterSchema=z.object({id:z.string(),surface:z.string(),script:z.enum(['hiragana','katakana','kanji']),form:z.enum(['basic','voiced','semi_voiced','combination','small','mark','kanji']),contextual_readings:z.array(z.string()),romaji:z.string().nullable(),meaning:z.string().nullable(),notes:z.string(),vocabulary_ids:z.array(z.string()),practice_exercise_ids:z.array(z.string()),components:z.array(z.string()),stroke_asset_id:z.string().nullable().optional(),status:z.enum(['draft','reviewed','published'])})
+export const ReadingItemSchema=z.object({item_kind:z.enum(['word','character','grammar']),item_id:z.string(),saved:z.boolean(),familiar:z.boolean(),evidence:z.literal('self_reported'),updated_at:z.string()})
+export const ReadingWordSchema=z.object({id:z.string(),surface:z.string(),reading:z.string(),gloss:z.string(),example:z.array(SegmentSchema),practice_exercise_ids:z.array(z.string()).default([]),status:z.string()})
+export const ReadingLibrarySchema=z.object({content_version:z.string(),characters:z.array(CharacterSchema),vocabulary:z.array(ReadingWordSchema),stories:z.array(z.object({id:z.string(),title:z.string(),kind:z.string(),status:z.string(),stage:z.string(),difficulty:z.number(),objectives:z.array(z.string()),turn_count:z.number(),checkpoint_count:z.number()})),items:z.array(ReadingItemSchema),inventory:z.object({basic_hiragana:z.number(),basic_katakana:z.number(),variants:z.number(),published_characters:z.number(),authored_kanji:z.number(),published_kanji:z.number(),target_kanji:z.number()}),includes_drafts:z.boolean(),review_note:z.string(),guides:z.array(z.object({id:z.string(),title:z.string(),explanation:z.string()}))})
+export type ReadingLibrary=z.infer<typeof ReadingLibrarySchema>
+export type ReadingItem=z.infer<typeof ReadingItemSchema>
+export type Character=z.infer<typeof CharacterSchema>

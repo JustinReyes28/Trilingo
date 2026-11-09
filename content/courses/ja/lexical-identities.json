@@ -1,0 +1,162 @@
+{
+  "course_id": "ja-starter",
+  "source_version": "0.1.21",
+  "source_sha256": "94b99042f6f6054ac51807ac5482301cd0e4923bd383aaaa3d94b7d8ff5ea9d5",
+  "review_status": "authoring audit; qualified review pending",
+  "groups": [
+    {
+      "canonical_id": "ja-word-school",
+      "member_ids": [
+        "ja-word-school",
+        "ja-word-school-kanji"
+      ],
+      "reason": "学校 and がっこう are kanji/kana spellings of the same noun meaning school. Count one lexical identity while preserving both historical content IDs."
+    },
+    {
+      "canonical_id": "ja-word-core-307f-3093-306a",
+      "member_ids": [
+        "ja-word-core-7686-3055-3093",
+        "ja-word-core-307f-3093-306a"
+      ],
+      "reason": "Conservatively count the polite address 皆さん and informal みんな once as the everyone/all lexical family. The honorific suffix and pronunciation variant do not add core-word coverage; keep the original separate display records and learner IDs. Qualified semantic review remains pending."
+    }
+  ],
+  "distinct_homophones": [
+    {
+      "member_ids": [
+        "ja-word-kanji-82b1",
+        "ja-word-kanji-9f3b"
+      ],
+      "reason": "花 (flower) and 鼻 (nose) both read はな; their meanings are distinct."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-65e9-3044",
+        "ja-word-kanji-901f-3044"
+      ],
+      "reason": "早い (early) and 速い (fast) both read はやい; preserve their separate contextual meanings."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-6a4b",
+        "ja-word-core-7bb8",
+        "ja-word-core-7aef"
+      ],
+      "reason": "橋 means bridge, 箸 means chopsticks, and 端 means edge or end. Preserve the three contextual nouns separately."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-66f8-304f",
+        "ja-word-core-63cf-304f"
+      ],
+      "reason": "書く means write; 描く here means draw or paint. The authored examples teach different actions."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-53d6-308b",
+        "ja-word-core-64ae-308b"
+      ],
+      "reason": "取る is the general take verb; 撮る here means take a photograph. Preserve the separately taught contextual senses pending qualified review."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-6b62-307e-308b",
+        "ja-word-core-6cca-307e-308b"
+      ],
+      "reason": "止まる means stop; 泊まる means stay overnight. Different lexical meanings."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-5e30-308b",
+        "ja-word-core-304b-3048-308b",
+        "ja-word-core-5909-3048-308b"
+      ],
+      "reason": "帰る means return home, 変える means change something, and かえる here is the frog noun normally written 蛙. Preserve the different verbs and animal noun separately."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-670d",
+        "ja-word-core-62ed-304f"
+      ],
+      "reason": "服 is the noun clothes; 拭く is the verb wipe. Different lexical entries."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-6691-3044",
+        "ja-word-core-71b1-3044"
+      ],
+      "reason": "暑い describes hot weather; 熱い describes something hot to touch in these examples. Preserve the contextual distinction."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-6613-3057-3044",
+        "ja-word-core-512a-3057-3044"
+      ],
+      "reason": "易しい means easy; 優しい means kind or gentle. Different adjective meanings."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-4e0b",
+        "ja-word-core-820c"
+      ],
+      "reason": "下 means below; 舌 means the tongue. Different nouns and contextual meanings."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-6b6f",
+        "ja-word-core-306f"
+      ],
+      "reason": "歯 means a tooth; は here is the leaf noun normally written 葉, not the topic particle. These are distinct lexical entries."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-7d19",
+        "ja-word-core-9aea"
+      ],
+      "reason": "紙 means paper; 髪 means hair on the head. Distinct contextual nouns."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-6625",
+        "ja-word-core-8cbc-308b"
+      ],
+      "reason": "春 is the season spring; 貼る means stick or paste something. Different lexical entries."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-306f-3061",
+        "ja-word-core-516b"
+      ],
+      "reason": "八 is the number eight; はち here is the bee/wasp noun normally written 蜂. Distinct words."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-5207-308b",
+        "ja-word-core-7740-308b"
+      ],
+      "reason": "切る means cut and is a godan verb; 着る means wear on the upper body and is an ichidan verb. Distinct verbs."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-716e-308b",
+        "ja-word-core-4f3c-308b"
+      ],
+      "reason": "煮る means simmer food; 似る means resemble. Distinct verbs."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-5c65-304f",
+        "ja-word-core-6383-304f"
+      ],
+      "reason": "履く means put on footwear or lower-body clothing; 掃く means sweep. Distinct verbs."
+    },
+    {
+      "member_ids": [
+        "ja-word-core-3044-308b",
+        "ja-word-core-8981-308b"
+      ],
+      "reason": "いる in the existence example concerns animate beings; 要る means need. Different verbs and inflection classes."
+    }
+  ],
+  "policy": "Unlisted records retain their own stable identity. Same reading alone, shared gloss alone, conjugation, repeated practice and stage reuse do not establish a new word. This source-bound authoring audit neither approves Japanese nor merges learner records."
+}

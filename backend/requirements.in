@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic-settings
+sqlalchemy
+alembic
+fsrs
+tzdata
+httpx
+pytest
+ruff

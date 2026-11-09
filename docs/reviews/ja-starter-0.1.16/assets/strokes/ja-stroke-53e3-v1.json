@@ -1,0 +1,53 @@
+{
+  "id": "ja-stroke-53e3-v1",
+  "character_id": "ja-kanji-53e3",
+  "version": "1.0.0-draft",
+  "license_id": "trilingo-original",
+  "source": "Original Trilingo schematic normalized paths; Japanese stroke review pending. Not traced from a font or third-party diagram.",
+  "status": "draft",
+  "strokes": [
+    {
+      "points": [
+        {
+          "x": 0.25,
+          "y": 0.23
+        },
+        {
+          "x": 0.25,
+          "y": 0.77
+        }
+      ],
+      "instruction": "Draw the left vertical downward."
+    },
+    {
+      "points": [
+        {
+          "x": 0.25,
+          "y": 0.23
+        },
+        {
+          "x": 0.75,
+          "y": 0.23
+        },
+        {
+          "x": 0.75,
+          "y": 0.77
+        }
+      ],
+      "instruction": "Move right across the top, turn and continue down the right."
+    },
+    {
+      "points": [
+        {
+          "x": 0.25,
+          "y": 0.77
+        },
+        {
+          "x": 0.75,
+          "y": 0.77
+        }
+      ],
+      "instruction": "Close the bottom from left to right."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "course_id": "ja-starter",
+  "source_version": "0.1.15",
+  "source_sha256": "4eda311cf0b265ca879dcb56d0ab0c8179f65fcc2ad7a412928b0821f731a117",
+  "review_status": "authoring audit; qualified review pending",
+  "groups": [
+    {
+      "canonical_id": "ja-word-school",
+      "member_ids": [
+        "ja-word-school",
+        "ja-word-school-kanji"
+      ],
+      "reason": "学校 and がっこう are kanji/kana spellings of the same noun meaning school. Count one lexical identity while preserving both historical content IDs."
+    }
+  ],
+  "distinct_homophones": [
+    {
+      "member_ids": [
+        "ja-word-kanji-82b1",
+        "ja-word-kanji-9f3b"
+      ],
+      "reason": "花 (flower) and 鼻 (nose) both read はな; their meanings are distinct."
+    },
+    {
+      "member_ids": [
+        "ja-word-kanji-65e9-3044",
+        "ja-word-kanji-901f-3044"
+      ],
+      "reason": "早い (early) and 速い (fast) both read はやい; preserve their separate contextual meanings."
+    }
+  ],
+  "policy": "Unlisted records retain their own stable identity. Same reading alone, shared gloss alone, conjugation, repeated practice and stage reuse do not establish a new word. This source-bound authoring audit neither approves Japanese nor merges learner records."
+}

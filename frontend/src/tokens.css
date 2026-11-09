@@ -1,0 +1,10 @@
+:root {
+ --paper:oklch(98.3% .004 160); --surface:oklch(100% 0 0); --ink:oklch(33% .035 183); --muted:oklch(46% .025 180);
+ --path:oklch(45% .077 181); --path-hover:oklch(39% .077 181); --path-shadow:oklch(33% .065 181); --on-path:oklch(100% 0 0);
+ --mint:oklch(95% .025 162); --mint-strong:oklch(88% .052 162); --plum:oklch(46% .075 321); --plum-soft:oklch(96% .015 321);
+ --line:oklch(85% .02 166); --error:oklch(43% .14 23); --error-soft:oklch(97% .015 23); --focus:oklch(45% .14 281);
+ --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-6:1.5rem; --space-8:2rem; --space-12:3rem;
+ --radius-sm:.6rem; --radius:1rem; --radius-lg:1.4rem; --nav-width:14.5rem;
+ --font-ui:'Segoe UI',Tahoma,sans-serif; --font-ja:'Yu Gothic UI','Meiryo','Hiragino Kaku Gothic ProN',sans-serif;
+ --font-display:'Yu Mincho','Hiragino Mincho ProN',serif;
+}

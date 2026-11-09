@@ -1,0 +1,2848 @@
+{
+  "version": "1.0.0-draft",
+  "source": "Original Trilingo contextual word selections and examples; no third-party course or dictionary text copied. Qualified Japanese review is required.",
+  "license_id": "trilingo-original",
+  "status": "draft",
+  "existing_stage_a_ids": [
+    "ja-kanji-65e5",
+    "ja-kanji-672c",
+    "ja-kanji-66dc",
+    "ja-kanji-6c34",
+    "ja-kanji-8336",
+    "ja-kanji-99c5",
+    "ja-kanji-5165",
+    "ja-kanji-53e3",
+    "ja-kanji-51fa",
+    "ja-kanji-5b66",
+    "ja-kanji-6821",
+    "ja-kanji-6642",
+    "ja-kanji-9593",
+    "ja-kanji-6708",
+    "ja-kanji-706b",
+    "ja-kanji-6728",
+    "ja-kanji-91d1",
+    "ja-kanji-571f"
+  ],
+  "entries": [
+    {
+      "character": "一",
+      "word": "一つ",
+      "reading": "ひとつ",
+      "meaning": "one thing",
+      "part_of_speech": "noun",
+      "example": "一つください。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "二",
+      "word": "二つ",
+      "reading": "ふたつ",
+      "meaning": "two things",
+      "part_of_speech": "noun",
+      "example": "二つください。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "三",
+      "word": "三つ",
+      "reading": "みっつ",
+      "meaning": "three things",
+      "part_of_speech": "noun",
+      "example": "三つください。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "四",
+      "word": "四つ",
+      "reading": "よっつ",
+      "meaning": "four things",
+      "part_of_speech": "noun",
+      "example": "四つあります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "五",
+      "word": "五つ",
+      "reading": "いつつ",
+      "meaning": "five things",
+      "part_of_speech": "noun",
+      "example": "五つあります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "六",
+      "word": "六つ",
+      "reading": "むっつ",
+      "meaning": "six things",
+      "part_of_speech": "noun",
+      "example": "六つあります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "七",
+      "word": "七つ",
+      "reading": "ななつ",
+      "meaning": "seven things",
+      "part_of_speech": "noun",
+      "example": "七つあります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "八",
+      "word": "八つ",
+      "reading": "やっつ",
+      "meaning": "eight things",
+      "part_of_speech": "noun",
+      "example": "八つあります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "九",
+      "word": "九つ",
+      "reading": "ここのつ",
+      "meaning": "nine things",
+      "part_of_speech": "noun",
+      "example": "九つあります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "十",
+      "word": "十",
+      "reading": "じゅう",
+      "meaning": "ten",
+      "part_of_speech": "numeral",
+      "example": "十まで数えます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "百",
+      "word": "百",
+      "reading": "ひゃく",
+      "meaning": "one hundred",
+      "part_of_speech": "numeral",
+      "example": "百まで数えます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "千",
+      "word": "千円",
+      "reading": "せんえん",
+      "meaning": "one thousand yen",
+      "part_of_speech": "noun",
+      "example": "千円です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "円",
+      "word": "円",
+      "reading": "えん",
+      "meaning": "yen",
+      "part_of_speech": "noun",
+      "example": "円で払います。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "年",
+      "word": "一年",
+      "reading": "いちねん",
+      "meaning": "one year",
+      "part_of_speech": "noun",
+      "example": "一年かかります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "今",
+      "word": "今",
+      "reading": "いま",
+      "meaning": "now",
+      "part_of_speech": "noun",
+      "example": "今、行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "毎",
+      "word": "毎日",
+      "reading": "まいにち",
+      "meaning": "every day",
+      "part_of_speech": "noun",
+      "example": "毎日読みます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "週",
+      "word": "来週",
+      "reading": "らいしゅう",
+      "meaning": "next week",
+      "part_of_speech": "noun",
+      "example": "来週、会いましょう。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "分",
+      "word": "五分",
+      "reading": "ごふん",
+      "meaning": "five minutes",
+      "part_of_speech": "noun",
+      "example": "五分かかります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "半",
+      "word": "半分",
+      "reading": "はんぶん",
+      "meaning": "half",
+      "part_of_speech": "noun",
+      "example": "半分ください。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "午",
+      "word": "午前",
+      "reading": "ごぜん",
+      "meaning": "morning; a.m.",
+      "part_of_speech": "noun",
+      "example": "午前に行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "前",
+      "word": "前",
+      "reading": "まえ",
+      "meaning": "front; before",
+      "part_of_speech": "noun",
+      "example": "駅の前です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "後",
+      "word": "後ろ",
+      "reading": "うしろ",
+      "meaning": "behind; the back",
+      "part_of_speech": "noun",
+      "example": "家の後ろです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "朝",
+      "word": "朝",
+      "reading": "あさ",
+      "meaning": "morning",
+      "part_of_speech": "noun",
+      "example": "朝、お茶を飲みます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "昼",
+      "word": "昼",
+      "reading": "ひる",
+      "meaning": "daytime; noon",
+      "part_of_speech": "noun",
+      "example": "昼に会いましょう。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "夜",
+      "word": "夜",
+      "reading": "よる",
+      "meaning": "night",
+      "part_of_speech": "noun",
+      "example": "夜、本を読みます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "人",
+      "word": "人",
+      "reading": "ひと",
+      "meaning": "person",
+      "part_of_speech": "noun",
+      "example": "人がいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "男",
+      "word": "男の子",
+      "reading": "おとこのこ",
+      "meaning": "boy",
+      "part_of_speech": "noun",
+      "example": "男の子がいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "女",
+      "word": "女の子",
+      "reading": "おんなのこ",
+      "meaning": "girl",
+      "part_of_speech": "noun",
+      "example": "女の子がいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "子",
+      "word": "子ども",
+      "reading": "こども",
+      "meaning": "child",
+      "part_of_speech": "noun",
+      "example": "子どもがいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "父",
+      "word": "父",
+      "reading": "ちち",
+      "meaning": "my father",
+      "part_of_speech": "noun",
+      "example": "父は家にいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "母",
+      "word": "母",
+      "reading": "はは",
+      "meaning": "my mother",
+      "part_of_speech": "noun",
+      "example": "母は家にいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "友",
+      "word": "友達",
+      "reading": "ともだち",
+      "meaning": "friend",
+      "part_of_speech": "noun",
+      "example": "友達と行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "先",
+      "word": "先生",
+      "reading": "せんせい",
+      "meaning": "teacher",
+      "part_of_speech": "noun",
+      "example": "先生に聞きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "生",
+      "word": "学生",
+      "reading": "がくせい",
+      "meaning": "student",
+      "part_of_speech": "noun",
+      "example": "私は学生です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "名",
+      "word": "名前",
+      "reading": "なまえ",
+      "meaning": "name",
+      "part_of_speech": "noun",
+      "example": "名前を書きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "私",
+      "word": "私",
+      "reading": "わたし",
+      "meaning": "I; me",
+      "part_of_speech": "pronoun",
+      "example": "私はアキです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "家",
+      "word": "家",
+      "reading": "いえ",
+      "meaning": "house; home",
+      "part_of_speech": "noun",
+      "example": "家に帰ります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "山",
+      "word": "山",
+      "reading": "やま",
+      "meaning": "mountain",
+      "part_of_speech": "noun",
+      "example": "山が見えます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "川",
+      "word": "川",
+      "reading": "かわ",
+      "meaning": "river",
+      "part_of_speech": "noun",
+      "example": "川があります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "空",
+      "word": "空",
+      "reading": "そら",
+      "meaning": "sky",
+      "part_of_speech": "noun",
+      "example": "空が青いです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "雨",
+      "word": "雨",
+      "reading": "あめ",
+      "meaning": "rain",
+      "part_of_speech": "noun",
+      "example": "雨が降っています。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "天",
+      "word": "天気",
+      "reading": "てんき",
+      "meaning": "weather",
+      "part_of_speech": "noun",
+      "example": "天気がいいです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "気",
+      "word": "元気",
+      "reading": "げんき",
+      "meaning": "healthy; in good spirits",
+      "part_of_speech": "na-adjective",
+      "example": "元気です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "花",
+      "word": "花",
+      "reading": "はな",
+      "meaning": "flower",
+      "part_of_speech": "noun",
+      "example": "花を見ます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "犬",
+      "word": "犬",
+      "reading": "いぬ",
+      "meaning": "dog",
+      "part_of_speech": "noun",
+      "example": "犬がいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "猫",
+      "word": "猫",
+      "reading": "ねこ",
+      "meaning": "cat",
+      "part_of_speech": "noun",
+      "example": "猫がいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "鳥",
+      "word": "鳥",
+      "reading": "とり",
+      "meaning": "bird",
+      "part_of_speech": "noun",
+      "example": "鳥がいます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "魚",
+      "word": "魚",
+      "reading": "さかな",
+      "meaning": "fish",
+      "part_of_speech": "noun",
+      "example": "魚を食べます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "車",
+      "word": "車",
+      "reading": "くるま",
+      "meaning": "car",
+      "part_of_speech": "noun",
+      "example": "車で行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "電",
+      "word": "電車",
+      "reading": "でんしゃ",
+      "meaning": "train",
+      "part_of_speech": "noun",
+      "example": "電車で行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "道",
+      "word": "道",
+      "reading": "みち",
+      "meaning": "road; way",
+      "part_of_speech": "noun",
+      "example": "この道を行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "店",
+      "word": "店",
+      "reading": "みせ",
+      "meaning": "shop",
+      "part_of_speech": "noun",
+      "example": "店に入ります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "会",
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "company",
+      "part_of_speech": "noun",
+      "example": "会社に行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "社",
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "company",
+      "part_of_speech": "noun",
+      "example": "会社に行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "国",
+      "word": "国",
+      "reading": "くに",
+      "meaning": "country",
+      "part_of_speech": "noun",
+      "example": "どの国ですか。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "外",
+      "word": "外",
+      "reading": "そと",
+      "meaning": "outside",
+      "part_of_speech": "noun",
+      "example": "外に出ます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "中",
+      "word": "中",
+      "reading": "なか",
+      "meaning": "inside",
+      "part_of_speech": "noun",
+      "example": "中に入ります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "上",
+      "word": "上",
+      "reading": "うえ",
+      "meaning": "above; on top",
+      "part_of_speech": "noun",
+      "example": "机の上です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "下",
+      "word": "下",
+      "reading": "した",
+      "meaning": "below; underneath",
+      "part_of_speech": "noun",
+      "example": "机の下です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "左",
+      "word": "左",
+      "reading": "ひだり",
+      "meaning": "left",
+      "part_of_speech": "noun",
+      "example": "左に曲がります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "右",
+      "word": "右",
+      "reading": "みぎ",
+      "meaning": "right",
+      "part_of_speech": "noun",
+      "example": "右に曲がります。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "北",
+      "word": "北",
+      "reading": "きた",
+      "meaning": "north",
+      "part_of_speech": "noun",
+      "example": "北へ行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "南",
+      "word": "南",
+      "reading": "みなみ",
+      "meaning": "south",
+      "part_of_speech": "noun",
+      "example": "南へ行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "東",
+      "word": "東",
+      "reading": "ひがし",
+      "meaning": "east",
+      "part_of_speech": "noun",
+      "example": "東へ行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "西",
+      "word": "西",
+      "reading": "にし",
+      "meaning": "west",
+      "part_of_speech": "noun",
+      "example": "西へ行きます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "大",
+      "word": "大きい",
+      "reading": "おおきい",
+      "meaning": "big",
+      "part_of_speech": "i-adjective",
+      "example": "大きい家です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "小",
+      "word": "小さい",
+      "reading": "ちいさい",
+      "meaning": "small",
+      "part_of_speech": "i-adjective",
+      "example": "小さい店です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "長",
+      "word": "長い",
+      "reading": "ながい",
+      "meaning": "long",
+      "part_of_speech": "i-adjective",
+      "example": "長い道です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "高",
+      "word": "高い",
+      "reading": "たかい",
+      "meaning": "high; expensive",
+      "part_of_speech": "i-adjective",
+      "example": "この本は高いです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "安",
+      "word": "安い",
+      "reading": "やすい",
+      "meaning": "inexpensive",
+      "part_of_speech": "i-adjective",
+      "example": "この本は安いです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "新",
+      "word": "新しい",
+      "reading": "あたらしい",
+      "meaning": "new",
+      "part_of_speech": "i-adjective",
+      "example": "新しい本です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "古",
+      "word": "古い",
+      "reading": "ふるい",
+      "meaning": "old",
+      "part_of_speech": "i-adjective",
+      "example": "古い家です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "白",
+      "word": "白い",
+      "reading": "しろい",
+      "meaning": "white",
+      "part_of_speech": "i-adjective",
+      "example": "白い紙です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "黒",
+      "word": "黒い",
+      "reading": "くろい",
+      "meaning": "black",
+      "part_of_speech": "i-adjective",
+      "example": "黒い車です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "赤",
+      "word": "赤い",
+      "reading": "あかい",
+      "meaning": "red",
+      "part_of_speech": "i-adjective",
+      "example": "赤い花です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "青",
+      "word": "青い",
+      "reading": "あおい",
+      "meaning": "blue",
+      "part_of_speech": "i-adjective",
+      "example": "青い空です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "好",
+      "word": "好き",
+      "reading": "すき",
+      "meaning": "liked; favorite",
+      "part_of_speech": "na-adjective",
+      "example": "お茶が好きです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "食",
+      "word": "食べる",
+      "reading": "たべる",
+      "meaning": "to eat",
+      "part_of_speech": "verb",
+      "example": "何を食べるか決めます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "飲",
+      "word": "飲む",
+      "reading": "のむ",
+      "meaning": "to drink",
+      "part_of_speech": "verb",
+      "example": "何を飲むか決めます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "見",
+      "word": "見る",
+      "reading": "みる",
+      "meaning": "to see; to watch",
+      "part_of_speech": "verb",
+      "example": "映画を見るのが好きです。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "行",
+      "word": "行く",
+      "reading": "いく",
+      "meaning": "to go",
+      "part_of_speech": "verb",
+      "example": "どこへ行くか決めます。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "来",
+      "word": "来る",
+      "reading": "くる",
+      "meaning": "to come",
+      "part_of_speech": "verb",
+      "example": "友達が来る日です。",
+      "stage": "stage-a",
+      "status": "draft"
+    },
+    {
+      "character": "万",
+      "word": "一万円",
+      "reading": "いちまんえん",
+      "meaning": "ten thousand yen",
+      "part_of_speech": "noun",
+      "example": "一万円です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "草",
+      "word": "草",
+      "reading": "くさ",
+      "meaning": "grass",
+      "part_of_speech": "noun",
+      "example": "草が生えています。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "田",
+      "word": "田んぼ",
+      "reading": "たんぼ",
+      "meaning": "rice field",
+      "part_of_speech": "noun",
+      "example": "田んぼが見えます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "仕",
+      "word": "仕事",
+      "reading": "しごと",
+      "meaning": "work; job",
+      "part_of_speech": "noun",
+      "example": "仕事に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "事",
+      "word": "仕事",
+      "reading": "しごと",
+      "meaning": "work; job",
+      "part_of_speech": "noun",
+      "example": "仕事に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "員",
+      "word": "店員",
+      "reading": "てんいん",
+      "meaning": "shop assistant",
+      "part_of_speech": "noun",
+      "example": "店員に聞きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "工",
+      "word": "工場",
+      "reading": "こうじょう",
+      "meaning": "factory",
+      "part_of_speech": "noun",
+      "example": "工場で働きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "場",
+      "word": "工場",
+      "reading": "こうじょう",
+      "meaning": "factory",
+      "part_of_speech": "noun",
+      "example": "工場で働きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "働",
+      "word": "働く",
+      "reading": "はたらく",
+      "meaning": "to work",
+      "part_of_speech": "verb",
+      "example": "ここで働く人です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "休",
+      "word": "休む",
+      "reading": "やすむ",
+      "meaning": "to rest; to take time off",
+      "part_of_speech": "verb",
+      "example": "今日は休むことにします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "忙",
+      "word": "忙しい",
+      "reading": "いそがしい",
+      "meaning": "busy",
+      "part_of_speech": "i-adjective",
+      "example": "今日は忙しいです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "給",
+      "word": "給料",
+      "reading": "きゅうりょう",
+      "meaning": "salary; wages",
+      "part_of_speech": "noun",
+      "example": "給料を受け取ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "料",
+      "word": "給料",
+      "reading": "きゅうりょう",
+      "meaning": "salary; wages",
+      "part_of_speech": "noun",
+      "example": "給料を受け取ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "住",
+      "word": "住む",
+      "reading": "すむ",
+      "meaning": "to live; to reside",
+      "part_of_speech": "verb",
+      "example": "ここに住む人です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "所",
+      "word": "住所",
+      "reading": "じゅうしょ",
+      "meaning": "address",
+      "part_of_speech": "noun",
+      "example": "住所を書きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "町",
+      "word": "町",
+      "reading": "まち",
+      "meaning": "town",
+      "part_of_speech": "noun",
+      "example": "静かな町です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "村",
+      "word": "村",
+      "reading": "むら",
+      "meaning": "village",
+      "part_of_speech": "noun",
+      "example": "小さい村です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "市",
+      "word": "市",
+      "reading": "し",
+      "meaning": "city; municipality",
+      "part_of_speech": "noun",
+      "example": "この市に住んでいます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "県",
+      "word": "県",
+      "reading": "けん",
+      "meaning": "prefecture",
+      "part_of_speech": "noun",
+      "example": "どの県ですか。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "都",
+      "word": "東京都",
+      "reading": "とうきょうと",
+      "meaning": "Tokyo Metropolis",
+      "part_of_speech": "proper noun",
+      "example": "東京都に住んでいます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "京",
+      "word": "東京",
+      "reading": "とうきょう",
+      "meaning": "Tokyo",
+      "part_of_speech": "proper noun",
+      "example": "東京に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "区",
+      "word": "区",
+      "reading": "く",
+      "meaning": "ward; district",
+      "part_of_speech": "noun",
+      "example": "どの区ですか。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "業",
+      "word": "授業",
+      "reading": "じゅぎょう",
+      "meaning": "class; lesson",
+      "part_of_speech": "noun",
+      "example": "授業が始まります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "近",
+      "word": "近い",
+      "reading": "ちかい",
+      "meaning": "near",
+      "part_of_speech": "i-adjective",
+      "example": "駅は近いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "遠",
+      "word": "遠い",
+      "reading": "とおい",
+      "meaning": "far",
+      "part_of_speech": "i-adjective",
+      "example": "駅は遠いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "通",
+      "word": "通る",
+      "reading": "とおる",
+      "meaning": "to pass through",
+      "part_of_speech": "verb",
+      "example": "この道を通るバスです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "交",
+      "word": "交通",
+      "reading": "こうつう",
+      "meaning": "traffic; transportation",
+      "part_of_speech": "noun",
+      "example": "交通の便がいいです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "地",
+      "word": "地図",
+      "reading": "ちず",
+      "meaning": "map",
+      "part_of_speech": "noun",
+      "example": "地図を見ます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "図",
+      "word": "地図",
+      "reading": "ちず",
+      "meaning": "map",
+      "part_of_speech": "noun",
+      "example": "地図を見ます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "海",
+      "word": "海",
+      "reading": "うみ",
+      "meaning": "sea",
+      "part_of_speech": "noun",
+      "example": "海が見えます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "港",
+      "word": "港",
+      "reading": "みなと",
+      "meaning": "port; harbor",
+      "part_of_speech": "noun",
+      "example": "港に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "池",
+      "word": "池",
+      "reading": "いけ",
+      "meaning": "pond",
+      "part_of_speech": "noun",
+      "example": "池があります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "橋",
+      "word": "橋",
+      "reading": "はし",
+      "meaning": "bridge",
+      "part_of_speech": "noun",
+      "example": "橋を渡ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "建",
+      "word": "建物",
+      "reading": "たてもの",
+      "meaning": "building",
+      "part_of_speech": "noun",
+      "example": "大きい建物です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "物",
+      "word": "建物",
+      "reading": "たてもの",
+      "meaning": "building",
+      "part_of_speech": "noun",
+      "example": "大きい建物です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "部",
+      "word": "部屋",
+      "reading": "へや",
+      "meaning": "room",
+      "part_of_speech": "noun",
+      "example": "部屋に入ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "屋",
+      "word": "部屋",
+      "reading": "へや",
+      "meaning": "room",
+      "part_of_speech": "noun",
+      "example": "部屋に入ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "室",
+      "word": "教室",
+      "reading": "きょうしつ",
+      "meaning": "classroom",
+      "part_of_speech": "noun",
+      "example": "教室に入ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "台",
+      "word": "台所",
+      "reading": "だいどころ",
+      "meaning": "kitchen",
+      "part_of_speech": "noun",
+      "example": "台所にいます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "階",
+      "word": "二階",
+      "reading": "にかい",
+      "meaning": "second floor",
+      "part_of_speech": "noun",
+      "example": "二階に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "窓",
+      "word": "窓",
+      "reading": "まど",
+      "meaning": "window",
+      "part_of_speech": "noun",
+      "example": "窓を開けます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "戸",
+      "word": "戸",
+      "reading": "と",
+      "meaning": "door; sliding door",
+      "part_of_speech": "noun",
+      "example": "戸を開けます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "門",
+      "word": "門",
+      "reading": "もん",
+      "meaning": "gate",
+      "part_of_speech": "noun",
+      "example": "門の前です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "庭",
+      "word": "庭",
+      "reading": "にわ",
+      "meaning": "garden; yard",
+      "part_of_speech": "noun",
+      "example": "庭に花があります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "公",
+      "word": "公園",
+      "reading": "こうえん",
+      "meaning": "park",
+      "part_of_speech": "noun",
+      "example": "公園に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "園",
+      "word": "公園",
+      "reading": "こうえん",
+      "meaning": "park",
+      "part_of_speech": "noun",
+      "example": "公園に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "館",
+      "word": "図書館",
+      "reading": "としょかん",
+      "meaning": "library",
+      "part_of_speech": "noun",
+      "example": "図書館で本を借ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "族",
+      "word": "家族",
+      "reading": "かぞく",
+      "meaning": "family",
+      "part_of_speech": "noun",
+      "example": "家族と話します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "兄",
+      "word": "兄",
+      "reading": "あに",
+      "meaning": "my older brother",
+      "part_of_speech": "noun",
+      "example": "兄は家にいます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "弟",
+      "word": "弟",
+      "reading": "おとうと",
+      "meaning": "younger brother",
+      "part_of_speech": "noun",
+      "example": "弟は学生です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "姉",
+      "word": "姉",
+      "reading": "あね",
+      "meaning": "my older sister",
+      "part_of_speech": "noun",
+      "example": "姉は家にいます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "妹",
+      "word": "妹",
+      "reading": "いもうと",
+      "meaning": "younger sister",
+      "part_of_speech": "noun",
+      "example": "妹は学生です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "夫",
+      "word": "夫",
+      "reading": "おっと",
+      "meaning": "my husband",
+      "part_of_speech": "noun",
+      "example": "夫と出かけます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "妻",
+      "word": "妻",
+      "reading": "つま",
+      "meaning": "my wife",
+      "part_of_speech": "noun",
+      "example": "妻と出かけます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "親",
+      "word": "親",
+      "reading": "おや",
+      "meaning": "parent",
+      "part_of_speech": "noun",
+      "example": "親と話します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "両",
+      "word": "両親",
+      "reading": "りょうしん",
+      "meaning": "both parents; parents",
+      "part_of_speech": "noun",
+      "example": "両親と住んでいます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "祖",
+      "word": "祖母",
+      "reading": "そぼ",
+      "meaning": "my grandmother",
+      "part_of_speech": "noun",
+      "example": "祖母に会います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "歳",
+      "word": "二十歳",
+      "reading": "はたち",
+      "meaning": "twenty years old",
+      "part_of_speech": "noun",
+      "example": "二十歳です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "誕",
+      "word": "誕生日",
+      "reading": "たんじょうび",
+      "meaning": "birthday",
+      "part_of_speech": "noun",
+      "example": "今日は誕生日です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "結",
+      "word": "結婚",
+      "reading": "けっこん",
+      "meaning": "marriage",
+      "part_of_speech": "noun",
+      "example": "結婚しています。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "婚",
+      "word": "結婚",
+      "reading": "けっこん",
+      "meaning": "marriage",
+      "part_of_speech": "noun",
+      "example": "結婚しています。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "彼",
+      "word": "彼",
+      "reading": "かれ",
+      "meaning": "he; him",
+      "part_of_speech": "pronoun",
+      "example": "彼は友達です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "隣",
+      "word": "隣",
+      "reading": "となり",
+      "meaning": "next door; beside",
+      "part_of_speech": "noun",
+      "example": "隣の家です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "何",
+      "word": "何",
+      "reading": "なに",
+      "meaning": "what",
+      "part_of_speech": "pronoun",
+      "example": "何が好きですか。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "誰",
+      "word": "誰",
+      "reading": "だれ",
+      "meaning": "who",
+      "part_of_speech": "pronoun",
+      "example": "誰が来ますか。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "体",
+      "word": "体",
+      "reading": "からだ",
+      "meaning": "body",
+      "part_of_speech": "noun",
+      "example": "体を動かします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "頭",
+      "word": "頭",
+      "reading": "あたま",
+      "meaning": "head",
+      "part_of_speech": "noun",
+      "example": "頭が痛いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "目",
+      "word": "目",
+      "reading": "め",
+      "meaning": "eye",
+      "part_of_speech": "noun",
+      "example": "目を閉じます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "耳",
+      "word": "耳",
+      "reading": "みみ",
+      "meaning": "ear",
+      "part_of_speech": "noun",
+      "example": "耳が痛いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "鼻",
+      "word": "鼻",
+      "reading": "はな",
+      "meaning": "nose",
+      "part_of_speech": "noun",
+      "example": "鼻をかみます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "歯",
+      "word": "歯",
+      "reading": "は",
+      "meaning": "tooth; teeth",
+      "part_of_speech": "noun",
+      "example": "歯を磨きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "足",
+      "word": "足",
+      "reading": "あし",
+      "meaning": "foot; leg",
+      "part_of_speech": "noun",
+      "example": "足が痛いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "手",
+      "word": "手",
+      "reading": "て",
+      "meaning": "hand",
+      "part_of_speech": "noun",
+      "example": "手を洗います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "指",
+      "word": "指",
+      "reading": "ゆび",
+      "meaning": "finger",
+      "part_of_speech": "noun",
+      "example": "指で示します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "心",
+      "word": "心",
+      "reading": "こころ",
+      "meaning": "heart; mind",
+      "part_of_speech": "noun",
+      "example": "心が落ち着きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "元",
+      "word": "元気",
+      "reading": "げんき",
+      "meaning": "healthy; in good spirits",
+      "part_of_speech": "na-adjective",
+      "example": "元気です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "力",
+      "word": "力",
+      "reading": "ちから",
+      "meaning": "strength; power",
+      "part_of_speech": "noun",
+      "example": "力を合わせます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "病",
+      "word": "病院",
+      "reading": "びょういん",
+      "meaning": "hospital",
+      "part_of_speech": "noun",
+      "example": "病院に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "院",
+      "word": "病院",
+      "reading": "びょういん",
+      "meaning": "hospital",
+      "part_of_speech": "noun",
+      "example": "病院に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "医",
+      "word": "医者",
+      "reading": "いしゃ",
+      "meaning": "doctor",
+      "part_of_speech": "noun",
+      "example": "医者に相談します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "者",
+      "word": "医者",
+      "reading": "いしゃ",
+      "meaning": "doctor",
+      "part_of_speech": "noun",
+      "example": "医者に相談します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "薬",
+      "word": "薬",
+      "reading": "くすり",
+      "meaning": "medicine",
+      "part_of_speech": "noun",
+      "example": "薬を飲みます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "局",
+      "word": "薬局",
+      "reading": "やっきょく",
+      "meaning": "pharmacy",
+      "part_of_speech": "noun",
+      "example": "薬局に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "痛",
+      "word": "痛い",
+      "reading": "いたい",
+      "meaning": "painful; sore",
+      "part_of_speech": "i-adjective",
+      "example": "頭が痛いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "熱",
+      "word": "熱",
+      "reading": "ねつ",
+      "meaning": "fever; heat",
+      "part_of_speech": "noun",
+      "example": "熱があります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "紙",
+      "word": "紙",
+      "reading": "かみ",
+      "meaning": "paper",
+      "part_of_speech": "noun",
+      "example": "紙に書きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "字",
+      "word": "字",
+      "reading": "じ",
+      "meaning": "character; written letter",
+      "part_of_speech": "noun",
+      "example": "字を書きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "文",
+      "word": "文",
+      "reading": "ぶん",
+      "meaning": "sentence",
+      "part_of_speech": "noun",
+      "example": "短い文を書きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "語",
+      "word": "日本語",
+      "reading": "にほんご",
+      "meaning": "Japanese language",
+      "part_of_speech": "noun",
+      "example": "日本語を勉強します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "英",
+      "word": "英語",
+      "reading": "えいご",
+      "meaning": "English language",
+      "part_of_speech": "noun",
+      "example": "英語を話します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "漢",
+      "word": "漢字",
+      "reading": "かんじ",
+      "meaning": "kanji; Chinese-derived character",
+      "part_of_speech": "noun",
+      "example": "漢字を読みます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "読",
+      "word": "読む",
+      "reading": "よむ",
+      "meaning": "to read",
+      "part_of_speech": "verb",
+      "example": "本を読む時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "書",
+      "word": "書く",
+      "reading": "かく",
+      "meaning": "to write",
+      "part_of_speech": "verb",
+      "example": "名前を書く場所です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "聞",
+      "word": "聞く",
+      "reading": "きく",
+      "meaning": "to listen; to ask",
+      "part_of_speech": "verb",
+      "example": "音楽を聞く時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "話",
+      "word": "話す",
+      "reading": "はなす",
+      "meaning": "to speak",
+      "part_of_speech": "verb",
+      "example": "日本語で話す練習です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "言",
+      "word": "言う",
+      "reading": "いう",
+      "meaning": "to say",
+      "part_of_speech": "verb",
+      "example": "何と言うか考えます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "思",
+      "word": "思う",
+      "reading": "おもう",
+      "meaning": "to think; to feel",
+      "part_of_speech": "verb",
+      "example": "どう思うか教えてください。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "知",
+      "word": "知る",
+      "reading": "しる",
+      "meaning": "to find out; to know",
+      "part_of_speech": "verb",
+      "example": "町のことを知るために歩きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "考",
+      "word": "考える",
+      "reading": "かんがえる",
+      "meaning": "to think; to consider",
+      "part_of_speech": "verb",
+      "example": "答えを考える時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "教",
+      "word": "教える",
+      "reading": "おしえる",
+      "meaning": "to teach; to tell",
+      "part_of_speech": "verb",
+      "example": "日本語を教える仕事です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "習",
+      "word": "習う",
+      "reading": "ならう",
+      "meaning": "to learn; to take lessons",
+      "part_of_speech": "verb",
+      "example": "日本語を習う予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "勉",
+      "word": "勉強",
+      "reading": "べんきょう",
+      "meaning": "study",
+      "part_of_speech": "noun",
+      "example": "日本語の勉強をします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "強",
+      "word": "強い",
+      "reading": "つよい",
+      "meaning": "strong",
+      "part_of_speech": "i-adjective",
+      "example": "風が強いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "練",
+      "word": "練習",
+      "reading": "れんしゅう",
+      "meaning": "practice",
+      "part_of_speech": "noun",
+      "example": "毎日練習します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "答",
+      "word": "答え",
+      "reading": "こたえ",
+      "meaning": "answer",
+      "part_of_speech": "noun",
+      "example": "答えを書きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "問",
+      "word": "質問",
+      "reading": "しつもん",
+      "meaning": "question",
+      "part_of_speech": "noun",
+      "example": "質問があります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "題",
+      "word": "問題",
+      "reading": "もんだい",
+      "meaning": "question; problem",
+      "part_of_speech": "noun",
+      "example": "問題を読みます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "試",
+      "word": "試験",
+      "reading": "しけん",
+      "meaning": "test; examination",
+      "part_of_speech": "noun",
+      "example": "試験を受けます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "験",
+      "word": "試験",
+      "reading": "しけん",
+      "meaning": "test; examination",
+      "part_of_speech": "noun",
+      "example": "試験を受けます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "宿",
+      "word": "宿題",
+      "reading": "しゅくだい",
+      "meaning": "homework",
+      "part_of_speech": "noun",
+      "example": "宿題をします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "忘",
+      "word": "忘れる",
+      "reading": "わすれる",
+      "meaning": "to forget",
+      "part_of_speech": "verb",
+      "example": "名前を忘れることがあります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "覚",
+      "word": "覚える",
+      "reading": "おぼえる",
+      "meaning": "to remember; to learn by heart",
+      "part_of_speech": "verb",
+      "example": "新しい言葉を覚える練習です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "待",
+      "word": "待つ",
+      "reading": "まつ",
+      "meaning": "to wait",
+      "part_of_speech": "verb",
+      "example": "ここで待つことにします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "持",
+      "word": "持つ",
+      "reading": "もつ",
+      "meaning": "to hold; to carry",
+      "part_of_speech": "verb",
+      "example": "荷物を持つ人です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "取",
+      "word": "取る",
+      "reading": "とる",
+      "meaning": "to take",
+      "part_of_speech": "verb",
+      "example": "本を取る前に聞きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "使",
+      "word": "使う",
+      "reading": "つかう",
+      "meaning": "to use",
+      "part_of_speech": "verb",
+      "example": "これを使う予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "作",
+      "word": "作る",
+      "reading": "つくる",
+      "meaning": "to make",
+      "part_of_speech": "verb",
+      "example": "料理を作る時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "買",
+      "word": "買う",
+      "reading": "かう",
+      "meaning": "to buy",
+      "part_of_speech": "verb",
+      "example": "本を買う予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "売",
+      "word": "売る",
+      "reading": "うる",
+      "meaning": "to sell",
+      "part_of_speech": "verb",
+      "example": "パンを売る店です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "借",
+      "word": "借りる",
+      "reading": "かりる",
+      "meaning": "to borrow",
+      "part_of_speech": "verb",
+      "example": "本を借りる予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "貸",
+      "word": "貸す",
+      "reading": "かす",
+      "meaning": "to lend",
+      "part_of_speech": "verb",
+      "example": "本を貸す前に名前を聞きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "返",
+      "word": "返す",
+      "reading": "かえす",
+      "meaning": "to return something",
+      "part_of_speech": "verb",
+      "example": "本を返す日です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "送",
+      "word": "送る",
+      "reading": "おくる",
+      "meaning": "to send",
+      "part_of_speech": "verb",
+      "example": "手紙を送る予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "受",
+      "word": "受ける",
+      "reading": "うける",
+      "meaning": "to receive; to take a test",
+      "part_of_speech": "verb",
+      "example": "試験を受ける予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "開",
+      "word": "開ける",
+      "reading": "あける",
+      "meaning": "to open something",
+      "part_of_speech": "verb",
+      "example": "窓を開ける前に聞きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "閉",
+      "word": "閉める",
+      "reading": "しめる",
+      "meaning": "to close something",
+      "part_of_speech": "verb",
+      "example": "店を閉める時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "始",
+      "word": "始まる",
+      "reading": "はじまる",
+      "meaning": "to begin",
+      "part_of_speech": "verb",
+      "example": "授業が始まる時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "終",
+      "word": "終わる",
+      "reading": "おわる",
+      "meaning": "to end; to finish",
+      "part_of_speech": "verb",
+      "example": "仕事が終わる時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "止",
+      "word": "止まる",
+      "reading": "とまる",
+      "meaning": "to stop",
+      "part_of_speech": "verb",
+      "example": "ここで止まるバスです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "歩",
+      "word": "歩く",
+      "reading": "あるく",
+      "meaning": "to walk",
+      "part_of_speech": "verb",
+      "example": "歩くのが好きです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "走",
+      "word": "走る",
+      "reading": "はしる",
+      "meaning": "to run",
+      "part_of_speech": "verb",
+      "example": "走るのが好きです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "泳",
+      "word": "泳ぐ",
+      "reading": "およぐ",
+      "meaning": "to swim",
+      "part_of_speech": "verb",
+      "example": "泳ぐのが好きです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "遊",
+      "word": "遊ぶ",
+      "reading": "あそぶ",
+      "meaning": "to play; to spend leisure time",
+      "part_of_speech": "verb",
+      "example": "友達と遊ぶ予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "立",
+      "word": "立つ",
+      "reading": "たつ",
+      "meaning": "to stand",
+      "part_of_speech": "verb",
+      "example": "ここに立つ人です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "座",
+      "word": "座る",
+      "reading": "すわる",
+      "meaning": "to sit",
+      "part_of_speech": "verb",
+      "example": "ここに座ることにします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "乗",
+      "word": "乗る",
+      "reading": "のる",
+      "meaning": "to ride; to board",
+      "part_of_speech": "verb",
+      "example": "電車に乗る予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "降",
+      "word": "降りる",
+      "reading": "おりる",
+      "meaning": "to get off; to descend",
+      "part_of_speech": "verb",
+      "example": "次の駅で降りる予定です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "帰",
+      "word": "帰る",
+      "reading": "かえる",
+      "meaning": "to go home; to return",
+      "part_of_speech": "verb",
+      "example": "家に帰る時間です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "押",
+      "word": "押す",
+      "reading": "おす",
+      "meaning": "to push; to press",
+      "part_of_speech": "verb",
+      "example": "このボタンを押すと開きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "引",
+      "word": "引く",
+      "reading": "ひく",
+      "meaning": "to pull",
+      "part_of_speech": "verb",
+      "example": "この戸は引くと開きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "少",
+      "word": "少ない",
+      "reading": "すくない",
+      "meaning": "few; little",
+      "part_of_speech": "i-adjective",
+      "example": "人が少ないです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "多",
+      "word": "多い",
+      "reading": "おおい",
+      "meaning": "many; much",
+      "part_of_speech": "i-adjective",
+      "example": "人が多いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "全",
+      "word": "全部",
+      "reading": "ぜんぶ",
+      "meaning": "all; everything",
+      "part_of_speech": "noun",
+      "example": "全部ください。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "同",
+      "word": "同じ",
+      "reading": "おなじ",
+      "meaning": "the same",
+      "part_of_speech": "adjectival noun",
+      "example": "同じ本です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "別",
+      "word": "別",
+      "reading": "べつ",
+      "meaning": "different; separate",
+      "part_of_speech": "noun",
+      "example": "別の本です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "他",
+      "word": "他",
+      "reading": "ほか",
+      "meaning": "other; another",
+      "part_of_speech": "noun",
+      "example": "他の店に行きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "有",
+      "word": "有名",
+      "reading": "ゆうめい",
+      "meaning": "famous",
+      "part_of_speech": "na-adjective",
+      "example": "有名な店です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "無",
+      "word": "無料",
+      "reading": "むりょう",
+      "meaning": "free of charge",
+      "part_of_speech": "noun",
+      "example": "ここは無料です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "必",
+      "word": "必要",
+      "reading": "ひつよう",
+      "meaning": "necessary",
+      "part_of_speech": "na-adjective",
+      "example": "予約が必要です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "要",
+      "word": "必要",
+      "reading": "ひつよう",
+      "meaning": "necessary",
+      "part_of_speech": "na-adjective",
+      "example": "予約が必要です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "利",
+      "word": "便利",
+      "reading": "べんり",
+      "meaning": "convenient",
+      "part_of_speech": "na-adjective",
+      "example": "この町は便利です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "便",
+      "word": "便利",
+      "reading": "べんり",
+      "meaning": "convenient",
+      "part_of_speech": "na-adjective",
+      "example": "この町は便利です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "不",
+      "word": "不便",
+      "reading": "ふべん",
+      "meaning": "inconvenient",
+      "part_of_speech": "na-adjective",
+      "example": "ここは少し不便です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "悪",
+      "word": "悪い",
+      "reading": "わるい",
+      "meaning": "bad",
+      "part_of_speech": "i-adjective",
+      "example": "天気が悪いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "重",
+      "word": "重い",
+      "reading": "おもい",
+      "meaning": "heavy",
+      "part_of_speech": "i-adjective",
+      "example": "この本は重いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "軽",
+      "word": "軽い",
+      "reading": "かるい",
+      "meaning": "light in weight",
+      "part_of_speech": "i-adjective",
+      "example": "この本は軽いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "広",
+      "word": "広い",
+      "reading": "ひろい",
+      "meaning": "spacious; wide",
+      "part_of_speech": "i-adjective",
+      "example": "広い部屋です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "狭",
+      "word": "狭い",
+      "reading": "せまい",
+      "meaning": "narrow; cramped",
+      "part_of_speech": "i-adjective",
+      "example": "狭い部屋です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "短",
+      "word": "短い",
+      "reading": "みじかい",
+      "meaning": "short",
+      "part_of_speech": "i-adjective",
+      "example": "短い文です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "低",
+      "word": "低い",
+      "reading": "ひくい",
+      "meaning": "low",
+      "part_of_speech": "i-adjective",
+      "example": "低い山です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "早",
+      "word": "早い",
+      "reading": "はやい",
+      "meaning": "early",
+      "part_of_speech": "i-adjective",
+      "example": "今日は早い電車に乗ります。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "遅",
+      "word": "遅い",
+      "reading": "おそい",
+      "meaning": "late; slow",
+      "part_of_speech": "i-adjective",
+      "example": "今日は帰りが遅いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "速",
+      "word": "速い",
+      "reading": "はやい",
+      "meaning": "fast",
+      "part_of_speech": "i-adjective",
+      "example": "速い電車です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "春",
+      "word": "春",
+      "reading": "はる",
+      "meaning": "spring",
+      "part_of_speech": "noun",
+      "example": "春に花が咲きます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "夏",
+      "word": "夏",
+      "reading": "なつ",
+      "meaning": "summer",
+      "part_of_speech": "noun",
+      "example": "夏は暑いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "秋",
+      "word": "秋",
+      "reading": "あき",
+      "meaning": "autumn",
+      "part_of_speech": "noun",
+      "example": "秋は涼しいです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "冬",
+      "word": "冬",
+      "reading": "ふゆ",
+      "meaning": "winter",
+      "part_of_speech": "noun",
+      "example": "冬は寒いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "雪",
+      "word": "雪",
+      "reading": "ゆき",
+      "meaning": "snow",
+      "part_of_speech": "noun",
+      "example": "雪が降っています。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "風",
+      "word": "風",
+      "reading": "かぜ",
+      "meaning": "wind",
+      "part_of_speech": "noun",
+      "example": "風が強いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "雲",
+      "word": "雲",
+      "reading": "くも",
+      "meaning": "cloud",
+      "part_of_speech": "noun",
+      "example": "雲が見えます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "晴",
+      "word": "晴れ",
+      "reading": "はれ",
+      "meaning": "clear weather",
+      "part_of_speech": "noun",
+      "example": "今日は晴れです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "暗",
+      "word": "暗い",
+      "reading": "くらい",
+      "meaning": "dark",
+      "part_of_speech": "i-adjective",
+      "example": "部屋が暗いです。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "明",
+      "word": "明るい",
+      "reading": "あかるい",
+      "meaning": "bright",
+      "part_of_speech": "i-adjective",
+      "example": "明るい部屋です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "夕",
+      "word": "夕方",
+      "reading": "ゆうがた",
+      "meaning": "early evening",
+      "part_of_speech": "noun",
+      "example": "夕方に会いましょう。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "晩",
+      "word": "今晩",
+      "reading": "こんばん",
+      "meaning": "this evening; tonight",
+      "part_of_speech": "noun",
+      "example": "今晩、電話します。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "予",
+      "word": "予約",
+      "reading": "よやく",
+      "meaning": "reservation",
+      "part_of_speech": "noun",
+      "example": "予約をします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "約",
+      "word": "予約",
+      "reading": "よやく",
+      "meaning": "reservation",
+      "part_of_speech": "noun",
+      "example": "予約をします。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "計",
+      "word": "計画",
+      "reading": "けいかく",
+      "meaning": "plan",
+      "part_of_speech": "noun",
+      "example": "旅行の計画を立てます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "画",
+      "word": "計画",
+      "reading": "けいかく",
+      "meaning": "plan",
+      "part_of_speech": "noun",
+      "example": "旅行の計画を立てます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "度",
+      "word": "一度",
+      "reading": "いちど",
+      "meaning": "once; one time",
+      "part_of_speech": "adverb",
+      "example": "一度行きました。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "飯",
+      "word": "ご飯",
+      "reading": "ごはん",
+      "meaning": "cooked rice; meal",
+      "part_of_speech": "noun",
+      "example": "ご飯を食べます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "肉",
+      "word": "肉",
+      "reading": "にく",
+      "meaning": "meat",
+      "part_of_speech": "noun",
+      "example": "肉を食べます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "米",
+      "word": "米",
+      "reading": "こめ",
+      "meaning": "uncooked rice",
+      "part_of_speech": "noun",
+      "example": "米を洗います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "牛",
+      "word": "牛乳",
+      "reading": "ぎゅうにゅう",
+      "meaning": "milk",
+      "part_of_speech": "noun",
+      "example": "牛乳を飲みます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "豚",
+      "word": "豚肉",
+      "reading": "ぶたにく",
+      "meaning": "pork",
+      "part_of_speech": "noun",
+      "example": "豚肉を買います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "鶏",
+      "word": "鶏肉",
+      "reading": "とりにく",
+      "meaning": "chicken meat",
+      "part_of_speech": "noun",
+      "example": "鶏肉を買います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "卵",
+      "word": "卵",
+      "reading": "たまご",
+      "meaning": "egg",
+      "part_of_speech": "noun",
+      "example": "卵を買います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "野",
+      "word": "野菜",
+      "reading": "やさい",
+      "meaning": "vegetables",
+      "part_of_speech": "noun",
+      "example": "野菜を食べます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "菜",
+      "word": "野菜",
+      "reading": "やさい",
+      "meaning": "vegetables",
+      "part_of_speech": "noun",
+      "example": "野菜を食べます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "果",
+      "word": "果物",
+      "reading": "くだもの",
+      "meaning": "fruit",
+      "part_of_speech": "noun",
+      "example": "果物を食べます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "塩",
+      "word": "塩",
+      "reading": "しお",
+      "meaning": "salt",
+      "part_of_speech": "noun",
+      "example": "塩を入れます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "砂",
+      "word": "砂糖",
+      "reading": "さとう",
+      "meaning": "sugar",
+      "part_of_speech": "noun",
+      "example": "砂糖を入れます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "糖",
+      "word": "砂糖",
+      "reading": "さとう",
+      "meaning": "sugar",
+      "part_of_speech": "noun",
+      "example": "砂糖を入れます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "油",
+      "word": "油",
+      "reading": "あぶら",
+      "meaning": "oil",
+      "part_of_speech": "noun",
+      "example": "油を使います。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "味",
+      "word": "味",
+      "reading": "あじ",
+      "meaning": "taste; flavor",
+      "part_of_speech": "noun",
+      "example": "味を見ます。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "甘",
+      "word": "甘い",
+      "reading": "あまい",
+      "meaning": "sweet",
+      "part_of_speech": "i-adjective",
+      "example": "甘いお菓子です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "辛",
+      "word": "辛い",
+      "reading": "からい",
+      "meaning": "spicy; hot in taste",
+      "part_of_speech": "i-adjective",
+      "example": "辛い料理です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "酸",
+      "word": "酸っぱい",
+      "reading": "すっぱい",
+      "meaning": "sour",
+      "part_of_speech": "i-adjective",
+      "example": "酸っぱい味です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "苦",
+      "word": "苦い",
+      "reading": "にがい",
+      "meaning": "bitter",
+      "part_of_speech": "i-adjective",
+      "example": "苦い薬です。",
+      "stage": "stage-b",
+      "status": "draft"
+    },
+    {
+      "character": "皿",
+      "word": "皿",
+      "reading": "さら",
+      "meaning": "plate; dish",
+      "part_of_speech": "noun",
+      "example": "皿を洗います。",
+      "stage": "stage-b",
+      "status": "draft"
+    }
+  ]
+}
