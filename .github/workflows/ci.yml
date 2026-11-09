@@ -10,6 +10,7 @@ jobs:
   backend:
     name: Backend Lint, Migrations & Tests
     runs-on: windows-latest
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: backend
@@ -38,11 +39,14 @@ jobs:
         run: alembic upgrade head
 
       - name: Run pytest test suite
-        run: pytest -q
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: pytest -v --durations=10
 
   frontend:
     name: Frontend Lint, Typecheck, Tests & Build
     runs-on: windows-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: frontend
