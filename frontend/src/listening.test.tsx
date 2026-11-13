@@ -11,7 +11,9 @@ it('audio selection and contrast retain stable choice IDs and explicit text fall
   const html=renderToStaticMarkup(<ExerciseRenderer exercise={exercise} value="" onChange={()=>{}} disabled={false} onComposition={()=>{}}/>)
   expect(html).toContain('Use text alternative')
   expect(html).toContain('Prepare Clip A')
+  expect(html).toContain('Bundled reference audio · human Japanese listening review pending.')
   expect(html).toContain('not proof of hearing')
+  expect(html).not.toContain('Synthetic reference')
  }
 })
 it('dictation is typed with IME guidance and does not require audio success to enter an answer',()=>{

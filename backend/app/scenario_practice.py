@@ -1,6 +1,5 @@
 """Optional ephemeral coaching; authored study remains the only grading authority."""
 
-import base64
 import json
 
 from pydantic import Field
@@ -18,10 +17,6 @@ class ScenarioAudioRequest(StrictModel):
     preview_draft: bool = False
 
 
-class ScenarioVoiceRequest(ScenarioAudioRequest):
-    text: str = Field(min_length=1, max_length=500)
-
-
 class ScenarioRecordingRequest(ScenarioAudioRequest):
     audio_base64: str = Field(min_length=1, max_length=1_400_000)
 
@@ -36,29 +31,6 @@ def _validate_scene(db: Session, body: ScenarioAudioRequest) -> None:
     scene = stories.source(content, body.scenario_id, body.preview_draft)
     if scene.kind != "dialogue":
         raise DomainError(422, "scenario_kind", "Choose an authored dialogue situation.")
-
-
-def voice_reply(db: Session, config: Config, body: ScenarioVoiceRequest) -> dict:
-    """Explicit playback of bounded advisory text; no authored/progress claim."""
-    _validate_scene(db, body)
-    provider = get_settings(db).tts
-    providers.require_enabled(config, provider, "tts")
-    db.commit()
-    try:
-        data, cached = providers.synthesize(
-            provider, body.text, 1, cache_dir=config.audio_cache_dir
-        )
-    except providers.PROVIDER_ERRORS as error:
-        raise providers.provider_failure("tts", error) from error
-    return {
-        "audio_base64": base64.b64encode(data).decode(),
-        "mime": "audio/wav",
-        "cached": cached,
-        "label": (
-            "Synthetic playback of advisory text. Generated Japanese is unverified; "
-            "no study evidence or reward is saved."
-        ),
-    }
 
 
 def transcribe_reply(db: Session, config: Config, body: ScenarioRecordingRequest) -> dict:

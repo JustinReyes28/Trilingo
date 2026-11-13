@@ -4,7 +4,7 @@ import base64
 
 from sqlalchemy.orm import Session
 
-from app import providers
+from app import audio_pack, providers
 from app.config import Config
 from app.content_extensions import AudioCue
 from app.content_schema import CourseContent, Policy
@@ -15,7 +15,7 @@ from app.review_models import ReviewCard
 from app.services import DomainError, get_settings
 
 
-def reference(db: Session, card_id: str) -> tuple[list[AudioCue], Policy, bool]:
+def reference(db: Session, card_id: str) -> tuple[list[AudioCue], Policy, bool, CourseContent]:
     row = db.get(ReviewCard, card_id)
     if row is None or row.profile_id != "local":
         raise DomainError(404, "review_missing", "Choose a saved recall card.")
@@ -37,46 +37,48 @@ def reference(db: Session, card_id: str) -> tuple[list[AudioCue], Policy, bool]:
             ],
             Policy(spacing="ignore"),
             row.direction == "speaking",
+            content,
         )
     exercise = exercise_map(content)[row.item_id]
     cues = getattr(exercise, "audio", [])
     if not cues:
         raise DomainError(422, "review_audio", "This saved exercise has no authored audio cues.")
-    return cues, exercise.policy, exercise.type == "speaking"
+    return cues, exercise.policy, exercise.type == "speaking", content
 
 
 def prepare(db: Session, config: Config, card_id: str, cue_id: str, speed: float) -> dict:
-    cues, _, _ = reference(db, card_id)
+    cues, _, _, content = reference(db, card_id)
     cue = next((cue for cue in cues if cue.id == cue_id), None)
     if cue is None:
         raise DomainError(404, "audio_cue", "Choose a cue from this saved card.")
-    provider = get_settings(db).tts
-    providers.require_enabled(config, provider, "tts")
-    db.commit()
-    try:
-        data, cached = providers.synthesize(
-            provider,
-            cue.transcript,
-            speed,
-            cache_dir=config.audio_cache_dir,
-            pronunciation_override=cue.pronunciation_override,
-            language=cue.language,
+    clip = audio_pack.lookup(
+        config,
+        content.id,
+        cue.transcript,
+        cue.language,
+        cue.pronunciation_override,
+        preferred_version=content.version,
+    )
+    if clip is None:
+        raise DomainError(
+            503,
+            "audio_unavailable",
+            "Bundled saved-card audio is unavailable. Reveal text or self-rate directly.",
         )
-    except providers.PROVIDER_ERRORS as error:
-        raise providers.provider_failure("tts", error) from error
     return {
-        "audio_base64": base64.b64encode(data).decode(),
-        "mime": "audio/wav",
-        "cached": cached,
+        "audio_base64": base64.b64encode(clip.data).decode(),
+        "mime": clip.mime,
+        "cached": True,
+        "source": "pack",
         "label": (
-            "Synthetic saved-card reference. Human Japanese review pending. "
-            "Preparation changes no recall, schedule, evidence or XP."
+            audio_pack.label(clip, cue.language)
+            + " Preparation changes no recall, schedule, evidence or XP."
         ),
     }
 
 
 def transcribe(db: Session, config: Config, card_id: str, encoded: str) -> dict:
-    cues, policy, speaking = reference(db, card_id)
+    cues, policy, speaking, _ = reference(db, card_id)
     if not speaking:
         raise DomainError(
             422, "review_recording", "Choose a speaking recall card to compare a recording."

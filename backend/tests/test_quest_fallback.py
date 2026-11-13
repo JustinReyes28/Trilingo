@@ -2,12 +2,10 @@ from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
-from test_grammar_audio import wav
 from test_learning import act, complete
 from test_learning import course as course
-from test_listening import audio, enable, listening
+from test_listening import audio, listening
 
-from app import providers
 from app.config import Config
 from app.main import create_app
 
@@ -42,10 +40,16 @@ def test_audio_quest_does_not_count_text_fallback_and_switch_keeps_identity(clie
     assert client.post("/api/v1/quests", json=body).json()["id"] == quest_id
 
 
-def test_partial_audio_credit_retained_once_after_fallback(client, database, monkeypatch):
-    enable(client)
-    monkeypatch.setattr(providers, "synthesize", lambda *a, **k: (wav(), False))
-    with TestClient(create_app(Config(database_url=database, tts_enabled=True))) as enabled:
+def test_partial_audio_credit_retained_once_after_fallback(database, fixture_audio_pack):
+    with TestClient(
+        create_app(
+            Config(
+                database_url=database,
+                audio_pack_dir=fixture_audio_pack,
+                audio_pack_enabled=True,
+            )
+        )
+    ) as enabled:
         quest = enabled.post(
             "/api/v1/quests", json={"request_id": str(uuid4()), "kind": "listening", "target": 2}
         ).json()

@@ -28,7 +28,7 @@ from app.config import ROOT, Config
 from app.db import make_engine
 from app.models import Preferences, Profile
 from app.schemas import Settings
-from app.services import DomainError
+from app.services import DomainError, _normalize_settings_data
 
 logger = logging.getLogger("trilingo.backup")
 
@@ -488,6 +488,14 @@ def restore_backup(
             # Reconfigure engine and session factory
             new_engine = make_engine(config.database_url)
             session_factory.configure(bind=new_engine)
+
+        with session_factory() as session:
+            for pref in session.query(Preferences).all():
+                if isinstance(pref.data, dict):
+                    cleaned = _normalize_settings_data(pref.data)
+                    if cleaned != pref.data:
+                        pref.data = cleaned
+            session.commit()
 
         return RestoreResultOut(
             restored=True,

@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import { useEffect, useRef, useState } from 'react'
 import { StudyTimer } from './StudyTimer'
 import { Explanation } from './Explanation'
@@ -12,6 +11,10 @@ import { Badge, Button, FeedbackPanel, ProgressBar } from './components'
 import { answerReady, emptyAnswer, ExerciseRenderer } from './ExerciseRenderer'
 import { clearPendingStudy, commitStudy, pendingStudy, startStudy, type PendingStudy } from './studyApi'
 import { StudySchema, type Answer, type Study, type StudyAction } from './studySchemas'
+import { AudioSchema } from './practiceSchemas'
+import type { PreparedAudio } from './ListeningExercise'
+
+const StudyAudioSchema=AudioSchema.extend({session:StudySchema})
 
 export function ExerciseSession({sessionId,onExit,onChanged,onOpen}:{sessionId:string;onExit:()=>void;onChanged:()=>void;onOpen:(id:string)=>void}){
  const [session,setSession]=useState<Study|null>(null)
@@ -49,12 +52,12 @@ export function ExerciseSession({sessionId,onExit,onChanged,onOpen}:{sessionId:s
   if(!session||!exercise||operation||lock.current||composing)return false
   return commit({path:actionPath,body:{request_id:session.next_action_id,expected_revision:session.revision,action:'hint',exercise_id:exercise.id}})
  }
- async function prepareAudio(cueId:string,speed:number):Promise<string>{
+ async function prepareAudio(cueId:string,speed:number):Promise<PreparedAudio>{
   if(!session||!exercise||lock.current||operation)throw new Error('Wait for the saved action or reload the session.')
   const key=exercise.id+':'+cueId+':'+speed
   const body=audioRequests.current.get(key)??{request_id:crypto.randomUUID(),expected_revision:session.revision,speed}
   audioRequests.current.set(key,body);lock.current=true;setBusy(true)
-  try{const saved=await request('/sessions/'+session.id+'/exercises/'+exercise.id+'/audio/'+cueId,z.object({audio_base64:z.string(),session:StudySchema}),{method:'POST',body:JSON.stringify(body)});setSession(saved.session);audioRequests.current.delete(key);setError('');const bytes=Uint8Array.from(atob(saved.audio_base64),c=>c.charCodeAt(0));return URL.createObjectURL(new Blob([bytes],{type:'audio/wav'}))}catch(err){if(err instanceof ApiError&&['stale_revision','request_conflict','completed'].includes(err.code))setError(err.message);throw err}finally{setBusy(false);lock.current=false}
+  try{const saved=await request('/sessions/'+session.id+'/exercises/'+exercise.id+'/audio/'+cueId,StudyAudioSchema,{method:'POST',body:JSON.stringify(body)});setSession(saved.session);audioRequests.current.delete(key);setError('');const bytes=Uint8Array.from(atob(saved.audio_base64),c=>c.charCodeAt(0));return {url:URL.createObjectURL(new Blob([bytes],{type:saved.mime})),label:saved.label}}catch(err){if(err instanceof ApiError&&['stale_revision','request_conflict','completed'].includes(err.code))setError(err.message);throw err}finally{setBusy(false);lock.current=false}
  }
  async function saveSpeech(encoded:string):Promise<TranscriptResult>{
   if(!session||!exercise||exercise.type!=='speaking'||lock.current||operation)throw new Error('Wait for the saved action or reload this session.')

@@ -4,7 +4,7 @@ Status: **planning only; no packaged application or installer exists or is verif
 
 ## Outcome and release boundary
 
-Deliver `trilingo-setup-<version>-windows-x64.exe`: an offline-capable, per-user installer that supplies the application runtime, installs Start menu shortcuts and an uninstaller, and launches the existing original Trilingo learning experience. The learner should not need Node, npm, Python, PowerShell commands, Docker or an internet connection for authored core study after installation. Optional local AI/TTS/STT remains separately configured and honestly unavailable when absent.
+Deliver `trilingo-setup-<version>-windows-x64.exe`: an offline-capable, per-user installer that supplies the application runtime, installs Start menu shortcuts and an uninstaller, and launches the existing original Trilingo learning experience. The learner should not need Node, npm, Python, PowerShell commands, Docker or an internet connection for authored core study and bundled MP3 audio playback after installation. Optional local AI (`AI_ENABLED`) and STT (`STT_ENABLED`) remain separately configured and honestly unavailable when absent; zero runtime TTS engines or TTS model downloads exist.
 
 A packaging prototype may use the honestly labeled published starter slice while Plan 9.2 is incomplete. It cannot be described as the full A-B release, satisfy content/provider gates, or bypass the Phase 10 completion gate. Public distribution also needs the licenses, release evidence and explicit publication authorization in [Phase 11](PHASE_11_OPEN_SOURCE_LAUNCH.md). Windows packaging does not establish an Android port or cross-device synchronization; see the [Android port plan](ANDROID_PORT_PLAN.md).
 
@@ -15,11 +15,11 @@ Initial target recommendation: Windows x64 on the user's actual supported Window
 These are inspected source facts, not completed packaging work:
 
 - [`scripts/start.ps1`](../../scripts/start.ps1) checks existing `.venv`/frontend dependencies, runs Alembic and the idempotent content importer, starts Uvicorn plus the Vite development server, and opens port 5173. It owns its child processes and logs to repository `.data`. It is a development launcher, not an installer build input to execute unchanged on an end-user machine.
-- [`backend/app/config.py`](../../backend/app/config.py) derives `ROOT` from source layout, reads `ROOT/.env`, and defaults the learner database and audio cache below `ROOT/.data`. Relative database/cache paths also resolve there. Resource roots and writable learner data must be separated before freezing.
+- [`backend/app/config.py`](../../backend/app/config.py) derives `ROOT` from source layout, reads `ROOT/.env`, defaults the learner database and backups below `ROOT/.data`, and defaults `audio_pack_dir` to `ROOT/content/audio` (there is no runtime `AUDIO_CACHE_DIR`). Resource roots and writable learner data must be separated before freezing.
 - [`frontend/src/api.ts`](../../frontend/src/api.ts) uses a Vite build-time API URL with a fixed port-8000 default. A packaged same-origin API/runtime bootstrap needs a validated implementation; changing a runtime environment variable after a build does not rewrite its compiled frontend.
 - [`backend/app/main.py`](../../backend/app/main.py) creates the API, installs local CORS and request-size middleware, checks migration head through Alembic resources, and disposes its engine during shutdown. It does not currently serve the built frontend or implement launcher capability authentication.
 - [`backend/app/cli.py`](../../backend/app/cli.py) validates/imports immutable course versions without resetting progress. [`backend/migrations/env.py`](../../backend/migrations/env.py) uses the central config and versioned migrations. Bundle those resources deliberately rather than relying on the working directory.
-- The existing runtime default is `.data/trilingo.db`, schema head 0013 at this handoff, source `ja-starter` 0.1.21. Re-read the current handoff and actual versions before a future build. No source-controlled learner DB, `.env`, logs, recordings, provider models, test databases, `.tools`, review packets or `node_modules` belong in the installer.
+- The existing runtime default is `.data/trilingo.db`, schema head `0014` (`0014_remove_tts_settings` strips legacy `tts` and `voice` preferences; updated 2026-11-13), source `ja-starter` 0.1.21. Re-read the current handoff and actual versions before a future build. No source-controlled learner DB, `.env`, logs, recordings, provider models, test databases, `.tools`, review packets, `node_modules`, or script-only `mutagen` (`GPL-2.0-or-later`) belong in the runtime installer.
 - Phase 10 backup/restore, installer lifecycle, signing and packaged security/clean-install gates remain open. Existing frontend/backend checks do not prove a frozen build works.
 
 ## Proposed architecture and decisions
@@ -34,12 +34,12 @@ Proposed installed layout, to validate in the first spike:
 %LOCALAPPDATA%\Programs\Trilingo\       installed executables/read-only app resources
   Trilingo.exe                         owned launcher and packaged backend entry point
   _internal\...                        pinned Python runtime/dependencies/resources
+  _internal\content\audio\...          read-only bundled MP3 pack (90.4 MB)
   licenses\...                         notices and component license inventory
 
 %LOCALAPPDATA%\Trilingo\               learner-owned writable app data
   data\trilingo.db                     migration-controlled durable learning records
   backups\...                          verified pre-upgrade/recovery snapshots
-  cache\audio\...                      disposable generated references
   logs\...                             bounded, redacted rotating logs
   config\...                           validated local configuration, if required
 ```
@@ -71,13 +71,13 @@ Each package is unchecked. On a future implementation instruction, implement one
 - [ ] Inventory installed PyInstaller/Inno/Windows signing tools and caches without installing anything. Decide and pin compatible build-tool versions in a dedicated build dependency manifest/lock; do not add packaging tools to learner runtime dependencies unnecessarily.
 - [ ] Make a minimal frozen proof using an isolated QA data directory: imports, Pydantic/SQLAlchemy, FSRS/tzdata, Alembic discovery and a bundled content file. Inventory hooks/native bindings/data files that static import discovery misses.
 - [ ] Record an architecture decision: default browser plus owned launcher versus a native host window; include accessibility, Japanese input, shutdown, startup time, measured bundle size and additional dependencies. Retain the default-browser choice unless evidence requires a different host.
-- [ ] Produce a file manifest, license inventory, measured installed/build/temp size and toolchain transfer estimate. Stop and ask before any missing dependency/tool download.
+- [ ] Produce a file manifest, license inventory, measured installed/build/temp size and toolchain transfer estimate. The authored audio pack measures **90.4 MB** (`4,394` MP3 clips at 128 kbps plus a 2.4 MB manifest) and must be included in the payload estimate; zero TTS engines, Kokoro containers, model weights, or script-only `mutagen` (`GPL-2.0-or-later`) belong in the runtime payload; re-measure the installer itself after packaging.
 
 Evidence: `docs/verification/windows-exe/<version>/feasibility.md`, exact local commands/exit codes, isolated paths, build manifest and decision. Failed hooks or unavailable tools leave the spike partial; they are not a reason to download silently.
 
 ### EXE-1 — Paths, packaged resources and lifecycle
 
-- [ ] Introduce focused validated resource/data path helpers that work from source and frozen layouts. Bundle built frontend assets, content, Alembic configuration/revisions and required package data. Respect PyInstaller resource-path behavior rather than treating its temporary/internal resources as durable storage. [PyInstaller runtime paths](https://pyinstaller.org/en/stable/runtime-information.html).
+- [ ] Introduce focused validated resource/data path helpers that work from source and frozen layouts. Bundle built frontend assets, content (including the versioned `content/audio/<course>/<version>/` MP3 pack), Alembic configuration/revisions and required package data. Respect PyInstaller resource-path behavior rather than treating its temporary/internal resources as durable storage. [PyInstaller runtime paths](https://pyinstaller.org/en/stable/runtime-information.html).
 - [ ] Preserve migration-driven persistence; no runtime `create_all`, bundled prepopulated personal DB or manual schema patch. If any new persistent settings change the schema, add the corresponding Alembic migration and forward-upgrade tests.
 - [ ] Implement same-origin production frontend serving, launcher entry point, single-instance/port ownership, authentication/origin protection, readiness and graceful shutdown defined above. Add a development/QA data override that cannot silently target the default learner directory.
 - [ ] Defer the source application's global creation until explicit packaged config is installed where necessary; never accidentally create or query a DB beside the frozen executable while discovering resources.
@@ -92,7 +92,7 @@ Depends on the Phase 10 backup/restore service contract, which is not implemente
 
 - [ ] Version a manifest declaring app/schema/content versions, snapshot timestamp, included files/entities, checksums and exclusions. Preserve immutable content snapshots required by old sessions/cards/writing revisions.
 - [ ] Produce a consistent live SQLite snapshot using the SQLite backup API, with integrity/reference checks and bounded lock/retry behavior. Do not copy only `trilingo.db` while ignoring an active WAL. The SQLite backup API is designed for consistent database snapshots. [SQLite backup API](https://sqlite.org/backup.html).
-- [ ] Include durable learning/progress, XP/activity, settings, attempts/assistance/skips, writing/revisions, FSRS states/logs, collections, optional personal records and owned content. Exclude credentials, disposable caches and transient recordings by default; clearly preview optional retained samples.
+- [ ] Include durable learning/progress, XP/activity, settings, attempts/assistance/skips, writing/revisions, FSRS states/logs, collections, optional personal records and owned content. Exclude credentials and transient recordings by default (no runtime audio cache directory exists); clearly preview optional retained samples.
 - [ ] Before migrating an existing installed profile, ensure exclusive app ownership, show upgrade/recovery status, validate available space and create/verify a recoverable pre-upgrade snapshot. If backup/validation fails, stop before migration and leave the old database intact.
 - [ ] Prefer a migration/import preflight against a snapshot in staging. Close all live handles before an atomic same-volume switch, preserving the original until the new version passes integrity/readiness validation. Use a crash-recoverable journal/state marker; never leave two writers or silently lose writes recorded after the snapshot.
 - [ ] Handle interrupted backup/migration/import/switch, invalid/missing resources, low disk, locked files and antivirus denial with a truthful resumable recovery path. Do not assume all SQLite schema operations can be rolled back by one application transaction.
@@ -128,7 +128,7 @@ Evidence: clean standard-user installation, cancel/retry, launch/relaunch, same-
 - [ ] Verify kana/ruby, Japanese IME composition, guided writing autosave/conflict/revision, unassessed evidence labels, grammar/dialogue recovery, saved-item/collection navigation and same-card early FSRS review. Compare records across restart/upgrade/restore.
 - [ ] Inspect 320/390/tablet/desktop, keyboard-only focus/labels, screen reader, zoom/reduced motion and physical input. Record exact browser/OS/device; automated snapshots do not close physical IME/accessibility gates.
 - [ ] Confirm expected outbound traffic with external internet blocked: core app still works; no update/telemetry/font/CDN/model/bootstrap request occurs. Separate browser/Windows background traffic from app-origin requests before making a precise claim.
-- [ ] Verify microphone permission denial/cancel/playback/delete and optional installed Japanese providers with real engine/model/voice evidence. Provider absence does not block core startup, but it leaves the full speaking release gate open. No provider/model is bundled or downloaded by default.
+- [ ] Verify bundled `content/audio/` MP3 playback (`0.75x` with `preservesPitch=true` and `503 audio_unavailable` text fallback when disabled), microphone permission denial/cancel/playback/delete, and optional installed local AI (`AI_ENABLED`) and Japanese STT (`STT_ENABLED`) with real engine/model evidence. Zero runtime TTS engine or model weights are bundled or downloaded. Provider absence does not block core startup, but unverified STT/human audio review leaves the full speaking/listening release gates open.
 - [ ] Test malicious origins/hosts, unauthenticated data reads/writes, bootstrap reuse, another local process, static path traversal, invalid backups, bounded media uploads, stale-instance metadata, simultaneous launch, suspend/resume, OS shutdown, crashes and low disk.
 - [ ] Measure cold/warm startup, idle memory, final installer/installed size and representative large-history operations with the declared content scope. Record targets before optimizing; do not hide existing bundle warnings or invent performance results.
 - [ ] Complete Phase 10's full regression, backup round trip and manual critical flow; reconcile every remaining gate in its owning phase. Only then label the installed application a verified release for its declared scope.
@@ -160,7 +160,9 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '<actual-output>\trilingo-setup-<ver
 
 Expected future deliverables: a dedicated pinned build-tool manifest/lock, resource/data-path adapter, production same-origin hosting, authenticated owned launcher, PyInstaller spec/hooks, Inno installer script, upgrade/recovery implementation and tests, local build instructions, user install/update/uninstall/backup guide, and versioned evidence under `docs/verification/windows-exe/<version>/`. Name additional scripts/tests only when implemented; do not report placeholder paths as working commands.
 
-## Cellular approval and estimates
+## Historical transfer notes (superseded 2026-11-09 & 2026-11-13)
+
+*(The 2026-10-25 cellular-transfer paragraphs below are historical; the connection has been unmetered since 2026-11-09 per [AGENTS.md](../../AGENTS.md#network-and-external-actions), and as of 2026-11-13 zero runtime TTS engines or TTS models are downloaded or bundled in the Windows installer — only the committed `90.4 MB` `content/audio/` MP3 pack ships.)*
 
 Ordinary focused official documentation reads are allowed. No package/runtime/browser/model/container download, Git transfer, code-signing upload, installer upload or remote publishing is authorized by this plan.
 

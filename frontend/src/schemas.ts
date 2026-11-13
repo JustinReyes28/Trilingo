@@ -2,10 +2,10 @@ import { z } from 'zod'
 
 export const ProfileSchema = z.object({ id: z.string(), name: z.string(), timezone: z.string() })
 export type Profile = z.infer<typeof ProfileSchema>
-const ProviderSchema = z.object({ enabled: z.boolean(), provider: z.string(), base_url: z.string(), model: z.string(), voice: z.string(), timeout: z.number() })
-export const SettingsSchema = z.object({ daily_goal: z.number().nullable(), show_goal: z.boolean(), furigana: z.enum(['always','unfamiliar','hidden']), romaji: z.boolean(), reduced_motion: z.boolean(), sound: z.boolean(), show_statistics: z.boolean(), practice_batch: z.number(), interests:z.array(z.string()).default([]), preferred_focus:z.enum(['mixed','reading','typing','meaning']).default('mixed'), accent:z.enum(['path','plum']).default('path'), show_quests:z.boolean().default(true), monthly_quest_target:z.number().default(20), show_timer:z.boolean().default(false), show_reminder:z.boolean().default(false), retention:z.number().default(0.9), ai: ProviderSchema, tts: ProviderSchema, stt: ProviderSchema })
+const ProviderSchema = z.object({ enabled: z.boolean(), provider: z.string(), base_url: z.string(), model: z.string(), timeout: z.number() })
+export const SettingsSchema = z.object({ daily_goal: z.number().nullable(), show_goal: z.boolean(), furigana: z.enum(['always','unfamiliar','hidden']), romaji: z.boolean(), reduced_motion: z.boolean(), sound: z.boolean(), show_statistics: z.boolean(), practice_batch: z.number(), interests:z.array(z.string()).default([]), preferred_focus:z.enum(['mixed','reading','typing','meaning']).default('mixed'), accent:z.enum(['path','plum']).default('path'), show_quests:z.boolean().default(true), monthly_quest_target:z.number().default(20), show_timer:z.boolean().default(false), show_reminder:z.boolean().default(false), retention:z.number().default(0.9), ai: ProviderSchema, stt: ProviderSchema })
 export type Settings = z.infer<typeof SettingsSchema>
-export const HealthSchema = z.object({ status: z.literal('ok'), database: z.literal('ready'), schema_version: z.string(), features: z.object({lessons:z.boolean(),ai:z.boolean(),tts:z.boolean(),stt:z.boolean()}) })
+export const HealthSchema = z.object({ status: z.literal('ok'), database: z.literal('ready'), schema_version: z.string(), features: z.object({lessons:z.boolean(),ai:z.boolean(),stt:z.boolean()}) })
 const StatusSchema = z.enum(['draft','reviewed','published'])
 export const SegmentSchema = z.object({surface:z.string(),reading:z.string().nullable().optional(),vocabulary_id:z.string().nullable().optional()})
 const LessonMetaSchema = z.object({id:z.string(),title:z.string(),japanese_title:z.string(),objective:z.string(),order:z.number(),status:StatusSchema,preparation:z.array(z.string())})

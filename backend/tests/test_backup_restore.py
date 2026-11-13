@@ -45,7 +45,7 @@ def test_backup_export_creates_valid_archive_and_manifest(tmp_path: Path, monkey
         assert manifest_data["format_version"] == 1
         assert manifest_data["profile"]["name"] == "Test Adventurer"
         assert manifest_data["profile"]["timezone"] == "Asia/Tokyo"
-        assert manifest_data["schema_version"] == "0013"
+        assert manifest_data["schema_version"] == "0014"
         assert manifest_data["include_drawing_samples"] is True
         assert "credentials" in manifest_data["exclusions"]
 
@@ -92,7 +92,7 @@ def test_backup_preview_and_validation(tmp_path: Path, monkeypatch):
         assert preview["valid"] is True
         assert preview["compatible"] is True
         assert preview["app_name"] == "Trilingo"
-        assert preview["schema_version"] == "0013"
+        assert preview["schema_version"] == "0014"
         assert "warning" in preview
 
         # 2. Corrupt archive rejection
@@ -316,4 +316,129 @@ def test_incompatible_future_schema_and_tamper_detection(tmp_path: Path, monkeyp
         )
         assert restore_future.status_code == 422
         assert restore_future.json()["error"]["code"] == "incompatible_schema"
+
+
+def test_restore_pre_0014_backup_with_legacy_tts_preferences(tmp_path: Path, monkeypatch):
+    import hashlib
+
+    from alembic import command
+    from alembic.config import Config as AlembicConfig
+
+    legacy_db_file = tmp_path / "legacy_0013.db"
+    live_db_file = tmp_path / "live_0014.db"
+    backups_dir = tmp_path / "backups"
+    legacy_url = f"sqlite:///{legacy_db_file.as_posix()}"
+    live_url = f"sqlite:///{live_db_file.as_posix()}"
+
+    cfg = AlembicConfig("alembic.ini")
+    monkeypatch.setenv("DATABASE_URL", legacy_url)
+    command.upgrade(cfg, "0013")
+
+    legacy_prefs = {
+        "daily_goal": 35,
+        "show_goal": True,
+        "furigana": "unfamiliar",
+        "romaji": True,
+        "reduced_motion": False,
+        "sound": False,
+        "show_statistics": True,
+        "practice_batch": 10,
+        "interests": [],
+        "preferred_focus": "mixed",
+        "accent": "path",
+        "show_quests": True,
+        "monthly_quest_target": 20,
+        "show_timer": False,
+        "show_reminder": False,
+        "retention": 0.9,
+        "ai": {
+            "enabled": True,
+            "provider": "lm-studio",
+            "base_url": "http://127.0.0.1:1234",
+            "model": "qwen",
+            "voice": "ignored-ai-voice",
+            "timeout": 20,
+        },
+        "tts": {
+            "enabled": True,
+            "provider": "kokoro",
+            "base_url": "http://127.0.0.1:8880",
+            "model": "kokoro",
+            "voice": "jf_alpha",
+            "timeout": 20,
+        },
+        "stt": {
+            "enabled": False,
+            "provider": "disabled",
+            "base_url": "http://127.0.0.1:1234",
+            "model": "",
+            "voice": "ignored-stt-voice",
+            "timeout": 20,
+        },
+    }
+    conn = sqlite3.connect(str(legacy_db_file))
+    conn.execute("INSERT INTO profiles (id, name, timezone) VALUES ('local', 'W7 Learner', 'UTC')")
+    conn.execute(
+        "INSERT INTO preferences (profile_id, data) VALUES ('local', ?)",
+        (json.dumps(legacy_prefs),),
+    )
+    conn.commit()
+    conn.close()
+
+    legacy_db_bytes = legacy_db_file.read_bytes()
+    legacy_manifest = {
+        "format_version": 1,
+        "app_name": "Trilingo",
+        "app_version": "0.1.0",
+        "created_at": "2026-11-08T00:00:00+00:00",
+        "schema_version": "0013",
+        "course_id": None,
+        "course_version": None,
+        "database_sha256": hashlib.sha256(legacy_db_bytes).hexdigest(),
+        "database_size_bytes": len(legacy_db_bytes),
+        "profile": {"id": "local", "name": "W7 Learner", "timezone": "UTC"},
+        "summary": {"total_xp": 0},
+        "included_entities": ["profiles", "preferences"],
+        "exclusions": ["credentials"],
+        "include_drawing_samples": True,
+    }
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("manifest.json", json.dumps(legacy_manifest))
+        zf.writestr("database.sqlite", legacy_db_bytes)
+    legacy_zip = buf.getvalue()
+
+    monkeypatch.setenv("DATABASE_URL", live_url)
+    command.upgrade(cfg, "head")
+    app = create_app(Config(database_url=live_url, backups_dir=backups_dir, qa_mode=True))
+    with TestClient(app) as client:
+        preview = client.post(
+            "/api/v1/backup/preview",
+            content=legacy_zip,
+            headers={"Content-Type": "application/zip"},
+        )
+        assert preview.status_code == 200, preview.text
+        assert preview.json()["compatible"] is True
+
+        restored = client.post(
+            "/api/v1/backup/restore?confirm=true",
+            content=legacy_zip,
+            headers={"Content-Type": "application/zip"},
+        )
+        assert restored.status_code == 200, restored.text
+        assert restored.json()["restored"] is True
+        assert client.get("/api/v1/profile").json()["name"] == "W7 Learner"
+
+        settings = client.get("/api/v1/settings")
+        assert settings.status_code == 200, settings.text
+        settings_data = settings.json()
+        assert "tts" not in settings_data
+        assert "voice" not in settings_data["ai"]
+        assert "voice" not in settings_data["stt"]
+        assert settings_data["daily_goal"] == 35
+        assert settings_data["ai"]["model"] == "qwen"
+
+        updated = client.patch("/api/v1/settings", json={"daily_goal": 50})
+        assert updated.status_code == 200, updated.text
+        assert updated.json()["daily_goal"] == 50
 

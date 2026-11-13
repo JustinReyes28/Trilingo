@@ -14,7 +14,6 @@ const defaultProvider = {
   provider: 'disabled',
   base_url: 'http://127.0.0.1:1234',
   model: '',
-  voice: '',
   timeout: 20,
 }
 
@@ -28,8 +27,24 @@ const sampleSettings = SettingsSchema.parse({
   show_statistics: true,
   practice_batch: 10,
   ai: defaultProvider,
-  tts: { ...defaultProvider, provider: 'kokoro' },
   stt: defaultProvider,
+})
+
+it('renders optional AI and STT provider settings without TTS or Kokoro voice fields', () => {
+  const html = renderToStaticMarkup(
+    <ProfilePage profile={sampleProfile} settings={sampleSettings} onSaved={() => {}} />
+  )
+
+  expect(html).toContain('Optional local providers')
+  expect(html).toContain('AI explanations')
+  expect(html).toContain('Japanese speech recognition')
+  expect(html).toContain('AI_ENABLED or STT_ENABLED')
+  expect(html).toContain('Authored reference audio is bundled locally with zero TTS provider setup or model downloads')
+  expect(html).not.toContain('Japanese speech output')
+  expect(html).not.toContain('TTS_ENABLED')
+  expect(html).not.toContain('kokoro')
+  expect(html).not.toContain('jf_/jm_')
+  expect(html).not.toContain('>Voice<')
 })
 
 it('renders backup export, restore, and reset controls on profile page', () => {

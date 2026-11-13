@@ -12,7 +12,7 @@ Every contribution must honor these three rules:
 
 1. **Unrestricted study:** Learning stays self-directed. All published lessons, units, and review modes must remain accessible without hearts, energy locks, timers, paid gates, or cooldowns. Never add artificial friction.
 2. **Honest evidence:** Assisted, revealed, or skipped exercises must never be counted as unassisted mastery. At the same time, mistakes must never block continuation or penalize access.
-3. **Local-first and private:** Core learning, data persistence, and grading must work 100% offline. No third-party tracking, telemetry, or mandatory cloud accounts. Local AI or TTS/STT are strictly optional helpers.
+3. **Local-first and private:** Core learning, data persistence, and grading must work 100% offline. No third-party tracking, telemetry, or mandatory cloud accounts. Reference audio plays from the bundled static MP3 pack, and local AI or STT are strictly optional helpers.
 
 ---
 

@@ -105,7 +105,7 @@ JLPT-oriented vocabulary/grammar/reading/listening tags may be added only agains
 - Phase 5: reading progression from graded passages to argument/source comparison.
 - Phase 6: typed production, draft storage, writing workshop, revisions, rubric/portfolio evidence.
 - Phase 7: language/paragraph/rhetorical instruction, authored feedback, optional explanations.
-- Phase 8: level-appropriate listening, reading aloud, discussion, and existing Kokoro/local provider adapters.
+- Phase 8: level-appropriate listening via bundled reference audio, reading aloud, text-only AI scenario coaching, and optional local Whisper STT.
 - Phase 9: review of validated concepts and honest skill/activity evidence.
 - Phase 10: each release's scope audit, backup/restore, quality gates, and published limitations.
 - Phase 11: open-source GitHub publication and launch communications; campaign claims must match the audited release and its reviewed/draft content scope.

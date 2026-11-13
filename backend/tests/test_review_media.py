@@ -6,7 +6,6 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from test_grammar_audio import wav
 from test_learning import course as course
-from test_listening import enable
 from test_speaking import enable_stt
 
 from app import providers
@@ -39,12 +38,11 @@ def test_word_audio_directions_are_self_rated_and_provider_failure_keeps_core_re
     assert "こんにちは" not in listening["prompt"]
     assert listening["audio_cues"] == [{"id": "reference", "label": "saved word reference"}]
     assert spoken["supports_recording"] and not listening["supports_recording"]
-    assert (
-        client.post(
-            f"/api/v1/review/cards/{listening['id']}/audio/reference", json={"speed": 1}
-        ).status_code
-        == 503
+    missing = client.post(
+        f"/api/v1/review/cards/{listening['id']}/audio/reference", json={"speed": 1}
     )
+    assert missing.status_code == 503
+    assert missing.json()["error"]["code"] == "audio_unavailable"
     assert client.get(f"/api/v1/review/cards/{listening['id']}").json() == listening
     assert client.get("/api/v1/progress").json()["total_xp"] == 0
     rating = {"request_id": str(uuid4()), "expected_revision": 0, "rating": "Good"}
@@ -57,7 +55,7 @@ def test_word_audio_directions_are_self_rated_and_provider_failure_keeps_core_re
 
 
 def test_collection_audio_uses_original_word_and_existing_fsrs_state(
-    client, database, monkeypatch, course
+    client, database, fixture_audio_pack, course
 ):
     collection = client.post(
         "/api/v1/courses/ja-starter/collections",
@@ -85,15 +83,15 @@ def test_collection_audio_uses_original_word_and_existing_fsrs_state(
     word.status = "draft"
     with sessions(client.app.state.engine)() as db:
         import_content(db, updated)
-    enable(client)
-    calls = []
-
-    def synthesize(provider, text, speed, **kwargs):
-        calls.append((text, speed, kwargs["pronunciation_override"]))
-        return wav(), False
-
-    monkeypatch.setattr(providers, "synthesize", synthesize)
-    with TestClient(create_app(Config(database_url=database, tts_enabled=True))) as enabled:
+    with TestClient(
+        create_app(
+            Config(
+                database_url=database,
+                audio_pack_dir=fixture_audio_pack,
+                audio_pack_enabled=True,
+            )
+        )
+    ) as enabled:
         repeated = enabled.post(route + "/recall", json={"direction": "listening"}).json()["cards"][
             0
         ]
@@ -104,7 +102,9 @@ def test_collection_audio_uses_original_word_and_existing_fsrs_state(
             f"/api/v1/review/cards/{spoken['id']}/audio/reference", json={"speed": 0.75}
         )
         assert response.status_code == 200, response.text
-        assert calls == [("こんにちは", 0.75, None)]
+        body = response.json()
+        assert body["source"] == "pack"
+        assert body["mime"] == "audio/mpeg"
         assert enabled.get(f"/api/v1/review/cards/{rated['id']}").json() == rated
         assert enabled.get("/api/v1/progress").json()["total_xp"] == 5
 

@@ -105,7 +105,9 @@ def test_ai_disabled_authored_fallback_and_audio_failures_never_change_progress(
     explanation = client.post("/api/v1/explanations", json=body).json()
     assert explanation["authored"] and explanation["generated"] is None
     reference = {"course_id": "ja-starter", "item_id": "ja-word-hello"}
-    assert client.post("/api/v1/audio/speech", json=reference).status_code == 503
+    speech_err = client.post("/api/v1/audio/speech", json=reference)
+    assert speech_err.status_code == 503
+    assert speech_err.json()["error"]["code"] == "audio_unavailable"
     assert (
         client.post(
             "/api/v1/audio/transcriptions", json={**reference, "audio_base64": "invalid"}
@@ -118,8 +120,12 @@ def test_ai_disabled_authored_fallback_and_audio_failures_never_change_progress(
         ).status_code
         == 404
     )
+    assert client.get("/api/v1/audio/voices").status_code == 404
     assert client.get("/api/v1/progress").json()["total_xp"] == 0
-    assert not client.get("/api/v1/providers/status").json()["tts"]["verified"]
+    status = client.get("/api/v1/providers/status").json()
+    assert "tts" not in status
+    assert not status["ai"]["verified"] and not status["stt"]["verified"]
+    assert not status["audio_pack"]["bundled_reference"]
 
 
 def test_wave_validation_and_independent_stt_format(monkeypatch):
@@ -133,30 +139,12 @@ def test_wave_validation_and_independent_stt_format(monkeypatch):
         )
 
 
-def test_tts_japanese_voice_cache_version_and_malformed_provider(monkeypatch, tmp_path):
-    calls = []
-
-    def handle(request):
-        calls.append(request.url.path)
-        if request.url.path.endswith("/voices"):
-            return httpx.Response(200, json={"voices": ["af_heart", "jf_alpha"]})
-        return httpx.Response(200, content=wav(), headers={"content-type": "audio/wav"})
-
-    real = httpx.Client
-    monkeypatch.setattr(
-        providers.httpx,
-        "Client",
-        lambda **kwargs: real(transport=httpx.MockTransport(handle), **kwargs),
-    )
-    config = Provider(provider="kokoro", model="kokoro-version-test", voice="jf_alpha")
-    assert providers.synthesize(config, "こんにちは。", 1, tmp_path)[1] is False
-    assert providers.synthesize(config, "こんにちは。", 1, tmp_path)[1] is True
-    assert len(calls) == 2
-    config.model = "new-version"
-    assert providers.synthesize(config, "こんにちは。", 1, tmp_path)[1] is False
-    config.voice = "af_heart"
-    with pytest.raises(ValueError):
-        providers.synthesize(config, "こんにちは。", 1, tmp_path)
+def test_runtime_tts_removed_from_providers_and_config():
+    assert not hasattr(providers, "voices")
+    assert not hasattr(providers, "synthesize")
+    assert not hasattr(Config, "tts_enabled")
+    assert "tts_enabled" not in Config.model_fields
+    assert "audio_cache_dir" not in Config.model_fields
 
 
 @pytest.mark.parametrize(
@@ -264,48 +252,3 @@ def test_additive_dialogue_defaults_preserve_historical_import_idempotency(clien
         changed.title = "A different title"
         with pytest.raises(DomainError, match="Content changed"):
             import_content(db, changed)
-
-
-def test_current_kokoro_voice_objects_and_pronunciation_cache(monkeypatch, tmp_path):
-    import json
-
-    calls = []
-
-    def handle(request):
-        calls.append(request)
-        if request.url.path.endswith("/voices"):
-            return httpx.Response(200, json={"voices": [{"id": "af_heart"}, {"id": "jf_alpha"}]})
-        return httpx.Response(200, content=wav(), headers={"content-type": "audio/wav"})
-
-    real = httpx.Client
-    monkeypatch.setattr(
-        providers.httpx,
-        "Client",
-        lambda **kwargs: real(transport=httpx.MockTransport(handle), **kwargs),
-    )
-    config = Provider(provider="kokoro", model="version", voice="jf_alpha")
-    assert providers.voices(config) == ["jf_alpha"]
-    assert not providers.synthesize(
-        config,
-        "私は学校へ行きます。",
-        1,
-        tmp_path,
-        pronunciation_override="わたしはがっこうへいきます。",
-    )[1]
-    assert json.loads(calls[-1].content)["input"] == "わたしはがっこうへいきます。"
-    assert providers.synthesize(
-        config,
-        "私は学校へ行きます。",
-        1,
-        tmp_path,
-        pronunciation_override="わたしはがっこうへいきます。",
-    )[1]
-    assert not providers.synthesize(
-        config,
-        "私は学校へ行きます。",
-        1,
-        tmp_path,
-        pronunciation_override="わたしわがっこうえいきます。",
-    )[1]
-    with pytest.raises(ValueError):
-        providers.synthesize(config, "hello", 1, tmp_path, language="en")

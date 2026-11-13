@@ -13,6 +13,8 @@ it('speaking exposes authored models, explicit recording and a separate typed fa
  expect(html).toContain('Typed practice · no speech assessed')
  expect(html).toContain('IME conversion')
  expect(html).toContain('水をください。')
+ expect(html).toContain('Bundled reference audio · human Japanese listening review pending.')
+ expect(html).not.toContain('Synthetic')
  expect(html).not.toContain('autoplay')
  // Recorder controls must never submit the surrounding exercise form.
  expect(html.match(/<button /g)?.length).toBe(html.match(/<button type="button"/g)?.length)

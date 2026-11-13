@@ -43,6 +43,15 @@ jobs:
           PYTHONUNBUFFERED: "1"
         run: pytest -v --durations=10
 
+      - name: Lint audio pack scripts with ruff
+        run: ruff check --config pyproject.toml ../scripts/audio_pack_common.py ../scripts/build_audio_pack.py ../scripts/check_audio_pack.py
+
+      - name: Validate course content
+        run: python -m app.cli validate
+
+      - name: Validate bundled audio pack
+        run: python ../scripts/check_audio_pack.py --pack ../content/audio/ja-starter/0.1.21 --strict
+
   frontend:
     name: Frontend Lint, Typecheck, Tests & Build
     runs-on: windows-latest

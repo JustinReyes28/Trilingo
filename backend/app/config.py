@@ -11,16 +11,16 @@ class Config(BaseSettings):
     model_config = SettingsConfigDict(env_file=ROOT / ".env", extra="ignore")
     database_url: str = f"sqlite:///{(ROOT / '.data' / 'trilingo.db').as_posix()}"
     cors_origins: list[str] = ["http://127.0.0.1:5173", "http://localhost:5173"]
-    audio_cache_dir: Path = ROOT / ".data" / "audio-cache"
+    audio_pack_dir: Path = ROOT / "content" / "audio"
+    audio_pack_enabled: bool = True
     backups_dir: Path = ROOT / ".data" / "backups"
     qa_mode: bool = False
     ai_enabled: bool = False
-    tts_enabled: bool = False
     stt_enabled: bool = False
     host: str = "127.0.0.1"
     port: int = Field(default=8000, ge=1, le=65535)
 
-    @field_validator("audio_cache_dir", "backups_dir")
+    @field_validator("audio_pack_dir", "backups_dir")
     @classmethod
     def local_directory_path(cls, value: Path) -> Path:
         return value if value.is_absolute() else ROOT / value

@@ -49,17 +49,32 @@ def patch_profile(db: Session, patch: ProfilePatch) -> ProfileOut:
     return profile_out(profile)
 
 
+def _normalize_settings_data(raw: dict) -> dict:
+    """Return a copied settings mapping with deprecated TTS/voice keys removed."""
+    data = dict(raw)
+    data.pop("tts", None)
+    for key in ("ai", "stt"):
+        provider = data.get(key)
+        if isinstance(provider, dict) and "voice" in provider:
+            cleaned = dict(provider)
+            cleaned.pop("voice", None)
+            data[key] = cleaned
+    return data
+
+
 def get_settings(db: Session) -> Settings:
     profile = local_profile(db)
     prefs = db.get(Preferences, profile.id)
     assert prefs is not None
-    return Settings.model_validate(prefs.data)
+    return Settings.model_validate(_normalize_settings_data(prefs.data))
 
 
 def patch_settings(db: Session, patch: SettingsPatch) -> Settings:
     settings = get_settings(db)
     value = Settings.model_validate(
-        {**settings.model_dump(), **patch.model_dump(exclude_unset=True)}
+        _normalize_settings_data(
+            {**settings.model_dump(), **patch.model_dump(exclude_unset=True)}
+        )
     )
     prefs = db.get(Preferences, "local")
     assert prefs is not None

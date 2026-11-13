@@ -47,7 +47,6 @@ class Provider(StrictModel):
     provider: str = Field(default="disabled", max_length=60)
     base_url: str = Field(default="http://127.0.0.1:1234", max_length=2048)
     model: str = Field(default="", max_length=150)
-    voice: str = Field(default="", max_length=100)
     timeout: int = Field(default=20, ge=1, le=120)
 
     @field_validator("base_url")
@@ -88,7 +87,6 @@ class Settings(StrictModel):
     show_reminder: bool = False
     retention: float = Field(default=0.9, ge=0.7, le=0.97)
     ai: Provider = Field(default_factory=Provider)
-    tts: Provider = Field(default_factory=lambda: Provider(provider="kokoro"))
     stt: Provider = Field(default_factory=Provider)
 
 
@@ -110,7 +108,6 @@ class SettingsPatch(StrictModel):
     show_statistics: bool | None = None
     practice_batch: int | None = Field(default=None, ge=1)
     ai: Provider | None = None
-    tts: Provider | None = None
     stt: Provider | None = None
 
     @field_validator(
@@ -130,7 +127,6 @@ class SettingsPatch(StrictModel):
         "show_statistics",
         "practice_batch",
         "ai",
-        "tts",
         "stt",
     )
     @classmethod

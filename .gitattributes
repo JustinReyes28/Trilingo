@@ -15,3 +15,6 @@
 *.in text eol=lf
 *.ini text eol=lf
 *.mako text eol=lf
+
+# Binary audio assets (prevent text/EOL normalization on bundled MP3 clips)
+*.mp3 binary

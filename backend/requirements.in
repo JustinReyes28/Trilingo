@@ -6,5 +6,6 @@ alembic
 fsrs
 tzdata
 httpx
+mutagen
 pytest
 ruff

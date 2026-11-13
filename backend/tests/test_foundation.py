@@ -14,7 +14,7 @@ from app.models import Profile
 
 
 def test_health_and_settings_persist(client, database):
-    assert client.get("/api/v1/health").json()["schema_version"] == "0013"
+    assert client.get("/api/v1/health").json()["schema_version"] == "0014"
     profile = client.get("/api/v1/profile?timezone=Asia/Singapore").json()
     assert profile["timezone"] == "Asia/Singapore"
     assert (
@@ -66,7 +66,6 @@ def test_local_cors_and_disabled_providers(client):
     assert response.json()["features"] == {
         "lessons": True,
         "ai": False,
-        "tts": False,
         "stt": False,
     }
 
@@ -199,3 +198,68 @@ def test_unexpected_failure_is_logged_not_exposed(database, monkeypatch, caplog)
     assert response.json()["error"]["code"] == "internal_error"
     assert "test-only" not in response.text
     assert "Unexpected local API failure" in caplog.text
+
+
+def test_providers_status_has_ai_stt_and_audio_pack_without_tts(client):
+    response = client.get("/api/v1/providers/status")
+    assert response.status_code == 200
+    payload = response.json()
+    assert set(payload.keys()) == {"ai", "stt", "audio_pack"}
+    assert "tts" not in payload
+    assert payload["ai"]["enabled"] is False
+    assert payload["stt"]["enabled"] is False
+    assert payload["audio_pack"]["bundled_reference"] is False
+    assert payload["audio_pack"]["bundled_reviewed"] is False
+    assert payload["audio_pack"]["course_version"] is None
+    assert "unavailable" in payload["audio_pack"]["message"].lower()
+
+
+def test_legacy_preferences_with_tts_and_voice_load_and_patch_cleanly(client):
+    from app.models import Preferences
+
+    assert client.get("/api/v1/settings").status_code == 200
+    with sessions(client.app.state.engine)() as db:
+        prefs = db.get(Preferences, "local")
+        assert prefs is not None
+        prefs.data = {
+            **prefs.data,
+            "furigana": "unfamiliar",
+            "ai": {**prefs.data["ai"], "model": "local-llm", "voice": "legacy-ignored"},
+            "stt": {**prefs.data["stt"], "model": "local-whisper", "voice": "legacy-stt"},
+            "tts": {
+                "enabled": True,
+                "provider": "kokoro",
+                "base_url": "http://127.0.0.1:8880",
+                "model": "kokoro",
+                "voice": "jf_alpha",
+                "timeout": 20,
+            },
+        }
+        db.commit()
+
+    loaded = client.get("/api/v1/settings")
+    assert loaded.status_code == 200, loaded.text
+    loaded_json = loaded.json()
+    assert "tts" not in loaded_json
+    assert "voice" not in loaded_json["ai"]
+    assert "voice" not in loaded_json["stt"]
+    assert loaded_json["ai"]["model"] == "local-llm"
+    assert loaded_json["stt"]["model"] == "local-whisper"
+    assert loaded_json["furigana"] == "unfamiliar"
+
+    patched = client.patch("/api/v1/settings", json={"daily_goal": 30})
+    assert patched.status_code == 200, patched.text
+    assert patched.json()["daily_goal"] == 30
+    with sessions(client.app.state.engine)() as db:
+        stored = db.get(Preferences, "local").data
+        assert "tts" not in stored
+        assert "voice" not in stored["ai"]
+        assert "voice" not in stored["stt"]
+
+    assert client.patch("/api/v1/settings", json={"tts": {"enabled": True}}).status_code == 422
+    assert (
+        client.patch(
+            "/api/v1/settings", json={"ai": {"voice": "jf_alpha"}}
+        ).status_code
+        == 422
+    )

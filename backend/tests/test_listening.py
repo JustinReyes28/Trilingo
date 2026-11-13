@@ -2,14 +2,15 @@ from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
-from test_grammar_audio import wav
+from sqlalchemy import func, select
 from test_learning import act, start
 from test_learning import course as course
 
-from app import providers
+from app import audio_pack
+from app.audio_models import AudioDelivery
 from app.config import Config
+from app.db import sessions
 from app.main import create_app
-from app.schemas import Provider
 
 pytestmark = pytest.mark.usefixtures("course")
 
@@ -27,20 +28,6 @@ def audio(client, session, cue="reference", exercise=None, body=None):
     }
     return client.post(
         f"/api/v1/sessions/{session['id']}/exercises/{exercise}/audio/{cue}", json=body
-    )
-
-
-def enable(client):
-    assert (
-        client.patch(
-            "/api/v1/settings",
-            json={
-                "tts": Provider(
-                    enabled=True, provider="kokoro", model="test", voice="jf_alpha"
-                ).model_dump()
-            },
-        ).status_code
-        == 200
     )
 
 
@@ -65,8 +52,12 @@ def test_protected_audio_and_disabled_fallback_still_finishes(client):
         "ありがとうございます",
     ]:
         assert secret not in public
-    assert audio(client, session).status_code == 503
+    missing_audio = audio(client, session)
+    assert missing_audio.status_code == 503
+    assert missing_audio.json()["error"]["code"] == "audio_unavailable"
     assert client.get(f"/api/v1/sessions/{session['id']}").json()["revision"] == 0
+    with sessions(client.app.state.engine)() as db:
+        assert db.scalar(select(func.count()).select_from(AudioDelivery)) == 0
     first = session["exercises"][0]["id"]
     session = act(client, session, "audio_text", first)
     assert "ありがとうございます" in session["feedback"]["message"]
@@ -84,21 +75,24 @@ def test_protected_audio_and_disabled_fallback_still_finishes(client):
     assert act(client, replay, "finish")["xp_awarded"] == 5
 
 
-def test_audio_delivery_retry_stale_and_complete_cue_evidence(client, database, monkeypatch):
-    enable(client)
-    calls = []
-
-    def synthesize(provider, text, speed, **kwargs):
-        calls.append((text, speed, kwargs))
-        return wav(), bool(len(calls) > 1)
-
-    monkeypatch.setattr(providers, "synthesize", synthesize)
-    with TestClient(create_app(Config(database_url=database, tts_enabled=True))) as enabled:
+def test_audio_delivery_retry_stale_and_complete_cue_evidence(database, fixture_audio_pack):
+    with TestClient(
+        create_app(
+            Config(
+                database_url=database,
+                audio_pack_dir=fixture_audio_pack,
+                audio_pack_enabled=True,
+            )
+        )
+    ) as enabled:
         session = listening(enabled)
         request = {"request_id": str(uuid4()), "expected_revision": 0, "speed": 1}
         first = audio(enabled, session, body=request)
         assert first.status_code == 200, first.text
-        saved = first.json()["session"]
+        first_body = first.json()
+        assert first_body["source"] == "pack"
+        assert first_body["mime"] == "audio/mpeg"
+        saved = first_body["session"]
         assert saved["revision"] == 1
         assert audio(enabled, session, body=request).json()["session"] == saved
         assert audio(enabled, session, body={**request, "speed": 0.75}).status_code == 409
@@ -112,30 +106,48 @@ def test_audio_delivery_retry_stale_and_complete_cue_evidence(client, database, 
         assert saved["evidence"][contrast]["first_assisted"]
         assert saved["evidence"][contrast]["text_fallback"]
         assert act(enabled, saved, "finish")["xp_awarded"] == 5
-        assert len(calls) == 3
 
 
-def test_provider_error_and_interleaved_action_do_not_add_delivery(client, database, monkeypatch):
-    enable(client)
-    with TestClient(create_app(Config(database_url=database, tts_enabled=True))) as enabled:
+def test_pack_unavailable_and_interleaved_action_do_not_add_delivery(
+    client, database, fixture_audio_pack, monkeypatch
+):
+    with TestClient(
+        create_app(
+            Config(
+                database_url=database,
+                audio_pack_dir=fixture_audio_pack,
+                audio_pack_enabled=True,
+            )
+        )
+    ) as enabled:
         session = listening(enabled)
 
-        def unavailable(*args, **kwargs):
-            raise ValueError("malformed")
-
-        monkeypatch.setattr(providers, "synthesize", unavailable)
-        assert audio(enabled, session).status_code == 503
+        monkeypatch.setattr(audio_pack, "lookup", lambda *args, **kwargs: None)
+        unavailable = audio(enabled, session)
+        assert unavailable.status_code == 503
+        assert unavailable.json()["error"]["code"] == "audio_unavailable"
         assert enabled.get(f"/api/v1/sessions/{session['id']}").json()["revision"] == 0
+        with sessions(enabled.app.state.engine)() as db:
+            assert db.scalar(select(func.count()).select_from(AudioDelivery)) == 0
 
         def interleaved(*args, **kwargs):
             act(client, session, "pause")
-            return wav(), False
+            return audio_pack.PackClip(
+                key="k",
+                data=b"ID3 clip",
+                mime="audio/mpeg",
+                duration_seconds=0.5,
+                course_version="0.1.21",
+                reviewed=False,
+            )
 
-        monkeypatch.setattr(providers, "synthesize", interleaved)
+        monkeypatch.setattr(audio_pack, "lookup", interleaved)
         assert audio(enabled, session).status_code == 409
         saved = enabled.get(f"/api/v1/sessions/{session['id']}").json()
         assert saved["status"] == "paused"
         assert all(not e["audio_cue_ids"] for e in saved["evidence"].values())
+        with sessions(enabled.app.state.engine)() as db:
+            assert db.scalar(select(func.count()).select_from(AudioDelivery)) == 0
 
 
 def test_targeted_grammar_has_private_response_feedback_and_unrestricted_retry(client):

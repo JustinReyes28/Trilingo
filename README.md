@@ -107,7 +107,8 @@ Trilingo uses a modular local-first architecture:
 - **Frontend:** React 19, TypeScript (strict mode), Vite, Tailwind CSS, and Zod schemas for runtime response validation.
 - **Backend:** FastAPI, Python 3.11+, SQLAlchemy 2.0, Alembic for schema migrations, and Pydantic v2 schemas.
 - **Database:** SQLite with Write-Ahead Logging (WAL) enabled for clean concurrent reads and atomic writes.
-- **Audio & Speech (Optional):** Pluggable local provider adapters for Kokoro TTS and Whisper STT running on loopback ports. If disabled, all exercises provide full text and transcript fallbacks without loss of practice credit.
+- **Bundled reference audio:** Authored Japanese words, listening cues, story turns, and English vocabulary meanings ship as a versioned static MP3 pack under `content/audio/`. All authored audio plays offline with zero runtime TTS services or model/voice downloads. Slow playback (`0.75x`) uses client `HTMLAudioElement.playbackRate` with `preservesPitch=true`. If bundled audio is unavailable or `AUDIO_PACK_ENABLED=false`, audio endpoints return HTTP `503` (`audio_unavailable`) and exercises fall back to full text alternatives. The pack is synthetic and human listening review is still pending.
+- **Optional Local AI & Speech (STT):** Optional loopback AI (LM Studio / OpenAI-compatible, `AI_ENABLED`) provides text-only scenario coaching, and optional loopback Whisper-compatible STT (`STT_ENABLED`) handles microphone transcript feedback. Runtime TTS has been removed (`POST /api/v1/scenarios/speech` and `GET /api/v1/audio/voices` do not exist). If optional AI/STT are disabled, all exercises provide full text, transcript, and typed practice fallbacks without loss of practice credit.
 
 ---
 
@@ -122,6 +123,29 @@ Your learning data belongs to you. You can export or restore complete snapshots 
 - **Clean Reset:** Lets you clear learner progress without wiping out installed course content or lesson definitions.
 
 ---
+
+## Reference Audio Pack
+
+Authored reference clips live in `content/audio/<course>/<version>/` with a
+`manifest.json` recording the engine, voices, source hash, licenses and review
+status. The committed `0.1.21` pack ships directly with the repository and plays
+without any runtime TTS service or model downloads. When audio pack lookup is
+disabled or misses, audio routes return HTTP `503` (`audio_unavailable`) and
+the UI uses text alternatives.
+
+```powershell
+# Validate every expected clip, checksum and duration in CI or locally (no Kokoro needed)
+.\.venv\Scripts\python.exe scripts\check_audio_pack.py --pack content\audio\ja-starter\0.1.21 --strict
+
+# Optional maintainer-only script for regenerating future content versions (0.1.22+)
+# when a local Kokoro-FastAPI container is running on http://127.0.0.1:8880
+.\.venv\Scripts\python.exe scripts\build_audio_pack.py --progress
+```
+
+Maintainers regenerate and validate the pack whenever authored text,
+pronunciation overrides, or voices change. Human Japanese listening review and
+English voice spot-checks remain required before `manifest.json` `status` can
+be changed from `draft` to `reviewed`.
 
 ## Running Tests
 
@@ -156,4 +180,9 @@ We welcome contributions from developers, designers, and Japanese speakers:
 ## License & Attribution
 
 - **Source Code:** Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Justin Reyes.
-- **Course Content & Curriculum:** All educational content, vocabulary entries, grammar guides, and exercise data under `content/` are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+- **Course Content & Curriculum:** All educational content, vocabulary entries, grammar guides, exercise data and generated reference-audio performances under `content/` are licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+- **Third-party notices:** See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for historical build-time Kokoro-82M/Kokoro-FastAPI voice/training-data attribution and script-only `mutagen` attribution. No runtime TTS adapters, model weights, or voice packs are bundled.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for recent verified changes, including the bundled reference-audio pack.

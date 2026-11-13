@@ -11,7 +11,7 @@ const choices=[
  {kind:'stories',title:'Stories',text:'Read original stories and inspect labeled drafts.',href:'reading?section=stories'},
  {kind:'writing',title:'Typing & writing',text:'Checked typing, composition drafts and optional formation.',href:'writing'},
  {kind:'grammar',title:'Grammar & dialogues',text:'Search authored patterns and try practical draft scenarios.',href:'grammar'},
- {kind:'listening',title:'Listening & shadowing',text:'Local reference audio and draft episodes. Real provider verification is pending.',href:'audio'},
+ {kind:'listening',title:'Listening & shadowing',text:'Bundled reference audio and draft episodes. Human audio review is pending.',href:'audio'},
  {kind:'speaking',title:'Speaking',text:'Local recording, playback and optional transcript comparison. No pronunciation score.',href:'audio'},
  {kind:'review',title:'Recall & personal quests',text:'Real FSRS, early review and optional records.',href:'review'},
 ] as const

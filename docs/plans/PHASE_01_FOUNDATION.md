@@ -31,7 +31,7 @@ Create a reliable Windows development foundation for one local learner. Resolve 
 - [x] Add initial migration for profiles and durable settings; connect SQLite through migrations, not runtime `create_all`.
 - [x] Implement health/profile/settings endpoints and a frontend API client that validates responses.
 - [x] Add error boundary, loading/error primitives, real health connection screen, and launch instructions actually verified on Windows.
-- [ ] Record the existing Kokoro TTS wrapper/version and Phase 8's Japanese voice/dependency/playback audit when Docker becomes available. Treat the user's identification as planning input, not a completed playback test; foundation work must continue if unavailable.
+- [x] Superseded (2026-11-13 bundled-audio-only): runtime Kokoro TTS wrapper discovery and runtime TTS setup were replaced by the committed static MP3 pack (`content/audio/ja-starter/0.1.21/`); there is no runtime TTS service. See [PHASE_08_AUDIO_SPEAKING.md](PHASE_08_AUDIO_SPEAKING.md) and [AUDIO_PACK.md](../AUDIO_PACK.md).
 
 ## Intended implementation areas
 
@@ -41,13 +41,13 @@ These paths are targets, not existing code. Inspect before creating later additi
 
 ## Data and API contracts
 
-- Use `/api/v1` consistently. Establish `GET /health`, `GET/PATCH /profile`, and `GET/PATCH /settings` under this prefix.
+- Use `/api/v1` consistently. Establish `GET /api/v1/health`, `GET/PATCH /api/v1/profile`, and `GET/PATCH /api/v1/settings` (and `GET /api/v1/providers/status`) under `/api/v1`.
 - Responses have explicit schemas. Errors include a stable code, user-facing message, and optional field details; unexpected failures do not expose stack traces.
 - Profile stores stable ID and timezone. Settings store daily goal, reading aids, accessibility preferences, and provider preferences with explicit ownership.
 - Store secrets outside public API responses and exported ordinary settings. Validate configuration changes server-side.
 - Adopt UTC timestamps for events and due dates; derive activity dates using the profile timezone at the time of activity.
 - Configure separate database locations for real use, tests, and temporary migration validation.
-- Define `AI_ENABLED=false` and independent TTS/STT enabled/provider/base URL/model-or-voice/timeout settings. Do not assume all services use OpenAI-compatible endpoints.
+- Define `AI_ENABLED=false` and `STT_ENABLED=false` with independent AI/STT enabled/provider/base URL/model/timeout settings plus `AUDIO_PACK_DIR`/`AUDIO_PACK_ENABLED`. *(Amended 2026-11-13: `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `preferences.data.tts`, and `voice` subfields were removed in schema `0014`.)* Do not assume all services use OpenAI-compatible endpoints.
 
 ## Tests and manual verification
 
@@ -60,7 +60,7 @@ These paths are targets, not existing code. Inspect before creating later additi
 
 ## Completion gate
 
-Complete only when a clean install can launch the real frontend/backend, health calls work, settings survive restart, migrations work from empty DB, tests are isolated, and applicable quality gates pass. An unavailable optional TTS engine must be reported honestly and must not block this phase.
+Complete only when a clean install can launch the real frontend/backend, health calls work, settings survive restart, migrations work from empty DB, tests are isolated, and applicable quality gates pass. Unavailable bundled audio or optional AI/STT engines must be reported honestly (`503 audio_unavailable` / provider status) and must not block this phase.
 
 
 ## Implementation evidence — 2026-10-23
@@ -71,3 +71,8 @@ See [technical decisions](../TECHNICAL_DECISIONS.md) and [verification](../PHASE
 ## Plan 9.2 follow-up — 2026-10-23
 
 [Current execution evidence](../PLAN_09_2_VERIFICATION.md) records source 0.1.15/schema 0012, verified engineering changes and exact remaining gates. The supported fresh-install, qualified-language/stroke/audio and physical-device requirements remain open. Current improvements include verified official IME documentation, ten-topic draft guide coverage, collection-scoped saved-snapshot recall, complete timing histories and separate skill/workflow/coverage evidence. No full phase or reviewed beginner release is claimed.
+
+## Bundled-audio-only amendment — 2026-11-13
+
+- Schema head advanced to **`0014`** (`0014_remove_tts_settings.py`), removing `"tts"` and `ai.voice`/`stt.voice` from `preferences.data` and imported backups while preserving all learner tables.
+- `.env.example` and `Config` now retain `AI_ENABLED`, `STT_ENABLED`, `AUDIO_PACK_DIR`, and `AUDIO_PACK_ENABLED` (`TTS_ENABLED` and `AUDIO_CACHE_DIR` removed). `GET /api/v1/health` returns `features: {lessons, ai, stt}`.

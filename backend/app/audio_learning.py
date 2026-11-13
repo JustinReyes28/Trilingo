@@ -6,11 +6,10 @@ from uuid import uuid4
 
 from sqlalchemy.orm import Session
 
-from app import learning, providers
+from app import audio_pack, learning
 from app.audio_models import AudioDelivery
 from app.config import Config
-from app.schemas import Provider
-from app.services import DomainError, get_settings
+from app.services import DomainError
 
 
 def prepare(
@@ -31,46 +30,45 @@ def prepare(
         "speed": speed,
     }
     prior = db.get(AudioDelivery, request_id)
+    row = learning._session(db, session_id)
+    content = learning._content(db, row)
+    course_id = content.id
     if prior is not None:
         if prior.request != request:
             raise DomainError(
                 409, "request_conflict", "This audio action ID was used for a different request."
             )
-        provider = Provider.model_validate(prior.provider)
         cue = prior.cue
         result = prior.result
-        providers.require_enabled(config, get_settings(db).tts, "tts")
     else:
-        row = learning._session(db, session_id)
         if row.revision != expected_revision or row.status == "completed":
             raise DomainError(
                 409, "stale_revision", "Reload this saved session before preparing audio."
             )
         if exercise_id not in row.exercise_ids:
             raise DomainError(404, "exercise_missing", "Choose a prompt in this session.")
-        exercise = learning.exercise_map(learning._content(db, row))[exercise_id]
+        exercise = learning.exercise_map(content)[exercise_id]
         reference = next(
             (item for item in getattr(exercise, "audio", []) if item.id == cue_id), None
         )
         if reference is None:
             raise DomainError(404, "audio_reference", "Choose an authored audio cue.")
         cue = reference.model_dump()
-        provider = get_settings(db).tts
-        providers.require_enabled(config, provider, "tts")
         result = None
-    # Network I/O must not hold SQLite's write lock.
-    db.commit()
-    try:
-        data, cached = providers.synthesize(
-            provider,
-            cue["transcript"],
-            speed,
-            cache_dir=config.audio_cache_dir,
-            pronunciation_override=cue["pronunciation_override"],
-            language=cue["language"],
+    clip = audio_pack.lookup(
+        config,
+        course_id,
+        cue["transcript"],
+        cue["language"],
+        cue["pronunciation_override"],
+        preferred_version=content.version,
+    )
+    if clip is None:
+        raise DomainError(
+            503,
+            "audio_unavailable",
+            "Bundled reference audio is unavailable for this cue. Use the text alternative.",
         )
-    except providers.PROVIDER_ERRORS as error:
-        raise providers.provider_failure("tts", error) from error
     if result is None:
         with learning.study_transaction(db):
             prior = db.get(AudioDelivery, request_id)
@@ -103,16 +101,17 @@ def prepare(
                         id=request_id,
                         session_id=session_id,
                         request=request,
-                        provider=provider.model_dump(),
+                        provider={"source": "pack", "course_version": clip.course_version},
                         cue=cue,
                         result=result,
                         created_at=learning.now_utc().isoformat(),
                     )
                 )
     return {
-        "audio_base64": base64.b64encode(data).decode(),
-        "mime": "audio/wav",
-        "cached": cached,
-        "label": "Synthetic reference prepared · Japanese listening review pending",
+        "audio_base64": base64.b64encode(clip.data).decode(),
+        "mime": clip.mime,
+        "cached": True,
+        "source": "pack",
+        "label": audio_pack.label(clip, cue["language"]),
         "session": result,
     }

@@ -10,7 +10,7 @@ This file owns backup/restore, reliability and the local release gate. Windows i
 
 ## Start here and execution order
 
-Follow the current user instruction and any time/check bounds; do not inherit expired allowances. Use isolated stores and preserved originals. Before any download/upload, follow the exact source/destination/scope and total estimated network MB/GB approval rule in the remaining-work plan; progress replacement/deletion and public actions have separate authorization requirements.
+Follow the current user instruction and any time/check bounds; do not inherit expired allowances. Use isolated stores and preserved originals. Downloads need no size approval (unmetered since 2026-11-09); uploads, publication and other external sends follow [the network and external-action rule](REMAINING_WORK_EXECUTION_PLAN.md#network-and-external-action-rule). Progress replacement/deletion and public actions have separate authorization requirements.
 
 1. **R0 — Confirm the release baseline.** Read current HANDOFF/source/schema and map the applicable Plan9.2 prerequisite evidence. Record the exact candidate and unresolved gates; do not repeat unchanged broad tests or treat missing qualified/device evidence as passed. If the full handoff is incomplete, report it before claiming Phase10 readiness. Early EXE/Android feasibility remains in its separate track.
 2. **R1 — Specify the backup/restore contract.** Inspect all durable models, files and existing services; define the versioned manifest, inclusion/exclusion list, snapshot semantics, archive limits, compatibility and quiesce/staging/commit/recovery sequence below. Write the contract before building the API/UI. Keep optional data inclusion explicit.
@@ -41,7 +41,7 @@ Create evidence under `docs/verification/local-release/<candidate>/` when execut
 - [ ] Provide a verified PowerShell launcher or equally simple local launch process, port-conflict errors, graceful shutdown, and provider troubleshooting.
 - [ ] Add configurable local in-app study reminders and optional permission-based notifications, with quiet hours and a truthful availability note. Use a documented local notification mechanism; a browser-only reminder works only while its supported app/service is running. No email, cloud push, or system scheduled task is installed during this planning task.
 - [ ] Document installation, dependency versions, migrations, seeding, update, backup/restore, tests, providers, licenses, and troubleshooting in README.
-- [ ] Verify local use with the internet disconnected after dependencies/content/provider models are installed. The local backend must remain running.
+- [ ] Verify local use with the internet disconnected after dependencies/content are installed. The local backend must remain running. Include bundled authored reference audio from `content/audio/` and confirm all playback works with zero runtime TTS or Kokoro service.
 - [ ] Treat an installable PWA as a separately gated optional extension; cache the shell only if it cannot produce stale or fake progression. Never claim offline writes sync safely without implementing and testing conflict handling.
 - [ ] Complete accessibility, responsive, visual, content, and critical-flow audits; remove misleading upcoming controls and misleading statistics.
 
@@ -72,7 +72,7 @@ Include concurrent restore/reset/update attempts, mutations during quiescence, o
 - [ ] Compare restored optional quest/badge/assessment/personal-record evidence and cosmetic preferences; events already credited inside the snapshot remain idempotent. Restoring old history never restricts current access to published content.
 - [ ] Verify writing draft/revision/feedback round trips, Unicode/IME text, stale-save conflicts, and no duplicate composition rewards. Later releases must verify their essay workflow with AI disabled.
 - [ ] Check 320px, 390px, approximately 768px, and desktop layouts; keyboard-only use, focus, zoom, Japanese ruby, screen-reader labels, contrast, and reduced motion.
-- [ ] Run real Japanese TTS and microphone/STT checks on the target computer and record actual engine/model/voice/version evidence from Phase 8.
+- [ ] Verify bundled `content/audio/` MP3 playback (`check_audio_pack.py --strict`, human Japanese listening review) plus optional local AI (`AI_ENABLED`) and microphone/STT (`STT_ENABLED`) checks on the target computer, recording actual engine/model/version evidence. Runtime TTS has been removed (`TTS_ENABLED`/`AUDIO_CACHE_DIR`/Kokoro runtime checks superseded 2026-11-13); confirm `AUDIO_PACK_ENABLED=false` triggers clean `503 audio_unavailable` + text fallback.
 - [ ] Restart app/backend/providers, disconnect external internet, verify authored learning and installed local providers work, and verify optional-provider failures do not lose answers.
 - [ ] Follow README from a clean environment or fresh temporary checkout/folder with documented prerequisites. Record anything that cannot be tested.
 - [ ] Inspect logs, browser console, media retention, dependency licenses, and source tree for secrets/generated user data.
@@ -88,7 +88,7 @@ Include concurrent restore/reset/update attempts, mutations during quiescence, o
 5. Try a duplicate completion request and confirm the ledger does not change again.
 6. Read kana and a short kanji-supported passage with aids on/off.
 7. Enter Japanese with IME; perform a guided writing task and inspect its honest evidence label.
-8. Complete an authored everyday dialogue, listen to Japanese output, record a phrase, and inspect the real STT transcript.
+8. Complete an authored everyday dialogue, listen to bundled Japanese MP3 reference output, record a phrase, and inspect the optional STT transcript (or text fallback when STT is disabled).
 9. Disable providers and finish a core lesson using the documented fallback without fabricated speaking/listening assessment.
 10. Review a due item/mistake, apply a rating, restart, and verify progress and FSRS persistence.
 11. Try optional recap/mastery and story/audio practice in any order, use assistance or skip, and confirm the result never controls another activity.

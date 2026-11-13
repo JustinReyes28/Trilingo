@@ -28,6 +28,11 @@ Provider preferences are disabled by default and independent for AI/TTS/STT. Loc
 
 Docker inspection on2026-10-23 still cannot reach dockerDesktopLinuxEngine. Kokoro wrapper/image/voice/endpoint/playback remain unverified. No containers were started, models downloaded, or VHDX data touched. This does not block foundation/content work.
 
+## Bundled-audio-only amendment — 2026-11-13
+
+- The historical 2026-10-23 provider note above is superseded for TTS: runtime TTS providers, `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `preferences.data.tts`, and `voice` subfields were removed in schema `0014` (2026-11-13).
+- Reference audio is served strictly from the bundled `content/audio/<course>/<version>/` MP3 pack (`AUDIO_PACK_DIR` / `AUDIO_PACK_ENABLED`); AI (`AI_ENABLED`) and STT (`STT_ENABLED`) are the only optional local runtime providers, and `GET /api/v1/health` reports `features: {lessons, ai, stt}`.
+
 ## Local security and data use
 Loopback defaults, explicit local CORS, 64KiB JSON request bounds, field validation, structured errors and secret-free startup logging. Provider URLs cannot act as arbitrary per-request proxies. AI/audio disabled operation is the baseline. No remote fonts, telemetry, images or browser downloads are required. Local browser verification blocks all non-loopback requests.
 

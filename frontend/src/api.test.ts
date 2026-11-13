@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { z } from 'zod'
 import { request } from './api'
-import { ExerciseSchema, MapSchema, SettingsSchema } from './schemas'
+import { ExerciseSchema, HealthSchema, MapSchema, SettingsSchema } from './schemas'
 
 afterEach(()=>vi.unstubAllGlobals())
 describe('local API boundary',()=>{
@@ -15,7 +15,20 @@ describe('local API boundary',()=>{
 describe('external content contracts',()=>{
  it('rejects unsupported exercise dispatch',()=>{expect(ExerciseSchema.safeParse({type:'made_up'}).success).toBe(false)})
  it('does not accept malformed map data',()=>{expect(MapSchema.safeParse({units:[]}).success).toBe(false)})
- it('requires complete durable settings',()=>{expect(SettingsSchema.safeParse({daily_goal:20}).success).toBe(false)})
+ it('requires complete durable settings and matches pack-only health/settings contracts',()=>{
+  expect(SettingsSchema.safeParse({daily_goal:20}).success).toBe(false)
+  const provider={enabled:false,provider:'disabled',base_url:'http://127.0.0.1:1234',model:'',timeout:20}
+  const parsed=SettingsSchema.parse({
+   daily_goal:20,show_goal:true,furigana:'always',romaji:true,reduced_motion:false,sound:false,
+   show_statistics:true,practice_batch:10,ai:provider,stt:provider,
+  })
+  expect('tts' in parsed).toBe(false)
+  expect('voice' in parsed.ai).toBe(false)
+  expect(HealthSchema.parse({
+   status:'ok',database:'ready',schema_version:'0014',qa_mode:false,
+   features:{lessons:true,ai:false,stt:false},
+  }).features).toEqual({lessons:true,ai:false,stt:false})
+ })
 })
 
 

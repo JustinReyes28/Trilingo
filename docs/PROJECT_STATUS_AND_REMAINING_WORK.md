@@ -12,7 +12,7 @@ The remaining open work falls into four distinct categories:
 1. **Local release hardening (Phase 10 / W8):** In-app study reminders with quiet hours, query performance benchmarks on 1,200-session histories, and the 15-step manual critical flow.
 2. **Human pedagogical review (Plan 9.2 / W5):** Language review of the 6,848 authored draft items by a qualified Japanese speaker before full formal publication.
 3. **Physical device & accessibility verification (Plan 9.2 / W6):** Physical Windows IME conversion checks, screen reader ruby pronunciation order, and touchscreen stylus testing.
-4. **Optional local audio services (Plan 9.2 / F & G):** Downloading and configuring local Kokoro TTS and Whisper STT models for offline voice generation and speech recognition.
+4. **Reference audio and optional local services (Plan 9.2 / F & G):** Authored Japanese and English reference clips ship strictly as a bundled MP3 pack (`content/audio/ja-starter/0.1.21/`); runtime TTS has been removed. Qualified listening review and optional local AI/Whisper STT verification remain.
 5. **Future curriculum extensions (Stages C through F):** Intermediate to advanced multi-paragraph reading and essay composition.
 
 ---
@@ -21,7 +21,7 @@ The remaining open work falls into four distinct categories:
 
 ### Full-Stack Architecture & Engine (Phases 1 through 9)
 - **Frontend Stack:** React 19, strict TypeScript, Vite, Tailwind CSS, and Zod runtime schema validation. Responsive across mobile (320px-390px), tablet, and desktop viewports.
-- **Backend Stack:** Python 3.11+, FastAPI, SQLAlchemy 2.0, Pydantic v2, and Alembic (all 13 migrations applied through head `0013`).
+- **Backend Stack:** Python 3.11+, FastAPI, SQLAlchemy 2.0, Pydantic v2, and Alembic (all 14 migrations applied through head `0014`).
 - **Storage:** SQLite with Write-Ahead Logging (`PRAGMA journal_mode=WAL`) and foreign keys enabled for atomic transactions and concurrent reads.
 - **Unrestricted Study:** Zero hearts/lives, zero cooldowns, no energy meters, no forced waiting periods, free lesson replays, and uncapped genuine-session XP.
 - **Interactive Exercise Engine:** Five distinct exercise types (translation, fill-in-the-blank, multiple choice, sentence ordering, and vocabulary matching) with authoritative backend grading, accepted alternative answers, and explanations.
@@ -33,7 +33,7 @@ The remaining open work falls into four distinct categories:
 
 ### Local Data Safety & Backup/Restore (Phase 10 / W7)
 - **WAL-Consistent Backup:** Uses SQLite's native online backup API (`sqlite3.Connection.backup()`) to produce clean, byte-consistent snapshots including active WAL pages.
-- **Archive Export:** Generates zip archives bundling the database and a validated `manifest.json` with app identity (`Trilingo`), schema version (`0013`), SHA-256 database checksum, and an itemized entity summary.
+- **Archive Export:** Generates zip archives bundling the database and a validated `manifest.json` with app identity (`Trilingo`), schema version (`0014`), SHA-256 database checksum, and an itemized entity summary.
 - **Security & Integrity Guards:** Rejects archives exceeding 50 MB compressed or 150 MB uncompressed (zip-bomb guard), blocks path traversal attempts, verifies SHA-256 checksums, and executes SQLite `PRAGMA integrity_check`.
 - **Atomic Point-in-Time Restore:** Automatically saves a pre-restore safety backup to `.data/backups/`, disposes active connection pools, unlinks `-wal` and `-shm` journals, and atomically swaps the database file.
 - **Safe Reset:** Clears all 20 learner data tables in strict foreign-key order while preserving installed course content, accompanied by an automatic pre-reset safety backup.
@@ -60,12 +60,12 @@ The remaining open work falls into four distinct categories:
 | 1. Phase 10 Local Hardening (W8)   | Engineering: Reminders, benchmarks, QA flow   |
 | 2. Human Pedagogical Review (W5)   | External: Native Japanese speaker sign-off   |
 | 3. Physical Device & Accessibility | QA / Hardware: Real IME, screen reader tests |
-| 4. Optional Local Kokoro & Whisper | Infrastructure: Download ~1.6 GB models      |
+| 4. Audio Review & Optional AI/STT | Human listening sign-off; optional local AI/STT checks |
 | 5. Later Curriculum (Stages C-F)   | Future scope: Intermediate to advanced       |
 +------------------------------------+----------------------------------------------+
 ```
 
-### Track 1: Phase 10 Local Hardening ([Phase 10 / W8](plans/PHASE_10_RELEASE.md#L148-L158))
+### Track 1: Phase 10 Local Hardening ([Phase 10 / W8](plans/PHASE_10_RELEASE.md#deliverables))
 - **Local In-App Study Reminders:**
   - *Current state:* Only an in-page reminder preference toggle exists in Profile settings.
   - *Required work:* Implement configurable in-app or browser notification reminders with configurable quiet hours, opt-out toggles, and truthful running/closed-app availability notes.
@@ -93,7 +93,7 @@ The remaining open work falls into four distinct categories:
 
 ---
 
-### Track 2: Qualified Japanese Pedagogical Review ([Plan 9.2 / W5](plans/REMAINING_WORK_EXECUTION_PLAN.md#L110-L123))
+### Track 2: Qualified Japanese Pedagogical Review ([Plan 9.2 / W5](plans/REMAINING_WORK_EXECUTION_PLAN.md#w5--obtain-qualified-review-and-prove-real-japanese-workflows))
 - **The Core Distinction:**
   - *Published Technical Slice:* 2 units, 6 lessons, 30 checks, 8 words, and 5 expressions.
   - *Authored Draft Inventory:* 2,167 vocabulary entries, 300 contextual kanji, and 230 draft lessons across ten topics.
@@ -104,7 +104,7 @@ The remaining open work falls into four distinct categories:
 
 ---
 
-### Track 3: Physical Hardware & Accessibility Verification ([Plan 9.2 / W6](plans/REMAINING_WORK_EXECUTION_PLAN.md#L124-L135))
+### Track 3: Physical Hardware & Accessibility Verification ([Plan 9.2 / W6](plans/REMAINING_WORK_EXECUTION_PLAN.md#w6--real-input-accessibility-and-final-plan-92-reconciliation))
 - **Physical Windows Japanese IME:**
   - Verify on a physical keyboard that pressing `Enter` during candidate conversion commits the selected kanji characters to the input field without accidentally triggering form submission.
 - **Screen Reader Compatibility:**
@@ -114,16 +114,15 @@ The remaining open work falls into four distinct categories:
 
 ---
 
-### Track 4: Optional Local Audio & Speech Setup ([Plan 9.2 / F & G](plans/REMAINING_WORK_EXECUTION_PLAN.md#L101-L108))
+### Track 4: Bundled Reference Audio & Optional Local Speech ([Plan 9.2 / F & G](plans/REMAINING_WORK_EXECUTION_PLAN.md#w4--prove-supported-setup-and-identify-optional-aistt-providers))
 - **Current State:**
-  - Trilingo provides built-in adapter architecture for local Kokoro TTS and Whisper STT.
-  - When disabled, the app falls back to visual text and transcript feedback without losing practice credit.
-  - No models or containers are currently downloaded or running on this machine.
-- **To Enable Local Audio:**
-  - Would require user approval to download approximately **1.6 GB** of dependencies:
-    - Kokoro-FastAPI container or Python package with Japanese voice weights (`jf_alpha`, `jm_kumo`).
-    - Faster-Whisper or OpenAI-compatible local Whisper STT model weights.
-  - Audio runs strictly against `127.0.0.1` loopback endpoints with a 10-second safety timeout.
+  - Authored Japanese words, listening cues, story turns and English glosses play exclusively from the bundled **90.4 MB** MP3 pack (`4,394` clips) under `content/audio/ja-starter/0.1.21/` using browser `0.75x` slow playback (`preservesPitch=true`). See [AUDIO_PACK.md](AUDIO_PACK.md).
+  - Runtime TTS (`TTS_ENABLED`, `AUDIO_CACHE_DIR`, Kokoro/Edge-TTS/Piper adapters, `POST /api/v1/scenarios/speech`, `GET /api/v1/audio/voices`) was removed on 2026-11-13 (`0014`). Optional local providers are **AI** (`AI_ENABLED`, text-only scenario coaching) and **STT** (`STT_ENABLED`, Whisper-compatible transcription) only.
+  - When bundled audio is unavailable or `AUDIO_PACK_ENABLED=false`, audio routes return HTTP `503` (`audio_unavailable`) and exercises fall back to full text and transcript alternatives without losing practice credit.
+  - A local Kokoro container (`kokoro-tts`) was used historically at build time to generate the `0.1.21` MP3 pack; human listening review (`manifest.status=reviewed` / `bundled_reviewed`) is still pending.
+- **Remaining setup/verification:**
+  - Qualified Japanese listening and English voice spot-check of the bundled `0.1.21` clips (`F3`), then update the manifest review status.
+  - Optional Faster-Whisper or another independent local Japanese STT model (`F4`/`F5`) for microphone transcripts (and optional local AI model for text scenario coaching, `E4`). Local provider calls always target loopback (`127.0.0.1`) with configurable timeouts.
 
 ---
 

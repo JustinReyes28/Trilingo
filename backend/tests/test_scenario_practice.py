@@ -125,7 +125,7 @@ def test_scenario_structured_advice_is_non_authoritative_and_bounded(client, dat
         assert enabled.get("/api/v1/personal").json()["objective_checks"] == 0
 
 
-def test_explicit_scenario_voice_is_bounded_transient_and_never_rewards(
+def test_scenario_speech_removed_and_transcriptions_remain_transient_without_rewards(
     client, database, monkeypatch
 ):
     import base64
@@ -139,23 +139,12 @@ def test_explicit_scenario_voice_is_bounded_transient_and_never_rewards(
     reference = {key: value for key, value in BODY.items() if key != "message"}
     voice = {**reference, "text": "はい、お願いします。"}
     recording = {**reference, "audio_base64": base64.b64encode(wav()).decode()}
-    assert client.post("/api/v1/scenarios/speech", json=voice).status_code == 503
+    assert client.post("/api/v1/scenarios/speech", json=voice).status_code == 404
     assert client.post("/api/v1/scenarios/transcriptions", json=recording).status_code == 503
-    assert (
-        client.post("/api/v1/scenarios/speech", json={**voice, "text": "x" * 501}).status_code
-        == 422
-    )
-    assert (
-        client.post("/api/v1/scenarios/speech", json={**voice, "preview_draft": False}).status_code
-        == 404
-    )
     assert (
         client.patch(
             "/api/v1/settings",
             json={
-                "tts": Provider(
-                    enabled=True, provider="kokoro", model="test", voice="jf_alpha"
-                ).model_dump(),
                 "stt": Provider(
                     enabled=True, provider="openai-compatible", model="test"
                 ).model_dump(),
@@ -163,21 +152,9 @@ def test_explicit_scenario_voice_is_bounded_transient_and_never_rewards(
         ).status_code
         == 200
     )
-    calls = []
-
-    def synthesize(provider, text, speed, **kwargs):
-        calls.append((text, speed))
-        return wav(), False
-
-    monkeypatch.setattr(providers, "synthesize", synthesize)
     monkeypatch.setattr(providers, "transcribe", lambda *args: "はじめまして。")
-    with TestClient(
-        create_app(Config(database_url=database, tts_enabled=True, stt_enabled=True))
-    ) as enabled:
-        result = enabled.post("/api/v1/scenarios/speech", json=voice)
-        assert result.status_code == 200, result.text
-        assert "advisory" in result.json()["label"]
-        assert calls == [(voice["text"], 1)]
+    with TestClient(create_app(Config(database_url=database, stt_enabled=True))) as enabled:
+        assert enabled.post("/api/v1/scenarios/speech", json=voice).status_code == 404
         transcript = enabled.post("/api/v1/scenarios/transcriptions", json=recording)
         assert transcript.status_code == 200, transcript.text
         assert transcript.json()["text"] == "はじめまして。"
@@ -186,9 +163,3 @@ def test_explicit_scenario_voice_is_bounded_transient_and_never_rewards(
         assert enabled.get("/api/v1/progress").json()["total_xp"] == 0
         with sessions(enabled.app.state.engine)() as db:
             assert db.scalar(select(func.count()).select_from(StudyEvent)) == 0
-
-        def unavailable(*args, **kwargs):
-            raise ValueError("provider offline")
-
-        monkeypatch.setattr(providers, "synthesize", unavailable)
-        assert enabled.post("/api/v1/scenarios/speech", json=voice).status_code == 503

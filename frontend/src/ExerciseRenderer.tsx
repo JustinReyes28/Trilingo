@@ -4,9 +4,9 @@ import type { Answer, Exercise } from './studySchemas'
 import { Button } from './components'
 import { SpeakingExercise } from './SpeakingExercise'
 import type { TranscriptResult } from './Recorder'
-import { ListeningCues } from './ListeningExercise'
+import { ListeningCues, type AudioPreparer } from './ListeningExercise'
 
-type Props={exercise:Exercise;value:Answer;onChange:(value:Answer)=>void;disabled:boolean;onComposition:(active:boolean)=>void;onAudio?:(cueId:string,speed:number)=>Promise<string>;onTextAlternative?:()=>void;onSpeech?:(encoded:string)=>Promise<TranscriptResult>}
+type Props={exercise:Exercise;value:Answer;onChange:(value:Answer)=>void;disabled:boolean;onComposition:(active:boolean)=>void;onAudio?:AudioPreparer;onTextAlternative?:()=>void;onSpeech?:(encoded:string)=>Promise<TranscriptResult>}
 export function emptyAnswer(exercise:Exercise):Answer{return exercise.type==='matching'?{}:exercise.type==='sentence_ordering'?[]:''}
 export function answerReady(exercise:Exercise,value:Answer):boolean{
  switch(exercise.type){

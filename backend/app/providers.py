@@ -1,18 +1,17 @@
 """Local-only replaceable adapters. No provider call can mutate learning records."""
 
 import base64
-import hashlib
 import io
 import json
 import logging
 import struct
 import wave
-from pathlib import Path
+from typing import Literal
 
 import httpx
 from pydantic import BaseModel, Field, ValidationError
 
-from app.config import ROOT, Config
+from app.config import Config
 from app.schemas import Provider
 from app.services import DomainError
 
@@ -63,96 +62,6 @@ def validate_wav(data: bytes, maximum_seconds: int = 60) -> float:
             return frames / rate
     except (wave.Error, EOFError, struct.error) as error:
         raise ValueError("Audio must be a valid uncompressed 16-bit WAV") from error
-
-
-def voices(provider: Provider) -> list[str]:
-    data = provider_json(provider, "/audio/voices")
-    if not isinstance(data, dict) or not isinstance(data.get("voices"), list):
-        raise ValueError("The wrapper returned an unsupported voice list")
-    entries = data["voices"]
-    result = [entry.get("id") if isinstance(entry, dict) else entry for entry in entries]
-    if len(result) > 500 or not all(
-        isinstance(voice, str) and len(voice) <= 100 for voice in result
-    ):
-        raise ValueError("The wrapper returned invalid voice identifiers")
-    return [voice for voice in result if voice.startswith(("jf_", "jm_"))]
-
-
-def synthesize(
-    provider: Provider,
-    text: str,
-    speed: float,
-    cache_dir: Path | None = None,
-    pronunciation_override: str | None = None,
-    language: str = "ja",
-) -> tuple[bytes, bool]:
-    if (
-        language != "ja"
-        or provider.provider != "kokoro"
-        or not provider.voice.startswith(("jf_", "jm_"))
-        or not provider.model
-    ):
-        raise ValueError(
-            "Choose Kokoro, a model/version ID, and an installed Japanese jf_/jm_ voice in Profile."
-        )
-    fingerprint = json.dumps(
-        {
-            "text": text,
-            "provider": provider.model_dump(),
-            "speed": speed,
-            "format": "wav",
-            "language": language,
-            "pronunciation_override": pronunciation_override,
-        },
-        sort_keys=True,
-    )
-    key = hashlib.sha256(fingerprint.encode()).hexdigest()
-    directory = cache_dir or ROOT / ".data" / "audio-cache"
-    cached = directory / (key + ".wav")
-    if cached.is_file():
-        if cached.stat().st_size > MAX_AUDIO_BYTES:
-            raise ValueError("Cached audio exceeds the local size limit")
-        data = cached.read_bytes()
-        validate_wav(data)
-        return data, True
-    if provider.voice not in voices(provider):
-        raise ValueError("The configured Japanese voice is not listed by the local service.")
-    with httpx.Client(
-        timeout=min(provider.timeout, 10), follow_redirects=False, trust_env=False
-    ) as client:
-        with client.stream(
-            "POST",
-            endpoint(provider, "/audio/speech"),
-            json={
-                "model": provider.model,
-                "voice": provider.voice,
-                "input": pronunciation_override or text,
-                "response_format": "wav",
-                "speed": speed,
-            },
-        ) as response:
-            response.raise_for_status()
-            if response.headers.get("content-type", "").split(";")[0] not in {
-                "audio/wav",
-                "audio/x-wav",
-                "application/octet-stream",
-            }:
-                raise ValueError("Provider did not return WAV audio")
-            data = bytearray()
-            for chunk in response.iter_bytes():
-                data.extend(chunk)
-                if len(data) > MAX_AUDIO_BYTES:
-                    raise ValueError("Generated audio exceeds the local size limit")
-    value = bytes(data)
-    validate_wav(value)
-    directory.mkdir(parents=True, exist_ok=True)
-    # A cache is disposable media, never learner evidence. Atomic replacement avoids partial replay.
-    from uuid import uuid4
-
-    temporary = directory / (key + "." + str(uuid4()) + ".tmp")
-    temporary.write_bytes(value)
-    temporary.replace(cached)
-    return value, False
 
 
 class Transcript(BaseModel):
@@ -220,9 +129,10 @@ def explain(provider: Provider, context: str) -> str:
     return value
 
 
-def require_enabled(config: Config, provider: Provider, kind: str) -> None:
+def require_enabled(config: Config, provider: Provider, kind: Literal["ai", "stt"]) -> None:
     if (
-        not getattr(config, kind + "_enabled")
+        kind not in {"ai", "stt"}
+        or not getattr(config, kind + "_enabled")
         or not provider.enabled
         or provider.provider == "disabled"
     ):
@@ -239,7 +149,7 @@ PROVIDER_ERRORS = (httpx.HTTPError, ValueError, ValidationError, OSError)
 def provider_failure(kind: str, error: Exception) -> DomainError:
     # Do not log prompts, transcripts, recordings, credentials, URLs or provider bodies.
     logger.warning(
-        "Local %s provider failed (%s); check model, schema, voice and service",
+        "Local %s provider failed (%s); check model, schema and service",
         kind,
         type(error).__name__,
     )
@@ -247,7 +157,7 @@ def provider_failure(kind: str, error: Exception) -> DomainError:
         503,
         "provider_unavailable",
         (
-            "Local provider unavailable or incompatible. Check its model/voice and service, "
+            "Local provider unavailable or incompatible. Check its model and service, "
             "retry, or continue with text."
         ),
     )

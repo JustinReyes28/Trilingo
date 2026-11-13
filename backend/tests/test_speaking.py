@@ -8,7 +8,7 @@ from sqlalchemy import select
 from test_grammar_audio import wav
 from test_learning import act, action_body, start
 from test_learning import course as course
-from test_listening import audio, enable
+from test_listening import audio
 
 from app import providers
 from app.config import Config
@@ -110,11 +110,9 @@ def test_disabled_speaking_typed_fallback_skip_finish_replay_and_no_audio_credit
 
 
 def test_durable_transcripts_exact_retry_snapshot_and_genuine_audio_quest(
-    client, database, monkeypatch, course
+    client, database, fixture_audio_pack, monkeypatch, course
 ):
-    enable(client)
     enable_stt(client)
-    monkeypatch.setattr(providers, "synthesize", lambda *a, **k: (wav(), False))
     calls = []
 
     def transcribe(provider, encoded):
@@ -123,7 +121,14 @@ def test_durable_transcripts_exact_retry_snapshot_and_genuine_audio_quest(
 
     monkeypatch.setattr(providers, "transcribe", transcribe)
     with TestClient(
-        create_app(Config(database_url=database, tts_enabled=True, stt_enabled=True))
+        create_app(
+            Config(
+                database_url=database,
+                audio_pack_dir=fixture_audio_pack,
+                audio_pack_enabled=True,
+                stt_enabled=True,
+            )
+        )
     ) as enabled:
         assignment = quest(enabled)
         session = speaking(enabled)
@@ -228,14 +233,19 @@ def test_invalid_media_failures_and_interleaved_action_preserve_saved_work(
 
 
 def test_missing_reference_or_typed_fallback_never_earns_speaking_credit(
-    client, database, monkeypatch
+    client, database, fixture_audio_pack, monkeypatch
 ):
-    enable(client)
     enable_stt(client)
-    monkeypatch.setattr(providers, "synthesize", lambda *a, **k: (wav(), False))
     monkeypatch.setattr(providers, "transcribe", lambda *a: "水をください。")
     with TestClient(
-        create_app(Config(database_url=database, tts_enabled=True, stt_enabled=True))
+        create_app(
+            Config(
+                database_url=database,
+                audio_pack_dir=fixture_audio_pack,
+                audio_pack_enabled=True,
+                stt_enabled=True,
+            )
+        )
     ) as enabled:
         quest(enabled)
         for mode in ["missing_reference", "typed_fallback", "skip"]:
