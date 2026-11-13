@@ -51,10 +51,10 @@ Owns the remaining setup gate in [Phase 1](PHASE_01_FOUNDATION.md); supports eve
 
 - [x] **A1:** Reinspect README, all nine phase files, actual source/tests/contracts and latest evidence. Reconcile stale checklist wording with behavior; preserve historical evidence and identify necessary reruns. Record runtime/lockfile versions and starting source hash.
 - [ ] **A2:** In a fresh isolated folder/environment, use Node 24 LTS and supported Python 3.11+ to follow documented dependency installation, migration, import and launch. Preserve lockfiles; record OS/runtime versions. Missing runtime/cache files may now be downloaded (unmetered connection since 2026-11-09); record the sources and versions installed.
-- [ ] **A3:** On a disposable QA database, verify empty-schema upgrade, forward `0014` upgrade/normalization, repeatable import, API health (`features: {lessons, ai, stt}`), frontend connection, settings persistence and restart with AI/STT disabled (bundled pack enabled and disabled). Check existing launcher port-conflict and missing-schema recovery.
+- [ ] **A3:** On a disposable QA database, verify empty-schema upgrade, forward `0015` upgrade/normalization (stripping `"ai"`, `"stt"`, and legacy `"tts"` from `preferences.data`), repeatable import, API health (`features: {lessons: true}`), `GET /api/v1/audio/status` (`{audio_pack}`), frontend connection, settings persistence and restart (bundled pack enabled and `AUDIO_PACK_ENABLED=false`). Check existing launcher port-conflict and missing-schema recovery.
 - [x] **A4:** Separate all QA databases, caches, recordings, drafts and owned services from `.data/trilingo.db` and the personal launcher. Later schema changes require reviewed migrations plus clean and populated forward-upgrade tests preserving history/receipts. No resets, manual learner-DB edits or runtime table creation.
 
-Evidence required: reproducible clean supported-runtime launch, relevant passing gates and persisted settings. F answers bundled pack listening review and optional STT verification; unavailable bundled audio (`503 audio_unavailable`) or optional AI/STT providers do not block Phase 1's independent foundation gate.
+Evidence required: reproducible clean supported-runtime launch, relevant passing gates and persisted settings. F3 answers bundled pack listening review; unavailable bundled audio (`503 audio_unavailable`) does not block Phase 1's independent foundation gate (runtime TTS `0014` and optional AI/STT `0015` superseded).
 
 ## B — Complete the beginner inventory and qualified-review queue
 
@@ -90,7 +90,7 @@ Owns remaining [Phase 6](PHASE_06_WRITING.md) work; reuse existing drafts, confl
 - [ ] **D4:** On physical Windows IME, type kana, convert a word to kanji, enter a constrained sentence and compose a guided paragraph. Check conversion Enter, composition-aware autosave, paste/focus, refresh/restart, failed saves and two-tab conflicts without text loss or duplicate submission XP.
 - [ ] **D5:** Exercise mouse, real touch and stylus where available across trace/freehand modes: scaling/device-pixel ratio, start/direction cues, undo, substantial-unsaved clear/change confirmation, replay, optional sample retention/deletion and keyboard sequence alternative. Identify unavailable hardware and leave its coverage open.
 
-Evidence required: reviewed beginner tasks/assets, physical input checks, durable drafts/revisions/conflicts and AI-disabled completion. No handwriting-recognition or C-F workshop claim follows.
+Evidence required: reviewed beginner tasks/assets, physical input checks, durable drafts/revisions/conflicts and offline completion. No handwriting-recognition or C-F workshop claim follows.
 
 ## E — Full beginner grammar, explanations and dialogues
 
@@ -98,35 +98,35 @@ Owns remaining [Phase 7](PHASE_07_GRAMMAR_DIALOGUES.md) work; uses B's ten-unit 
 
 - [ ] **E1:** Extend seven draft notes into reviewed unit guides/searchable concepts for all ten topics. Include English explanations, Japanese examples/readings, common mistakes, register/culture and scaffolded preparation. Preserve mistake/example links to targeted practice and durable bookmarks.
 - [ ] **E2:** Review six scenarios and their branches/checkpoints, alternatives, hints and register expectations. Explain valid alternatives separately from understandable responses outside the task. Broaden answer-specific contrast explanations beyond the existing six particle checks.
-- [ ] **E3:** Reuse/extend transition, resume, duplicate-event, content-update, bookmark/collection, search/filter and fallback regressions. Manually finish at least three authored scenarios with AI disabled, interrupt/resume one and revisit explanations.
-- [ ] **E4:** Verify one real local explanation and coaching request with the loaded configured model. Record provider/model/version/endpoint and actual result. Reuse tests for disabled/unreachable/timeout/unloaded/incompatible/malformed/configuration-change cases. Generated text stays advisory, safely rendered and unable to mutate grades, XP, FSRS or publication.
+- [ ] **E3:** Reuse/extend transition, resume, duplicate-event, content-update, bookmark/collection, search/filter and fallback regressions. Manually finish at least three authored scenarios offline, interrupt/resume one and revisit explanations.
+- [x] **E4 (Superseded / abandoned 2026-11-13, schema `0015`):** Optional local AI explanation and coaching integration (`AI_ENABLED`, `providers.py`, `scenario_practice.py`, `Explanation.tsx`, `ScenarioPractice.tsx`, `/api/v1/explanations`, `/api/v1/scenarios/practice`) removed from Trilingo; deterministic explanations and authored dialogues remain active.
 
-Evidence required: reviewed ten-unit instruction and deterministic dialogues without AI. Track E4 separately: authored/fallback success cannot imply a real model was tested; unverified integration remains explicitly open here.
+Evidence required: reviewed ten-unit instruction and deterministic dialogues offline (`E4` superseded 2026-11-13 in schema `0015`).
 
-## F — Verify bundled audio review and optional local STT
+## F — Verify bundled audio review (STT/mic superseded 2026-11-13)
 
-Owns remaining audio-review and optional STT work in [Phase 8](PHASE_08_AUDIO_SPEAKING.md). Runtime TTS/Kokoro discovery and dynamic TTS synthesis were superseded on 2026-11-13 by the bundled-audio-only architecture.
+Owns remaining audio-review work in [Phase 8](PHASE_08_AUDIO_SPEAKING.md). Runtime TTS/Kokoro discovery (`F1`/`F2`, schema `0014`), Whisper STT (`F4`, `STT_ENABLED`), and microphone recording (`F5`, `Recorder.tsx`, schema `0015`) were **Superseded / abandoned 2026-11-13**.
 
 - [x] **F1 (Superseded 2026-11-13 bundled-audio-only):** Runtime Docker/Kokoro container, schema, voice, and port discovery — superseded because authored reference audio ships pre-generated in `content/audio/ja-starter/0.1.21/` and zero runtime TTS services run (`TTS_ENABLED`, `AUDIO_CACHE_DIR`, `POST /api/v1/scenarios/speech`, and `GET /api/v1/audio/voices` were removed in schema `0014`).
 - [x] **F2 (Superseded 2026-11-13 bundled-audio-only):** Runtime Kokoro Japanese `lang_code='j'`/`misaki[ja]` tokenizer and engine fallback setup — superseded by static bundled MP3 validation (`scripts/check_audio_pack.py --strict`); `scripts/build_audio_pack.py` stays optional maintainer-only for `0.1.22+`.
-- [ ] **F3:** Validate the bundled `0.1.21` MP3 pack (`check_audio_pack.py --strict`, decodable non-silent durations, browser `0.75x` playback with `preservesPitch=true`, and `503 audio_unavailable` text fallback when `AUDIO_PACK_ENABLED=false`) and complete qualified human Japanese listening review across Phase 8's five-phrase verification set (`こんにちは。`, `日本語を勉強しています。`, `私は学校へ行きます。`, `三時にコーヒーを二杯ください。`, `きょう、きってをかいます。`), contextual readings (including は/へ and counters), and English gloss spot-checks before changing `manifest.json` `status` from `draft` to `reviewed`. STT agreement alone is insufficient teaching-audio review.
-- [ ] **F4:** Inspect available local Japanese STT options (`STT_ENABLED`) against current primary documentation, maintenance/license, language, formats, resource/retention requirements and endpoint. Select/pin the actual independent STT provider/model/version; adapt the existing contract only as needed. A compatible adapter is not a verified installed service.
-- [ ] **F5:** Complete human microphone recording → local Japanese transcription → transcript feedback. Exercise permission denied, missing/busy device, unsupported format, silence/uncertainty, cancel/retry/delete. Distinguish real recording from fake-device tests, and transcript feedback from phoneme/pitch-accent assessment.
+- [ ] **F3:** Validate the bundled `0.1.21` MP3 pack (`check_audio_pack.py --strict`, decodable non-silent durations, browser `0.75x` playback with `preservesPitch=true`, and `503 audio_unavailable` text fallback when `AUDIO_PACK_ENABLED=false`) and complete qualified human Japanese listening review across Phase 8's five-phrase verification set (`こんにちは。`, `日本語を勉強しています。`, `私は学校へ行きます。`, `三時にコーヒーを二杯ください。`, `きょう、きってをかいます。`), contextual readings (including は/へ and counters), and English gloss spot-checks before changing `manifest.json` `status` from `draft` to `reviewed`.
+- [x] **F4 (Superseded / abandoned 2026-11-13, schema `0015`):** Inspect available local Japanese STT options (`STT_ENABLED`) and pin an independent STT provider/model — Whisper STT and transcription routes were removed from Trilingo.
+- [x] **F5 (Superseded / abandoned 2026-11-13, schema `0015`):** Human microphone recording → local Japanese transcription → transcript feedback — microphone capture (`Recorder.tsx`, `speaking.py`, `/sessions/.../speech`) was removed; authored speaking prompts remain active via bundled reference playback + unassessed typed practice.
 
-Evidence required: `check_audio_pack.py --strict` pass, qualified human listening review (`bundled_reviewed=true`), installed optional STT configuration records, and real microphone/STT results. If unavailable, classify the missing prerequisite accurately, leave Phase 8 partial and continue independent work. Never reset/mount/replace provider disks or delete learner data as a shortcut.
+Evidence required: `check_audio_pack.py --strict` pass and qualified human listening review (`bundled_reviewed=true`). Never reset/mount/replace provider disks or delete learner data as a shortcut.
 
-## G — Audio stories, rewarded speaking and dialogue audio
+## G — Audio stories, speaking typed practice and dialogue audio
 
-Owns remaining [Phase 8](PHASE_08_AUDIO_SPEAKING.md) workflows; depends on F3/F4/F5 for reviewed audio/STT integration and B/C/E for reviewed content.
+Owns remaining [Phase 8](PHASE_08_AUDIO_SPEAKING.md) workflows; depends on F3 for reviewed audio and B/C/E for reviewed content (`F4`/`F5` STT/microphone superseded 2026-11-13 in schema `0015`).
 
 - [ ] **G1:** Finish qualified review and bundled-MP3-pack playback verification for reviewed stories and at least two reviewed mini episodes with comprehension checkpoints, optional transcript reveal, replay and client `0.75x` slow playback (`preservesPitch=true`). Separate displayed transcripts, pronunciation overrides and bundled reference audio; label synthetic speech honestly until reviewed.
 - [ ] **G2:** Verify existing focused listening selection/dictation/contrast with bundled Japanese MP3 output. Preserve private cues, revision-safe delivery receipts, assisted text fallback (`503 audio_unavailable`), cancellation/concurrent-action recovery and normal XP. Audio preparation/delivery is not proof it was heard.
-- [x] **G3:** Complete durable speaking-only practice through shared session/reward/activity services: authored objective, reference/replay/shadowing, recording, explicit STT feedback, retry/skip/finish and typed fallback. Define speech-attempt/transcript-match/fallback evidence in backend/public schemas without client correctness/mastery flags. Genuine new completed sessions earn normal practice XP; duplicate delivery and fallback switching cannot duplicate rewards.
-- [ ] **G4:** Verify authored dialogues with bundled reference clips alongside explicit recording/optional STT, plus text-only optional bounded AI coaching (`POST /api/v1/scenarios/speech` removed 2026-11-13; coaching remains text-only + optional STT). Preserve text participation/generated-feedback labels; do not turn coaching into an unbounded authoritative chatbot course.
+- [x] **G3:** Complete durable speaking-only practice through shared session/reward/activity services: authored objective, reference/replay/shadowing, retry/skip/finish and typed fallback. Genuine new completed sessions earn normal practice XP; duplicate delivery and fallback switching cannot duplicate rewards. *(Amended 2026-11-13, schema `0015`: microphone recording, `speaking.py`, and STT transcripts were removed; speaking prompts remain active via bundled reference playback and unassessed typed practice `Save typed practice`.)*
+- [ ] **G4:** Verify authored dialogues with bundled reference clips alongside unassessed typed speaking practice *(optional bounded AI scenario coaching `ScenarioPractice.tsx`, microphone recording, and STT were **Superseded / abandoned 2026-11-13, schema `0015`**)*. Preserve text participation labels.
 - [x] **G5:** Extend capability-aware quests/per-skill records to completed audio workflows. Text-only fallback, skips, missing audio and unperformed speech cannot earn audio-specific credit. Preserve same-assignment fallback/definition history and previously credited source events.
-- [ ] **G6:** Test invalid/oversized media, missing/disabled pack clips (`AUDIO_PACK_ENABLED=false` returning `503 audio_unavailable`), STT latency/failure, stale sessions, config changes and transient recording handling. Document provider retention/deletion. Complete a core lesson with `AI_ENABLED=false`, `STT_ENABLED=false`, and `AUDIO_PACK_ENABLED=false` without losing work, access or normal XP.
+- [ ] **G6:** Test missing/disabled pack clips (`AUDIO_PACK_ENABLED=false` returning `503 audio_unavailable`), stale sessions, and config changes. Complete a core lesson with `AUDIO_PACK_ENABLED=false` without losing work, access or normal XP. *(Invalid/oversized audio uploads, STT latency/failure, and transient microphone recording checks were superseded 2026-11-13 in schema `0015`.)*
 
-Evidence required: reviewed audio content, real-provider end-to-end workflows, truthful durable records and fallbacks. Durable additions require reviewed migrations/historical receipt compatibility; never retain raw recordings by default or silently submit them to cloud services.
+Evidence required: reviewed audio content, bundled playback workflows, truthful durable typed-practice records and `503 audio_unavailable` fallbacks.
 
 ## H — Review directions, collections and historical records
 
@@ -147,9 +147,9 @@ Evidence required: preserved real FSRS state/logs, full accessible histories and
 Owns combined Phases 1–9 verification, preserving [Phase 2](PHASE_02_INTERFACE.md) and [Phase 4](PHASE_04_LESSON_ENGINE.md). This is the Phase 10 handoff, not release approval.
 
 - [ ] **I1:** For changed UI, follow [the design brief](../DESIGN_BRIEF.md), [shared system](../../design-system/trilingo/MASTER.md), `ui-ux-pro-max`, `frontend-design` and rendered `design-skill` detect/audit guidance. Inspect 320/390/about 768px/desktop, keyboard/focus, Japanese composition/ruby/zoom, screen-reader order/labels, contrast, reduced motion, touch and essential actions. Record findings/screenshots and fix major issues; invocation/detector output alone is not a pass.
-- [ ] **I2:** Verify loading/error/empty/draft/unpublished, available/current/complete/skipped/assisted, pending/saved/conflict, provider-offline and recovery states. A new learner can open every published activity and reveal/hint/retry/skip/pause/resume/finish/continue after mistakes. Optional assessments/goals/quests/badges/timers/cosmetics cannot add locks, quotas, countdown expiry or missed-day penalties.
+- [ ] **I2:** Verify loading/error/empty/draft/unpublished, available/current/complete/skipped/assisted, pending/saved/conflict, audio-unavailable (`503 audio_unavailable`) and recovery states. A new learner can open every published activity and reveal/hint/retry/skip/pause/resume/finish/continue after mistakes. Optional assessments/goals/quests/badges/timers/cosmetics cannot add locks, quotas, countdown expiry or missed-day penalties.
 - [x] **I3:** Run targeted tests after each coherent change, then complete relevant frontend/backend/content/migration/API gates on the final candidate. Extend existing tests only for meaningful uncovered behavior; never weaken/delete failures or bulk-check tasks merely because files exist.
-- [ ] **I4:** Run applicable isolated browser scripts and the manual flow below with actual devices/providers. Synthetic IME/test-tone/fake-microphone evidence stays separate. Record unavailable hardware/review and leave required checks open.
+- [ ] **I4:** Run applicable isolated browser scripts and the manual flow below with actual devices. Synthetic IME/test-tone evidence stays separate. Record unavailable hardware/review and leave required checks open.
 - [ ] **I5:** Review the final diff against a preserved baseline for regressions, licenses, answer leakage, migration/backfill/receipt compatibility, bounded queries/provider work and private data. Update README, authoring/provider/setup docs, phase checklists and master milestones only for verified scope.
 - [x] **I6:** Write a completion report with exact commands/results, source/schema/content versions, files, manual device/provider/reviewer evidence, unresolved items and Phase 10 handoff. Unproved required items retain partial status with a named prerequisite.
 
@@ -187,9 +187,9 @@ Remove-Item Env:DATABASE_URL
 Remove-Item Env:QA_MODE
 ```
 
-Also run populated forward-upgrade tests (including schema `0014` normalization of legacy `"tts"` preferences) and API smoke for `/api/v1/health`, `/api/v1/providers/status`, content reads and changed endpoints on the isolated running backend. Keep AI/STT disabled for core tests, then test isolated AI/STT preferences alongside bundled pack playback. Tones cannot prove Japanese listening quality.
+Also run populated forward-upgrade tests (including schema `0015` normalization stripping `"ai"`, `"stt"`, and legacy `"tts"` preferences) and API smoke for `/api/v1/health` (`features: {lessons: true}`), `/api/v1/audio/status` (`{audio_pack}`), content reads and changed endpoints on the isolated running backend, testing both `AUDIO_PACK_ENABLED=true` and `AUDIO_PACK_ENABLED=false`. Tones cannot prove Japanese listening quality.
 
-Reuse applicable `scripts/verify_ui.py`, `verify_study_ui.py`, `verify_reading_ui.py`, `verify_writing_ui.py`, `verify_phase789_ui.py`, `verify_listening_ui.py`, `verify_recall_timing_ui.py` and `verify_recording_ui.py`. Check each script's QA startup/guards, use the installed browser and stop only owned QA processes.
+Reuse applicable `scripts/verify_ui.py`, `verify_study_ui.py`, `verify_reading_ui.py`, `verify_writing_ui.py`, `verify_phase789_ui.py`, `verify_listening_ui.py`, `verify_speaking_ui.py`, `verify_audio_recall_ui.py`, and `verify_recall_timing_ui.py`. Check each script's QA startup/guards, use the installed browser and stop only owned QA processes.
 
 ### Combined manual flow
 
@@ -197,21 +197,21 @@ Reuse applicable `scripts/verify_ui.py`, `verify_study_ui.py`, `verify_reading_u
 2. Make mistakes, retry/reveal/skip, pause/refresh/resume, finish/replay. Verify normal XP for every genuinely completed new session and no added XP for duplicate delivery.
 3. Read reviewed kana/kanji text and a story with aids on/off and an actual screen reader. Save an item; keep assistance/recognition distinct from other skills.
 4. Use physical IME, reviewed guided writing and mouse/touch/stylus formation where available. Preserve drafts/conflicts/revisions through restart and inspect honest sample/evidence labels.
-5. Finish three scenarios with AI disabled. Separately verify optional real explanations/coaching, Japanese listen-along/two episodes, human microphone/STT, rewarded speaking and a voiced scenario.
-6. Disable/unload providers mid-work; preserve input and typed/retry/skip/finish options. Verify same-assignment quest fallback without fabricated speech/duplicate rewards.
+5. Finish three authored dialogues offline. Separately verify Japanese listen-along/two episodes and speaking typed practice with bundled MP3 playback.
+6. Disable bundled audio (`AUDIO_PACK_ENABLED=false`) mid-work; verify `503 audio_unavailable` preserves input and typed/retry/skip/finish options without fabricated speech/listening credit or duplicate rewards.
 7. Early-review a future-due card, browse/skip another, expand batches, use collections/modes and browse final history pages. Restart and compare cards/logs/timing/XP/calendar/quests/badges/preferences.
 8. Using isolated clocks, test missed goals/days, timezone/DST and free cosmetics. Preserve work/XP/access; elapsed-time displays never expire study.
 
 ## Completion checklist and Phase 10 handoff
 
-- [ ] **Phase 1:** A proves supported fresh setup/settings; F records conditional provider discovery without making Docker mandatory for the core app.
+- [ ] **Phase 1:** A proves supported fresh setup/settings with zero runtime AI/STT/TTS providers.
 - [ ] **Phase 2:** Preserve shell completion; I verifies actual new screens and resolves major design/accessibility findings in owning phases.
 - [ ] **Phase 3:** B proves exact-source qualified review, narrative/writing contracts and repeatable imports preserving history. Technical practice cannot be relabeled independently reviewed without evidence.
 - [ ] **Phase 4:** Preserve engine completion; I verifies renderer extensions retain authoritative grading, protected answers, unrestricted study, persistence and uncapped/idempotent rewards.
 - [ ] **Phase 5:** B/C prove reviewed contextual inventory, two reviewed published stories, accurate aids, saved evidence and manual accessibility checks.
 - [ ] **Phase 6:** B/D prove reviewed Stage A tasks, three Stage B compositions/models/revision/checklists, licensed reviewed stroke guidance, durable drafts and actual input/device checks. Unavailable hardware stays identified/unverified.
-- [ ] **Phase 7:** B/E prove reviewed ten-unit guides/dialogues and authored/fallback operation without AI. Record real integration separately; generated advice cannot become authoritative evidence.
-- [ ] **Phase 8:** F/G prove bundled `0.1.21` MP3 pack validation and qualified human Japanese listening review (`bundled_reviewed=true`), human microphone/local STT (`F4`/`F5`), story audio/two reviewed episodes (`G1`), focused listening/speaking (`G2`/`G3`), and authored dialogues + text-only AI coaching (`G4`) with honest fallbacks.
+- [ ] **Phase 7:** B/E prove reviewed ten-unit guides/dialogues offline (`E4` optional AI explanations/coaching superseded 2026-11-13 in schema `0015`).
+- [ ] **Phase 8:** F3/G prove bundled `0.1.21` MP3 pack validation and qualified human Japanese listening review (`bundled_reviewed=true`), story audio/two reviewed episodes (`G1`), focused listening/speaking typed practice (`G2`/`G3`), and authored dialogues with bundled reference clips (`G4`) with honest `503 audio_unavailable` fallbacks (`F4` STT, `F5` microphone capture, and `G4` AI coaching superseded 2026-11-13 in schema `0015`).
 - [ ] **Phase 9:** H/I prove real FSRS, suitable separate directions/evidence, complete collections/modes/histories, truthful optional feedback and unrestricted study across failures/restart.
 - [ ] **Plan 9.2:** Applicable A–I tasks/owning gates have evidence and exact-source claims agree across docs/API/UI. Required unverified items keep their phase and overall supplement partial; identify optional/unavailable integrations and hardware explicitly.
 
@@ -277,3 +277,10 @@ Following the initial pack release recorded above, runtime TTS was removed clean
 
 - Schema **`0014`** (`0014_remove_tts_settings.py`) removes `"tts"` and `ai.voice`/`stt.voice` from `preferences.data` and normalized backup restores; `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `POST /api/v1/scenarios/speech`, and `GET /api/v1/audio/voices` are removed.
 - **F1** and **F2** (runtime Kokoro/TTS discovery and setup) are marked superseded; **F3** tracks qualified human Japanese listening review of the committed `0.1.21` MP3 pack; **F4/F5** (optional STT), **E4** (text-only optional AI coaching), **G1/G2/G4/G6**, and Step 4 integrated post-Phase-3 verification remain explicitly tracked.
+
+## Local-only migration — 2026-11-13 (schema `0015`)
+
+Following commit `5e01b81` (`0014`), schema **`0015`** (`0015_remove_ai_stt_settings.py`) removed all optional local AI (`AI_ENABLED`), Whisper STT (`STT_ENABLED`), and microphone recording (`Recorder.tsx`, `speaking.py`, `ScenarioPractice.tsx`, `Explanation.tsx`, `providers.py`, `/api/v1/providers/status` -> `/api/v1/audio/status`, `/api/v1/health` `features: {lessons: true}`), stripping `"ai"`, `"stt"`, and `"tts"` from `preferences.data` while preserving all learner progress and backups:
+
+- **E4**, **F4**, **F5**, and **G4** AI coaching / STT / microphone recording are marked **Superseded / abandoned 2026-11-13 (schema `0015`)**.
+- Real remaining open Plan 9.2 work is **A2/A3** (clean Node 24 / Python setup & `0015` checks), **B1–B6/W5** (`6,848`-item human pedagogical review), **F3** (human listening review of `0.1.21` MP3 pack), **G1/G2/G4/G6** (dialogue/episode audio & `503` fallback checks), and **C–D / I1–I4 / W6** (physical IME, screen reader, touch/stylus, and combined manual verification).

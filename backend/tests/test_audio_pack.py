@@ -207,15 +207,14 @@ def test_missing_japanese_clip_returns_audio_unavailable(pack_client):
     assert response.json()["error"]["code"] == "audio_unavailable"
 
 
-def test_provider_status_reports_the_bundled_pack(pack_client):
+def test_audio_status_reports_the_bundled_pack(pack_client):
     client, _ = pack_client
-    status = client.get("/api/v1/providers/status?course_id=" + COURSE).json()
-    assert "tts" not in status
+    assert client.get("/api/v1/providers/status?course_id=" + COURSE).status_code == 404
+    status = client.get("/api/v1/audio/status?course_id=" + COURSE).json()
+    assert set(status.keys()) == {"audio_pack"}
     assert status["audio_pack"]["bundled_reference"] is True
     assert status["audio_pack"]["bundled_reviewed"] is False
     assert status["audio_pack"]["course_version"] == VERSION
-    assert status["ai"]["verified"] is False
-    assert status["stt"]["verified"] is False
 
 
 def test_listening_pack_hit_records_delivery_without_providers(pack_client):
@@ -594,7 +593,7 @@ def _build_practice_test_course() -> CourseContent:
     return CourseContent.model_validate(raw)
 
 
-def test_provider_status_rejects_course_id_traversal_without_probing_parent(
+def test_audio_status_rejects_course_id_traversal_without_probing_parent(
     database, tmp_path, monkeypatch
 ):
     audio_pack.clear_cache()
@@ -641,10 +640,10 @@ def test_provider_status_rejects_course_id_traversal_without_probing_parent(
             ".",
             "ja-starter/../../outside",
         ]:
-            response = client.get("/api/v1/providers/status", params={"course_id": bad_id})
+            response = client.get("/api/v1/audio/status", params={"course_id": bad_id})
             assert response.status_code == 200
             payload = response.json()
-            assert "tts" not in payload
+            assert set(payload.keys()) == {"audio_pack"}
             pack = payload["audio_pack"]
             assert pack["bundled_reference"] is False
             assert pack["bundled_reviewed"] is False
@@ -871,24 +870,21 @@ def test_corrupt_sha256_size_mismatch_missing_clip_and_oversized_manifest_fallba
     audio_pack.clear_cache()
 
 
-def test_transcriptions_rejects_english_with_422(pack_client):
+def test_removed_audio_transcription_route_returns_404(pack_client):
     client, expected = pack_client
     response = client.post(
         "/api/v1/audio/transcriptions",
         json={
             "course_id": COURSE,
             "item_id": expected["word_id"],
-            "language": "en",
+            "language": "ja",
             "audio_base64": "invalid",
         },
     )
-    assert response.status_code == 422
-    error = response.json()["error"]
-    assert error["code"] == "audio_reference"
-    assert "Japanese transcript comparison" in error["message"]
+    assert response.status_code == 404
 
 
-def test_provider_status_bundled_reviewed_reflects_manifest_status(database, tmp_path):
+def test_audio_status_bundled_reviewed_reflects_manifest_status(database, tmp_path):
     audio_pack.clear_cache()
     content = load_content(ROOT / "content" / "courses" / "ja" / "starter.json")
     source_bytes = (ROOT / "content" / "courses" / "ja" / "starter.json").read_bytes()
@@ -905,24 +901,21 @@ def test_provider_status_bundled_reviewed_reflects_manifest_status(database, tmp
     with TestClient(app) as client:
         with sessions(app.state.engine)() as db:
             import_content(db, content)
-        draft_status = client.get("/api/v1/providers/status", params={"course_id": COURSE}).json()
-        assert "tts" not in draft_status
+        draft_status = client.get("/api/v1/audio/status", params={"course_id": COURSE}).json()
+        assert set(draft_status.keys()) == {"audio_pack"}
         assert draft_status["audio_pack"]["bundled_reference"] is True
         assert draft_status["audio_pack"]["bundled_reviewed"] is False
         assert draft_status["audio_pack"]["course_version"] == VERSION
-        assert "bundled_reviewed" not in draft_status["ai"]
-        assert "bundled_reviewed" not in draft_status["stt"]
 
         _write_pack_version(pack_root, COURSE, VERSION, [item], source_bytes, status="reviewed")
         audio_pack.clear_cache()
         reviewed_status = client.get(
-            "/api/v1/providers/status", params={"course_id": COURSE}
+            "/api/v1/audio/status", params={"course_id": COURSE}
         ).json()
+        assert set(reviewed_status.keys()) == {"audio_pack"}
         assert reviewed_status["audio_pack"]["bundled_reference"] is True
         assert reviewed_status["audio_pack"]["bundled_reviewed"] is True
         assert reviewed_status["audio_pack"]["course_version"] == VERSION
-        assert "bundled_reviewed" not in reviewed_status["ai"]
-        assert "bundled_reviewed" not in reviewed_status["stt"]
     audio_pack.clear_cache()
 
 

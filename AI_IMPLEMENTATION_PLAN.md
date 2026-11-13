@@ -20,7 +20,9 @@ The former 24-phase plan is preserved verbatim in [the archive](docs/plans/archi
 
 Inspection/update date: **2026-11-13** (building on the historical 2026-10-25 execution log preserved below).
 
-**Bundled-audio-only update (2026-11-13):** Authored Japanese words, listening cues, story turns, and English vocabulary glosses now ship exclusively as a bundled **90.4 MB** static MP3 pack (`4,394` clips) under `content/audio/ja-starter/0.1.21/`. Schema **`0014`** (`0014_remove_tts_settings`) removed runtime TTS preferences (`tts` and `ai.voice`/`stt.voice`) while preserving all learner tables, removed `TTS_ENABLED`/`AUDIO_CACHE_DIR` and runtime TTS endpoints (`POST /api/v1/scenarios/speech`, `GET /api/v1/audio/voices`), simplified `GET /api/v1/health` to `features: {lessons, ai, stt}` and `GET /api/v1/providers/status` to `{ai, stt, audio_pack}`, and shifted slow playback to browser `0.75x` (`preservesPitch=true`). Optional runtime local services are **AI** (`AI_ENABLED`, text-only scenario coaching) and **STT** (`STT_ENABLED`) only. See [AUDIO_PACK.md](docs/AUDIO_PACK.md) and [HANDOFF.md](HANDOFF.md).
+**Local-only practice update (2026-11-13, schema `0015`):** Following the bundled-audio-only `0014` work below, schema **`0015`** (`0015_remove_ai_stt_settings`) removed all optional local AI (`AI_ENABLED`), Whisper STT (`STT_ENABLED`), and microphone capture code, UI (`Explanation.tsx`, `ScenarioPractice.tsx`, `Recorder.tsx`), routes (`/api/v1/providers/status`, `/api/v1/explanations`, `/api/v1/scenarios/practice`, transcription/speech routes), and `"ai"`/`"stt"`/`"tts"` keys from `preferences.data` while preserving all learner progress and backups. `GET /api/v1/health` now returns `features: {lessons: true}` and `GET /api/v1/audio/status` reports `{audio_pack}`. Authored `speaking` prompts (bundled MP3 model + typed practice) and 5-direction recall remain active. See [AUDIO_PACK.md](docs/AUDIO_PACK.md) and [HANDOFF.md](HANDOFF.md).
+
+**Bundled-audio-only update (2026-11-13, commit `5e01b81`, schema `0014`):** Authored Japanese words, listening cues, story turns, and English vocabulary glosses ship exclusively as a bundled **90.4 MB** static MP3 pack (`4,394` clips) under `content/audio/ja-starter/0.1.21/`. Schema **`0014`** (`0014_remove_tts_settings`) removed runtime TTS preferences, `TTS_ENABLED`/`AUDIO_CACHE_DIR`, and runtime TTS endpoints (`POST /api/v1/scenarios/speech`, `GET /api/v1/audio/voices`), shifting slow playback to browser `0.75x` (`preservesPitch=true`). *(Prior `0014` notes about optional `AI_ENABLED`/`STT_ENABLED` were superseded by schema `0015` above.)*
 
 Historical bounded work (2026-10-25): [the 2026-10-25 continuation](docs/PLAN_09_2_CURRICULUM.md#execution-continuation--2026-10-25) executes the remaining-work plan under a **maximum two hours /18 check-review rounds** allowance, including the five-check extension and final three-check/30-minute writing/grammar batch ending by12:40:00UTC. Start remains 11:05:34 UTC; hard stop remains 13:05:34 UTC. Source **0.1.21** adds **1,060 provisional Stage B words, 110 draft lessons, 1,874 lesson checks and 24 particle contrasts**. Current inventory has **2,167 provisional lexical identities (541 A +1,626 additional B)**, 15 expressions, 92 basic kana and 300 contextual kanji. Both separate word-authoring targets are exceeded; qualified semantic/content review remains pending for **6,848 items**. Saved-item navigation, stale collection loads/actions and completed self-rated recall replay have focused fixes. Existing dependencies pass frontend quality gates on an installed embedded Node24.21.0 runtime; fresh independent setup remains open. The full backend run reports 211 passes and one expanded-guide fixture failure, with focused recovery recorded separately. All additions remain draft; the full Plan 9.2 gate is **partial**, with qualified review, supported setup, real providers/devices and broader verification open. *(Historical 2026-10-25 schema was 0013 before 2026-11-13 schema 0014.)* Installed tools and loopback services only; no web access, downloads or uploads.
 
@@ -56,7 +58,7 @@ Japanese priorities:
 
 - Read hiragana and katakana, then useful kanji words and short everyday passages.
 - Write through Japanese typing/IME and guided kana/kanji handwriting, with distinct evidence for each.
-- Speak through shadowing, microphone recording/playback, Japanese STT transcript feedback, and authored practical dialogues.
+- Speak through shadowing with bundled reference playback, typed speaking practice, and authored practical dialogues (microphone capture and STT transcription were superseded on 2026-11-13 in schema `0015`).
 - Learn grammar, vocabulary, register, and cultural usage together; English explanations and adjustable furigana/romaji support the beginner.
 - Use actual FSRS review with preserved history; do not treat recognition as proof of productive recall.
 
@@ -99,7 +101,7 @@ These are explicit planned features, not a claim of full commercial-product pari
 - Original short interactive stories with comprehension, vocabulary, and replay: Phase 5; listen-along story/mini audio episodes and focused speaking/listening sessions: Phase 8.
 - Optional personal quests/monthly badges, directly selectable cosmetics, weekly personal bests, and matching/recall practice with an optional non-expiring elapsed-time display: Phase 9.
 - Optional practice suggestions based on errors/skill evidence, freely overridable by the learner: Phase 9; opt-in local reminders/notifications: Phase 10.
-- Contextual answer explanations and optional local AI roleplay: Phase 7, voiced in Phase 8. Core progression stays independent of AI.
+- Authored contextual answer explanations and deterministic practical dialogues: Phase 7 (optional local AI explanations/coaching and voiced Phase 8 roleplay were superseded on 2026-11-13 in schema `0015`). Core progression stays 100% deterministic and offline.
 
 Duolingo's [practice feature overview](https://blog.duolingo.com/ways-to-practice-in-duolingo/) documents stories, harder mastery-style challenges, targeted practice, timed activities, and AI conversation. Its [quest overview](https://blog.duolingo.com/time-spent-learning-well/) describes daily and monthly challenges. These sources were checked on 2026-10-22; Trilingo's exact rules, names, content, and rewards are defined in its own phase files.
 
@@ -108,7 +110,7 @@ Duolingo's [practice feature overview](https://blog.duolingo.com/ways-to-practic
 - Structured beginner units, practical learning objectives, short lessons, vocabulary/grammar in context, and unit recaps: Phases 3, 4, and 7.
 - Searchable grammar guides, authored explanations, everyday scenarios, cultural/register notes, and guided conversations: Phase 7; real Japanese reference audio and speaking practice: Phase 8.
 - Flashcard, typed-writing, listening, and speaking review, personal vocabulary collections, and personalized due practice: Phases 7-9, using actual FSRS for scheduling.
-- Optional explanation/roleplay assistance, with authored fallback and no AI grading of core exercises: Phase 7.
+- Deterministic explanations and authored dialogues with zero runtime AI dependencies (optional AI explanation/roleplay assistance was superseded on 2026-11-13 in schema `0015`): Phase 7.
 
 See Babbel's [Grammar Guide](https://support.babbel.com/hc/en-us/articles/19260489559058-Grammar-guide) and [Guided Conversations](https://support.babbel.com/hc/en-gb/articles/19188554247186-Guided-Conversations) for the broad feature concepts. This is original Japanese content; product feature availability in another language does not supply a Japanese course for this project.
 
@@ -118,8 +120,8 @@ See Babbel's [Grammar Guide](https://support.babbel.com/hc/en-us/articles/192604
 - Backend: Python 3.11+, FastAPI, Pydantic, SQLAlchemy, Alembic.
 - Persistence: migration-controlled SQLite. Do not keep important learning state only in localStorage.
 - Scheduling: real FSRS in the backend using a maintained implementation selected and pinned during foundation work. Persist library-required state, parameters/version, due dates, and immutable logs. No browser-authoritative schedule submissions.
-- Optional explanations: disabled provider plus LM Studio/generic OpenAI-compatible adapters. AI cannot grade normal exercises or award progress.
-- Audio: authored Japanese and English reference audio ships exclusively in the bundled `content/audio/<course>/<version>/` MP3 pack (`AUDIO_PACK_DIR` / `AUDIO_PACK_ENABLED`), played via browser `HTMLAudioElement` with `0.75x` slow playback (`preservesPitch=true`) and HTTP `503` (`audio_unavailable`) text fallback on miss/disable. Runtime TTS (Kokoro/Edge-TTS/Piper) was removed on 2026-11-13; optional local runtime providers are **AI** (`AI_ENABLED`, text-only scenario coaching) and **STT** (`STT_ENABLED`, Whisper-compatible transcription) only. (`scripts/build_audio_pack.py` stays maintainer-only for generating future `0.1.22+` packs.)
+- Optional AI explanations/coaching: **Superseded / abandoned 2026-11-13 (schema `0015`)** — `AI_ENABLED`, `providers.py`, `scenario_practice.py`, `Explanation.tsx`, `ScenarioPractice.tsx`, and AI endpoints were removed.
+- Audio & zero runtime providers: authored Japanese and English reference audio ships exclusively in the bundled `content/audio/<course>/<version>/` MP3 pack (`AUDIO_PACK_DIR` / `AUDIO_PACK_ENABLED`), played via browser `HTMLAudioElement` with `0.75x` slow playback (`preservesPitch=true`) and HTTP `503` (`audio_unavailable`) text fallback on miss/disable. `GET /api/v1/audio/status` reports bundled pack status, and `GET /api/v1/health` returns `features: {lessons: true}`. Runtime TTS (Kokoro/Edge-TTS/Piper), local AI (`AI_ENABLED`), STT (`STT_ENABLED`), and microphone capture are all removed (`scripts/build_audio_pack.py` stays maintainer-only for generating future `0.1.22+` packs).
 - Configuration: one backend settings source, validated frontend API configuration, `.env.example`, and no committed secrets. Use a supported Node LTS compatible with the chosen Vite version; do not assume the observed Node 25 installation is the support target.
 - Local operation: frontend/backend run natively on Windows; Docker is optional for provider services. Authored lessons work without external internet after installation while the local backend is running. Browser-only offline operation/sync is a separately gated extension.
 
@@ -145,10 +147,10 @@ Each phase file includes goal, actionable tasks, intended implementation areas, 
    - [ ] Verified implementation complete.
 6. [Phase 06 — Typing and handwriting](docs/plans/PHASE_06_WRITING.md): IME, guided handwriting, beginner draft saving/guided paragraphs, and later staged writing workshops with revision/rubric evidence.
    - [ ] Verified implementation complete.
-7. [Phase 07 — Grammar and practical dialogues](docs/plans/PHASE_07_GRAMMAR_DIALOGUES.md): unit guides, branching situations, recaps/collections, optional explanation adapters.
+7. [Phase 07 — Grammar and practical dialogues](docs/plans/PHASE_07_GRAMMAR_DIALOGUES.md): unit guides, branching situations, and recaps/collections (`E4` optional AI explanation/coaching adapters superseded 2026-11-13 in schema `0015`).
    - [ ] Verified implementation complete.
-8. [Phase 08 — Japanese audio and speaking](docs/plans/PHASE_08_AUDIO_SPEAKING.md): bundled reference MP3 pack playback and review, listening/audio stories, recording, optional Japanese STT, shadowing, privacy/fallbacks (runtime TTS removed 2026-11-13).
-   - [ ] Verified implementation complete, including real-provider checks.
+8. [Phase 08 — Japanese audio and speaking](docs/plans/PHASE_08_AUDIO_SPEAKING.md): bundled reference MP3 pack playback and review, listening/audio stories, shadowing, typed speaking practice, and fallbacks (runtime TTS removed in `0014`; microphone recording and Whisper STT superseded 2026-11-13 in schema `0015`).
+   - [ ] Verified implementation complete, including qualified human listening review.
 9. [Phase 09 — Review, quests, and personal progress](docs/plans/PHASE_09_REVIEW_PROGRESS.md): voluntary any-time FSRS/practice, optional quests/badges/goals, free cosmetics, non-expiring personal timing, and truthful statistics.
    - [ ] Verified implementation complete.
 10. [Phase 10 — Reliability, backup, and local release](docs/plans/PHASE_10_RELEASE.md): audited course/features, safe backup/restore, local reminders, security/performance, Windows launch, full regression and manual release flow.
@@ -156,7 +158,7 @@ Each phase file includes goal, actionable tasks, intended implementation areas, 
 11. [Phase 11 — Open-source GitHub release and launch](docs/plans/PHASE_11_OPEN_SOURCE_LAUNCH.md): clean licensed repository, contribution/security documentation, CI, verified tagged release, and an organic LinkedIn/Reddit/X campaign with tailored draft posts and recorded follow-up.
     - [ ] Public repository/release and authorized campaign complete.
 
-Follow the numbered sequence for the main implementation. Use [Plan 9.2](docs/plans/PLAN_09_2_COMPLETION.md) to close the remaining beginner Phase 1–9 work before the Phase 10 handoff; it is a supplement and leaves exactly eleven numbered phase files. Tests, accessibility, migrations, and data safety belong in every phase; Phase 10 verifies them comprehensively. Dependencies refer to needed contracts/features. If optional hardware/providers (AI/STT/microphone) cannot be exercised, record that phase as partial and continue independent work; do not let it imply the final speaking release gate is satisfied.
+Follow the numbered sequence for the main implementation. Use [Plan 9.2](docs/plans/PLAN_09_2_COMPLETION.md) to close the remaining beginner Phase 1–9 work before the Phase 10 handoff; it is a supplement and leaves exactly eleven numbered phase files. Tests, accessibility, migrations, and data safety belong in every phase; Phase 10 verifies them comprehensively. Dependencies refer to needed contracts/features. Runtime AI, STT, and microphone capture were removed in schema `0015` (2026-11-13); qualified human listening review of the bundled MP3 pack remains required for the Phase 8 speaking/listening release gate.
 
 ## 5. Milestones and acceptance
 
@@ -175,7 +177,7 @@ Follow the numbered sequence for the main implementation. Use [Plan 9.2](docs/pl
 - [ ] IME input and guided handwriting practice work with truthful evidence labels.
 - [ ] Stage A character/word/first-sentence tasks and at least three Stage B guided compositions, reviewed models/alternatives, a simple revision example, persisted drafts, and self-review work without AI. Open writing is not graded as an exact-string answer; C-F have their own task/rubric/workshop gates.
 - [ ] Original grammar guides and everyday dialogues are usable without AI.
-- [ ] Bundled Japanese/English reference audio playback (including qualified human listening review) and optional STT/microphone paths are verified on the target computer; unavailable audio and speaking failures have usable fallbacks.
+- [ ] Bundled Japanese/English reference audio playback (including qualified human listening review) is verified on the target computer; unavailable audio and speaking typed-practice paths have usable fallbacks (STT and microphone capture superseded 2026-11-13 in schema `0015`).
 - [ ] Actual FSRS persists ratings, states, due dates, and history; skill evidence and stats are based on stored data.
 - [ ] Stories/audio stories, optional quests/badges, free cosmetic selections, non-expiring elapsed-time practice, and personal bests persist without adding access or study quotas.
 
@@ -184,7 +186,7 @@ Follow the numbered sequence for the main implementation. Use [Plan 9.2](docs/pl
 - [ ] Published beginner course inventory matches what the app claims.
 - [ ] Full A-B inventory reaches 92 basic kana with taught patterns, 300 distinct contextual kanji, and 2,000 unique reviewed core word entries; smaller beta/technical slices disclose their partial counts and do not claim full coverage.
 - [ ] Both quality gates, clean migrations, API smoke, manual critical flow, accessible/mobile checks, local restart, and backup/restore round trip pass.
-- [ ] README launch/update/provider/troubleshooting instructions are tested.
+- [ ] README launch/update/audio-pack/troubleshooting instructions are tested.
 - [ ] Reminder controls, unrestricted study, and backup coverage of optional goals/quests/records/preferences are verified; no social results or skill evidence are fabricated.
 - [ ] UI skill workflow, shared design decisions, representative screenshots, keyboard/IME checks, and resolved major visual/interaction findings are recorded; first-release claims stay within published Stages A-B.
 - [ ] Every limitation is recorded; unchecked required gates keep the release incomplete.
@@ -199,9 +201,9 @@ Follow the numbered sequence for the main implementation. Use [Plan 9.2](docs/pl
 
 - [ ] Stages C-D publish reviewed connected writing/opinion tasks, appropriate language/reading/listening/speaking instruction, and a versioned writing/revision workshop.
 - [ ] Stages E-F publish reviewed extended/complex essay tasks, source synthesis/register instruction, models/rubrics, and a durable portfolio with feedback provenance.
-- [ ] Each release passes its content inventory, accessibility/design, migrations/tests, provider-disabled workflow, and backup/restore gates. Show self-review/unassessed status when no qualified writing review exists; do not certify mastery from AI scores, XP, or character count.
+- [ ] Each release passes its content inventory, accessibility/design, migrations/tests, bundled-audio/offline workflow, and backup/restore gates. Show self-review/unassessed status when no qualified writing review exists; do not certify mastery from XP or character count.
 
-Audio and Japanese writing are required planned capabilities for this user's release, replacing the old plan's late P2 prioritization. Runtime provider optionality means learning can continue when unavailable; it does not mean skipping implementation or verification of speaking.
+Audio and Japanese writing are required planned capabilities for this user's release, replacing the old plan's late P2 prioritization. With AI/STT/microphone capture removed in schema `0015`, core learning is 100% local while qualified human listening review of the bundled MP3 pack remains required for speaking/listening sign-off.
 
 ## 6. Verification contract
 
@@ -232,7 +234,7 @@ API smoke check, after launching the backend and setting `TRILINGO_API_BASE_URL`
 Invoke-RestMethod -Uri ($env:TRILINGO_API_BASE_URL + '/api/v1/health')
 ```
 
-Add the chosen content validation and end-to-end commands when their scripts exist; record them in README. Full-stack phase completion also requires manual critical-flow checks. Qualified human listening review of the bundled MP3 pack and real microphone/STT evidence are required for Phase 8; mocked adapter tests alone are insufficient.
+Add the chosen content validation and end-to-end commands when their scripts exist; record them in README. Full-stack phase completion also requires manual critical-flow checks. Qualified human listening review of the bundled MP3 pack is required for Phase 8; mocked playback tests alone are insufficient (STT/microphone checks superseded 2026-11-13 in schema `0015`).
 
 Business logic tests must include grades/variants, direct access to all published content, optional assessment/skip/assistance evidence, unlimited retries/replays/continuation, uncapped genuine-session rewards versus idempotent retries, activity dates/timezones/DST, optional goals/quests/badges, free cosmetics, non-expiring personal timing, early FSRS review, migrations, and backup integrity. For each new page, check narrow mobile, tablet, desktop, and keyboard behavior.
 
@@ -248,7 +250,7 @@ No original core requirement is considered implemented by this reorganization. T
 - Original session/exercise types (4-5) -> Phase 4, extended through Phases 5-8.
 - Original reward/activity scope (6-8) -> Phases 4 and 9 under unrestricted study; old resource restrictions are superseded.
 - Original mistakes/FSRS/achievements/stats (9-12) -> Phase 4 initial mistakes, Phase 9 full review and personal progress.
-- Original AI (13) -> Phase 7 optional provider layer.
+- Original AI (13) -> **Superseded / abandoned 2026-11-13 (schema `0015`)** (optional Phase 7 AI explanation/coaching layer removed).
 - Original audio/speech (14-15) -> Phase 8, promoted for the user's Japanese goal.
 - Original settings/accessibility/testing/security/performance (16-20) -> ongoing work in each phase and final audit in 10.
 - Original backup/packaging (22-23) -> Phase 10.

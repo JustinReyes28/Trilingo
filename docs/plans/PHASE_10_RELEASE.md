@@ -57,9 +57,9 @@ Backup/import services and APIs, settings/danger-zone UI, Windows scripts, READM
 - Restore has point-in-time snapshot semantics: an older backup reinstates its saved progress, XP/activity, preferences, and review state, replacing later records. Show the snapshot date and rollback effect before explicit confirmation; there is no implicit merge or separate anti-rollback ledger.
 - Prevent path traversal/archive expansion attacks and oversized imports. Import writes cannot target arbitrary filesystem locations.
 - Restore/update replacement must quiesce new writes, await bounded in-flight transactions, and close all relevant SQLite/file handles before the same-volume switch. Use an exclusive operation owner and crash-recoverable state marker; reject/defer simultaneous restore/reset/update and ordinary mutations with useful recovery guidance. An interrupted switch must select a validated complete store on restart, never merge halves or leave two writers. Read-only UI/status access must not report success before the live replacement is acknowledged.
-- Deleting progress cannot delete installed course assets or unrelated Docker volumes. Provider disk images are outside app reset scope.
+- Deleting progress cannot delete installed course assets or the bundled `content/audio/` MP3 pack.
 - Document forward migration and recovery compatibility. Reversibility is best-effort; use backups before changes that cannot safely downgrade.
-- If backup export itself includes personal recordings/writing, show that explicitly and apply the retention/export setting chosen by the learner.
+- If backup export itself includes preferences, goals, or writing records, show that explicitly and apply the export/retention semantics transparently to the learner.
 
 ## Tests and manual verification
 
@@ -70,10 +70,10 @@ Include concurrent restore/reset/update attempts, mutations during quiescence, o
 - [ ] Test valid export/restore round trip, changed schema, unsupported version, malformed archive, broken references, interrupted restore, and cancelled reset.
 - [ ] Compare restored study/skip/assistance records, XP/activity dates, and FSRS card/log state to the selected snapshot.
 - [ ] Compare restored optional quest/badge/assessment/personal-record evidence and cosmetic preferences; events already credited inside the snapshot remain idempotent. Restoring old history never restricts current access to published content.
-- [ ] Verify writing draft/revision/feedback round trips, Unicode/IME text, stale-save conflicts, and no duplicate composition rewards. Later releases must verify their essay workflow with AI disabled.
+- [ ] Verify writing draft/revision/feedback round trips, Unicode/IME text, stale-save conflicts, and no duplicate composition rewards. Later releases must verify their essay workflow completely offline.
 - [ ] Check 320px, 390px, approximately 768px, and desktop layouts; keyboard-only use, focus, zoom, Japanese ruby, screen-reader labels, contrast, and reduced motion.
-- [ ] Verify bundled `content/audio/` MP3 playback (`check_audio_pack.py --strict`, human Japanese listening review) plus optional local AI (`AI_ENABLED`) and microphone/STT (`STT_ENABLED`) checks on the target computer, recording actual engine/model/version evidence. Runtime TTS has been removed (`TTS_ENABLED`/`AUDIO_CACHE_DIR`/Kokoro runtime checks superseded 2026-11-13); confirm `AUDIO_PACK_ENABLED=false` triggers clean `503 audio_unavailable` + text fallback.
-- [ ] Restart app/backend/providers, disconnect external internet, verify authored learning and installed local providers work, and verify optional-provider failures do not lose answers.
+- [ ] Verify bundled `content/audio/` MP3 playback (`check_audio_pack.py --strict`, `F3` human Japanese listening review) on the target computer and confirm `AUDIO_PACK_ENABLED=false` triggers clean `503 audio_unavailable` + text fallback. *(Runtime TTS was removed in schema `0014`; optional local AI `AI_ENABLED`, Whisper STT `STT_ENABLED`, and microphone recording were superseded 2026-11-13 in schema `0015`.)*
+- [ ] Restart app/backend, disconnect external internet, and verify authored learning and bundled MP3 playback work cleanly offline.
 - [ ] Follow README from a clean environment or fresh temporary checkout/folder with documented prerequisites. Record anything that cannot be tested.
 - [ ] Inspect logs, browser console, media retention, dependency licenses, and source tree for secrets/generated user data.
 - [ ] Test reminder opt-out, permission denial, quiet hours, timezone changes, app restart, and closed-app limitations without fabricating delivered notifications.
@@ -88,8 +88,8 @@ Include concurrent restore/reset/update attempts, mutations during quiescence, o
 5. Try a duplicate completion request and confirm the ledger does not change again.
 6. Read kana and a short kanji-supported passage with aids on/off.
 7. Enter Japanese with IME; perform a guided writing task and inspect its honest evidence label.
-8. Complete an authored everyday dialogue, listen to bundled Japanese MP3 reference output, record a phrase, and inspect the optional STT transcript (or text fallback when STT is disabled).
-9. Disable providers and finish a core lesson using the documented fallback without fabricated speaking/listening assessment.
+8. Complete an authored everyday dialogue, listen to bundled Japanese MP3 reference output, and save unassessed typed speaking practice.
+9. Disable the bundled audio pack (`AUDIO_PACK_ENABLED=false`) and finish a core lesson using the documented `503 audio_unavailable` text fallback without fabricated speaking/listening assessment.
 10. Review a due item/mistake, apply a rating, restart, and verify progress and FSRS persistence.
 11. Try optional recap/mastery and story/audio practice in any order, use assistance or skip, and confirm the result never controls another activity.
 12. Finish several genuine replays/practice sessions the same day and receive normal XP for each; compare optional personal timing without an expiry and select an available cosmetic directly.
@@ -99,7 +99,7 @@ Include concurrent restore/reset/update attempts, mutations during quiescence, o
 
 ## Completion gate
 
-Complete for the declared release only after quality gates, real Japanese provider checks, combined feature/content-scope and rendered design audits, documented startup, backup round trip, and manual critical flow succeed. The first release claims A-B only; C-F require their own audited releases. Record incomplete checks and leave the relevant gate open. An editor, AI score, mocked provider, or unaudited syllabus cannot satisfy advanced essay coverage.
+Complete for the declared release only after quality gates, qualified human curriculum/audio review (`W5`/`F3`), physical IME/accessibility checks (`W6`), W8 local release hardening, combined feature/content-scope and rendered design audits, documented startup, backup round trip, and manual critical flow succeed. The first release claims A-B only; C-F require their own audited releases. Record incomplete checks and leave the relevant gate open. An editor or unaudited syllabus cannot satisfy advanced essay coverage.
 
 ## Later extensions
 

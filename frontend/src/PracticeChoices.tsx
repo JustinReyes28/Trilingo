@@ -12,7 +12,7 @@ const choices=[
  {kind:'writing',title:'Typing & writing',text:'Checked typing, composition drafts and optional formation.',href:'writing'},
  {kind:'grammar',title:'Grammar & dialogues',text:'Search authored patterns and try practical draft scenarios.',href:'grammar'},
  {kind:'listening',title:'Listening & shadowing',text:'Bundled reference audio and draft episodes. Human audio review is pending.',href:'audio'},
- {kind:'speaking',title:'Speaking',text:'Local recording, playback and optional transcript comparison. No pronunciation score.',href:'audio'},
+ {kind:'speaking',title:'Speaking',text:'Bundled reference models, self-practice aloud and typed practice. No pronunciation score.',href:'audio'},
  {kind:'review',title:'Recall & personal quests',text:'Real FSRS, early review and optional records.',href:'review'},
 ] as const
 export function PracticeChoices({courseId}:{courseId:string}){

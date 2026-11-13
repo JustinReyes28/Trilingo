@@ -15,8 +15,6 @@ class RequestBodyLimit:
             return
         if scope["path"] in {"/api/v1/backup/preview", "/api/v1/backup/restore"}:
             limit = 50_000_000
-        elif scope["path"] == "/api/v1/audio/transcriptions":
-            limit = 1_500_000
         else:
             limit = self.limit
         parts = []

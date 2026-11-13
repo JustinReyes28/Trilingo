@@ -50,15 +50,10 @@ def patch_profile(db: Session, patch: ProfilePatch) -> ProfileOut:
 
 
 def _normalize_settings_data(raw: dict) -> dict:
-    """Return a copied settings mapping with deprecated TTS/voice keys removed."""
+    """Return a copied settings mapping with deprecated TTS, AI, and STT provider keys removed."""
     data = dict(raw)
-    data.pop("tts", None)
-    for key in ("ai", "stt"):
-        provider = data.get(key)
-        if isinstance(provider, dict) and "voice" in provider:
-            cleaned = dict(provider)
-            cleaned.pop("voice", None)
-            data[key] = cleaned
+    for key in ("tts", "ai", "stt"):
+        data.pop(key, None)
     return data
 
 

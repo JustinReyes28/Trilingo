@@ -30,7 +30,7 @@ During execution, keep one release record under `docs/verification/public-releas
 - [x] Choose and record an open-source code license with the rights holder. Add LICENSE and distinguish code licensing from course text/assets. The code is licensed under MIT; course text/assets under CC-BY-4.0 in `LICENSE`.
 - [x] Audit the exact files to commit and all existing Git history before publication. Exclude secrets, .env files, local SQLite/WAL files, progress, writing/recording samples, logs, machine paths in artifacts, caches, dependencies and personal backups. Keep .env.example with safe values. Use the existing .gitignore and verify its actual coverage.
 - [ ] Preserve the local personal database and working setup. Use an isolated release checkout and synthetic demonstration profile; never reset personal progress to prepare a screenshot or release.
-- [x] Update README with a clear project description, authentic screenshot, supported prerequisites, tested Windows quick start, migrations/content import, optional providers, update/backup guidance, exact validation commands and known limitations.
+- [x] Update README with a clear project description, authentic screenshot, supported prerequisites, tested Windows quick start, migrations/content import, bundled reference audio, update/backup guidance, exact validation commands and known limitations.
 - [x] Add CONTRIBUTING.md, a support/conduct policy, actionable bug/feature templates and a pull-request template. Explain how to contribute Japanese content and record qualified review separately from code review.
 - [x] Add SECURITY.md with a real maintainer-approved private reporting route and supported versions. Avoid publishing a contact channel or response-time promise that has not been established.
 - [x] Add an attribution/third-party notices inventory. Do not redistribute OS fonts or bundle provider models/voices without verified permission and a documented need. Updated `THIRD_PARTY_NOTICES.md`: historical build-time Kokoro-82M (Apache-2.0, attributing Koniwa `tnc` CC BY 3.0 and SIWIS CC BY 4.0) and Kokoro-FastAPI attribution for the generated MP3 files plus script-only `mutagen` (`GPL-2.0-or-later`); zero runtime TTS adapters, model weights, voice packs, or OS fonts are bundled.
@@ -41,8 +41,8 @@ During execution, keep one release record under `docs/verification/public-releas
 ### Launch materials
 
 - [ ] Prepare one small screenshot from synthetic data and, if useful, a short captioned demo showing a real lesson, contextual reading and saved writing. Use original assets and descriptive alt text. Reuse local captures; no stock-asset or font downloads are needed.
-- [ ] Record a release-specific claim sheet: shipped features, reviewed versus draft inventory, supported installation, provider requirements and known limits. Every post must agree with it and the tagged release.
-- [ ] Replace every placeholder in the drafts below with the verified repository/release URL and actual release details. Keep unsupported audio, runtime TTS, AI, proficiency, pronunciation and handwriting claims out of the copy.
+- [ ] Record a release-specific claim sheet: shipped features, reviewed versus draft inventory, supported installation, bundled audio pack status and known limits. Every post must agree with it and the tagged release.
+- [ ] Replace every placeholder in the drafts below with the verified repository/release URL and actual release details. Keep unsupported audio, runtime TTS, AI, STT/microphone, proficiency, pronunciation and handwriting claims out of the copy.
 - [ ] Finalize LinkedIn, Reddit and X versions for the maintainer's voice. Verify current platform/composer constraints and the selected subreddit's rules during execution; no current policy check is claimed by this offline planning update.
 - [ ] Obtain authorization for the exact final posts and destination accounts/communities before posting. Record the live URLs and date/time after confirmed publication; drafts and failed requests never count as published.
 - [ ] Run the short follow-up campaign below, track actual feedback and route reproducible problems into GitHub issues without copying private learner data.
@@ -53,7 +53,7 @@ Repository-root community/license files, .github workflows/templates, README, a 
 
 ## Data and API contracts
 
-No learning schema or application API change is required by this phase. Use isolated fixtures for examples and public screenshots. Any implementation that does change durable data still needs its owning migration/tests. Keep credentials in the platform's approved authentication mechanism, outside version control. The public source release must preserve unrestricted study and optional providers.
+No learning schema or application API change is required by this phase. Use isolated fixtures for examples and public screenshots. Any implementation that does change durable data still needs its owning migration/tests. Keep credentials in the platform's approved authentication mechanism, outside version control. The public source release must preserve unrestricted study and zero external or local AI, STT, or runtime TTS dependencies.
 
 ## Marketing run
 
@@ -76,7 +76,7 @@ These are future launch drafts, not publication claims today. Use them only afte
 
 I’m sharing Trilingo, an open-source project for learning Japanese on your own computer.
 
-It brings together contextual kana/kanji reading, typed exercises and saved writing drafts. Study is self-directed: you can choose a lesson, retry, use support and continue after mistakes. Core lessons work without an AI provider.
+It brings together contextual kana/kanji reading, typed exercises and saved writing drafts. Study is self-directed: you can choose a lesson, retry, use support and continue after mistakes. Everything runs 100% locally with zero AI, STT, or cloud dependencies.
 
 The release notes explain what is ready, which course material is reviewed or still draft, and what needs more work. The README includes the tested setup steps.
 
@@ -92,7 +92,7 @@ If you try it, tell me where you got stuck or which part helped you practice.
 
 I’m the creator of Trilingo, a local-first Japanese learning project. I wanted a way to choose what to practice, make mistakes and keep going, with progress saved on my own computer.
 
-The current release includes contextual kana/kanji reading, typed exercises and a writing workspace with saved drafts. Core lessons work without AI. The repository includes setup instructions, release notes and the current limitations; reviewed content and draft practice are labeled separately.
+The current release includes contextual kana/kanji reading, typed exercises and a writing workspace with saved drafts. Everything runs offline on your computer with zero AI, STT, or cloud accounts. The repository includes setup instructions, release notes and the current limitations; reviewed content and draft practice are labeled separately.
 
 I’d particularly like feedback on beginner clarity and Japanese input/accessibility. If you install it, which part of the setup or first practice session is confusing? Qualified content corrections are welcome too; draft material should not be treated as reviewed instruction.
 
@@ -102,7 +102,7 @@ Adapt the title/body to the chosen community. Remove or change the link/promotio
 
 ### X
 
-Trilingo is open source: local Japanese practice with kana/kanji reading, typed exercises and saved writing drafts. Core lessons work without AI. Try it or help improve the course: [GITHUB_URL]
+Trilingo is open source: local Japanese practice with kana/kanji reading, typed exercises and saved writing drafts — 100% offline with zero AI or cloud accounts. Try it or help improve the course: [GITHUB_URL]
 
 Verify final length and link preview in the publishing composer. If the release remains a preview, add that label and shorten the copy as needed.
 

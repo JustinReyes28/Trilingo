@@ -49,7 +49,7 @@ Use installed skill catalog paths, not an invented `/ui/ux` command or a repo-lo
 - [ ] Inspect kana, kanji, furigana, longer passages, IME composition, mixed-script input, draft comments, and long validation messages with real Japanese examples.
 - [ ] Check visible focus, focus not hidden under sticky UI, labels, contrast, screen-reader order, zoom/text resizing, dialog behavior, and reduced motion. Fix observed problems rather than claiming blanket compliance from a checklist.
 - [ ] Compare reading/lesson/editor surfaces to the written direction and shared tokens. Resolve major hierarchy, generic-template, inconsistent spacing/type, and misleading-state findings.
-- [ ] Verify interactive states with actual behavior: pending grades, committed feedback, denied microphone, unavailable/disabled bundled audio (`503 audio_unavailable`), unsaved draft/retry, and empty progress. A screenshot alone does not prove these work.
+- [ ] Verify interactive states with actual behavior: pending grades, committed feedback, unavailable/disabled bundled audio (`503 audio_unavailable`), unassessed typed speaking practice, unsaved draft/retry, and empty progress. A screenshot alone does not prove these work.
 - [ ] Record screenshots/target viewports, audit findings, fixes, actual commands, and remaining limitations before a UI milestone is marked complete.
 
 ## Historical search evidence from the planning task — 2026-10-22

@@ -1,19 +1,12 @@
-import base64
 from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import func, select
-from test_grammar_audio import wav
 from test_learning import course as course
-from test_speaking import enable_stt
 
-from app import providers
 from app.config import Config
 from app.db import sessions
-from app.learning_models import StudyEvent
 from app.main import create_app
-from app.review_models import ReviewEvent
 from app.services import import_content
 
 pytestmark = pytest.mark.usefixtures("course")
@@ -31,13 +24,14 @@ def card(client, direction):
     return response.json()
 
 
-def test_word_audio_directions_are_self_rated_and_provider_failure_keeps_core_recall(client):
+def test_word_audio_directions_are_self_rated_and_unavailable_pack_keeps_core_recall(client):
     listening = card(client, "listening")
     spoken = card(client, "speaking")
     assert listening["prompt"].startswith("Listen,")
     assert "こんにちは" not in listening["prompt"]
     assert listening["audio_cues"] == [{"id": "reference", "label": "saved word reference"}]
-    assert spoken["supports_recording"] and not listening["supports_recording"]
+    assert spoken["audio_cues"] == [{"id": "reference", "label": "saved word reference"}]
+    assert "supports_recording" not in spoken and "supports_recording" not in listening
     missing = client.post(
         f"/api/v1/review/cards/{listening['id']}/audio/reference", json={"speed": 1}
     )
@@ -98,6 +92,7 @@ def test_collection_audio_uses_original_word_and_existing_fsrs_state(
         assert repeated == rated
         spoken = enabled.post(route + "/recall", json={"direction": "speaking"}).json()["cards"][0]
         assert spoken["content_version"] == course.version and not spoken["scheduled"]
+        assert "supports_recording" not in spoken
         response = enabled.post(
             f"/api/v1/review/cards/{spoken['id']}/audio/reference", json={"speed": 0.75}
         )
@@ -109,51 +104,35 @@ def test_collection_audio_uses_original_word_and_existing_fsrs_state(
         assert enabled.get("/api/v1/progress").json()["total_xp"] == 5
 
 
-def test_transient_recall_transcript_cannot_award_speech_evidence_or_audio_quest(
-    client, database, monkeypatch
-):
+def test_speaking_review_card_transcription_route_removed_and_self_rating_works(client):
     spoken = card(client, "speaking")
-    assignment = client.post(
-        "/api/v1/quests",
-        json={
-            "request_id": str(uuid4()),
-            "kind": "speaking",
-            "target": 1,
-        },
-    ).json()
-    enable_stt(client)
-    monkeypatch.setattr(providers, "transcribe", lambda *args: "こんにちは")
-    with TestClient(create_app(Config(database_url=database, stt_enabled=True))) as enabled:
-        route = f"/api/v1/review/cards/{spoken['id']}"
-        response = enabled.post(
-            route + "/transcriptions", json={"audio_base64": base64.b64encode(wav()).decode()}
-        )
-        assert response.status_code == 200, response.text
-        assert response.json()["agrees"]
-        assert "Transient" in response.json()["label"]
-        assert enabled.get(route).json() == spoken
-        with sessions(enabled.app.state.engine)() as db:
-            assert db.scalar(select(func.count()).select_from(StudyEvent)) == 0
-            assert db.scalar(select(func.count()).select_from(ReviewEvent)) == 0
-        saved = enabled.post(
-            route + "/ratings",
+    assert (
+        client.post(
+            "/api/v1/quests",
             json={
                 "request_id": str(uuid4()),
-                "expected_revision": 0,
-                "rating": "Easy",
+                "kind": "speaking",
+                "target": 1,
             },
-        )
-        assert saved.status_code == 200
-        stats = enabled.get("/api/v1/personal").json()
-        assert stats["skill_evidence"]["speaking"]["self_rated_reviews"] == 1
-        assert stats["skill_evidence"]["speaking"]["speech_attempts"] == 0
-        assert stats["objective_checks"] == 0
-        assert (
-            next(q for q in enabled.get("/api/v1/quests").json() if q["id"] == assignment["id"])[
-                "progress"
-            ]
-            == 0
-        )
+        ).status_code
+        == 422
+    )
+    route = f"/api/v1/review/cards/{spoken['id']}"
+    removed = client.post(route + "/transcriptions", json={"audio_base64": "invalid"})
+    assert removed.status_code == 404
+    saved = client.post(
+        route + "/ratings",
+        json={
+            "request_id": str(uuid4()),
+            "expected_revision": 0,
+            "rating": "Easy",
+        },
+    )
+    assert saved.status_code == 200
+    stats = client.get("/api/v1/personal").json()
+    assert stats["skill_evidence"]["speaking"]["self_rated_reviews"] == 1
+    assert stats["skill_evidence"]["speaking"]["speech_attempts"] == 0
+    assert stats["objective_checks"] == 0
 
 
 def test_recall_media_rejects_unsupported_direction_and_cue(client):
@@ -176,7 +155,7 @@ def test_recall_media_rejects_unsupported_direction_and_cue(client):
             f"/api/v1/review/cards/{listening['id']}/transcriptions",
             json={"audio_base64": "invalid"},
         ).status_code
-        == 422
+        == 404
     )
     assert (
         client.post(

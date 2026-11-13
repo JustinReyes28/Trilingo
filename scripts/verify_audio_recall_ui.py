@@ -1,4 +1,4 @@
-"""Focused five-direction collection recall QA with providers disabled."""
+"""Focused five-direction collection recall QA with bundled MP3 pack (schema 0015)."""
 
 import json
 import os
@@ -25,7 +25,6 @@ def main() -> None:
             assert api_matches(route.request.url, api)
             route.continue_()
         context.route("**/*", local_only)
-        context.add_init_script("navigator.mediaDevices.getUserMedia=()=>Promise.reject(new DOMException('Microphone denied in recall QA','NotAllowedError'))")
         page = context.new_page()
         page.set_default_timeout(12000)
         page.on("pageerror", lambda error: errors.append(str(error)))
@@ -41,8 +40,9 @@ def main() -> None:
                 layouts.append({"surface": label, "width": width, "overflow": False})
             page.set_viewport_size({"width": 390, "height": 900})
         baseline = call("GET", "/progress")["total_xp"]
-        assert call("GET", "/health")["schema_version"] == "0013"
-        assert not any(call("GET", "/health")["features"][kind] for kind in ("ai", "tts", "stt"))
+        health = call("GET", "/health")
+        assert health["schema_version"] == "0015" and health["features"] == {"lessons": True}
+        audio_pack = call("GET", "/audio/status")["audio_pack"]
         collection = call("POST", "/courses/ja-starter/collections", {"request_id": str(uuid4()), "name": "Audio recall QA " + str(uuid4())[:6]})
         for word in ("ja-word-hello", "ja-word-school"):
             call("PATCH", f"/collections/{collection['id']}/members", {"item_id": word, "saved": True})
@@ -63,7 +63,10 @@ def main() -> None:
         expect(sheet.locator(".dialog-japanese")).to_have_count(0)
         capture("collection-listening")
         sheet.get_by_role("button", name="Prepare saved word reference", exact=True).click()
-        expect(sheet.get_by_role("alert")).to_contain_text("disabled")
+        if audio_pack["bundled_reference"]:
+            expect(sheet.locator("audio")).to_be_visible()
+        else:
+            expect(sheet.get_by_role("alert")).to_contain_text("unavailable")
         sheet.get_by_role("button", name="Use text alternative", exact=True).click()
         expect(sheet.locator(".dialog-japanese")).to_be_visible()
         assert sheet.locator(".dialog-japanese").get_attribute("lang") == "ja"
@@ -76,17 +79,29 @@ def main() -> None:
         page.get_by_role("combobox", name="Recall direction", exact=True).select_option("speaking")
         expect(rows).to_have_count(1)
         rows.first.get_by_role("button", name="Review now", exact=True).click()
-        sheet.get_by_text("Try a spoken recall", exact=True).click()
-        sheet.get_by_role("button", name="Record microphone", exact=True).click()
-        expect(sheet.get_by_role("alert")).to_contain_text("Microphone denied in recall QA")
-        capture("collection-speaking-fallback")
+        notes = sheet.get_by_label("Optional recall notes", exact=True)
+        expect(notes).to_be_visible()
+        notes.fill("こんにちは")
+        expect(sheet.get_by_role("button", name="Reveal answer", exact=True)).to_be_visible()
+        capture("collection-speaking-recall")
         sheet.get_by_role("button", name="Skip card · keep schedule", exact=True).click()
         assert call("GET", "/progress")["total_xp"] == baseline + 5
         prepared = call("POST", f"/collections/{collection['id']}/recall", {"direction": "speaking"})
         assert all(not item["scheduled"] for item in prepared["cards"])
         assert not errors, errors
         browser.close()
-    (output / "report.json").write_text(json.dumps({"layouts": layouts, "errors": errors, "providers": "disabled", "microphone": "emulated denial only"}, indent=2), encoding="utf-8")
+    (output / "report.json").write_text(
+        json.dumps(
+            {
+                "layouts": layouts,
+                "errors": errors,
+                "audio_pack": audio_pack,
+                "providers": "Zero runtime AI, STT, microphone capture, or TTS (schema 0015)",
+            },
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
     print(json.dumps({"layouts": len(layouts), "errors": errors}))
 
 

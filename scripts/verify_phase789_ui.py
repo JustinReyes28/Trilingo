@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import urlopen
+
 from playwright.sync_api import expect, sync_playwright
 from qa_helpers import api_matches
 
@@ -35,9 +36,9 @@ with sync_playwright() as p:
             route.abort()
     context.route("**/*", local)
     page = context.new_page()
-    settings = page.request.get(args.api + "/settings").json()
-    settings["tts"]["enabled"] = False
-    assert page.request.patch(args.api + "/settings", data={"tts": settings["tts"]}).ok
+    health = page.request.get(args.api + "/health").json()
+    assert health["schema_version"] == "0015" and health["features"] == {"lessons": True}
+    audio_pack = page.request.get(args.api + "/audio/status").json()["audio_pack"]
     page.set_default_timeout(12000)
     page.on("pageerror", lambda error: errors.append(str(error)))
     def capture(name):
@@ -140,12 +141,13 @@ with sync_playwright() as p:
     page.goto(args.base + "/#audio")
     page.wait_for_load_state("networkidle")
     page.get_by_role("button", name="Prepare reference audio", exact=True).click()
-    expect(page.get_by_text("This local provider is disabled.", exact=False)).to_be_visible()
+    if audio_pack["bundled_reference"]:
+        expect(page.get_by_label("Bundled reference audio", exact=True)).to_be_visible()
+    else:
+        expect(page.get_by_role("alert")).to_be_visible()
     page.get_by_role("button", name="Reveal transcript / use text alternative", exact=True).click()
     expect(page.locator(".recall-sheet .dialog-japanese")).to_have_text("こんにちは")
-    page.get_by_role("button", name="Record microphone", exact=True).click()
-    expect(page.locator(".recorder [role=alert]")).to_be_visible()
-    capture("audio-disabled-microphone-denied")
+    capture("audio-reference-text-alternative")
     page.get_by_label("Include draft stories, dialogues", exact=False).check()
     expect(page.get_by_label("Reference phrase", exact=True).locator("option").filter(has_text="audio_episode")).to_have_count(2)
     page.get_by_label("Reference phrase", exact=True).select_option("ja-audio-first-introduction")
@@ -156,7 +158,7 @@ with sync_playwright() as p:
     page.locator(".lesson-node").last.click()
     page.get_by_role("button", name="Start lesson", exact=True).click()
     expect(page.get_by_role("button", name="Skip prompt", exact=True)).to_be_visible()
-    capture("published-lesson-providers-disabled")
+    capture("published-lesson-local-only")
     for _ in range(5):
         page.get_by_role("button", name="Skip prompt", exact=True).click()
     page.get_by_role("button", name="Finish and save session", exact=True).click()
@@ -171,6 +173,6 @@ with sync_playwright() as p:
     expect(page.locator("#main")).to_be_focused()
     assert not errors, errors
     assert not external, external
-    (output / "results.json").write_text(json.dumps({"layouts":layouts,"page_errors":errors,"external_requests":external,"microphone":"denied/unavailable fallback only","physical_ime":"unverified","real_tts_stt":"unverified"},indent=2),encoding="utf-8")
+    (output / "results.json").write_text(json.dumps({"layouts":layouts,"page_errors":errors,"external_requests":external,"audio_pack":audio_pack,"physical_ime":"unverified","providers":"Zero runtime AI, STT, microphone capture, or TTS (schema 0015)"},indent=2),encoding="utf-8")
     print(json.dumps({"layouts":len(layouts),"errors":errors,"external_requests":external}))
     browser.close()

@@ -1,67 +1,33 @@
-import base64
 import json
+from datetime import datetime, timezone
 from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import select
-from test_grammar_audio import wav
-from test_learning import act, action_body, start
+from test_learning import act, action_body, complete, start
 from test_learning import course as course
 from test_listening import audio
 
-from app import providers
-from app.config import Config
+from app.config import ROOT, Config
+from app.content_schema import CourseContent
 from app.db import sessions
-from app.learning_models import StudyEvent, XpEntry
+from app.learning_models import StudyEvent, StudySession, XpEntry
 from app.main import create_app
-from app.schemas import Provider
-from app.services import import_content
+from app.review_models import QuestAssignment
+from app.services import import_content, load_content
 
 pytestmark = pytest.mark.usefixtures("course")
 
 
-def speaking(client):
+def speaking(client: TestClient) -> dict:
     return start(client, "dialogue-food", source_kind="speaking", preview_draft=True)
 
 
-def speech(client, session, exercise=None, body=None):
-    exercise = exercise or session["exercises"][0]["id"]
-    body = body or {
-        "request_id": session["next_action_id"],
-        "expected_revision": session["revision"],
-        "audio_base64": base64.b64encode(wav()).decode(),
-    }
-    return client.post(f"/api/v1/sessions/{session['id']}/exercises/{exercise}/speech", json=body)
-
-
-def enable_stt(client):
-    response = client.patch(
-        "/api/v1/settings",
-        json={
-            "stt": Provider(
-                enabled=True, provider="openai-compatible", model="test-stt"
-            ).model_dump()
-        },
-    )
-    assert response.status_code == 200
-
-
-def quest(client):
-    response = client.post(
-        "/api/v1/quests",
-        json={
-            "request_id": str(uuid4()),
-            "kind": "speaking",
-            "target": 2,
-        },
-    )
-    assert response.status_code == 200, response.text
-    return response.json()
-
-
-def test_disabled_speaking_typed_fallback_skip_finish_replay_and_no_audio_credit(client):
-    denied = client.post(
+def test_speaking_typed_practice_skip_reveal_finish_replay_and_removed_speech_endpoint(
+    client: TestClient,
+) -> None:
+    draft_guard = client.post(
         "/api/v1/courses/ja-starter/sessions",
         json={
             "request_id": str(uuid4()),
@@ -69,227 +35,226 @@ def test_disabled_speaking_typed_fallback_skip_finish_replay_and_no_audio_credit
             "source_id": "dialogue-food",
         },
     )
-    assert denied.status_code == 404
-    assignment = quest(client)
+    assert draft_guard.status_code == 404
+
+    quest_rejected = client.post(
+        "/api/v1/quests",
+        json={"request_id": str(uuid4()), "kind": "speaking", "target": 2},
+    )
+    assert quest_rejected.status_code == 422
+
     session = speaking(client)
-    first, second = [e["id"] for e in session["exercises"]]
-    assert session["exercises"][0]["reference_text"] == "水をください。"
+    assert session["source_kind"] == "speaking"
     assert "pronunciation_override" not in str(session["exercises"])
-    assert speech(client, session).status_code == 503
-    session = act(client, session, "answer", first, answer="水をください。")
-    assert session["feedback"]["kind"] == "recorded"
-    assert session["evidence"][first]["typed_fallbacks"] == 1
-    assert session["evidence"][first]["speech_attempts"] == 0
-    assert session["assessed_count"] == session["initial_correct"] == 0
-    session = act(client, session, "pause")
-    assert client.get(f"/api/v1/sessions/{session['id']}").json() == session
-    session = act(client, session, "resume")
-    session = act(client, session, "skip", second)
-    body = action_body(session, "finish")
-    path = f"/api/v1/sessions/{session['id']}/actions"
-    saved = client.post(path, json=body).json()
-    assert saved["xp_awarded"] == 5
-    assert client.post(path, json=body).json() == saved
+    first = session["exercises"][0]
+    second = session["exercises"][1]
+    assert first["type"] == "speaking"
+    assert first["reference_text"] == "水をください。"
+    assert second["type"] == "speaking"
+
+    removed_speech = client.post(
+        f"/api/v1/sessions/{session['id']}/exercises/{first['id']}/speech",
+        json={"expected_revision": session["revision"], "transcript": first["reference_text"]},
+    )
+    assert removed_speech.status_code == 404
+
+    empty_answer = client.post(
+        f"/api/v1/sessions/{session['id']}/actions",
+        json=action_body(session, "answer", first["id"], answer="   "),
+    )
+    assert empty_answer.status_code == 422
+
+    hinted = act(client, session, "hint", first["id"])
+    assert hinted["feedback"]["kind"] == "hint"
+
+    text_alt = act(client, hinted, "audio_text", first["id"])
+    assert text_alt["feedback"]["kind"] == "hint"
+    assert "Text alternative" in text_alt["feedback"]["message"]
+
+    answered = act(client, text_alt, "answer", first["id"], answer=first["reference_text"])
+    assert answered["feedback"]["kind"] == "recorded"
+    assert answered["feedback"]["message"] == "Typed practice saved. Pronunciation is not assessed."
+    assert answered["evidence"][first["id"]]["typed_fallbacks"] == 1
+    assert answered["evidence"][first["id"]]["speech_attempts"] == 0
+
+    revealed = act(client, answered, "reveal", second["id"])
+    assert revealed["feedback"]["kind"] == "reveal"
+    assert revealed["feedback"]["answer"] == second["reference_text"]
+
+    skipped = act(client, revealed, "skip", second["id"])
+    assert skipped["feedback"] is None
+    assert skipped["evidence"][second["id"]]["skipped"] is True
+
+    paused = act(client, skipped, "pause")
+    assert paused["status"] == "paused"
+
+    fetched = client.get(f"/api/v1/sessions/{paused['id']}").json()
+    resumed = act(client, fetched, "resume")
+    assert resumed["status"] == "active"
+
+    finish_body = action_body(resumed, "finish")
+    first_finish_res = client.post(f"/api/v1/sessions/{resumed['id']}/actions", json=finish_body)
+    assert first_finish_res.status_code == 200, first_finish_res.text
+    finished = first_finish_res.json()
+    assert finished["status"] == "completed"
+    assert finished["xp_awarded"] == 5
+
+    duplicate_finish = client.post(f"/api/v1/sessions/{resumed['id']}/actions", json=finish_body)
+    assert duplicate_finish.status_code == 200
+    assert duplicate_finish.json() == finished
+
     replay = speaking(client)
-    for exercise in replay["exercises"]:
-        replay = act(client, replay, "skip", exercise["id"])
-    assert act(client, replay, "finish")["xp_awarded"] == 5
-    stats = client.get("/api/v1/personal").json()
-    assert stats["skill_evidence"]["speaking"]["objective_checks"] == 0
-    assert stats["skill_evidence"]["speaking"]["typed_fallbacks"] == 1
-    assert client.get("/api/v1/quests").json()[0]["source_ids"] == []
-    assert client.get("/api/v1/progress").json()["total_xp"] == 10
-    fallback_body = {"request_id": str(uuid4()), "expected_revision": assignment["revision"]}
-    fallback = client.post(f"/api/v1/quests/{assignment['id']}/fallback", json=fallback_body)
-    assert fallback.status_code == 200
-    assert fallback.json()["original_kind"] == "speaking"
-    assert (
-        client.post(f"/api/v1/quests/{assignment['id']}/fallback", json=fallback_body).json()
-        == fallback.json()
+    assert replay["id"] != session["id"]
+    replay_ex0 = replay["exercises"][0]
+    replay_ex1 = replay["exercises"][1]
+    replay = act(client, replay, "answer", replay_ex0["id"], answer=replay_ex0["reference_text"])
+    replay = act(client, replay, "answer", replay_ex1["id"], answer=replay_ex1["reference_text"])
+    replay_finished = act(client, replay, "finish")
+    assert replay_finished["xp_awarded"] == 5
+
+    personal = client.get("/api/v1/personal")
+    assert personal.status_code == 200
+    speaking_summary = personal.json()["skill_evidence"]["speaking"]
+    assert speaking_summary["typed_fallbacks"] >= 3
+    assert speaking_summary["speech_attempts"] == 0
+
+    with sessions(client.app.state.engine)() as db:
+        row = db.get(StudySession, session["id"])
+        assert row is not None
+        assert row.metadata_json["evidence_mode"] == (
+            "speaking practice; authored audio model and typed practice; "
+            "pronunciation unassessed"
+        )
+        xp_rows = db.execute(select(XpEntry).order_by(XpEntry.occurred_at)).scalars().all()
+        assert sum(entry.amount for entry in xp_rows) == 10
+        events = db.execute(select(StudyEvent)).scalars().all()
+        assert len(events) > 0
+
+
+def test_speaking_bundled_audio_playback_and_snapshot_isolation(
+    database, fixture_audio_pack
+) -> None:
+    course_data = json.loads(
+        (ROOT / "content" / "courses" / "ja" / "starter.json").read_text(encoding="utf-8")
     )
 
-
-def test_durable_transcripts_exact_retry_snapshot_and_genuine_audio_quest(
-    client, database, fixture_audio_pack, monkeypatch, course
-):
-    enable_stt(client)
-    calls = []
-
-    def transcribe(provider, encoded):
-        calls.append(provider.model)
-        return "水をください。" if len(calls) <= 2 else "すみません、もう一度お願いします。"
-
-    monkeypatch.setattr(providers, "transcribe", transcribe)
     with TestClient(
         create_app(
             Config(
                 database_url=database,
                 audio_pack_dir=fixture_audio_pack,
                 audio_pack_enabled=True,
-                stt_enabled=True,
             )
         )
     ) as enabled:
-        assignment = quest(enabled)
-        session = speaking(enabled)
-        # A later content import must not change this session's comparison reference.
-        changed = course.model_copy(deep=True)
-        major, minor, patch = map(int, course.version.split("."))
-        changed.version = f"{major}.{minor}.{patch + 1}"
-        next(e for e in changed.practice_exercises if e.id == "dialogue-food-speaking-1").audio[
-            0
-        ].transcript = "別のモデル。"
         with sessions(enabled.app.state.engine)() as db:
-            import_content(db, changed)
-        for index, exercise in enumerate(session["exercises"]):
-            session = audio(enabled, session, exercise=exercise["id"]).json()["session"]
-            body = {
-                "request_id": session["next_action_id"],
-                "expected_revision": session["revision"],
-                "audio_base64": base64.b64encode(wav()).decode(),
-            }
-            response = speech(enabled, session, exercise["id"], body)
-            assert response.status_code == 200, response.text
-            saved = response.json()
-            assert speech(enabled, session, exercise["id"], body).json() == saved
-            assert (
-                speech(
-                    enabled, session, exercise["id"], {**body, "expected_revision": 100}
-                ).status_code
-                == 409
-            )
-            session = saved
-            if index == 0:
-                # Another intentional attempt is distinct from duplicate request delivery.
-                session = speech(enabled, session, exercise["id"]).json()
-        assert len(calls) == 3
-        assert session["assessed_count"] == 0
-        assert all(e["first_correct"] is None for e in session["evidence"].values())
-        session = act(enabled, session, "finish")
-        assert session["xp_awarded"] == 5
-        saved_quest = enabled.get("/api/v1/quests").json()[0]
-        assert saved_quest["source_ids"] == [session["id"]]
-        stats = enabled.get("/api/v1/personal").json()["skill_evidence"]["speaking"]
-        assert stats["speech_attempts"] == stats["transcript_matches"] == 3
-        assert stats["objective_checks"] == 0
-        with sessions(enabled.app.state.engine)() as db:
-            events = db.scalars(
-                select(StudyEvent).where(StudyEvent.session_id == session["id"])
-            ).all()
-            assert all("audio_base64" not in json.dumps(e.request) for e in events)
-            assert sum(e.request.get("action") == "speech" for e in events) == 3
-            assert len(db.scalars(select(XpEntry)).all()) == 1
-        fallback = enabled.post(
-            f"/api/v1/quests/{assignment['id']}/fallback",
-            json={
-                "request_id": str(uuid4()),
-                "expected_revision": saved_quest["revision"],
-            },
-        ).json()
-        assert fallback["source_ids"] == [session["id"]]
-        assert fallback["definition_history"][0]["prior_source_ids"] == [session["id"]]
+            import_content(db, load_content(ROOT / "content" / "courses" / "ja" / "starter.json"))
 
-
-def test_invalid_media_failures_and_interleaved_action_preserve_saved_work(
-    client, database, monkeypatch
-):
-    enable_stt(client)
-    with TestClient(create_app(Config(database_url=database, stt_enabled=True))) as enabled:
         session = speaking(enabled)
-        for encoded in [
-            "not-base64",
-            base64.b64encode(wav(silent=True)).decode(),
-            base64.b64encode(wav()[:-100]).decode(),
-        ]:
-            body = {
-                "request_id": session["next_action_id"],
-                "expected_revision": 0,
-                "audio_base64": encoded,
-            }
-            assert speech(enabled, session, body=body).status_code == 422
-        oversized = {
-            "request_id": session["next_action_id"],
-            "expected_revision": 0,
-            "audio_base64": "A" * 1_400_001,
+        first = session["exercises"][0]
+        original_reference = first["reference_text"]
+        original_prompt = first["prompt"]
+
+        # Re-import modified version to verify session snapshot isolation.
+        for item in course_data.get("practice_exercises", []):
+            if item["id"] == first["id"]:
+                item["audio"][0]["transcript"] = "お茶をください。"
+                item["prompt"] = "Changed prompt"
+        course_data["version"] = "0.1.99"
+        with sessions(enabled.app.state.engine)() as db:
+            import_content(db, CourseContent.model_validate(course_data))
+
+        request_body = {
+            "request_id": str(uuid4()),
+            "expected_revision": session["revision"],
+            "speed": 1,
         }
-        assert speech(enabled, session, body=oversized).status_code == 413
+        played_res = audio(
+            enabled, session, cue="reference", exercise=first["id"], body=request_body
+        )
+        assert played_res.status_code == 200, played_res.text
+        played_body = played_res.json()
+        assert played_body["source"] == "pack"
+        assert played_body["mime"] == "audio/mpeg"
+        played = played_body["session"]
+        assert played["evidence"][first["id"]]["audio_cue_ids"] == ["reference"]
+        assert played["evidence"][first["id"]]["speech_reference_delivered"] is False
 
-        def unavailable(*args):
-            raise ValueError("incompatible provider")
+        retried = audio(enabled, session, cue="reference", exercise=first["id"], body=request_body)
+        assert retried.status_code == 200
+        assert retried.json()["session"] == played
 
-        monkeypatch.setattr(providers, "transcribe", unavailable)
-        assert speech(enabled, session).status_code == 503
-        assert enabled.get(f"/api/v1/sessions/{session['id']}").json() == session
+        stale = audio(
+            enabled,
+            session,
+            cue="reference",
+            exercise=first["id"],
+            body={"request_id": str(uuid4()), "expected_revision": session["revision"], "speed": 1},
+        )
+        assert stale.status_code == 409
 
-        def interleaved(*args):
-            act(client, session, "pause")
-            return "水をください。"
-
-        monkeypatch.setattr(providers, "transcribe", interleaved)
-        assert speech(enabled, session).status_code == 409
-        saved = enabled.get(f"/api/v1/sessions/{session['id']}").json()
-        assert saved["status"] == "paused"
-        assert all(e["speech_attempts"] == 0 for e in saved["evidence"].values())
+        replayed_cue = audio(enabled, played, cue="reference", exercise=first["id"])
+        assert replayed_cue.status_code == 200
+        replayed_session = replayed_cue.json()["session"]
+        assert replayed_session["revision"] == played["revision"] + 1
+        assert replayed_session["exercises"][0]["prompt"] == original_prompt
+        assert replayed_session["exercises"][0]["reference_text"] == original_reference
 
 
-def test_missing_reference_or_typed_fallback_never_earns_speaking_credit(
-    client, database, fixture_audio_pack, monkeypatch
-):
-    enable_stt(client)
-    monkeypatch.setattr(providers, "transcribe", lambda *a: "水をください。")
-    with TestClient(
-        create_app(
-            Config(
-                database_url=database,
-                audio_pack_dir=fixture_audio_pack,
-                audio_pack_enabled=True,
-                stt_enabled=True,
+def test_pre_upgrade_speaking_quest_can_still_fallback_to_sessions(client: TestClient) -> None:
+    assert client.get("/api/v1/profile").status_code == 200
+    quest_id = str(uuid4())
+    with sessions(client.app.state.engine)() as db:
+        db.add(
+            QuestAssignment(
+                id=quest_id,
+                profile_id="local",
+                kind="speaking",
+                original_kind="speaking",
+                target=1,
+                created_at=datetime.now(timezone.utc).isoformat(),
+                baseline_ids=[],
+                completed_at=None,
+                source_ids=[],
             )
         )
-    ) as enabled:
-        quest(enabled)
-        for mode in ["missing_reference", "typed_fallback", "skip"]:
-            session = speaking(enabled)
-            for exercise in session["exercises"]:
-                if mode != "missing_reference":
-                    session = audio(enabled, session, exercise=exercise["id"]).json()["session"]
-                session = speech(enabled, session, exercise["id"]).json()
-                if mode == "typed_fallback":
-                    session = act(
-                        enabled, session, "answer", exercise["id"], answer="text practice"
-                    )
-                if mode == "skip":
-                    session = act(enabled, session, "skip", exercise["id"])
-            assert act(enabled, session, "finish")["xp_awarded"] == 5
-        assert enabled.get("/api/v1/quests").json()[0]["progress"] == 0
+        db.commit()
 
+    session = speaking(client)
+    ex0 = session["exercises"][0]
+    ex1 = session["exercises"][1]
+    session = act(client, session, "answer", ex0["id"], answer=ex0["reference_text"])
+    session = act(client, session, "answer", ex1["id"], answer=ex1["reference_text"])
+    act(client, session, "finish")
 
-def test_changed_stt_configuration_discards_inflight_feedback(client, database, monkeypatch):
-    enable_stt(client)
-    with TestClient(create_app(Config(database_url=database, stt_enabled=True))) as enabled:
-        session = speaking(enabled)
+    before = client.get("/api/v1/quests").json()[0]
+    assert before["kind"] == "speaking"
+    assert before["progress"] == 0
 
-        def changed_provider(*args):
-            assert (
-                client.patch(
-                    "/api/v1/settings",
-                    json={
-                        "stt": Provider(
-                            enabled=True, provider="openai-compatible", model="replacement"
-                        ).model_dump()
-                    },
-                ).status_code
-                == 200
-            )
-            return "水をください。"
+    fallback_body = {"request_id": str(uuid4()), "expected_revision": before["revision"]}
+    switched = client.post(f"/api/v1/quests/{quest_id}/fallback", json=fallback_body)
+    assert switched.status_code == 200, switched.text
+    assert switched.json()["kind"] == "sessions"
 
-        monkeypatch.setattr(providers, "transcribe", changed_provider)
-        response = speech(enabled, session)
-        assert (
-            response.status_code == 409 and response.json()["error"]["code"] == "provider_changed"
-        )
-        assert enabled.get(f"/api/v1/sessions/{session['id']}").json() == session
-        first = session["exercises"][0]["id"]
-        revealed = act(enabled, session, "reveal", first)
-        assert revealed["feedback"]["answer"] == "水をください。"
-        assert revealed["assessed_count"] == 0
+    switched_again = client.post(f"/api/v1/quests/{quest_id}/fallback", json=fallback_body)
+    assert switched_again.status_code == 200
+    assert switched_again.json() == switched.json()
+
+    conflict = client.post(
+        f"/api/v1/quests/{quest_id}/fallback",
+        json={"request_id": str(uuid4()), "expected_revision": before["revision"]},
+    )
+    assert conflict.status_code == 409
+
+    complete(client)
+
+    after = client.get("/api/v1/quests").json()[0]
+    assert after["kind"] == "sessions"
+    assert after["progress"] == 1
+    assert after["completed_at"] is not None
+
+    already_completed = client.post(
+        f"/api/v1/quests/{quest_id}/fallback",
+        json={"request_id": str(uuid4()), "expected_revision": after["revision"]},
+    )
+    assert already_completed.status_code == 409

@@ -1,4 +1,4 @@
-"""Run Plan 9.2 QA using separate ports, database and cache; no provider downloads."""
+"""Run Plan 9.2 QA using separate ports and database; uses bundled MP3 pack only."""
 
 import argparse
 import os
@@ -21,10 +21,7 @@ def main() -> None:
             "DATABASE_URL": "sqlite:///" + database.as_posix(),
             "QA_MODE": "true",
             "PORT": "8022",
-            "AI_ENABLED": "false",
-            "TTS_ENABLED": "false",
-            "STT_ENABLED": "false",
-            "AUDIO_CACHE_DIR": str(root / ".tools/plan-9-2-audio-cache"),
+            "AUDIO_PACK_ENABLED": "true",
             "CORS_ORIGINS": '["http://127.0.0.1:5192"]',
         }
     )

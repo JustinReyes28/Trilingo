@@ -44,7 +44,7 @@ The primary agent orchestrates. It owns understanding the request, planning, spl
 - Keep jump-ahead, skip, hint/reveal, retry, replay, pause/resume, finish and continuation after mistakes available. Batch sizes are freely adjustable conveniences with Show more/all, and new-word counts never limit study.
 - Assessments, goals, quests, badges, streaks, reminders and elapsed-time records are optional feedback. Missing a day or goal removes no earned XP, work or access. There is no freeze inventory or repair requirement.
 - Keep evidence honest. Skipped/assisted answers and unassessed writing need not count as correct or mastered, but they never block continuation. Keep publication checks, validation, idempotency and safe timeouts.
-- Never fake provider success, saved progress, statistics, database-backed data or working controls. Clearly label incomplete or unpublished features and content.
+- Never fake saved progress, statistics, database-backed data, audio availability, or working controls. Clearly label incomplete or unpublished features and content.
 
 ## Architecture and code
 
@@ -67,13 +67,13 @@ The primary agent orchestrates. It owns understanding the request, planning, spl
 - Require explicit confirmation before resetting or deleting progress, and offer backup/export first. Keep development reset scripts separate from normal workflows.
 - If a change threatens progress, conflicts with working progression, reveals committed secrets or corruption, or exposes a fundamental architecture mismatch: preserve the data, report the issue and choose a safe fix.
 
-## Providers and failures
+## Bundled audio and failures
 
-- Core learning, normal grading, XP, progression and review must work with `AI_ENABLED=false`. Optional LM Studio/OpenAI-compatible assistance stays behind provider adapters.
-- Keep environment/provider configuration in one place: API URLs, ports, DB path, provider, base URL, model and timeout. Commit `.env.example`, never secrets.
-- Give useful recovery guidance for offline/unloaded/incompatible providers, timeouts, malformed responses, network/API failures, stale attempts, missing records, invalid exercises and DB conflicts. Log actionable startup/database/provider/service failures without secrets. Never silently swallow broad exceptions.
-- Unavailable bundled audio, disabled `AUDIO_PACK_ENABLED`, missing optional STT, or denied microphone access needs a usable fallback (text alternatives, typed practice, and HTTP `503` `audio_unavailable`). Label transcript comparison as transcript feedback, never as phoneme-level pronunciation assessment.
-- Authored reference audio comes solely from the bundled versioned `content/audio/<course>/<version>/` MP3 pack; there is no runtime TTS synthesis or model/voice downloading. Keep AI (`AI_ENABLED`) and STT (`STT_ENABLED`) as the only optional runtime local providers (AI scenario coaching is text-only plus optional STT). Maintainers regenerate and validate the pack with `scripts/build_audio_pack.py` and `scripts/check_audio_pack.py` after text, pronunciation-override, or voice changes; never claim reviewed teaching audio until the manifest records qualified review. The pack is content, not learner data, and model weights/voice packs are never bundled.
+- Trilingo runs 100% locally with zero external or local AI, STT, microphone capture, or runtime TTS providers (`schema 0015`; `AI_ENABLED`, `STT_ENABLED`, and `TTS_ENABLED` do not exist). Core learning, grading, XP, progression, review, and speaking typed practice never depend on external services.
+- Keep environment configuration in one place (`backend/app/config.py`): API URLs, ports, DB path, `AUDIO_PACK_DIR`, `AUDIO_PACK_ENABLED`, `BACKUPS_DIR`, and `QA_MODE`. Commit `.env.example`, never secrets.
+- Give useful recovery guidance for network/API failures, stale attempts, missing records, invalid exercises, unavailable audio, and DB conflicts. Log actionable startup/database/service failures without secrets. Never silently swallow broad exceptions.
+- Unavailable bundled audio or `AUDIO_PACK_ENABLED=false` must return HTTP `503` `audio_unavailable` and provide usable fallbacks (text alternatives, transcripts, and typed practice with pronunciation clearly labeled unassessed).
+- Authored reference audio comes solely from the bundled versioned `content/audio/<course>/<version>/` MP3 pack; there is no runtime AI, STT, TTS synthesis, or model/voice downloading. Maintainers regenerate and validate the pack with `scripts/build_audio_pack.py` and `scripts/check_audio_pack.py` after text, pronunciation-override, or voice changes; never claim reviewed teaching audio until the manifest records qualified review. The pack is content, not learner data, and model weights/voice packs are never bundled.
 
 ## UI workflow
 

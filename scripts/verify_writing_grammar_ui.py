@@ -77,8 +77,10 @@ def main() -> None:
             page.set_viewport_size({"width": 390, "height": 900})
 
         health = call("GET", "/health")
-        assert health["qa_mode"] and not any(
-            health["features"][key] for key in ("ai", "tts", "stt")
+        assert (
+            health["qa_mode"]
+            and health["schema_version"] == "0015"
+            and health["features"] == {"lessons": True}
         )
         assert call("GET", "/progress")["total_xp"] == 0, "Use a new disposable QA DB"
         grammar = call("GET", "/courses/ja-starter/grammar?include_drafts=true")
@@ -322,8 +324,10 @@ def main() -> None:
             "javascript_errors": errors,
             "external_page_requests": external,
             "limitations": [
-                "Scripted mouse/keyboard; physical IME, touch/stylus, screen reader "
-                "and real providers unverified"
+                (
+                    "Scripted mouse/keyboard; physical IME, touch/stylus, screen reader "
+                    "and qualified human review unverified"
+                )
             ],
         }
         (output / "report.json").write_text(

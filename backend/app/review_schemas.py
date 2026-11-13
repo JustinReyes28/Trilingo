@@ -28,7 +28,6 @@ class RatingRequest(StrictModel):
 
 class CardOut(StrictModel):
     audio_cues: list[PublicAudioCue] = []
-    supports_recording: bool = False
     reference_text: str | None = None
     content_version: str = ""
     item_kind: Literal["word", "exercise"] = "word"
@@ -58,7 +57,7 @@ class CollectionRecall(StrictModel):
 
 class QuestRequest(StrictModel):
     request_id: RequestId
-    kind: Literal["sessions", "reviews", "writing", "listening", "speaking"] = "sessions"
+    kind: Literal["sessions", "reviews", "writing", "listening"] = "sessions"
     target: int = Field(default=3, ge=1)
 
 

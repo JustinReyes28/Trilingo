@@ -2,7 +2,7 @@
 
 Trilingo is a local-first Japanese study app built for learners who want direct, self-directed practice without artificial friction. There are no hearts, energy meters, forced waiting periods, or daily XP quotas. Everything you study stays on your own computer in an SQLite database.
 
-Core lessons, kanji practice, spaced repetition, and writing drafting work completely offline with zero cloud accounts and zero external AI dependencies.
+Core lessons, kanji practice, spaced repetition, bundled reference audio, and writing/speaking typed practice work completely offline with zero cloud accounts and zero external or local AI/STT dependencies.
 
 ---
 
@@ -108,7 +108,7 @@ Trilingo uses a modular local-first architecture:
 - **Backend:** FastAPI, Python 3.11+, SQLAlchemy 2.0, Alembic for schema migrations, and Pydantic v2 schemas.
 - **Database:** SQLite with Write-Ahead Logging (WAL) enabled for clean concurrent reads and atomic writes.
 - **Bundled reference audio:** Authored Japanese words, listening cues, story turns, and English vocabulary meanings ship as a versioned static MP3 pack under `content/audio/`. All authored audio plays offline with zero runtime TTS services or model/voice downloads. Slow playback (`0.75x`) uses client `HTMLAudioElement.playbackRate` with `preservesPitch=true`. If bundled audio is unavailable or `AUDIO_PACK_ENABLED=false`, audio endpoints return HTTP `503` (`audio_unavailable`) and exercises fall back to full text alternatives. The pack is synthetic and human listening review is still pending.
-- **Optional Local AI & Speech (STT):** Optional loopback AI (LM Studio / OpenAI-compatible, `AI_ENABLED`) provides text-only scenario coaching, and optional loopback Whisper-compatible STT (`STT_ENABLED`) handles microphone transcript feedback. Runtime TTS has been removed (`POST /api/v1/scenarios/speech` and `GET /api/v1/audio/voices` do not exist). If optional AI/STT are disabled, all exercises provide full text, transcript, and typed practice fallbacks without loss of practice credit.
+- **Local-only practice (no AI, STT, or microphone capture):** Trilingo runs with zero runtime AI, speech-to-text, microphone capture, or runtime TTS providers (`GET /api/v1/audio/status` reports bundled audio status; `/api/v1/providers/status`, `/api/v1/scenarios/practice`, `/api/v1/explanations`, and transcription routes were removed in schema `0015`). Speaking prompts pair bundled MP3 model playback with typed practice, hints, answer reveal, and unassessed self-check; authored grammar reference guides and deterministic dialogues ship offline without AI coaching.
 
 ---
 

@@ -14,7 +14,7 @@ from app.models import Profile
 
 
 def test_health_and_settings_persist(client, database):
-    assert client.get("/api/v1/health").json()["schema_version"] == "0014"
+    assert client.get("/api/v1/health").json()["schema_version"] == "0015"
     profile = client.get("/api/v1/profile?timezone=Asia/Singapore").json()
     assert profile["timezone"] == "Asia/Singapore"
     assert (
@@ -43,8 +43,9 @@ def test_health_and_settings_persist(client, database):
         ("settings", {"daily_goal": 0}),
         ("settings", {"furigana": "invented"}),
         ("settings", {"show_goal": None}),
-        ("settings", {"ai": {"base_url": "https://example.com"}}),
-        ("settings", {"ai": {"base_url": "http://user:secret@localhost"}}),
+        ("settings", {"ai": {"enabled": True}}),
+        ("settings", {"stt": {"enabled": True}}),
+        ("settings", {"tts": {"enabled": True}}),
     ],
 )
 def test_invalid_input(client, path, body):
@@ -58,16 +59,12 @@ def test_invalid_detected_timezone(client):
     assert client.get("/api/v1/profile?timezone=invalid").status_code == 422
 
 
-def test_local_cors_and_disabled_providers(client):
+def test_local_cors_and_health_features(client):
     response = client.get("/api/v1/health", headers={"Origin": "https://outside.example"})
     assert "access-control-allow-origin" not in response.headers
     allowed = client.get("/api/v1/health", headers={"Origin": "http://127.0.0.1:5173"})
     assert allowed.headers["access-control-allow-origin"] == "http://127.0.0.1:5173"
-    assert response.json()["features"] == {
-        "lessons": True,
-        "ai": False,
-        "stt": False,
-    }
+    assert response.json()["features"] == {"lessons": True}
 
 
 def test_migrations_missing_is_actionable(tmp_path):
@@ -200,21 +197,25 @@ def test_unexpected_failure_is_logged_not_exposed(database, monkeypatch, caplog)
     assert "Unexpected local API failure" in caplog.text
 
 
-def test_providers_status_has_ai_stt_and_audio_pack_without_tts(client):
-    response = client.get("/api/v1/providers/status")
+def test_audio_status_reports_pack_and_removed_provider_routes_404(client):
+    assert client.get("/api/v1/providers/status").status_code == 404
+    assert "ai_enabled" not in Config.model_fields
+    assert "stt_enabled" not in Config.model_fields
+    assert "tts_enabled" not in Config.model_fields
+    assert not hasattr(Config, "ai_enabled")
+    assert not hasattr(Config, "stt_enabled")
+
+    response = client.get("/api/v1/audio/status")
     assert response.status_code == 200
     payload = response.json()
-    assert set(payload.keys()) == {"ai", "stt", "audio_pack"}
-    assert "tts" not in payload
-    assert payload["ai"]["enabled"] is False
-    assert payload["stt"]["enabled"] is False
+    assert set(payload.keys()) == {"audio_pack"}
     assert payload["audio_pack"]["bundled_reference"] is False
     assert payload["audio_pack"]["bundled_reviewed"] is False
     assert payload["audio_pack"]["course_version"] is None
     assert "unavailable" in payload["audio_pack"]["message"].lower()
 
 
-def test_legacy_preferences_with_tts_and_voice_load_and_patch_cleanly(client):
+def test_legacy_preferences_with_tts_ai_stt_load_and_patch_cleanly(client):
     from app.models import Preferences
 
     assert client.get("/api/v1/settings").status_code == 200
@@ -224,8 +225,22 @@ def test_legacy_preferences_with_tts_and_voice_load_and_patch_cleanly(client):
         prefs.data = {
             **prefs.data,
             "furigana": "unfamiliar",
-            "ai": {**prefs.data["ai"], "model": "local-llm", "voice": "legacy-ignored"},
-            "stt": {**prefs.data["stt"], "model": "local-whisper", "voice": "legacy-stt"},
+            "ai": {
+                "enabled": True,
+                "provider": "lm-studio",
+                "base_url": "http://127.0.0.1:1234",
+                "model": "local-llm",
+                "voice": "legacy-ignored",
+                "timeout": 20,
+            },
+            "stt": {
+                "enabled": True,
+                "provider": "openai-compatible",
+                "base_url": "http://127.0.0.1:9000",
+                "model": "local-whisper",
+                "voice": "legacy-stt",
+                "timeout": 20,
+            },
             "tts": {
                 "enabled": True,
                 "provider": "kokoro",
@@ -240,11 +255,8 @@ def test_legacy_preferences_with_tts_and_voice_load_and_patch_cleanly(client):
     loaded = client.get("/api/v1/settings")
     assert loaded.status_code == 200, loaded.text
     loaded_json = loaded.json()
-    assert "tts" not in loaded_json
-    assert "voice" not in loaded_json["ai"]
-    assert "voice" not in loaded_json["stt"]
-    assert loaded_json["ai"]["model"] == "local-llm"
-    assert loaded_json["stt"]["model"] == "local-whisper"
+    for removed in ("tts", "ai", "stt"):
+        assert removed not in loaded_json
     assert loaded_json["furigana"] == "unfamiliar"
 
     patched = client.patch("/api/v1/settings", json={"daily_goal": 30})
@@ -252,14 +264,9 @@ def test_legacy_preferences_with_tts_and_voice_load_and_patch_cleanly(client):
     assert patched.json()["daily_goal"] == 30
     with sessions(client.app.state.engine)() as db:
         stored = db.get(Preferences, "local").data
-        assert "tts" not in stored
-        assert "voice" not in stored["ai"]
-        assert "voice" not in stored["stt"]
+        for removed in ("tts", "ai", "stt"):
+            assert removed not in stored
 
     assert client.patch("/api/v1/settings", json={"tts": {"enabled": True}}).status_code == 422
-    assert (
-        client.patch(
-            "/api/v1/settings", json={"ai": {"voice": "jf_alpha"}}
-        ).status_code
-        == 422
-    )
+    assert client.patch("/api/v1/settings", json={"ai": {"enabled": True}}).status_code == 422
+    assert client.patch("/api/v1/settings", json={"stt": {"enabled": True}}).status_code == 422

@@ -109,8 +109,10 @@ def main() -> None:
             expect(page.get_by_role("heading", name="Words in context", exact=True)).to_be_visible()
 
         health = call("GET", "/health")
-        assert health["qa_mode"] and not any(
-            health["features"][key] for key in ("ai", "tts", "stt")
+        assert (
+            health["qa_mode"]
+            and health["schema_version"] == "0015"
+            and health["features"] == {"lessons": True}
         )
         assert call("GET", "/courses/ja-starter")["version"] == report["target_version"]
         reading_page()
@@ -255,7 +257,7 @@ def main() -> None:
             "external_requests": external,
             "limits": (
                 "Simulated HTTP failure; no physical IME, screen reader, "
-                "touch/stylus or real provider verification."
+                "touch/stylus or qualified human audio/curriculum review."
             ),
         }
         (output / "report.json").write_text(

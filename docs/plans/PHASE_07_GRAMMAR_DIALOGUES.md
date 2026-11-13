@@ -1,6 +1,6 @@
 # Phase 07 — Grammar and Practical Dialogues
 
-Status: Partial engineering implementation (2026-10-23); qualified content and/or real-provider gates remain open. Depends on: [Phase 06](PHASE_06_WRITING.md). Next: [Phase 08](PHASE_08_AUDIO_SPEAKING.md).
+Status: Partial engineering implementation (2026-10-23; optional AI removed 2026-11-13 in schema `0015`); qualified content and human review gates remain open. Depends on: [Phase 06](PHASE_06_WRITING.md). Next: [Phase 08](PHASE_08_AUDIO_SPEAKING.md).
 
 ## Goal
 
@@ -17,46 +17,43 @@ Add the requested Babbel-style depth: explain patterns, practice them in context
 - [x] Use authored branching turns with task goals, multiple valid response variants, optional hints, replay, and a text-first fallback.
 - [ ] Show politeness/register expectations and distinguish a valid alternative from an answer that is understandable but outside the taught task.
 - [x] Add unit recaps, review links, bookmarked words/grammar, and personal vocabulary collections built from learned content.
-- [x] Store learner interests and preferred practice focus as settings that select existing content without making arbitrary provider-generated lessons authoritative.
+- [x] Store learner interests and preferred practice focus as settings that select existing content without making arbitrary generated lessons authoritative.
 - [ ] Publish the remaining beginner units only after linguistic/content validation. Maintain a reviewed inventory and identify any unfinished content.
-- [x] Add an optional explanation provider interface with disabled and OpenAI-compatible adapters, including configurable LM Studio support.
-- [x] Add optional AI scenario practice only after deterministic authored dialogues work; clearly label generated material and uncertain feedback.
-- [ ] Add answer-specific authored "why this works" and "why that answer differs" explanations, with optional local AI elaboration and voice roleplay built on the same scenario context in Phase 8.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Add an optional explanation provider interface with disabled and OpenAI-compatible adapters, including configurable LM Studio support (`AI_ENABLED`, `providers.py`, `Explanation.tsx`, and `/api/v1/explanations` were removed).
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Add optional AI scenario practice (`ScenarioPractice.tsx`, `scenario_practice.py`, and `/api/v1/scenarios/practice` were removed; deterministic authored dialogues remain active).
+- [ ] Add answer-specific authored "why this works" and "why that answer differs" explanations for remaining units *(optional local AI elaboration and voice roleplay were superseded 2026-11-13 in schema `0015`)*.
 
 ## Intended implementation areas
 
-Grammar/library/dialogue features, authored grammar/scenario content, backend dialogue services, `backend/app/ai`, provider configuration, and migrations for scenario attempts/bookmarks/collections if needed.
+Grammar/library/dialogue features, authored grammar/scenario content, backend dialogue services, and migrations for scenario attempts/bookmarks/collections if needed.
 
 ## Data and API contracts
 
 - Grammar notes are structured content linked to concepts and lessons, with original text and versioned examples.
 - A scenario stores roles, permitted transitions, objective checkpoints, response policy, hints, explanation, and optional audio cues.
 - Backend validates each dialogue transition and objective completion. Answer selection uses stable IDs; free-text acceptance uses explicit variants/strategies.
-- Text participation is sufficient for the core authored scenario. Phase 8 adds listening and recorded responses without changing its core state machine.
-- An explanation request references an exercise/attempt and bounded context; backend retrieves the authoritative answer rather than trusting a client-provided answer key.
-- Provider settings contain enabled/provider/base URL/model/timeout. Keep credentials server-side, validate structured responses, limit input size, and time out cleanly.
-- Optional AI never grades core exercises, awards XP, controls lesson access, modifies FSRS state, or silently publishes generated content. Guides/hints and every published dialogue are freely available; responses can be retried/revealed/skipped without blocking continuation.
-- On disabled/unavailable/malformed provider responses, show the authored explanation and continue learning. Do not fake a successful model response.
+- Text participation and bundled reference playback are sufficient for authored scenarios. Guides/hints and every published dialogue are freely available; responses can be retried/revealed/skipped without blocking continuation.
+- *(Superseded / abandoned 2026-11-13, schema `0015`)* Optional AI explanation/coaching adapters (`AI_ENABLED`), provider configuration, and `/api/v1/explanations` / `/api/v1/scenarios/practice` were removed; authored explanations remain deterministic and offline.
 
 ## Tests and manual verification
 
 - [ ] Test accepted/rejected dialogue transitions, response alternatives, task completion, hints, resume, and duplicate submissions.
 - [ ] Test guide/bookmark/collection persistence and references after a content revision.
-- [ ] Test grammar search/filter behavior, direct links from mistakes to the correct concept, and authored explanation fallback without AI.
+- [ ] Test grammar search/filter behavior, direct links from mistakes to the correct concept, and authored explanations offline.
 - [ ] Validate all published unit exercises and review grammar/register consistency with the content checklist.
-- [ ] Test AI disabled, endpoint unreachable, timeout, no model loaded, malformed response, configuration swap, and authored fallback.
-- [ ] Test that model text cannot be used to mutate authoritative progression or inject executable HTML.
-- [ ] Manually complete three practical authored scenarios with AI entirely disabled; revisit the grammar explanations and resume an interrupted dialogue.
-- [ ] When a real provider is available, verify one real explanation call; otherwise record integration as unverified rather than claiming local success.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** AI disabled/unreachable/timeout/unloaded-model/malformed-response tests — AI adapters removed.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Model-output HTML injection/mutation guard tests — AI adapters removed.
+- [ ] Manually complete three practical authored scenarios completely offline; revisit the grammar explanations and resume an interrupted dialogue.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Real local AI explanation call — optional local AI removed.
 - [ ] Run relevant frontend/backend gates, content validation, and migrations.
 
 ## Completion gate
 
-Complete when authored grammar and practical dialogues work without AI, reviewed content supports the intended beginner situations, and the optional provider layer fails safely. Real-provider verification is tracked separately from mock/contract tests; it must not be implied by them.
+Complete when authored grammar and practical dialogues work completely offline and reviewed content supports the intended beginner situations *(optional AI explanation/coaching adapters superseded 2026-11-13 in schema `0015`)*.
 
 ## Later-stage language and essay instruction
 
-For Stages C-F in the [curriculum roadmap](../CURRICULUM_ROADMAP.md), add reviewed instruction for connected narration, paragraph cohesion, viewpoint/register, claims and evidence, qualification, counterargument, paraphrase, source attribution, and revision. Link feedback to the specific draft passage and taught concept; supply annotated original models and alternatives. Keep these authored materials usable without AI. AI elaboration is advisory and cannot become an automatic open-essay grade or rewrite the learner's original submission.
+For Stages C-F in the [curriculum roadmap](../CURRICULUM_ROADMAP.md), add reviewed instruction for connected narration, paragraph cohesion, viewpoint/register, claims and evidence, qualification, counterargument, paraphrase, source attribution, and revision. Link feedback to the specific draft passage and taught concept; supply annotated original models and alternatives. Keep these authored materials completely offline without AI (optional AI elaboration superseded 2026-11-13 in schema `0015`).
 
 ## Reference basis
 

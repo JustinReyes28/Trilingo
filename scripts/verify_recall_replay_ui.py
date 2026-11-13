@@ -6,7 +6,7 @@ No browser installation, provider call, or external file transfer is performed.
 import argparse
 import json
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.parse import urlparse
 from uuid import uuid4
@@ -57,9 +57,12 @@ def main() -> None:
         page.on("pageerror", lambda error: errors.append(str(error)))
 
         def track_start(request):
-            if request.method == "POST" and request.url.endswith("/courses/ja-starter/sessions"):
-                if request.post_data_json.get("source_kind") == "review":
-                    unsupported.append(request.post_data_json)
+            if (
+                request.method == "POST"
+                and request.url.endswith("/courses/ja-starter/sessions")
+                and request.post_data_json.get("source_kind") == "review"
+            ):
+                unsupported.append(request.post_data_json)
 
         page.on("request", track_start)
 
@@ -81,8 +84,10 @@ def main() -> None:
             page.set_viewport_size({"width": 390, "height": 900})
 
         health = call("GET", "/health")
-        assert health["qa_mode"] and not any(
-            health["features"][key] for key in ("ai", "tts", "stt")
+        assert (
+            health["qa_mode"]
+            and health["schema_version"] == "0015"
+            and health["features"] == {"lessons": True}
         )
         version = call("GET", "/courses/ja-starter")["version"]
         assert call("GET", "/progress")["total_xp"] == 0, "Use a new disposable QA DB"
@@ -102,7 +107,7 @@ def main() -> None:
                 "recall_session_id": timer["id"],
             },
         )
-        assert datetime.fromisoformat(card["due"]) > datetime.now(timezone.utc)
+        assert datetime.fromisoformat(card["due"]) > datetime.now(UTC)
         saved = call("GET", f"/sessions/{timer['id']}")
         assert saved["status"] == "completed" and saved["xp_awarded"] == 5
         page.goto(args.base + "/#session/" + timer["id"])
@@ -195,7 +200,9 @@ def main() -> None:
             "unsupported_review_start_requests": unsupported,
             "javascript_errors": errors,
             "external_page_requests": external,
-            "limitations": ["Physical IME/screen reader/touch and human/provider audio unverified"],
+            "limitations": [
+                "Physical IME/screen reader/touch and human audio/curriculum review unverified"
+            ],
         }
         (output / "report.json").write_text(
             json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"

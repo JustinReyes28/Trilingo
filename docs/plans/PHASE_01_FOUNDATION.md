@@ -41,13 +41,13 @@ These paths are targets, not existing code. Inspect before creating later additi
 
 ## Data and API contracts
 
-- Use `/api/v1` consistently. Establish `GET /api/v1/health`, `GET/PATCH /api/v1/profile`, and `GET/PATCH /api/v1/settings` (and `GET /api/v1/providers/status`) under `/api/v1`.
+- Use `/api/v1` consistently. Establish `GET /api/v1/health`, `GET/PATCH /api/v1/profile`, `GET/PATCH /api/v1/settings`, and `GET /api/v1/audio/status` (which replaced `/api/v1/providers/status` in schema `0015`) under `/api/v1`.
 - Responses have explicit schemas. Errors include a stable code, user-facing message, and optional field details; unexpected failures do not expose stack traces.
-- Profile stores stable ID and timezone. Settings store daily goal, reading aids, accessibility preferences, and provider preferences with explicit ownership.
+- Profile stores stable ID and timezone. Settings store daily goal, reading aids, and accessibility preferences with explicit ownership (optional provider preferences were removed in schema `0015`).
 - Store secrets outside public API responses and exported ordinary settings. Validate configuration changes server-side.
 - Adopt UTC timestamps for events and due dates; derive activity dates using the profile timezone at the time of activity.
 - Configure separate database locations for real use, tests, and temporary migration validation.
-- Define `AI_ENABLED=false` and `STT_ENABLED=false` with independent AI/STT enabled/provider/base URL/model/timeout settings plus `AUDIO_PACK_DIR`/`AUDIO_PACK_ENABLED`. *(Amended 2026-11-13: `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `preferences.data.tts`, and `voice` subfields were removed in schema `0014`.)* Do not assume all services use OpenAI-compatible endpoints.
+- Define `AUDIO_PACK_DIR`/`AUDIO_PACK_ENABLED` for the bundled MP3 pack. *(Superseded 2026-11-13: `TTS_ENABLED`/`AUDIO_CACHE_DIR` were removed in schema `0014`, and `AI_ENABLED`, `STT_ENABLED`, `"ai"`, and `"stt"` preference fields were removed in schema `0015`.)*
 
 ## Tests and manual verification
 
@@ -55,12 +55,12 @@ These paths are targets, not existing code. Inspect before creating later additi
 - [x] Frontend tests cover valid/invalid API data, health loading/failure/retry, and error boundaries where practical.
 - [x] Apply migrations on an empty temporary DB, run migration drift check, restart, and confirm persisted settings.
 - [x] Run the frontend gate and backend gate defined in the master plan; record actual commands and versions in README.
-- [x] Manually launch both services using only README, call the health API, then verify a usable UI with AI/audio disabled.
+- [x] Manually launch both services using only README, call the health API, then verify a usable UI with bundled audio disabled (`AUDIO_PACK_ENABLED=false`).
 - [x] Confirm no secret, personal DB, recording, model weights, or provider cache is added to source control.
 
 ## Completion gate
 
-Complete only when a clean install can launch the real frontend/backend, health calls work, settings survive restart, migrations work from empty DB, tests are isolated, and applicable quality gates pass. Unavailable bundled audio or optional AI/STT engines must be reported honestly (`503 audio_unavailable` / provider status) and must not block this phase.
+Complete only when a clean install can launch the real frontend/backend, health calls work, settings survive restart, migrations work from empty DB, tests are isolated, and applicable quality gates pass. Unavailable bundled audio must be reported honestly (`503 audio_unavailable` / `GET /api/v1/audio/status`) and must not block this phase.
 
 
 ## Implementation evidence — 2026-10-23
@@ -72,7 +72,8 @@ See [technical decisions](../TECHNICAL_DECISIONS.md) and [verification](../PHASE
 
 [Current execution evidence](../PLAN_09_2_VERIFICATION.md) records source 0.1.15/schema 0012, verified engineering changes and exact remaining gates. The supported fresh-install, qualified-language/stroke/audio and physical-device requirements remain open. Current improvements include verified official IME documentation, ten-topic draft guide coverage, collection-scoped saved-snapshot recall, complete timing histories and separate skill/workflow/coverage evidence. No full phase or reviewed beginner release is claimed.
 
-## Bundled-audio-only amendment — 2026-11-13
+## Bundled-audio-only & local-only amendments — 2026-11-13
 
 - Schema head advanced to **`0014`** (`0014_remove_tts_settings.py`), removing `"tts"` and `ai.voice`/`stt.voice` from `preferences.data` and imported backups while preserving all learner tables.
-- `.env.example` and `Config` now retain `AI_ENABLED`, `STT_ENABLED`, `AUDIO_PACK_DIR`, and `AUDIO_PACK_ENABLED` (`TTS_ENABLED` and `AUDIO_CACHE_DIR` removed). `GET /api/v1/health` returns `features: {lessons, ai, stt}`.
+- Schema head subsequently advanced to **`0015`** (`0015_remove_ai_stt_settings.py`, 2026-11-13), removing `"ai"`, `"stt"`, and `"tts"` from `preferences.data` and imported backups while preserving all learner progress.
+- `.env.example` and `Config` retain only `AUDIO_PACK_DIR` and `AUDIO_PACK_ENABLED` (`TTS_ENABLED`, `AUDIO_CACHE_DIR`, `AI_ENABLED`, and `STT_ENABLED` removed). `GET /api/v1/health` returns `features: {lessons: true}`, and `GET /api/v1/audio/status` returns `{audio_pack}`.

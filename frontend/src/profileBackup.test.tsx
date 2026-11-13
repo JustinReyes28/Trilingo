@@ -9,14 +9,6 @@ const sampleProfile = ProfileSchema.parse({
   timezone: 'Asia/Tokyo',
 })
 
-const defaultProvider = {
-  enabled: false,
-  provider: 'disabled',
-  base_url: 'http://127.0.0.1:1234',
-  model: '',
-  timeout: 20,
-}
-
 const sampleSettings = SettingsSchema.parse({
   daily_goal: 20,
   show_goal: true,
@@ -26,25 +18,26 @@ const sampleSettings = SettingsSchema.parse({
   sound: false,
   show_statistics: true,
   practice_batch: 10,
-  ai: defaultProvider,
-  stt: defaultProvider,
 })
 
-it('renders optional AI and STT provider settings without TTS or Kokoro voice fields', () => {
+it('renders profile preferences without optional AI, STT, or TTS provider settings', () => {
   const html = renderToStaticMarkup(
     <ProfilePage profile={sampleProfile} settings={sampleSettings} onSaved={() => {}} />
   )
 
-  expect(html).toContain('Optional local providers')
-  expect(html).toContain('AI explanations')
-  expect(html).toContain('Japanese speech recognition')
-  expect(html).toContain('AI_ENABLED or STT_ENABLED')
-  expect(html).toContain('Authored reference audio is bundled locally with zero TTS provider setup or model downloads')
+  expect(html).not.toContain('Optional local providers')
+  expect(html).not.toContain('AI_ENABLED')
+  expect(html).not.toContain('STT_ENABLED')
+  expect(html).not.toContain('lm-studio')
+  expect(html).not.toContain('AI explanations')
+  expect(html).not.toContain('Japanese speech recognition')
   expect(html).not.toContain('Japanese speech output')
   expect(html).not.toContain('TTS_ENABLED')
   expect(html).not.toContain('kokoro')
   expect(html).not.toContain('jf_/jm_')
   expect(html).not.toContain('>Voice<')
+  expect(html).not.toContain('Transient audio recordings')
+  expect(html).toContain('Credentials and temporary caches are excluded.')
 })
 
 it('renders backup export, restore, and reset controls on profile page', () => {

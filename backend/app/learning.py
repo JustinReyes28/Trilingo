@@ -269,7 +269,7 @@ def start_session(db: Session, course_id: str, body: StartRequest) -> dict:
             row.metadata_json = {
                 **row.metadata_json,
                 "evidence_mode": (
-                    "speaking practice; transcript and typed evidence separate; "
+                    "speaking practice; authored audio model and typed practice; "
                     "pronunciation unassessed"
                 ),
             }
@@ -433,7 +433,7 @@ def _exercise_action(db: Session, row: StudySession, body: ActionRequest) -> dic
             return {
                 "exercise_id": exercise_id,
                 "kind": "recorded",
-                "message": "Typed fallback saved. No speech or pronunciation was assessed.",
+                "message": "Typed practice saved. Pronunciation is not assessed.",
                 "explanation": exercise.explanation,
             }
         correct = grade(exercise, body.answer)

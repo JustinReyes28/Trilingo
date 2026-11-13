@@ -38,7 +38,7 @@ def grade(exercise: Exercise, answer: Answer) -> bool:
             raise DomainError(
                 422,
                 "speech_unassessed",
-                "Use a speaking session for transcript feedback; pronunciation is not graded.",
+                "Use a speaking session for unassessed practice; pronunciation is not graded.",
             )
         case "multiple_choice" | "response_selection" | "listening_selection" | "audio_contrast":
             if not isinstance(answer, str) or answer not in {x.id for x in exercise.choices}:

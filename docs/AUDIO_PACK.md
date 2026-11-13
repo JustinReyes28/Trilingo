@@ -2,9 +2,8 @@
 
 Trilingo plays authored reference audio exclusively from a versioned,
 pre-generated static MP3 pack (`content/audio/<course>/<version>/`). There are
-zero runtime TTS adapters, runtime synthesis calls, audio caches, or model/voice
-downloads anywhere in the application; dynamic AI scenario coaching is text-only
-plus optional Whisper-compatible STT.
+zero external or local AI, STT, microphone capture, runtime TTS synthesis, audio
+caches, or model/voice downloads anywhere in the application.
 
 ## What is generated
 
@@ -73,17 +72,18 @@ reports missing required (published) clips as errors. Draft gaps are warnings;
 
 ## Runtime behavior
 
-- Pack hits work completely offline with `AI_ENABLED=false` and `STT_ENABLED=false`
-  (there is no `TTS_ENABLED` or `AUDIO_CACHE_DIR` setting).
+- Pack hits work completely offline with zero runtime AI, STT, or TTS providers
+  (there is no `AI_ENABLED`, `STT_ENABLED`, `TTS_ENABLED`, or `AUDIO_CACHE_DIR`
+  setting).
 - A pack miss or `AUDIO_PACK_ENABLED=false` returns HTTP `503`
   (`audio_unavailable`), and the UI falls back to text alternatives with zero
   loss of study continuation or practice credit.
 - Slow playback uses browser `HTMLAudioElement.playbackRate = 0.75` with
   `preservesPitch = true` on the bundled MP3 clips.
-- `GET /api/v1/providers/status` reports `{ai, stt, audio_pack}` where
-  `audio_pack` declares `{bundled_reference, bundled_reviewed, course_version, message}`.
-  The UI label stays “human review pending” until `manifest.status` is changed
-  to `reviewed` by a qualified reviewer.
+- `GET /api/v1/audio/status` reports `{audio_pack}` where `audio_pack` declares
+  `{bundled_reference, bundled_reviewed, course_version, message}` (`GET /api/v1/providers/status`
+  was removed in schema `0015`). The UI label stays “human review pending”
+  until `manifest.status` is changed to `reviewed` by a qualified reviewer.
 
 ## Review and licensing
 
@@ -107,6 +107,10 @@ version changes, generate the new version under
 silently reuse a manifest whose `source_sha256` no longer matches the course file.
 
 ## Implementation record — 2026-11-13
+
+### Local-Only Audio Status Update (2026-11-13, schema `0015`)
+
+Following commit `5e01b81` below, schema `0015` (`0015_remove_ai_stt_settings`) removed all optional local AI (`AI_ENABLED`), Whisper STT (`STT_ENABLED`), and microphone capture paths from Trilingo. `GET /api/v1/providers/status` was replaced by `GET /api/v1/audio/status` returning `{audio_pack}`, `GET /api/v1/health` reports `features: {lessons: true}`, and `"ai"`/`"stt"`/`"tts"` keys are stripped from `preferences.data` without modifying learner progress or backups.
 
 ### Initial Pack Addition (2026-11-13, pre-removal)
 

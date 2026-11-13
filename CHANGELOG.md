@@ -6,7 +6,43 @@ release.
 
 ## Unreleased — 2026-11-13
 
-### Bundled-Audio-Only Architecture (2026-11-13, Phases 1–3)
+### Local-Only Practice & Schema `0015` (2026-11-13)
+
+Removed all optional external/local AI, speech-to-text (STT), and microphone recording code and UI so Trilingo operates 100% locally using deterministic authored lessons and the bundled MP3 pack (`content/audio/ja-starter/0.1.21/`):
+
+- **Schema `0015` (`backend/migrations/versions/0015_remove_ai_stt_settings.py`):**
+  Strips `"ai"`, `"stt"`, and legacy `"tts"` keys from `preferences.data`
+  without touching learner progress, sessions, XP, FSRS cards, collections, or
+  backups; `restore_backup` and settings schemas reject/strip those keys
+  cleanly (`PATCH /api/v1/settings` rejects extra keys with HTTP `422`).
+- **Removed AI, STT, and Microphone Routes/Modules:** Removed `AI_ENABLED`,
+  `STT_ENABLED`, `backend/app/providers.py`, `backend/app/scenario_practice.py`,
+  `backend/app/speaking.py`, `/api/v1/providers/status`,
+  `/api/v1/explanations`, `/api/v1/scenarios/practice`,
+  `/api/v1/scenarios/transcriptions`, `/api/v1/audio/transcriptions`,
+  `/api/v1/review/cards/.../transcriptions`, and
+  `/api/v1/sessions/.../exercises/.../speech` (`404`). Replaced
+  `GET /api/v1/providers/status` with `GET /api/v1/audio/status` returning
+  `{audio_pack: {bundled_reference, bundled_reviewed, course_version, message}}`;
+  `GET /api/v1/health` now returns `features: {lessons: true}`;
+  `QuestRequest.kind` excludes `"speaking"` (`422`).
+- **Frontend & Preserved Speaking Practice:** Removed `Explanation.tsx`,
+  `ScenarioPractice.tsx`, `Recorder.tsx`, the "Optional local providers"
+  profile card, and `supports_recording`. Authored `speaking` prompts (bundled
+  reference playback, typed practice saved via `Save typed practice`, hint,
+  reveal, skip) and 5-direction word/collection recall (`speaking` uses bundled
+  reference playback + optional recall notes + reveal + self-rating) remain
+  active with pronunciation explicitly labeled unassessed. Legacy unfinished
+  `speaking` quests render a switch-to-core-sessions fallback in `ReviewPage.tsx`.
+- **Docs, Plans & QA Scripts:** Removed `AI_ENABLED`/`STT_ENABLED` from
+  `.env.example`, replaced `Providers and failures` in `AGENTS.md` with
+  `Bundled audio and failures`, marked `E4`/`F4`/`F5`/AI-coaching/STT plans
+  superseded/abandoned (2026-11-13, schema `0015`), deleted obsolete scripts
+  (`scripts/verify_recording_ui.py`, `scripts/qa_audio_fixture.py`), and
+  aligned remaining QA scripts with schema `0015`.
+- **Verification status (2026-11-13 passed; uncommitted):** Integrated post-`0015` verification passed with `.data/trilingo.db` untouched (`360,448` bytes, `2026-11-08 12:34:45 UTC`): Backend Ruff, **`223 passed`** (`pytest`), `app.cli validate`, `check_audio_pack.py --strict` (`4,394` clips, `0` errors/warnings), isolated clean & populated `0014 -> 0015` Alembic migration checks (stripping `"ai"`, `"stt"`, and `"tts"` while preserving learner XP/sessions and rejecting extra settings keys with `422`), Frontend lint/typecheck/**`54 passed`** (`11` test files)/build (`2,068` modules), and isolated headless Edge QA (`24` layouts across `320`/`390`/`768`/`1280` plus `2` `503` `audio_unavailable` captures, `0` overflows/errors/external requests, `0` removed-route hits across `92` requests, all 7 removed AI/STT/mic routes verified returning `404`, Japanese/English `0.75x` MP3 playback, typed speaking session `+5 XP`, 5-direction word & collection speaking recall `+5 XP` each, and Backup export/restore).
+
+### Bundled-Audio-Only Architecture (2026-11-13, commit `5e01b81`, Phases 1–3)
 
 Following the initial pack introduction recorded below, all runtime TTS support
 was removed so authored audio is strictly bundled-only (`content/audio/`):

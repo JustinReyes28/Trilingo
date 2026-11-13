@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import { expect, it } from 'vitest'
 import { AudioControls, AudioPage, audioBadgeLabel } from './AudioPage'
 import { ListeningCues, playbackRate, type PreparedAudio } from './ListeningExercise'
-import { AudioSchema, ProviderStatusSchema } from './practiceSchemas'
+import { AudioSchema, AudioStatusSchema } from './practiceSchemas'
 import { StudySchema } from './studySchemas'
 import type { Library } from './schemas'
 
@@ -42,42 +42,37 @@ it('uses client-side 0.75x slow playback for bundled clips', () => {
  expect(playbackRate(true)).toBe(0.75)
 })
 
-it('reads bundled pack availability and review status alongside AI and STT capabilities', () => {
- const status = ProviderStatusSchema.parse({
-  ai:{enabled:false,provider:'disabled',verified:false,message:'off'},
-  stt:{enabled:false,provider:'disabled',verified:false,message:'off'},
+it('reads bundled pack availability and review status without AI or STT provider fields', () => {
+ const status = AudioStatusSchema.parse({
   audio_pack:{bundled_reference:true,bundled_reviewed:false,course_version:'0.1.21',message:'bundled'},
  })
  expect(status.audio_pack.bundled_reference).toBe(true)
  expect(status.audio_pack.bundled_reviewed).toBe(false)
  expect(status.audio_pack.course_version).toBe('0.1.21')
- expect(status.ai.verified).toBe(false)
- expect(status.stt.verified).toBe(false)
- const reviewed = ProviderStatusSchema.parse({
-  ai:{enabled:true,provider:'lm-studio',verified:false,message:'ai'},
-  stt:{enabled:true,provider:'openai-compatible',verified:false,message:'stt'},
+ const reviewed = AudioStatusSchema.parse({
   audio_pack:{bundled_reference:true,bundled_reviewed:true,course_version:'0.1.21',message:'bundled reviewed'},
  })
  expect(reviewed.audio_pack.bundled_reviewed).toBe(true)
- expect(ProviderStatusSchema.safeParse({
+ const strippedLegacy = AudioStatusSchema.parse({
+  ai:{enabled:false,provider:'disabled',verified:false,message:'off'},
+  stt:{enabled:false,provider:'disabled',verified:false,message:'off'},
+  audio_pack:{bundled_reference:true,bundled_reviewed:false,course_version:'0.1.21',message:'bundled'},
+ })
+ expect('ai' in strippedLegacy).toBe(false)
+ expect('stt' in strippedLegacy).toBe(false)
+ expect(AudioStatusSchema.safeParse({
   tts:{enabled:false,provider:'kokoro',verified:false,message:'off'},
  }).success).toBe(false)
 })
 
-it('renders bundled review status badges and summary text on AudioPage honestly without runtime TTS', () => {
- const unbundled = ProviderStatusSchema.parse({
-  ai:{enabled:false,provider:'disabled',verified:false,message:'off'},
-  stt:{enabled:false,provider:'disabled',verified:false,message:'off'},
+it('renders bundled review status badges and summary text on AudioPage without AI, STT, or Recorder UI', () => {
+ const unbundled = AudioStatusSchema.parse({
   audio_pack:{bundled_reference:false,bundled_reviewed:true,course_version:null,message:'none'},
  })
- const pending = ProviderStatusSchema.parse({
-  ai:{enabled:false,provider:'disabled',verified:false,message:'off'},
-  stt:{enabled:true,provider:'openai-compatible',verified:false,message:'stt'},
+ const pending = AudioStatusSchema.parse({
   audio_pack:{bundled_reference:true,bundled_reviewed:false,course_version:'0.1.21',message:'bundled'},
  })
- const reviewed = ProviderStatusSchema.parse({
-  ai:{enabled:true,provider:'lm-studio',verified:false,message:'ai'},
-  stt:{enabled:false,provider:'disabled',verified:false,message:'off'},
+ const reviewed = AudioStatusSchema.parse({
   audio_pack:{bundled_reference:true,bundled_reviewed:true,course_version:'0.1.21',message:'bundled'},
  })
  expect(audioBadgeLabel(null)).toBe('Bundled audio · unverified')
@@ -90,21 +85,31 @@ it('renders bundled review status badges and summary text on AudioPage honestly 
  expect(unbundledHtml).toContain('no bundled pack found')
  expect(unbundledHtml).not.toContain('Runtime TTS')
  expect(unbundledHtml).not.toContain('kokoro')
+ expect(unbundledHtml).not.toContain('STT:')
+ expect(unbundledHtml).not.toContain('AI:')
+ expect(unbundledHtml).not.toContain('Record microphone')
+ expect(unbundledHtml).not.toContain('Your recording')
 
  const pendingHtml = renderToStaticMarkup(<AudioPage courseId="ja-starter" library={sampleLibrary} onOpen={()=>{}} initialStatus={pending}/>)
  expect(pendingHtml).toContain('Bundled audio · human review pending')
  expect(pendingHtml).toContain('bundled files available')
- expect(pendingHtml).toContain('STT: configured; real microphone round trip unverified')
+ expect(pendingHtml).toContain('0.1.21')
  expect(pendingHtml).not.toContain('Bundled audio · reviewed')
  expect(pendingHtml).not.toContain('Runtime TTS')
  expect(pendingHtml).not.toContain('kokoro')
+ expect(pendingHtml).not.toContain('STT:')
+ expect(pendingHtml).not.toContain('AI:')
+ expect(pendingHtml).not.toContain('Record microphone')
 
  const reviewedHtml = renderToStaticMarkup(<AudioPage courseId="ja-starter" library={sampleLibrary} onOpen={()=>{}} initialStatus={reviewed}/>)
  expect(reviewedHtml).toContain('Bundled audio · reviewed')
  expect(reviewedHtml).toContain('bundled files available')
- expect(reviewedHtml).toContain('AI: configured')
+ expect(reviewedHtml).toContain('0.1.21')
  expect(reviewedHtml).not.toContain('Bundled audio · human review pending')
  expect(reviewedHtml).not.toContain('Runtime TTS')
+ expect(reviewedHtml).not.toContain('STT:')
+ expect(reviewedHtml).not.toContain('AI:')
+ expect(reviewedHtml).not.toContain('Record microphone')
 })
 
 it('renders pack-only AudioControls with slow toggle for Japanese and English references', () => {

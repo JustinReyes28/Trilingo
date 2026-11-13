@@ -50,11 +50,7 @@ def create_app(config: Config | None = None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(_app: FastAPI):
-        logger.info(
-            "Trilingo starting; local SQLite; AI=%s STT=%s",
-            config.ai_enabled,
-            config.stt_enabled,
-        )
+        logger.info("Trilingo starting; local SQLite; bundled audio=%s", config.audio_pack_enabled)
         yield
         engine.dispose()
 
@@ -159,7 +155,7 @@ def create_app(config: Config | None = None) -> FastAPI:
             "database": "ready",
             "schema_version": revision,
             "qa_mode": config.qa_mode,
-            "features": {"lessons": True, "ai": False, "stt": False},
+            "features": {"lessons": True},
         }
 
     @app.get("/api/v1/profile", response_model=ProfileOut)

@@ -1,14 +1,14 @@
 # Phase 08 — Japanese Audio, Listening, and Speaking
 
-Status: Partial engineering implementation (bundled static MP3 pack implemented 2026-11-13; runtime TTS removed 2026-11-13 in schema `0014`). Qualified human listening review of the bundled pack and optional STT/real-microphone verification remain open. Depends on: [Phase 07](PHASE_07_GRAMMAR_DIALOGUES.md). Next: [Phase 09](PHASE_09_REVIEW_PROGRESS.md).
+Status: Partial engineering implementation (bundled static MP3 pack implemented 2026-11-13; runtime TTS removed in schema `0014`; Whisper STT, microphone capture, and optional AI coaching superseded/removed 2026-11-13 in schema `0015`). Qualified human listening review of the bundled pack (`F3`) and story/episode audio review remain open. Depends on: [Phase 07](PHASE_07_GRAMMAR_DIALOGUES.md). Next: [Phase 09](PHASE_09_REVIEW_PROGRESS.md).
 
 ## Goal
 
-Provide real Japanese listening and speaking practice using the bundled authored MP3 pack (`content/audio/<course>/<version>/`) and optional local STT, while keeping every core lesson usable via text alternatives when audio or a microphone is unavailable.
+Provide real Japanese listening and speaking practice using the bundled authored MP3 pack (`content/audio/<course>/<version>/`), shadowing, and unassessed typed practice, while keeping every core lesson usable via text alternatives when bundled audio is unavailable.
 
-## Audio architecture status (2026-11-13 bundled-audio-only)
+## Audio architecture status (2026-11-13 local-only bundled audio)
 
-Runtime Kokoro/TTS synthesis, `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `POST /api/v1/scenarios/speech`, and `GET /api/v1/audio/voices` have been **removed** (2026-11-13). Authored Japanese words, listening cues, story turns, and English vocabulary meanings ship exclusively as pre-generated static MP3 files in [`content/audio/ja-starter/0.1.21/`](../../content/audio/ja-starter/0.1.21/manifest.json) (`4,394` clips, `90.4 MB`). Slow playback uses client `HTMLAudioElement.playbackRate = 0.75` (`preservesPitch = true`). Dynamic AI scenario coaching is text-only plus optional local Whisper STT (`STT_ENABLED`). Maintenance regeneration of future packs (`0.1.22+`) lives in optional `scripts/build_audio_pack.py`.
+Runtime Kokoro/TTS synthesis, `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `POST /api/v1/scenarios/speech`, and `GET /api/v1/audio/voices` were **removed** in schema `0014` (`commit 5e01b81`), and all optional local AI (`AI_ENABLED`), Whisper STT (`STT_ENABLED`), microphone recording (`Recorder.tsx`, `speaking.py`, transcription/speech routes), and `/api/v1/providers/status` were **removed / superseded** in schema `0015` (2026-11-13). Authored Japanese words, listening cues, story turns, and English vocabulary meanings ship exclusively as pre-generated static MP3 files in [`content/audio/ja-starter/0.1.21/`](../../content/audio/ja-starter/0.1.21/manifest.json) (`4,394` clips, `90.4 MB`). `GET /api/v1/audio/status` reports `{audio_pack}`, slow playback uses client `HTMLAudioElement.playbackRate = 0.75` (`preservesPitch = true`), and speaking exercises use bundled model playback plus typed practice (`Save typed practice`) and unassessed self-check. Maintenance regeneration of future packs (`0.1.22+`) lives in optional `scripts/build_audio_pack.py`.
 
 ## Initial inspection evidence — 2026-10-22
 
@@ -28,7 +28,7 @@ Runtime Kokoro/TTS synthesis, `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `POST /api/v1/sc
 - [x] Superseded (2026-11-13 bundled-audio-only): runtime Kokoro `lang_code='j'` / `misaki[ja]` pipeline checks (`scripts/build_audio_pack.py` stays optional maintainer-only for `0.1.22+`).
 - [x] Superseded (2026-11-13 bundled-audio-only): runtime Japanese voice list discovery (`GET /api/v1/audio/voices` removed).
 - [x] Superseded (2026-11-13 bundled-audio-only): runtime wrapper `/v1/audio/speech` check — replaced by bundled `content/audio/<course>/<version>/` MP3 pack lookup.
-- [x] Superseded (2026-11-13 bundled-audio-only): runtime synthesis health/fallback checks — replaced by `scripts/check_audio_pack.py --strict` and `GET /api/v1/providers/status` (`audio_pack`).
+- [x] Superseded (2026-11-13 bundled-audio-only): runtime synthesis health/fallback checks — replaced by `scripts/check_audio_pack.py --strict` and `GET /api/v1/audio/status` (`audio_pack`).
 - [ ] Verify bundled `0.1.21` MP3 coverage and perform qualified human listening review across kana (`こんにちは。`), kanji (`日本語を勉強しています。`), particles (`私は学校へ行きます。`, including topic `は` and directional `へ`), numbers/counters (`三時にコーヒーを二杯ください。`), and long-vowel/small-kana examples (`きょう、きってをかいます。`), plus `0.75x` slow playback (`preservesPitch=true`) and text-alternative `503 audio_unavailable` fallback when `AUDIO_PACK_ENABLED=false`.
 - [ ] Validate decodable non-silent MP3 duration/hashes (`scripts/check_audio_pack.py --strict`) and confirm expected contextual readings in browser playback without runtime TTS requests.
 - [ ] Record qualified human Japanese listening sign-off against reviewed contextual readings (`manifest.json` `status` updated from `draft` to `reviewed`; do not treat STT transcripts as proof of teaching audio quality or pitch accent).
@@ -39,53 +39,51 @@ Runtime Kokoro/TTS synthesis, `TTS_ENABLED`, `AUDIO_CACHE_DIR`, `POST /api/v1/sc
 - [x] Superseded (2026-11-13 bundled-audio-only): configure runtime Kokoro adapter/port/voice settings (`provider=kokoro`, `TTS_ENABLED`, `AUDIO_CACHE_DIR` removed in schema `0014`).
 - [x] Superseded (2026-11-13 bundled-audio-only): evaluate runtime Kokoro alternatives such as VOICEVOX Engine — zero runtime TTS engines are supported or downloaded.
 - [x] Superseded (2026-11-13 bundled-audio-only): keep replaceable runtime TTS adapter selection (`providers.voices`/`providers.synthesize` removed).
-- [x] Implemented (updated 2026-11-13): bundled MP3 pack lookup (`backend/app/audio_pack.py`), `GET /api/v1/providers/status` (`audio_pack`), structured `503 audio_unavailable` fallback, and strict size/path/hash validation (no runtime TTS adapter).
+- [x] Implemented (updated 2026-11-13): bundled MP3 pack lookup (`backend/app/audio_pack.py`), `GET /api/v1/audio/status` (`audio_pack`), structured `503 audio_unavailable` fallback, and strict size/path/hash validation (no runtime TTS adapter).
 - [x] Implemented (updated 2026-11-13): authored audio references hashed by content text, pronunciation override, language, voice, and generator settings inside immutable versioned packs (`content/audio/<course>/<version>/`).
 - [x] Add user-triggered play/replay, client normal/`0.75x` slow speed (`preservesPitch=true`), cancellation, loading/error states, and no surprise autoplay.
 - [x] Add listening selection, dictation, and contrast drills through the shared pipeline. Default unassisted prompts can hide the transcript, but Reveal/Hint/Skip remain freely available and record assistance rather than blocking continuation.
 - [ ] Complete qualified review and voiced playback verification for Phase 5 story listen-along and at least two original mini audio episodes with comprehension checkpoints, optional transcript reveal, replay, and client `0.75x` slow playback using the bundled MP3 pack. Label synthetic speech honestly (`bundled_reviewed=false` until approved).
-- [ ] Verify focused listening-only and speaking-only practice sessions, shadowing loops, and text-only AI scenario coaching with optional STT voice input (`POST /api/v1/scenarios/speech` removed). Reuse existing lesson/practice services and preserve typed fallback.
-- [x] Add microphone permission, visible record/stop/cancel, local recording playback, retry, device unavailable state, and a text fallback.
-- [ ] Verify optional independent STT adapter (`STT_ENABLED`) with real Japanese speech input. (TTS was removed; STT remains an optional loopback provider.)
-- [ ] For STT, pin a maintained local Whisper-compatible provider/model after checking official documentation; verify language setting, audio formats, resource needs, and real Japanese transcription.
-- [x] Show recognized text and feedback labeled as transcript agreement with the target phrase. Explain that STT can misrecognize speech and does not provide phoneme-level or pitch-accent assessment.
-- [ ] Enable shadowing and voiced authored dialogues, with optional text/translation reveal and a clear distinction between reference audio and the learner's recording.
-- [x] Keep recordings local and transient by default, with explicit opt-in retention, a deletion control, and documented provider data handling. Never silently send audio to a cloud service.
+- [ ] Verify focused listening-only and speaking practice sessions (bundled model playback + typed practice) and shadowing loops (`ScenarioPractice`, `/scenarios/speech`, and STT input removed). Reuse existing lesson/practice services and preserve typed fallback.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Microphone recording (`Recorder.tsx`), local playback/cancel/retry, and device-unavailable recording state removed; authored speaking prompts save unassessed typed practice.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Optional independent STT adapter (`STT_ENABLED`) verification — STT removed from Trilingo.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Pin maintained local Whisper-compatible STT provider/model — STT removed from Trilingo.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** STT recognized-text agreement feedback — STT removed; UI labels typed speaking practice as unassessed.
+- [ ] Enable shadowing with bundled reference playback and optional text/translation reveal for authored dialogues (`microphone recording` superseded 2026-11-13 in schema `0015`).
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Transient local microphone recording retention/deletion controls — microphone capture removed cleanly without cloud uploads.
 
 ## Intended implementation areas
 
-Backend audio provider adapters/services, generated media/cache handling, audio/speaking/listening exercise components, content audio references, settings/status UI, and optional provider deployment notes.
+Backend bundled audio pack lookup/endpoints, audio/speaking/listening exercise components, content audio references, and audio status UI (`GET /api/v1/audio/status`).
 
 ## Data and API contracts
 
-- Under `/api/v1`, expose `GET /api/v1/providers/status` (`{ai, stt, audio_pack}`), `POST /api/v1/audio/speech` (`source="pack"`, `mime="audio/mpeg"`, or HTTP `503 audio_unavailable`), and optional STT submission (`POST /api/v1/scenarios/transcriptions` / speaking endpoints). Runtime TTS routes (`GET /api/v1/audio/voices`, `POST /api/v1/scenarios/speech`) do not exist.
+- Under `/api/v1`, expose `GET /api/v1/audio/status` (`{audio_pack}`) and `POST /api/v1/audio/speech` (`source="pack"`, `mime="audio/mpeg"`, or HTTP `503 audio_unavailable`). Runtime TTS routes (`GET /api/v1/audio/voices`, `POST /api/v1/scenarios/speech`), AI routes (`/api/v1/providers/status`, `/api/v1/scenarios/practice`), and STT/microphone routes (`/api/v1/audio/transcriptions`, `/api/v1/scenarios/transcriptions`, `/api/v1/review/cards/.../transcriptions`, `/api/v1/sessions/.../exercises/.../speech`) were removed in schemas `0014`–`0015`.
 - Separate authored content text, maintainer pronunciation override, displayed transcript, and manifest asset metadata (`content/audio/<course>/<version>/manifest.json`). Do not globally replace kanji with a guessed reading.
-- A submitted recording has an attempt/exercise identity, bounded duration/size, declared/validated format, and idempotency key.
-- Decode/validate audio before processing; reject invalid media, path traversal, arbitrary media URLs, and oversized work. Do not log raw audio or secrets.
-- Provider configuration (`AI_ENABLED`, `STT_ENABLED`, loopback URLs) is controlled local settings; no endpoint acts as an arbitrary URL fetcher.
-- Speaking remains optional practice; unavailable bundled audio (`503 audio_unavailable`), STT failure, or uncertain mismatch offers replay/retry/skip/text fallback while other published study remains available. Record speaking evidence and unverified/self-assessed attempts honestly (`AudioDelivery` rows are never written when bundled pack lookup fails).
+- *(Superseded / abandoned 2026-11-13, schema `0015`)* Submitted microphone recording/WAV validation and STT provider loopback URLs (`AI_ENABLED`, `STT_ENABLED`) were removed; zero external or local runtime provider endpoints exist.
+- Speaking remains optional unassessed practice; unavailable bundled audio (`503 audio_unavailable`) offers replay/retry/skip/text fallback while other published study remains available. Record speaking typed fallback evidence honestly (`AudioDelivery` rows are never written when bundled pack lookup fails).
 - Audio-unavailable fallback may fulfill the core lesson via a typed/authored alternative, but it must not count as assessed listening/speaking mastery or earn duplicate rewards.
-- Story/audio-episode and focused speaking/listening sessions use Phase 4's existing practice reward/activity rules and Phase 9 quest capability checks. Transcript reveal is assisted evidence; unavailable audio does not fulfill a listening-specific objective or quest.
+- Story/audio-episode and focused speaking/listening sessions use Phase 4's existing practice reward/activity rules and Phase 9 quest capability checks (`"speaking"` quests rejected with `422` since schema `0015`). Transcript reveal is assisted evidence; unavailable audio does not fulfill a listening-specific objective or quest.
 
 ## Tests and manual verification
 
-- [x] Superseded (2026-11-13 bundled-audio-only): runtime TTS adapter tests replaced by bundled MP3 pack lookup, manifest path/hash integrity, `503 audio_unavailable` fallback, and optional STT adapter tests (`test_audio_pack.py`, `test_listening.py`, `test_speaking.py`).
+- [x] Superseded (2026-11-13 bundled-audio-only): runtime TTS adapter tests replaced by bundled MP3 pack lookup, manifest path/hash integrity, and `503 audio_unavailable` fallback tests (`test_audio_pack.py`, `test_listening.py`, `test_speaking.py`).
 - [x] Superseded (2026-11-13 bundled-audio-only): runtime Kokoro voice/tokenizer/host-port discovery tests — runtime TTS removed.
 - [x] Test listening answer protection, grades, duplicate submissions, and fallback evidence tags.
 - [ ] Test story/audio-episode checkpoint completion, transcript reveal, focused skill sessions, and no duplicate XP/quest credit across text/audio fallback.
-- [ ] Test microphone denied/missing/busy, recording cancel, unsupported browser format, no speech, STT uncertainty, and retention/deletion.
-- [ ] Complete qualified human Japanese listening review of the bundled `0.1.21` MP3 pack (including the five-phrase verification set) and update `manifest.json` review metadata only upon sign-off.
-- [ ] Complete a real microphone-to-Japanese-transcript round trip and a voiced authored dialogue using optional STT. Contract mocks do not satisfy these checks.
-- [ ] Repeat a core lesson with `AUDIO_PACK_ENABLED=false` and `STT_ENABLED`/`AI_ENABLED` disabled and confirm no progression is blocked or speaking/listening mastery fabricated.
-- [ ] Run relevant frontend/backend gates, migrations if changed, and manual mobile/keyboard checks. Record latency and machine/model details without promising a universal target.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Microphone denied/missing/busy, recording cancel, unsupported format, STT uncertainty, and retention tests — microphone capture and STT removed.
+- [ ] Complete qualified human Japanese listening review of the bundled `0.1.21` MP3 pack (`F3`, including the five-phrase verification set) and update `manifest.json` review metadata only upon sign-off.
+- [x] **Superseded / abandoned 2026-11-13 (schema `0015`):** Real microphone-to-Japanese-transcript round trip and voiced AI dialogue — STT, microphone capture, and AI coaching removed.
+- [ ] Repeat a core lesson with `AUDIO_PACK_ENABLED=false` and confirm no progression is blocked or speaking/listening mastery fabricated.
+- [ ] Run relevant frontend/backend gates, migrations if changed, and manual mobile/keyboard checks.
 
 ## Completion gate
 
-Complete only when the committed bundled MP3 pack passes qualified human Japanese listening review (`bundled_reviewed=true`), Japanese speech capture/optional STT transcription works on the target computer, story listen-along and at least two reviewed mini audio episodes work with bundled MP3 clips, unavailable-audio/STT failures have usable fallbacks, and claims match implemented capability. If optional STT/microphone or human listening review cannot be verified, report this phase as partial; text fallback alone does not complete the user's speaking/listening review gates.
+Complete only when the committed bundled MP3 pack passes qualified human Japanese listening review (`bundled_reviewed=true`), story listen-along and at least two reviewed mini audio episodes work with bundled MP3 clips, unavailable-audio fallbacks work cleanly, and claims match implemented capability. If human listening review remains unverified, report this phase as partial; text fallback alone does not complete the user's speaking/listening review gates. *(Microphone capture and Whisper STT requirements were superseded 2026-11-13 in schema `0015`.)*
 
 ## Later-stage listening and speaking
 
-Stages C-F in the [curriculum roadmap](../CURRICULUM_ROADMAP.md) add level-appropriate narration, summaries, opinions, longer talks, discussion, and oral explanation/defense of an essay. Continue extending versioned bundled MP3 packs for authored C-F reference media and optional independent STT transcription, with reviewed contextual readings and practical chunk/replay controls (`0.75x` / normal) for long text. Transcription agreement does not assess the strength of an argument, spontaneous interaction, register, or phoneme-level pronunciation; preserve self-review/human feedback as separate evidence.
+Stages C-F in the [curriculum roadmap](../CURRICULUM_ROADMAP.md) add level-appropriate narration, summaries, opinions, longer talks, and oral practice. Continue extending versioned bundled MP3 packs for authored C-F reference media, with reviewed contextual readings and practical chunk/replay controls (`0.75x` / normal) for long text. Preserve self-review/human feedback as separate evidence. *(Optional STT transcription superseded 2026-11-13 in schema `0015`.)*
 
 ## Reference basis
 
@@ -101,7 +99,8 @@ Additional-hour scope: private authored cue/override metadata, cache invalidatio
 
 [Plan 9.2 speaking evidence](../PLAN_09_2_SPEAKING.md) adds durable rewarded speaking sessions, 16 draft model/partner prompts, explicit STT submission, typed fallback and separate transcript evidence, plus voiced-control integration for optional bounded coaching. Word/collection audio recall remains self-rated and does not create speech evidence. Media, stale/configuration, idempotency and provider-disabled core checks pass; migration 0013 preserves historical JSON/receipts. Real Kokoro/STT, human listening/microphone, voiced AI turn and reviewed publication gates above remain open.
 
-## Bundled-audio-only migration — 2026-11-13
+## Bundled-audio-only & local-only migrations — 2026-11-13
 
-- Removed all runtime TTS endpoints (`POST /api/v1/scenarios/speech`, `GET /api/v1/audio/voices`), `TTS_ENABLED`, `AUDIO_CACHE_DIR`, and Kokoro/Edge-TTS/Piper runtime synthesis logic (schema `0014` strips `tts` and `voice` preferences).
-- Authored words, audio cues, story turns, and English glosses play strictly from `content/audio/<course>/<version>/` (`4,394` clips in `0.1.21`), using browser `0.75x` (`preservesPitch=true`) for slow playback and HTTP `503 audio_unavailable` + text alternatives when unavailable. AI scenario coaching is text-only plus optional local Whisper STT (`STT_ENABLED`).
+- **Schema `0014` (commit `5e01b81`):** Removed all runtime TTS endpoints (`POST /api/v1/scenarios/speech`, `GET /api/v1/audio/voices`), `TTS_ENABLED`, `AUDIO_CACHE_DIR`, and Kokoro/Edge-TTS/Piper runtime synthesis logic (stripping `tts` and `voice` preferences).
+- **Schema `0015` (2026-11-13):** Removed all optional local AI (`AI_ENABLED`), Whisper STT (`STT_ENABLED`), and microphone capture (`Recorder.tsx`, `speaking.py`, `ScenarioPractice.tsx`, `providers.py`, `/api/v1/providers/status`, transcription/speech routes) and stripped `"ai"`, `"stt"`, and `"tts"` from `preferences.data`.
+- Authored words, audio cues, story turns, and English glosses play strictly from `content/audio/<course>/<version>/` (`4,394` clips in `0.1.21`), using browser `0.75x` (`preservesPitch=true`) for slow playback and HTTP `503 audio_unavailable` + text alternatives when unavailable; `GET /api/v1/audio/status` reports `{audio_pack}` and speaking exercises save unassessed typed practice.

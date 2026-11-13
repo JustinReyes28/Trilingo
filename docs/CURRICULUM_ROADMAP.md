@@ -10,7 +10,7 @@ This is the long-term learning scope approved by the user. It complements the [e
 - Intermediate releases: Stages C-D, adding connected writing, summaries, opinions, longer reading, and a draft/revision workshop.
 - Advanced releases: Stages E-F, adding extended and complex essays, source synthesis, argument, register, sustained discussion, and independently reviewed writing evidence.
 
-Later stages are approved roadmap scope, not a claim that their content is authored or available in the first release. Never label an advanced stage complete because its editor or AI prompt exists. There is no fluency deadline or exam-pass promise.
+Later stages are approved roadmap scope, not a claim that their content is authored or available in the first release. Never label an advanced stage complete because an editor template exists. There is no fluency deadline or exam-pass promise.
 
 ## Stages A-B — Substantial starter inventory
 
@@ -30,11 +30,11 @@ Counting and learning rules:
 - Offer an editable convenience batch with an initial suggestion of ten new words, freely expandable to more/all, plus optional due review/contextual practice. The ten topic headings expand into lessons/subunits; they do not impose a daily quota or force a batch size.
 - Record actual published, introduced, reviewed, and assessed-recall counts separately. The first playable technical slice can launch with a partial inventory, clearly labeled; full A-B content coverage requires an audited 2,000-word/300-kanji inventory and the other stage gates.
 - All published stages/units/items are available directly. The 500/2,000-word targets, suggested order, daily batches, review dates, essay prompt lengths, and assessment scores are not access requirements or maximum study amounts; freely request more, skip, reveal, retry, or jump ahead.
-- Every core entry needs a reviewed reading/meaning, part of speech, concept/stage links, and original example/use context, with audio and response directions provided through the corresponding features. Do not bulk-publish unreviewed AI filler to hit the counts.
+- Every core entry needs a reviewed reading/meaning, part of speech, concept/stage links, and original example/use context, with audio and response directions provided through the corresponding features. Do not bulk-publish unreviewed generated filler to hit the counts.
 
 ## Stage A — Script, sounds, and first sentences
 
-Read hiragana/katakana, recognize the first taught kanji in useful words, and understand simple labels and sentences. Type Japanese with IME, practice character formation, and produce an introduction or basic request. Listen to reviewed short phrases and practice saying them with honest transcript feedback.
+Read hiragana/katakana, recognize the first taught kanji in useful words, and understand simple labels and sentences. Type Japanese with IME, practice character formation, and produce an introduction or basic request. Listen to reviewed short phrases and practice saying them via shadowing and honest typed/self-check practice (microphone/STT capture was removed in schema 0015).
 
 Publish suggested preparation, scripts/readings, original examples, accepted variants, and optional objective checks. Recognition does not establish handwriting/speaking skill, but every published activity remains accessible regardless of the result.
 
@@ -76,10 +76,10 @@ Character ranges in Stages C-F are proposed prompt defaults, not official profic
 - [ ] Persist prompts, content/rubric versions, original drafts, revisions, submission events, feedback source, and learner reflection in SQLite through migrations. Show Saved only after backend acknowledgement and preserve text through refresh/retry/conflict.
 - [ ] Use a rubric covering task/meaning, vocabulary/grammar, script/orthography, organization/cohesion, register/audience, and evidence/source use where relevant. Each band needs reviewed descriptors and examples; do not turn character count into a language grade.
 - [ ] Keep constrained exercise grading authoritative and deterministic. Open essays have many valid answers and cannot use exact-string translation grading.
-- [ ] Label self-review, human feedback, and optional AI suggestions distinctly. AI is advisory, cannot award correctness or control access, and cannot overwrite a draft without an explicit accept/edit action.
-- [ ] Allow drafting, reading model texts, self-review, and revision with AI disabled. If no qualified reviewer is available, show the work as self-reviewed or unassessed rather than certified advanced writing.
-- [ ] A deliberately submitted writing practice session can earn the uncapped session reward with self-review optional. Autosaves/word counts/AI scores do not establish correctness/mastery; evidence stays separate from activity rewards and never controls access.
-- [ ] Keep all published writing practice available after mistakes, skips, or uncertain feedback. Create FSRS error links only from validated authored concepts, never an unverified AI allegation.
+- [ ] Label self-review and qualified human feedback distinctly; neither awards objective correctness or overwrites a draft without an explicit learner action (optional AI feedback was removed in schema 0015).
+- [ ] Allow drafting, reading model texts, self-review, and revision completely offline with zero AI. If no qualified reviewer is available, show the work as self-reviewed or unassessed rather than certified advanced writing.
+- [ ] A deliberately submitted writing practice session can earn the uncapped session reward with self-review optional. Autosaves and word counts do not establish correctness/mastery; evidence stays separate from activity rewards and never controls access.
+- [ ] Keep all published writing practice available after mistakes, skips, or partial drafts. Create FSRS error links only from validated authored concepts.
 
 ## Stage publication and learner evidence
 
@@ -91,7 +91,7 @@ For every newly published stage:
 - [ ] For each Stage C-F, supply at least three distinct original writing tasks at that level, reviewed models/alternatives, a revision example, and explicit rubrics with the stage's workshop support. This is a pilot minimum, not enough evidence to advertise comprehensive proficiency coverage.
 - [ ] Provide reading/listening/speaking instruction and suggested preparation at matching difficulty, while allowing direct selection of any published activity.
 - [ ] Have Japanese content, register, and rubric examples reviewed by a qualified Japanese-language reviewer; keep unreviewed material draft or clearly labeled practice.
-- [ ] Verify drafts/revisions, backup/restore, API validation, accessibility, and provider-disabled practice using the phase gates for that release.
+- [ ] Verify drafts/revisions, backup/restore, API validation, accessibility, and offline / audio-unavailable fallback practice using the phase gates for that release.
 - [ ] Track authored-content coverage, objective exercise results, completed writing workflows, and reviewed writing quality separately. Stage availability/completion is not a language certificate.
 - [ ] Keep actual learner work and the reviewer/rubric provenance for any advanced writing claim. A qualified reviewer can assess quality; without that evidence, show self-review or not assessed and still allow personal practice.
 
@@ -104,8 +104,8 @@ JLPT-oriented vocabulary/grammar/reading/listening tags may be added only agains
 - Phase 3: inventories, suggested preparation, schemas, versions, publication/reviewer records.
 - Phase 5: reading progression from graded passages to argument/source comparison.
 - Phase 6: typed production, draft storage, writing workshop, revisions, rubric/portfolio evidence.
-- Phase 7: language/paragraph/rhetorical instruction, authored feedback, optional explanations.
-- Phase 8: level-appropriate listening via bundled reference audio, reading aloud, text-only AI scenario coaching, and optional local Whisper STT.
+- Phase 7: language/paragraph/rhetorical instruction, authored explanations, and deterministic dialogues (optional AI removed in schema 0015).
+- Phase 8: level-appropriate listening via bundled reference audio, shadowing, and typed speaking practice (text-only AI scenario coaching, local Whisper STT, and microphone capture removed in schema 0015).
 - Phase 9: review of validated concepts and honest skill/activity evidence.
 - Phase 10: each release's scope audit, backup/restore, quality gates, and published limitations.
 - Phase 11: open-source GitHub publication and launch communications; campaign claims must match the audited release and its reviewed/draft content scope.

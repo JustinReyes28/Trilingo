@@ -12,7 +12,7 @@ The remaining open work falls into four distinct categories:
 1. **Local release hardening (Phase 10 / W8):** In-app study reminders with quiet hours, query performance benchmarks on 1,200-session histories, and the 15-step manual critical flow.
 2. **Human pedagogical review (Plan 9.2 / W5):** Language review of the 6,848 authored draft items by a qualified Japanese speaker before full formal publication.
 3. **Physical device & accessibility verification (Plan 9.2 / W6):** Physical Windows IME conversion checks, screen reader ruby pronunciation order, and touchscreen stylus testing.
-4. **Reference audio and optional local services (Plan 9.2 / F & G):** Authored Japanese and English reference clips ship strictly as a bundled MP3 pack (`content/audio/ja-starter/0.1.21/`); runtime TTS has been removed. Qualified listening review and optional local AI/Whisper STT verification remain.
+4. **Reference audio (Plan 9.2 / F3 & G):** Authored Japanese and English reference clips ship strictly as a bundled MP3 pack (`content/audio/ja-starter/0.1.21/`); runtime TTS (`0014`) and optional local AI, Whisper STT, and microphone capture (`0015`) have been removed. Qualified human listening review (`F3`) and real voiced story/episode review remain open.
 5. **Future curriculum extensions (Stages C through F):** Intermediate to advanced multi-paragraph reading and essay composition.
 
 ---
@@ -21,7 +21,7 @@ The remaining open work falls into four distinct categories:
 
 ### Full-Stack Architecture & Engine (Phases 1 through 9)
 - **Frontend Stack:** React 19, strict TypeScript, Vite, Tailwind CSS, and Zod runtime schema validation. Responsive across mobile (320px-390px), tablet, and desktop viewports.
-- **Backend Stack:** Python 3.11+, FastAPI, SQLAlchemy 2.0, Pydantic v2, and Alembic (all 14 migrations applied through head `0014`).
+- **Backend Stack:** Python 3.11+, FastAPI, SQLAlchemy 2.0, Pydantic v2, and Alembic (all 15 migrations applied through head `0015`).
 - **Storage:** SQLite with Write-Ahead Logging (`PRAGMA journal_mode=WAL`) and foreign keys enabled for atomic transactions and concurrent reads.
 - **Unrestricted Study:** Zero hearts/lives, zero cooldowns, no energy meters, no forced waiting periods, free lesson replays, and uncapped genuine-session XP.
 - **Interactive Exercise Engine:** Five distinct exercise types (translation, fill-in-the-blank, multiple choice, sentence ordering, and vocabulary matching) with authoritative backend grading, accepted alternative answers, and explanations.
@@ -33,7 +33,7 @@ The remaining open work falls into four distinct categories:
 
 ### Local Data Safety & Backup/Restore (Phase 10 / W7)
 - **WAL-Consistent Backup:** Uses SQLite's native online backup API (`sqlite3.Connection.backup()`) to produce clean, byte-consistent snapshots including active WAL pages.
-- **Archive Export:** Generates zip archives bundling the database and a validated `manifest.json` with app identity (`Trilingo`), schema version (`0014`), SHA-256 database checksum, and an itemized entity summary.
+- **Archive Export:** Generates zip archives bundling the database and a validated `manifest.json` with app identity (`Trilingo`), schema version (`0015`), SHA-256 database checksum, and an itemized entity summary.
 - **Security & Integrity Guards:** Rejects archives exceeding 50 MB compressed or 150 MB uncompressed (zip-bomb guard), blocks path traversal attempts, verifies SHA-256 checksums, and executes SQLite `PRAGMA integrity_check`.
 - **Atomic Point-in-Time Restore:** Automatically saves a pre-restore safety backup to `.data/backups/`, disposes active connection pools, unlinks `-wal` and `-shm` journals, and atomically swaps the database file.
 - **Safe Reset:** Clears all 20 learner data tables in strict foreign-key order while preserving installed course content, accompanied by an automatic pre-reset safety backup.
@@ -60,7 +60,7 @@ The remaining open work falls into four distinct categories:
 | 1. Phase 10 Local Hardening (W8)   | Engineering: Reminders, benchmarks, QA flow   |
 | 2. Human Pedagogical Review (W5)   | External: Native Japanese speaker sign-off   |
 | 3. Physical Device & Accessibility | QA / Hardware: Real IME, screen reader tests |
-| 4. Audio Review & Optional AI/STT | Human listening sign-off; optional local AI/STT checks |
+| 4. Bundled Audio Review (F3)        | Human listening sign-off on `0.1.21` MP3 pack |
 | 5. Later Curriculum (Stages C-F)   | Future scope: Intermediate to advanced       |
 +------------------------------------+----------------------------------------------+
 ```
@@ -73,7 +73,7 @@ The remaining open work falls into four distinct categories:
   - *Current state:* Large history fixtures exist in `backend/tests/test_large_history.py`.
   - *Required work:* Formally benchmark query latency and response payloads against 1,200 simulated historical sessions to guarantee the course map and stats pages remain fast without N+1 query bottlenecks.
 - **15-Step Manual Critical Flow:**
-  - *Current state:* Automated test coverage is green (218 backend tests, 44 frontend tests).
+  - *Current state:* Automated test suites pass across backend (**223 passed** in `pytest`) and frontend (**54 passed** across 11 test files in Vitest) on schema `0015`.
   - *Required work:* Execute the documented 15-step end-to-end manual acceptance flow on a frozen release candidate with external network disconnected:
     1. Profile setup (timezone, aids, daily goal).
     2. Direct access to a later lesson without prerequisite gating.
@@ -82,8 +82,8 @@ The remaining open work falls into four distinct categories:
     5. Duplicate request idempotency verification.
     6. Contextual kana and kanji reading with aids on and off.
     7. Native IME typing and composition drafting.
-    8. Dialogue completion and recording playback.
-    9. Core lesson completion with all providers disabled.
+    8. Dialogue completion, bundled reference audio playback, and typed speaking practice.
+    9. Core lesson completion offline with `AUDIO_PACK_ENABLED=false` (`503 audio_unavailable` fallback).
     10. Mistake review and FSRS four-button rating persistence.
     11. Optional recap/mastery without access gating.
     12. Same-day session replays earning standard XP without daily caps.
@@ -114,15 +114,14 @@ The remaining open work falls into four distinct categories:
 
 ---
 
-### Track 4: Bundled Reference Audio & Optional Local Speech ([Plan 9.2 / F & G](plans/REMAINING_WORK_EXECUTION_PLAN.md#w4--prove-supported-setup-and-identify-optional-aistt-providers))
+### Track 4: Bundled Reference Audio & Speaking Practice ([Plan 9.2 / F3 & G](plans/REMAINING_WORK_EXECUTION_PLAN.md#w4--prove-supported-setup-and-clean-local-baseline))
 - **Current State:**
   - Authored Japanese words, listening cues, story turns and English glosses play exclusively from the bundled **90.4 MB** MP3 pack (`4,394` clips) under `content/audio/ja-starter/0.1.21/` using browser `0.75x` slow playback (`preservesPitch=true`). See [AUDIO_PACK.md](AUDIO_PACK.md).
-  - Runtime TTS (`TTS_ENABLED`, `AUDIO_CACHE_DIR`, Kokoro/Edge-TTS/Piper adapters, `POST /api/v1/scenarios/speech`, `GET /api/v1/audio/voices`) was removed on 2026-11-13 (`0014`). Optional local providers are **AI** (`AI_ENABLED`, text-only scenario coaching) and **STT** (`STT_ENABLED`, Whisper-compatible transcription) only.
+  - Runtime TTS (`0014`) and optional local AI (`AI_ENABLED`), Whisper STT (`STT_ENABLED`), and microphone capture (`Recorder.tsx`, `/api/v1/providers/status`) were removed on 2026-11-13 (`0015`). `GET /api/v1/health` returns `features: {lessons: true}`, and `GET /api/v1/audio/status` reports `{audio_pack}`. Authored speaking prompts and 5-direction recall remain active using bundled reference clips and unassessed typed practice / self-rating.
   - When bundled audio is unavailable or `AUDIO_PACK_ENABLED=false`, audio routes return HTTP `503` (`audio_unavailable`) and exercises fall back to full text and transcript alternatives without losing practice credit.
   - A local Kokoro container (`kokoro-tts`) was used historically at build time to generate the `0.1.21` MP3 pack; human listening review (`manifest.status=reviewed` / `bundled_reviewed`) is still pending.
-- **Remaining setup/verification:**
-  - Qualified Japanese listening and English voice spot-check of the bundled `0.1.21` clips (`F3`), then update the manifest review status.
-  - Optional Faster-Whisper or another independent local Japanese STT model (`F4`/`F5`) for microphone transcripts (and optional local AI model for text scenario coaching, `E4`). Local provider calls always target loopback (`127.0.0.1`) with configurable timeouts.
+- **Remaining verification:**
+  - Qualified Japanese listening and English voice spot-check of the bundled `0.1.21` clips (`F3`), then update the manifest review status. *(Optional local AI explanations/coaching `E4`, Whisper STT `F4`, and microphone recording `F5` are superseded/abandoned as of schema `0015`.)*
 
 ---
 

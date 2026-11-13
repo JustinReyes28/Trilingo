@@ -20,7 +20,7 @@ export function SessionCompletion({ session, busy, heading, onReplay, onExit }: 
     {recall ? <p>Self-rated recall saved. Your rating records how recall felt; it is separate from checked exercise answers.</p>
       : writing ? <p>Practice activity saved. Writing quality is not assessed. Self-reported writing and drawing remain separate from checked exercise answers.</p>
       : <p>{session.kind === 'speaking'
-        ? Object.values(session.evidence).reduce((sum, item) => sum + item.speech_attempts, 0) + ' saved speech attempts · ' + Object.values(session.evidence).reduce((sum, item) => sum + item.typed_fallbacks, 0) + ' typed fallbacks. Pronunciation is not assessed.'
+        ? Object.values(session.evidence).reduce((sum, item) => sum + item.typed_fallbacks, 0) + ' typed practice responses. Pronunciation is not assessed.'
         : session.initial_correct + ' initial correct answers out of ' + session.assessed_count + ' unassisted checks. Assisted answers and skips remain recorded separately.'}</p>}
     <p>Study completion records your activity. It does not certify mastery.</p>
     {session.recommendation && <section>

@@ -15,8 +15,6 @@ class Config(BaseSettings):
     audio_pack_enabled: bool = True
     backups_dir: Path = ROOT / ".data" / "backups"
     qa_mode: bool = False
-    ai_enabled: bool = False
-    stt_enabled: bool = False
     host: str = "127.0.0.1"
     port: int = Field(default=8000, ge=1, le=65535)
 

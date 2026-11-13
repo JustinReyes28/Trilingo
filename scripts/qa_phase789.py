@@ -9,7 +9,9 @@ from pathlib import Path
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--fixture-audio", action="store_true", help="Allow explicit local test tones"
+        "--disable-audio-pack",
+        action="store_true",
+        help="Set AUDIO_PACK_ENABLED=false to test 503 audio_unavailable fallback",
     )
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
@@ -20,10 +22,7 @@ def main() -> None:
             "DATABASE_URL": "sqlite:///" + database.as_posix(),
             "QA_MODE": "true",
             "PORT": "8017",
-            "AI_ENABLED": "false",
-            "STT_ENABLED": "false",
-            "TTS_ENABLED": "true" if args.fixture_audio else "false",
-            "AUDIO_CACHE_DIR": str(root / ".tools" / "phase789-isolated-cache"),
+            "AUDIO_PACK_ENABLED": "false" if args.disable_audio_pack else "true",
             "CORS_ORIGINS": '["http://127.0.0.1:5187"]',
         }
     )
@@ -31,7 +30,6 @@ def main() -> None:
     import uvicorn
     from alembic import command
     from alembic.config import Config as AlembicConfig
-
     from app.config import Config
     from app.db import make_engine, sessions
     from app.main import create_app

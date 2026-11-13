@@ -1,16 +1,22 @@
-"""Local isolated phase 7–9 follow-up QA. Optional fixture audio is test tones, not Japanese."""
+"""Local isolated phase 7–9 follow-up QA (schema 0015 bundled audio)."""
 import json
 import sys
 from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import urlopen
+
 from playwright.sync_api import expect, sync_playwright
 from qa_helpers import api_matches
+
 sys.stdout.reconfigure(encoding='utf-8')
 BASE='http://127.0.0.1:5187'
 API='http://127.0.0.1:8017/api/v1'
 with urlopen(API+'/health',timeout=5) as response:
-    assert json.load(response)['qa_mode'], 'Refusing a learner database'
+    health=json.load(response)
+    assert health['qa_mode'], 'Refusing a learner database'
+    assert health['schema_version']=='0015' and health['features']=={'lessons':True}
+with urlopen(API+'/audio/status',timeout=5) as response:
+    audio_status=json.load(response)['audio_pack']
 output=Path(__file__).resolve().parents[1]/'artifacts/phase789-followup'
 output.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
@@ -46,9 +52,6 @@ with sync_playwright() as p:
     page.get_by_role('button',name='Mistakes',exact=True).click()
     page.get_by_role('link',name='Open saved mistakes',exact=True).click()
     expect(page.get_by_role('heading',name='Mistakes you can revisit',exact=True)).to_be_focused()
-    settings=page.request.get(API+'/settings').json()
-    settings['tts'].update({'enabled':False})
-    assert page.request.patch(API+'/settings',data={'tts':settings['tts']}).ok
     page.goto(BASE+'/#grammar');page.wait_for_load_state('networkidle')
     page.get_by_label('Show unreviewed draft guides and scenarios').check()
     page.get_by_label('Find a pattern').fill('particle-de')
@@ -70,9 +73,10 @@ with sync_playwright() as p:
     page.get_by_role('button',name='Thanks in two settings · Draft listening',exact=True).click()
     expect(page.get_by_role('heading',name='Type the polite thank-you expression you hear.',exact=True)).to_be_visible()
     assert 'ありがとうございます' not in page.locator('.question-frame').inner_text()
-    page.get_by_role('button',name='Prepare Polite thanks',exact=True).click()
-    expect(page.locator('.listening-cues [role=alert]')).to_be_visible()
-    capture('dictation-provider-failure')
+    if not audio_status['bundled_reference']:
+        page.get_by_role('button',name='Prepare Polite thanks',exact=True).click()
+        expect(page.locator('.listening-cues [role=alert]')).to_be_visible()
+        capture('dictation-audio-unavailable')
     page.get_by_role('button',name='Use text alternative',exact=True).click()
     expect(page.get_by_text('Text alternative · Polite thanks:',exact=False)).to_be_visible()
     answer=page.get_by_label('Your answer',exact=True)
@@ -87,9 +91,6 @@ with sync_playwright() as p:
     page.get_by_role('button',name='Clip B',exact=True).click();page.get_by_role('button',name='Check answer',exact=True).click()
     page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
     expect(page.get_by_text('0 initial correct answers out of 0 unassisted checks.',exact=False)).to_be_visible()
-    # Real backend route + local fixture provider. This verifies controls/contracts only.
-    provider={'enabled':True,'provider':'kokoro','base_url':'http://127.0.0.1:18179','model':'qa-test-tone-v1','voice':'jf_alpha','timeout':2}
-    assert page.request.patch(API+'/settings',data={'tts':provider}).ok
     page.goto(BASE+'/#audio');page.wait_for_load_state('networkidle')
     page.get_by_label('Include draft stories, dialogues',exact=False).check()
     page.get_by_role('button',name='A first introduction · Draft listening',exact=True).click()
@@ -103,26 +104,30 @@ with sync_playwright() as p:
     expect(page.get_by_role('button',name='Reload saved session',exact=True)).to_be_visible()
     page.get_by_role('button',name='Reload saved session',exact=True).click()
     expect(page.locator('.answer-choice').filter(has_text='Aki')).to_have_attribute('aria-pressed','true')
-    page.get_by_role('button',name='Prepare Introduction',exact=True).click()
-    player=page.get_by_label('Introduction',exact=True)
-    expect(player).to_be_visible()
-    page.wait_for_function("Number.isFinite(document.querySelector('.listening-cues audio')?.duration)")
-    assert player.evaluate('(audio)=>audio.duration')>0
-    assert not player.get_attribute('autoplay')
-    page.get_by_label('Loop reference',exact=True).check()
-    assert player.evaluate('(audio)=>audio.loop')
-    capture('listening-test-tone-controls')
-    page.locator('.answer-choice').filter(has_text='Aki').click();page.get_by_role('button',name='Check answer',exact=True).click()
-    page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
-    expect(page.get_by_text('1 initial correct answers out of 1 unassisted checks.',exact=False)).to_be_visible()
+    if audio_status['bundled_reference']:
+        page.get_by_role('button',name='Prepare Introduction',exact=True).click()
+        player=page.get_by_label('Introduction',exact=True)
+        expect(player).to_be_visible()
+        page.wait_for_function("Number.isFinite(document.querySelector('.listening-cues audio')?.duration)")
+        assert player.evaluate('(audio)=>audio.duration')>0
+        assert not player.get_attribute('autoplay')
+        page.get_by_label('Loop reference',exact=True).check()
+        assert player.evaluate('(audio)=>audio.loop')
+        capture('listening-bundled-controls')
+        page.locator('.answer-choice').filter(has_text='Aki').click();page.get_by_role('button',name='Check answer',exact=True).click()
+        page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
+        expect(page.get_by_text('1 initial correct answers out of 1 unassisted checks.',exact=False)).to_be_visible()
+    else:
+        page.get_by_role('button',name='Use text alternative',exact=True).click()
+        page.locator('.answer-choice').filter(has_text='Aki').click();page.get_by_role('button',name='Check answer',exact=True).click()
+        page.get_by_role('button',name='Continue',exact=True).click();page.get_by_role('button',name='Finish and save session',exact=True).click()
+        expect(page.get_by_text('0 initial correct answers out of 0 unassisted checks.',exact=False)).to_be_visible()
     page.goto(BASE+'/#grammar');page.wait_for_load_state('networkidle')
     page.get_by_label('Show unreviewed draft guides and scenarios').check()
     scene=page.locator('.scenario-row').filter(has=page.get_by_role('heading',name='Meeting someone',exact=True))
-    scene.get_by_text('Optional local AI scenario coaching',exact=True).click()
-    scene.get_by_label('Your reply',exact=True).fill('はじめまして。')
-    scene.get_by_role('button',name='Ask local scenario coach',exact=True).click()
-    expect(scene.get_by_text('Authored fallback · local AI disabled',exact=True)).to_be_visible()
-    capture('scenario-disabled-fallback')
+    expect(scene).to_be_visible()
+    expect(scene.get_by_text('Optional local AI scenario coaching',exact=False)).to_have_count(0)
+    capture('scenario-authored-only')
     page.goto(BASE+'/#review');page.wait_for_load_state('networkidle')
     page.get_by_label('Practice to notice',exact=True).select_option('listening')
     page.get_by_role('button',name='Add personal quest',exact=True).click()
@@ -140,6 +145,6 @@ with sync_playwright() as p:
     expect(page.get_by_label('Show a gentle practice reminder here',exact=True)).to_be_checked()
     assert not errors,errors
     assert not external,external
-    (output/'results.json').write_text(json.dumps({'layouts':layouts,'page_errors':errors,'external_requests':external,'audio':'local non-linguistic test tones only; real Japanese TTS/STT unverified','ime':'synthetic composition events; physical IME unverified'},indent=2),encoding='utf-8')
+    (output/'results.json').write_text(json.dumps({'layouts':layouts,'page_errors':errors,'external_requests':external,'audio_pack':audio_status,'ime':'synthetic composition events; physical IME unverified'},indent=2),encoding='utf-8')
     print(json.dumps({'layouts':len(layouts),'errors':errors,'external_requests':external}))
     browser.close()

@@ -45,7 +45,7 @@ def test_backup_export_creates_valid_archive_and_manifest(tmp_path: Path, monkey
         assert manifest_data["format_version"] == 1
         assert manifest_data["profile"]["name"] == "Test Adventurer"
         assert manifest_data["profile"]["timezone"] == "Asia/Tokyo"
-        assert manifest_data["schema_version"] == "0014"
+        assert manifest_data["schema_version"] == "0015"
         assert manifest_data["include_drawing_samples"] is True
         assert "credentials" in manifest_data["exclusions"]
 
@@ -92,7 +92,7 @@ def test_backup_preview_and_validation(tmp_path: Path, monkeypatch):
         assert preview["valid"] is True
         assert preview["compatible"] is True
         assert preview["app_name"] == "Trilingo"
-        assert preview["schema_version"] == "0014"
+        assert preview["schema_version"] == "0015"
         assert "warning" in preview
 
         # 2. Corrupt archive rejection
@@ -433,12 +433,149 @@ def test_restore_pre_0014_backup_with_legacy_tts_preferences(tmp_path: Path, mon
         assert settings.status_code == 200, settings.text
         settings_data = settings.json()
         assert "tts" not in settings_data
-        assert "voice" not in settings_data["ai"]
-        assert "voice" not in settings_data["stt"]
+        assert "ai" not in settings_data
+        assert "stt" not in settings_data
         assert settings_data["daily_goal"] == 35
-        assert settings_data["ai"]["model"] == "qwen"
+        assert settings_data["furigana"] == "unfamiliar"
 
         updated = client.patch("/api/v1/settings", json={"daily_goal": 50})
         assert updated.status_code == 200, updated.text
         assert updated.json()["daily_goal"] == 50
+
+
+def test_restore_0014_backup_strips_ai_and_stt_and_preserves_learner_data(
+    tmp_path: Path, monkeypatch
+):
+    import hashlib
+
+    from alembic import command
+    from alembic.config import Config as AlembicConfig
+
+    backup_db_file = tmp_path / "legacy_0014.db"
+    live_db_file = tmp_path / "live_0015.db"
+    backups_dir = tmp_path / "backups"
+    legacy_url = f"sqlite:///{backup_db_file.as_posix()}"
+    live_url = f"sqlite:///{live_db_file.as_posix()}"
+
+    cfg = AlembicConfig("alembic.ini")
+    monkeypatch.setenv("DATABASE_URL", legacy_url)
+    command.upgrade(cfg, "0014")
+
+    legacy_prefs = {
+        "daily_goal": 42,
+        "show_goal": True,
+        "furigana": "always",
+        "romaji": False,
+        "reduced_motion": False,
+        "sound": True,
+        "show_statistics": True,
+        "practice_batch": 10,
+        "interests": ["travel"],
+        "preferred_focus": "mixed",
+        "accent": "path",
+        "show_quests": True,
+        "monthly_quest_target": 20,
+        "show_timer": False,
+        "show_reminder": False,
+        "retention": 0.9,
+        "ai": {
+            "enabled": True,
+            "provider": "lm-studio",
+            "base_url": "http://127.0.0.1:1234",
+            "model": "qwen",
+            "timeout": 20,
+        },
+        "stt": {
+            "enabled": True,
+            "provider": "openai-compatible",
+            "base_url": "http://127.0.0.1:9000",
+            "model": "whisper-ja",
+            "timeout": 20,
+        },
+    }
+    conn = sqlite3.connect(str(backup_db_file))
+    conn.execute("INSERT INTO profiles (id, name, timezone) VALUES ('local', 'W8 Learner', 'UTC')")
+    conn.execute(
+        "INSERT INTO preferences (profile_id, data) VALUES ('local', ?)",
+        (json.dumps(legacy_prefs),),
+    )
+    conn.execute("INSERT INTO courses VALUES ('ja-starter', '0.1.21')")
+    conn.execute(
+        "INSERT INTO course_versions "
+        "VALUES ('ja-starter@0.1.21', 'ja-starter', '0.1.21', 'd', '{}')"
+    )
+    conn.execute(
+        """INSERT INTO study_sessions
+        (id,profile_id,course_version_id,course_id,source_kind,source_id,kind,title,status,
+         cursor,revision,next_action_id,exercise_ids,evidence,metadata_json,created_at,
+         completed_at)
+        VALUES ('s1','local','ja-starter@0.1.21','ja-starter','lesson','l1','lesson',
+        'Lesson 1','completed',0,1,'next','[]','{}','{}',
+        '2026-11-01T00:00:00+00:00','2026-11-01T00:05:00+00:00')"""
+    )
+    conn.execute(
+        """INSERT INTO xp_ledger VALUES
+        ('xp1','s1','local',25,'2026-11-01T00:05:00+00:00','2026-11-01','UTC')"""
+    )
+    conn.commit()
+    conn.close()
+
+    legacy_db_bytes = backup_db_file.read_bytes()
+    legacy_manifest = {
+        "format_version": 1,
+        "app_name": "Trilingo",
+        "app_version": "0.1.0",
+        "created_at": "2026-11-10T00:00:00+00:00",
+        "schema_version": "0014",
+        "course_id": None,
+        "course_version": None,
+        "database_sha256": hashlib.sha256(legacy_db_bytes).hexdigest(),
+        "database_size_bytes": len(legacy_db_bytes),
+        "profile": {"id": "local", "name": "W8 Learner", "timezone": "UTC"},
+        "summary": {"total_xp": 25},
+        "included_entities": ["profiles", "preferences", "study_sessions", "xp_ledger"],
+        "exclusions": ["credentials"],
+        "include_drawing_samples": True,
+    }
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        zf.writestr("manifest.json", json.dumps(legacy_manifest))
+        zf.writestr("database.sqlite", legacy_db_bytes)
+    legacy_zip = buf.getvalue()
+
+    monkeypatch.setenv("DATABASE_URL", live_url)
+    command.upgrade(cfg, "head")
+    app = create_app(Config(database_url=live_url, backups_dir=backups_dir, qa_mode=True))
+    with TestClient(app) as client:
+        restored = client.post(
+            "/api/v1/backup/restore?confirm=true",
+            content=legacy_zip,
+            headers={"Content-Type": "application/zip"},
+        )
+        assert restored.status_code == 200, restored.text
+        assert restored.json()["restored"] is True
+        assert client.get("/api/v1/profile").json()["name"] == "W8 Learner"
+
+        settings = client.get("/api/v1/settings")
+        assert settings.status_code == 200, settings.text
+        settings_data = settings.json()
+        assert "ai" not in settings_data
+        assert "stt" not in settings_data
+        assert "tts" not in settings_data
+        assert settings_data["daily_goal"] == 42
+
+        updated = client.patch("/api/v1/settings", json={"daily_goal": 48})
+        assert updated.status_code == 200, updated.text
+        assert updated.json()["daily_goal"] == 48
+
+    conn = sqlite3.connect(str(live_db_file))
+    raw_prefs = json.loads(
+        conn.execute("SELECT data FROM preferences WHERE profile_id = 'local'").fetchone()[0]
+    )
+    assert "ai" not in raw_prefs
+    assert "stt" not in raw_prefs
+    assert "tts" not in raw_prefs
+    assert conn.execute("SELECT SUM(amount) FROM xp_ledger").fetchone()[0] == 25
+    assert conn.execute("SELECT COUNT(*) FROM study_sessions").fetchone()[0] == 1
+    conn.close()
 

@@ -73,7 +73,11 @@ def test_collection_recall_uses_saved_snapshot_and_preserves_existing_schedule(c
     spoken = client.post(route + "/recall", json={"direction": "speaking"})
     assert spoken.status_code == 200
     assert all(
-        item["supports_recording"] and not item["scheduled"] for item in spoken.json()["cards"]
+        item["direction"] == "speaking"
+        and item["audio_cues"] == [{"id": "reference", "label": "saved word reference"}]
+        and "supports_recording" not in item
+        and not item["scheduled"]
+        for item in spoken.json()["cards"]
     )
     assert client.post(route + "/recall", json={"direction": "recognition"}).status_code == 422
 

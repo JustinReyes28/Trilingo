@@ -1,5 +1,4 @@
 from typing import Annotated, Literal
-from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
@@ -42,31 +41,6 @@ class ProfilePatch(StrictModel):
         return timezone_name(value) if value else value
 
 
-class Provider(StrictModel):
-    enabled: bool = False
-    provider: str = Field(default="disabled", max_length=60)
-    base_url: str = Field(default="http://127.0.0.1:1234", max_length=2048)
-    model: str = Field(default="", max_length=150)
-    timeout: int = Field(default=20, ge=1, le=120)
-
-    @field_validator("base_url")
-    @classmethod
-    def validate_url(cls, value: str) -> str:
-        parsed = urlsplit(value)
-        if (
-            parsed.scheme not in {"http", "https"}
-            or parsed.hostname not in {"127.0.0.1", "localhost", "::1"}
-            or parsed.username
-            or parsed.password
-            or parsed.query
-            or parsed.fragment
-        ):
-            raise ValueError("Use a local provider URL without credentials, query, or fragment")
-        if parsed.port is not None and not 1 <= parsed.port <= 65535:
-            raise ValueError("Provider port must be between 1 and 65535")
-        return value.rstrip("/")
-
-
 class Settings(StrictModel):
     daily_goal: int | None = Field(default=20, ge=1)
     show_goal: bool = True
@@ -86,8 +60,6 @@ class Settings(StrictModel):
     show_timer: bool = False
     show_reminder: bool = False
     retention: float = Field(default=0.9, ge=0.7, le=0.97)
-    ai: Provider = Field(default_factory=Provider)
-    stt: Provider = Field(default_factory=Provider)
 
 
 class SettingsPatch(StrictModel):
@@ -107,8 +79,6 @@ class SettingsPatch(StrictModel):
     sound: bool | None = None
     show_statistics: bool | None = None
     practice_batch: int | None = Field(default=None, ge=1)
-    ai: Provider | None = None
-    stt: Provider | None = None
 
     @field_validator(
         "interests",
@@ -126,8 +96,6 @@ class SettingsPatch(StrictModel):
         "sound",
         "show_statistics",
         "practice_batch",
-        "ai",
-        "stt",
     )
     @classmethod
     def no_explicit_null(cls, value):

@@ -1,4 +1,4 @@
-"""Focused speaking/fallback UI QA. Uses a disposable QA app and virtual microphone only."""
+"""Focused speaking/fallback UI QA using a disposable QA app and bundled audio pack."""
 
 import argparse
 import json
@@ -27,7 +27,6 @@ def main() -> None:
         browser = playwright.chromium.launch(
             headless=True,
             executable_path="C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-            args=["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"],
         )
         context = browser.new_context(viewport={"width": 390, "height": 900})
         def local_only(route):
@@ -37,14 +36,6 @@ def main() -> None:
                 external.append(route.request.url)
                 route.abort()
         context.route("**/*", local_only)
-        context.add_init_script("""
-            const original = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
-            let denied = false;
-            navigator.mediaDevices.getUserMedia = async (...args) => {
-              if (!denied) { denied = true; throw new DOMException('Microphone permission denied in QA', 'NotAllowedError'); }
-              return original(...args);
-            };
-        """)
         page = context.new_page()
         page.set_default_timeout(12000)
         page.on("pageerror", lambda error: errors.append(str(error)))
@@ -63,7 +54,9 @@ def main() -> None:
                 layouts.append({"surface": label, "width": width, "overflow": False})
             page.set_viewport_size({"width": 390, "height": 900})
         baseline = call("GET", "/personal")["skill_evidence"].get("speaking", {}).get("typed_fallbacks", 0)
-        assert not any(call("GET", "/health")["features"][kind] for kind in ("ai", "tts", "stt"))
+        health = call("GET", "/health")
+        assert health["schema_version"] == "0015" and health["features"] == {"lessons": True}
+        audio_pack = call("GET", "/audio/status")["audio_pack"]
         call("PATCH", "/settings", {"show_statistics": True, "show_quests": True})
         page.goto(args.base + "/#grammar")
         page.get_by_label("Show unreviewed draft guides and scenarios").check()
@@ -73,7 +66,7 @@ def main() -> None:
         page.wait_for_url("**/#session/*")
         session_id = page.url.split("#session/")[1]
         expect(page.get_by_text("水をください。", exact=True)).to_be_visible()
-        page.get_by_text("Use typed fallback", exact=True).click()
+        page.get_by_text("Typed practice", exact=True).click()
         typed = page.get_by_label("Typed practice · no speech assessed", exact=True)
         typed.focus()
         typed.dispatch_event("compositionstart")
@@ -85,22 +78,12 @@ def main() -> None:
         typed.fill("水をください。")
         capture("speaking-typed")
         page.get_by_role("button", name="Prepare model response", exact=True).click()
-        expect(page.get_by_role("alert")).to_contain_text("disabled")
-        page.get_by_role("button", name="Record microphone", exact=True).click()
-        expect(page.get_by_text("Microphone permission denied in QA", exact=False)).to_be_visible()
-        # A virtual device checks local controls only; it is not real human speech evidence.
-        page.get_by_role("button", name="Record microphone", exact=True).click()
-        expect(page.get_by_role("button", name="Stop recording", exact=True)).to_be_visible()
-        page.wait_for_timeout(700)
-        page.get_by_role("button", name="Stop recording", exact=True).click()
-        expect(page.get_by_label("Your microphone recording", exact=True)).to_be_visible()
-        page.get_by_role("button", name="Send and save transcript feedback", exact=True).click()
-        expect(page.locator(".recorder").get_by_role("alert")).to_contain_text("disabled")
-        assert call("GET", f"/sessions/{session_id}")["revision"] == 0
-        page.get_by_role("button", name="Delete recording", exact=True).click()
-        expect(page.get_by_label("Your microphone recording", exact=True)).to_have_count(0)
+        if audio_pack["bundled_reference"]:
+            expect(page.get_by_label("model response", exact=True)).to_be_visible()
+        else:
+            expect(page.get_by_role("alert")).to_contain_text("unavailable")
         page.get_by_role("button", name="Save typed practice", exact=True).click()
-        expect(page.get_by_text("Typed fallback saved.", exact=False)).to_be_visible()
+        expect(page.get_by_text("Typed practice saved.", exact=False)).to_be_visible()
         page.get_by_role("button", name="Pause and leave", exact=True).click()
         page.wait_for_url("**/#learn")
         page.goto(args.base + "/#session/" + session_id)
@@ -114,31 +97,44 @@ def main() -> None:
         assert saved["xp_awarded"] == 5 and saved["assessed_count"] == 0
         page.get_by_role("button", name="Start a new replay", exact=True).click()
         page.wait_for_url(lambda url: "#session/" in url and not url.endswith(session_id))
-        expect(page.get_by_text("0 saved speech attempts", exact=False)).to_be_visible()
+        expect(page.get_by_text("0 saved typed practice responses", exact=False)).to_be_visible()
+        rejected = context.request.post(
+            api + "/quests",
+            data={"request_id": str(uuid4()), "kind": "speaking", "target": 3},
+        )
+        assert rejected.status == 422
         page.goto(args.base + "/#review")
-        page.get_by_role("combobox", name="Practice to notice", exact=True).select_option("speaking")
+        page.get_by_role("combobox", name="Practice to notice", exact=True).select_option("listening")
         page.get_by_role("button", name="Add personal quest", exact=True).click()
-        expect(page.get_by_text("speaking: 0 / 3", exact=False)).to_be_visible()
+        expect(page.get_by_text("listening: 0 / 3", exact=False)).to_be_visible()
         page.get_by_text("Evidence by skill", exact=True).click()
-        expect(page.get_by_text(f"{baseline + 1} typed fallbacks (pronunciation unassessed)", exact=False)).to_be_visible()
+        expect(
+            page.get_by_text(
+                f"{baseline + 1} typed practice responses (pronunciation unassessed)",
+                exact=False,
+            )
+        ).to_be_visible()
         capture("speaking-records")
-        page.get_by_role("button", name="Audio unavailable · switch this quest to core sessions", exact=True).first.click()
-        expect(page.get_by_text("Changed from speaking to sessions.", exact=False)).to_be_visible()
+        page.get_by_role(
+            "button",
+            name="Audio unavailable · switch this quest to core sessions",
+            exact=True,
+        ).first.click()
+        expect(page.get_by_text("Changed from listening to sessions.", exact=False)).to_be_visible()
         page.goto(args.base + "/#grammar")
         page.get_by_label("Show unreviewed draft guides and scenarios").check()
         scene = page.locator(".scenario-row").filter(has=page.get_by_role("heading", name="Ordering a drink", exact=True))
-        scene.get_by_text("Optional local AI scenario coaching", exact=True).click()
-        scene.get_by_text("Use your voice for this reply", exact=True).click()
-        scene.get_by_label("Your reply", exact=True).fill("水をください。")
-        scene.get_by_role("button", name="Ask local scenario coach", exact=True).click()
-        expect(scene.get_by_text("Authored fallback · local AI disabled", exact=True)).to_be_visible()
-        capture("scenario-voice-fallback", scene)
+        expect(scene.get_by_text("Optional local AI scenario coaching", exact=False)).to_have_count(0)
         assert not errors, errors
         assert not external, external
         browser.close()
-    report = {"layouts": layouts, "errors": errors, "external_requests": external,
-              "microphone": "Emulated denial and virtual device only; real device/provider checks remain open",
-              "providers": "AI/TTS/STT disabled; no provider success simulated"}
+    report = {
+        "layouts": layouts,
+        "errors": errors,
+        "external_requests": external,
+        "audio_pack": audio_pack,
+        "providers": "Zero runtime AI, STT, microphone capture, or TTS providers (schema 0015)",
+    }
     (output / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps({"layouts": len(layouts), "errors": errors, "external": external}))
 

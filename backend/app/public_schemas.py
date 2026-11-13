@@ -17,8 +17,6 @@ from app.schemas import StrictModel
 
 class Features(StrictModel):
     lessons: bool = False
-    ai: bool = False
-    stt: bool = False
 
 
 class HealthOut(StrictModel):

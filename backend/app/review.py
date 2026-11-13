@@ -45,14 +45,12 @@ def card_out(db: Session, row: ReviewCard, content: CourseContent | None = None)
         assert snapshot is not None
         content = CourseContent.model_validate(snapshot.data)
     audio_cues = []
-    supports_recording = False
     reference_text = None
     if row.item_kind == "word":
         word = next(word for word in content.vocabulary if word.id == row.item_id)
         prompt = word.gloss if row.direction in {"typing", "speaking"} else word.surface
         if row.direction in {"listening", "speaking"}:
             audio_cues = [{"id": "reference", "label": "saved word reference"}]
-            supports_recording = row.direction == "speaking"
         if row.direction == "listening":
             prompt = "Listen, then recall the meaning. Reveal text whenever useful."
         answer = (
@@ -68,7 +66,6 @@ def card_out(db: Session, row: ReviewCard, content: CourseContent | None = None)
     else:
         exercise = exercise_map(content)[row.item_id]
         audio_cues = [{"id": cue.id, "label": cue.label} for cue in getattr(exercise, "audio", [])]
-        supports_recording = exercise.type == "speaking"
         prompt = exercise.prompt
         raw = getattr(exercise, "answer", getattr(exercise, "answers", []))
         if exercise.type == "speaking":
@@ -87,7 +84,6 @@ def card_out(db: Session, row: ReviewCard, content: CourseContent | None = None)
     return {
         "id": row.id,
         "audio_cues": audio_cues,
-        "supports_recording": supports_recording,
         "reference_text": reference_text,
         "content_version": content.version,
         "item_id": row.item_id,
